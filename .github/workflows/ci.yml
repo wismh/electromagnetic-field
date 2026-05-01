@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # CMakePresets.json's "vs" preset hardcodes generator "Visual Studio 18 2026", which is not
+      # installed on GitHub's windows-latest image (currently VS2022 / "Visual Studio 17 2022").
+      # Configuring without -G lets CMake pick whatever Visual Studio generator the runner
+      # actually has installed instead of hardcoding a version that will drift out of sync with
+      # GitHub's image again the next time either side upgrades. No -D flags needed: Wind defaults
+      # ENGINE_WITH_AUDIO/ENGINE_WITH_WINDOW ON for a game's add_subdirectory, so this plain
+      # configure already matches what the "vs" preset would give us.
+      - name: Configure
+        run: cmake -S . -B build
+
+      # Build this game's own test binary and the real game executable so a compile regression in
+      # either the domain code or the engine-adapter code fails CI. CMakeLists.txt only sets
+      # ENGINE_WITH_GTEST (vendors GoogleTest for electromagnetic_field_tests below), not ENGINE_BUILD_TESTS,
+      # so engine_tests (audio/window/host engine-internal suites that need real audio/display
+      # hardware this runner doesn't have) is never even configured as a target, let alone built.
+      - name: Build tests
+        run: cmake --build build --target electromagnetic_field_tests --config Debug
+
+      - name: Build game
+        run: cmake --build build --target electromagnetic-field --config Debug
+
+      # Scope CTest to this repo's own domain-logic suites (SmokeTest for now). engine_tests is
+      # never built above, so it can't appear here regardless.
+      - name: Run tests
+        run: ctest --test-dir build -C Debug -R "SmokeTest" --output-on-failure
