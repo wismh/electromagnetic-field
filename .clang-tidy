@@ -1,0 +1,35 @@
+# Baseline clang-tidy configuration for this game's own code (include/game, src, tests).
+# This is an intentionally incremental starting point for local/IDE use, not enforced in CI yet.
+# Wind (external/engine) ships no .clang-tidy of its own to align with, so this picks a small,
+# conservative check set suited to a small C++23 game rather than maximal strictness, and drops
+# checks that are either noisy for this codebase's style or redundant with compiler warnings.
+---
+Checks: >
+  -*,
+  bugprone-*,
+  performance-*,
+  modernize-*,
+  readability-*,
+  -modernize-use-trailing-return-type,
+  -modernize-use-nodiscard,
+  -readability-magic-numbers,
+  -readability-identifier-length,
+  -readability-uppercase-literal-suffix,
+  -readability-named-parameter,
+  -bugprone-easily-swappable-parameters
+
+WarningsAsErrors: ''
+HeaderFilterRegex: '(include|src)[/\\]game[/\\].*'
+FormatStyle: file
+
+CheckOptions:
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.EnumCase
+    value: CamelCase
+  - key: readability-identifier-naming.MemberSuffix
+    value: _
+  - key: readability-identifier-naming.PrivateMemberSuffix
+    value: _
+  - key: readability-identifier-naming.FunctionCase
+    value: lower_case

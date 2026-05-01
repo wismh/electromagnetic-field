@@ -1,0 +1,15 @@
+/build/
+/build-*/
+/out/
+/cmake-build-*/
+/.vs/
+/.idea/
+/.cache/
+/CMakeUserPresets.json
+/generated/
+*.user
+*.suo
+compile_commands.json
+.DS_Store
+Thumbs.db
+*.apk

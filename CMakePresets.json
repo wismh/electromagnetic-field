@@ -1,0 +1,52 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "vs",
+      "displayName": "Visual Studio",
+      "generator": "Visual Studio 18 2026",
+      "binaryDir": "${sourceDir}/build"
+    },
+    {
+      "name": "web",
+      "displayName": "Emscripten WebGL2 + SDL3_mixer WAV backend (configure with emcmake, or set EMSDK and use the toolchain file directly)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-web",
+      "toolchainFile": "${sourceDir}/external/engine/cmake/toolchains/Emscripten.cmake",
+      "cacheVariables": {
+        "ENGINE_WITH_WINDOW": "ON",
+        "ENGINE_WITH_WEB": "ON"
+      }
+    },
+    {
+      "name": "android-arm64",
+      "displayName": "Android NDK arm64-v8a (set ANDROID_NDK / ANDROID_NDK_HOME)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-android",
+      "toolchainFile": "${sourceDir}/external/engine/cmake/toolchains/android-ndk.cmake",
+      "cacheVariables": {
+        "ENGINE_WITH_WINDOW": "ON",
+        "ENGINE_WITH_ANDROID": "ON",
+        "ANDROID_ABI": "arm64-v8a",
+        "ANDROID_PLATFORM": "android-21"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "game",
+      "configurePreset": "vs",
+      "targets": ["electromagnetic-field"]
+    },
+    {
+      "name": "web",
+      "configurePreset": "web",
+      "targets": ["electromagnetic-field"]
+    },
+    {
+      "name": "android-arm64",
+      "configurePreset": "android-arm64",
+      "targets": ["electromagnetic-field"]
+    }
+  ]
+}
