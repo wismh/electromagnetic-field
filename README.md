@@ -16,7 +16,7 @@ Tests:
 
 ```bash
 cmake --build build --target electromagnetic_field_tests --config Debug
-ctest --test-dir build -C Debug -R SmokeTest --output-on-failure
+ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest" --output-on-failure
 ```
 
 Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine's README:
