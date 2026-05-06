@@ -35,7 +35,7 @@ jobs:
       - name: Build game
         run: cmake --build build --target electromagnetic-field --config Debug
 
-      # Scope CTest to this repo's own domain-logic suites (ElectrostaticsTest, SimulationTest). engine_tests is
+      # Scope CTest to this repo's own domain-logic suites (ElectrostaticsTest, SimulationTest, SceneTest). engine_tests is
       # never built above, so it can't appear here regardless.
       - name: Run tests
-        run: ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest" --output-on-failure
+        run: ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest" --output-on-failure

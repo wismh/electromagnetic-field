@@ -9,13 +9,16 @@ engine_add_game(electromagnetic-field
     src/main.cpp
     src/game.cpp
     src/electrostatics.cpp
-    src/simulation.cpp)
+    src/simulation.cpp
+    src/scene.cpp)
 
 add_executable(electromagnetic_field_tests
     tests/electrostatics_test.cpp
     tests/simulation_test.cpp
+    tests/scene_test.cpp
     src/electrostatics.cpp
-    src/simulation.cpp)
+    src/simulation.cpp
+    src/scene.cpp)
 target_compile_features(electromagnetic_field_tests PRIVATE cxx_std_23)
 target_include_directories(electromagnetic_field_tests PRIVATE include)
 target_link_libraries(electromagnetic_field_tests PRIVATE GTest::gtest_main glm::glm)

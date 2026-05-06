@@ -16,7 +16,7 @@ struct FieldParams {
     // Plummer softening length: r^2 is replaced by r^2 + softening^2 so the field stays finite
     // at r -> 0. Field, potential and energy all use the same softened form, so F = -grad U
     // holds exactly and the integrator conserves energy.
-    float softening = 0.1f;
+    float softening = 0.25f;
 };
 
 inline constexpr std::size_t kNoCharge = std::numeric_limits<std::size_t>::max();
