@@ -16,7 +16,7 @@ Tests:
 
 ```bash
 cmake --build build --target electromagnetic_field_tests --config Debug
-ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest" --output-on-failure
+ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest|CameraControlTest" --output-on-failure
 ```
 
 Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine's README:
@@ -31,6 +31,9 @@ Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine'
 | LMB drag on a charge | move it |
 | RMB on a charge / `Delete` | remove it |
 | Wheel over a charge | change `|q|` by 0.25 (0.25 … 5) |
+| Wheel elsewhere | zoom about the cursor |
+| MMB drag | pan the camera |
+| `Home` | reset the camera |
 | `F` over a charge | flip the sign |
 | `L` over a charge | pin / unpin (pinned charges have a white ring) |
 | `Space` | pause / resume |
