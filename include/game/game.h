@@ -6,9 +6,11 @@
 #include <engine/igame.h>
 #include <engine/resources/assets_db.h>
 
+#include <game/camera_control.h>
 #include <game/scene.h>
 #include <game/simulation.h>
 
+#include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 
 #include <cstddef>
@@ -36,6 +38,9 @@ private:
 
     void spawn_camera();
     void spawn_potential_layer();
+    [[nodiscard]] CameraView camera_view();
+    void set_camera_view(const CameraView& view);
+    void follow_camera();
 
     void handle_mouse();
     void handle_keys();
@@ -65,7 +70,10 @@ private:
 
     engine::ecs::EventCursor<engine::MouseEvent> mouse_cursor_;
     engine::ecs::EventCursor<engine::KeyEvent> key_cursor_;
+    glm::vec2 pointer_screen_{0.f};
     glm::vec3 pointer_world_{0.f};
+    // World point grabbed by a middle-button pan; the camera moves so it stays under the cursor.
+    std::optional<glm::vec3> pan_grab_;
     std::optional<std::size_t> hovered_;
     std::optional<Drag> drag_;
 

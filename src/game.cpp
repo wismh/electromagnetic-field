@@ -22,7 +22,8 @@ constexpr int kWindowW = 1280;
 constexpr int kWindowH = 720;
 constexpr float kOrthoHalf = 10.f;
 // Large enough to cover the view at any window aspect.
-constexpr float kPotentialLayerSize = 200.f;
+// The background quad follows the camera and spans this many view heights, enough for any sane aspect.
+constexpr float kPotentialLayerViewHeights = 4.f;
 // Must match kQuadRadii in assets/shaders/charge.shader.
 constexpr float kChargeQuadRadii = 3.f;
 
@@ -64,7 +65,11 @@ void Game::on_fixed_update() {
 void Game::on_update() {
     handle_mouse();
     handle_keys();
+    // The camera may have moved (pan, zoom, reset), so re-derive the world point under the cursor.
+    pointer_world_ = pointer_to_world(pointer_screen_);
+    on_mouse_move();
     update_hover();
+    follow_camera();
     sync_charge_views();
     sync_potential_uniforms();
     GameBase::on_update();
@@ -80,7 +85,6 @@ void Game::spawn_camera() {
 void Game::spawn_potential_layer() {
     potential_layer_ = world_.create();
     world_.emplace<engine::Transform>(potential_layer_, engine::Transform{
-            .scale = {kPotentialLayerSize, kPotentialLayerSize, 1.f},
     });
     world_.emplace<engine::render::Renderable>(potential_layer_, engine::render::Renderable{
             .mesh = assets_.get<engine::render::IMesh>(engine::builtin::mesh_quad),
@@ -90,13 +94,39 @@ void Game::spawn_potential_layer() {
     });
 }
 
+CameraView Game::camera_view() {
+    return CameraView{
+            .position = world_.get<engine::Transform>(camera_).position,
+            .ortho_half = world_.get<engine::Camera>(camera_).ortho_size,
+    };
+}
+
+void Game::set_camera_view(const CameraView& view) {
+    world_.get<engine::Transform>(camera_).position = view.position;
+    world_.get<engine::Camera>(camera_).ortho_size = view.ortho_half;
+}
+
+void Game::follow_camera() {
+    const CameraView view = camera_view();
+    const float size = 2.f * view.ortho_half * kPotentialLayerViewHeights;
+    auto& transform = world_.get<engine::Transform>(potential_layer_);
+    transform.position = {view.position.x, view.position.y, 0.f};
+    transform.scale = {size, size, 1.f};
+}
+
 void Game::handle_mouse() {
     for (const engine::MouseEvent& event : engine::ecs::EventReader<engine::MouseEvent>{world_, mouse_cursor_}) {
         if (event.window != engine::kPrimaryWindow) {
             continue;
         }
+        pointer_screen_ = event.position;
         switch (event.kind) {
             case engine::MouseEvent::Kind::Move:
+                if (pan_grab_) {
+                    CameraView view = camera_view();
+                    view.position += *pan_grab_ - pointer_to_world(event.position);
+                    set_camera_view(view);
+                }
                 pointer_world_ = pointer_to_world(event.position);
                 on_mouse_move();
                 break;
@@ -110,6 +140,7 @@ void Game::handle_mouse() {
                 on_mouse_up(event.button);
                 break;
             case engine::MouseEvent::Kind::Wheel:
+                pointer_world_ = pointer_to_world(event.position);
                 update_hover();
                 on_wheel(event.wheel_y);
                 break;
@@ -130,8 +161,12 @@ void Game::handle_keys() {
     }
 }
 
-// LMB: grab a charge or place +1. RMB: delete a charge or place -1.
+// LMB: grab a charge or place +1. RMB: delete a charge or place -1. MMB: pan the camera.
 void Game::on_mouse_down(engine::MouseButton button) {
+    if (button == engine::MouseButton::Middle) {
+        pan_grab_ = pointer_world_;
+        return;
+    }
     if (drag_) {
         return;
     }
@@ -157,6 +192,8 @@ void Game::on_mouse_down(engine::MouseButton button) {
 void Game::on_mouse_up(engine::MouseButton button) {
     if (button == engine::MouseButton::Left) {
         end_drag();
+    } else if (button == engine::MouseButton::Middle) {
+        pan_grab_.reset();
     }
 }
 
@@ -169,12 +206,14 @@ void Game::on_mouse_move() {
     c.position.z = 0.f;
 }
 
+// Over a charge the wheel changes |q|; anywhere else it zooms about the cursor.
 void Game::on_wheel(float notches) {
-    if (!hovered_) {
+    if (hovered_) {
+        Charge& c = sim_.charges()[*hovered_];
+        c.q = step_charge_magnitude(c.q, notches);
         return;
     }
-    Charge& c = sim_.charges()[*hovered_];
-    c.q = step_charge_magnitude(c.q, notches);
+    set_camera_view(zoom_about(camera_view(), pointer_world_, notches));
 }
 
 void Game::on_key(engine::KeyCode key) {
@@ -194,6 +233,9 @@ void Game::on_key(engine::KeyCode key) {
             time_scale_ = std::clamp(key == KeyCode::Up ? time_scale_ * 2.f : time_scale_ * 0.5f, kMinTimeScale,
                     kMaxTimeScale);
             engine::log::info(std::format("time scale x{}", time_scale_));
+            return;
+        case KeyCode::Home:
+            set_camera_view(CameraView{.position = {0.f, 0.f, 0.f}, .ortho_half = kOrthoHalf});
             return;
         case KeyCode::C:
             end_drag();
