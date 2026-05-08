@@ -51,9 +51,15 @@
             vec3 color = mix(background, t > 0.0 ? positive : negative, abs(t));
 
             // Equipotential lines every 0.25 of phi, anti-aliased by the screen-space derivative.
+            // Where phi is flat (no charges, or numerically constant) there is no line to draw:
+            // without this guard dist would be 0 everywhere and the whole screen would turn grey.
             float level = phi * 4.0;
-            float dist = abs(fract(level + 0.5) - 0.5) / max(fwidth(level), 1e-4);
-            float line = 1.0 - clamp(dist, 0.0, 1.0);
+            float width = fwidth(level);
+            float line = 0.0;
+            if (width > 1e-6) {
+                float dist = abs(fract(level + 0.5) - 0.5) / width;
+                line = 1.0 - clamp(dist, 0.0, 1.0);
+            }
             color += 0.25 * line * vec3(1.0);
 
             FragColor = vec4(color, 1.0);
