@@ -7,6 +7,7 @@
 #include <engine/resources/assets_db.h>
 
 #include <game/camera_control.h>
+#include <game/field_view.h>
 #include <game/scene.h>
 #include <game/simulation.h>
 
@@ -57,6 +58,8 @@ private:
     [[nodiscard]] glm::vec3 pointer_to_world(glm::vec2 screen);
     void update_hover();
 
+    [[nodiscard]] Bounds view_bounds();
+    void update_field_view();
     void sync_charge_views();
     void sync_potential_uniforms();
 
@@ -67,6 +70,9 @@ private:
     engine::ecs::Entity camera_{};
     engine::ecs::Entity potential_layer_{};
     std::vector<engine::ecs::Entity> charge_views_;
+    // Built in on_start, once the asset catalog is loaded.
+    std::optional<FieldView> field_view_;
+    FieldLayers layers_;
 
     engine::ecs::EventCursor<engine::MouseEvent> mouse_cursor_;
     engine::ecs::EventCursor<engine::KeyEvent> key_cursor_;

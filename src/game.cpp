@@ -45,6 +45,7 @@ engine::WindowDesc Game::primary_window() const {
 void Game::on_start() {
     spawn_camera();
     spawn_potential_layer();
+    field_view_.emplace(world_, assets_);
     load_preset(preset_);
 }
 
@@ -70,6 +71,7 @@ void Game::on_update() {
     on_mouse_move();
     update_hover();
     follow_camera();
+    update_field_view();
     sync_charge_views();
     sync_potential_uniforms();
     GameBase::on_update();
@@ -108,7 +110,8 @@ void Game::set_camera_view(const CameraView& view) {
 
 void Game::follow_camera() {
     const CameraView view = camera_view();
-    const float size = 2.f * view.ortho_half * kPotentialLayerViewHeights;
+    // Hidden by collapsing the quad: Renderable has no visibility flag.
+    const float size = layers_.potential ? 2.f * view.ortho_half * kPotentialLayerViewHeights : 0.f;
     auto& transform = world_.get<engine::Transform>(potential_layer_);
     transform.position = {view.position.x, view.position.y, 0.f};
     transform.scale = {size, size, 1.f};
@@ -234,6 +237,21 @@ void Game::on_key(engine::KeyCode key) {
                     kMaxTimeScale);
             engine::log::info(std::format("time scale x{}", time_scale_));
             return;
+        case KeyCode::F1:
+            layers_.potential = !layers_.potential;
+            return;
+        case KeyCode::F2:
+            layers_.lines = !layers_.lines;
+            return;
+        case KeyCode::F3:
+            layers_.grid = !layers_.grid;
+            return;
+        case KeyCode::F4:
+            layers_.flow = !layers_.flow;
+            return;
+        case KeyCode::F5:
+            layers_.probe = !layers_.probe;
+            return;
         case KeyCode::Home:
             set_camera_view(CameraView{.position = {0.f, 0.f, 0.f}, .ortho_half = kOrthoHalf});
             return;
@@ -339,6 +357,39 @@ void Game::update_hover() {
         return;
     }
     hovered_ = pick_charge(sim_.charges(), pointer_world_);
+}
+
+Bounds Game::view_bounds() {
+    const engine::ui::WindowSize window = engine::ui::window_size_for(world_, engine::kPrimaryWindow);
+    const CameraView view = camera_view();
+    const float aspect = window.height > 0 ? static_cast<float>(window.width) / static_cast<float>(window.height) : 1.f;
+    const glm::vec2 half{view.ortho_half * aspect, view.ortho_half};
+    const glm::vec2 centre{view.position.x, view.position.y};
+    return Bounds{centre - half, centre + half};
+}
+
+void Game::update_field_view() {
+    const engine::ui::WindowSize window = engine::ui::window_size_for(world_, engine::kPrimaryWindow);
+    if (window.height <= 0) {
+        return;
+    }
+    // The probe hides while the cursor is over (or dragging) a charge, where the field is dominated
+    // by that charge itself.
+    std::optional<glm::vec3> probe;
+    if (!hovered_ && !drag_ && !pan_grab_) {
+        probe = pointer_world_;
+    }
+    field_view_->update(FieldView::Frame{
+            .charges = sim_.charges(),
+            .params = sim_.params(),
+            .view = view_bounds(),
+            .world_per_pixel = 2.f * camera_view().ortho_half / static_cast<float>(window.height),
+            // Flow tracers visualise the current field, so they keep moving in real time even while
+            // the simulation is paused.
+            .dt = world_.ctx<engine::Time>().delta_time,
+            .probe = probe,
+            .layers = layers_,
+    });
 }
 
 // One quad entity per charge, created/destroyed as the charge count changes and refreshed every frame.
