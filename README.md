@@ -16,7 +16,7 @@ Tests:
 
 ```bash
 cmake --build build --target electromagnetic_field_tests --config Debug
-ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest|CameraControlTest" --output-on-failure
+ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest|CameraControlTest|FieldVizTest" --output-on-failure
 ```
 
 Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine's README:
@@ -41,6 +41,7 @@ Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine'
 | `Up` / `Down` | time scale ×2 / ÷2 (1/8 … 8) |
 | `1`–`5` | presets: dipole, like pair, quadrupole, capacitor, orbit |
 | `R` / `C` | reload current preset / clear all |
+| `F1`–`F5` | toggle layers: potential, field lines, vector grid, flow tracers, cursor probe |
 
 ## Updating the engine
 
