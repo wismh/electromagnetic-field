@@ -9,6 +9,7 @@
 #include <game/charge.h>
 #include <game/electrostatics.h>
 #include <game/field_viz.h>
+#include <game/trails.h>
 
 #include <glm/vec3.hpp>
 
@@ -24,9 +25,10 @@ struct FieldLayers {
     bool grid = false;
     bool flow = true;
     bool probe = true;
+    bool trails = true;
 };
 
-// Draws field lines, the vector grid, flow tracers and the cursor probe. Every element is an
+// Draws field lines, the vector grid, flow tracers, charge trails and the cursor probe. Every element is an
 // instance in a ParticleEmitter that never emits: the emitter is only used as an instanced,
 // layer-sorted draw list whose particles are rebuilt here every frame.
 class FieldView {
@@ -38,8 +40,10 @@ public:
         FieldParams params;
         Bounds view;              // visible world rectangle
         float world_per_pixel = 0.f;
-        float dt = 0.f;           // simulation time advanced this frame (0 while paused)
+        float dt = 0.f;           // real frame time; flow tracers keep moving while paused
         std::optional<glm::vec3> probe;
+        const Trails* trails = nullptr;
+        float sim_time = 0.f;
         FieldLayers layers;
     };
 
@@ -53,6 +57,7 @@ private:
     void build_grid(const Frame& frame);
     void build_flow(const Frame& frame);
     void build_probe(const Frame& frame);
+    void build_trails(const Frame& frame);
 
     [[nodiscard]] bool lines_dirty(const Frame& frame) const;
 
@@ -63,6 +68,7 @@ private:
     engine::ecs::Entity grid_arrows_{};
     engine::ecs::Entity flow_dots_{};
     engine::ecs::Entity probe_arrow_{};
+    engine::ecs::Entity trail_segments_{};
 
     FlowField flow_;
 

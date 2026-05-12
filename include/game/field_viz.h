@@ -25,7 +25,7 @@ struct Bounds {
 
 struct FieldLineOptions {
     float lines_per_unit_charge = 8.f;
-    int min_lines_per_charge = 4;
+    int min_lines_per_charge = 1;
     // Lines start this far from the charge centre and end once they get this close to another charge.
     float seed_radius = 0.3f;
     float capture_radius = 0.25f;

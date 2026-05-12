@@ -17,6 +17,7 @@ namespace {
 constexpr int kGridLayer = -60;
 constexpr int kLinesLayer = -50;
 constexpr int kFlowLayer = -40;
+constexpr int kTrailLayer = -30;
 constexpr int kProbeLayer = 10;
 
 constexpr float kLineWidthPx = 2.2f;
@@ -27,6 +28,7 @@ constexpr float kGridSpacingPx = 46.f;
 constexpr float kFlowWidthPx = 4.f;
 // Streak length = distance travelled in this much time (a motion-blur trail).
 constexpr float kFlowTrailSeconds = 0.3f;
+constexpr float kTrailWidthPx = 3.f;
 constexpr float kProbeLengthPx = 90.f;
 constexpr float kProbeWidthPx = 16.f;
 // Field lines are traced a bit past the screen edge so they do not visibly stop at it.
@@ -89,6 +91,7 @@ FieldView::FieldView(engine::ecs::World& world, engine::AssetsDb& assets) :
     grid_arrows_ = spawn_layer(assets::materials::arrow, kGridLayer);
     flow_dots_ = spawn_layer(assets::materials::dot, kFlowLayer);
     probe_arrow_ = spawn_layer(assets::materials::arrow, kProbeLayer);
+    trail_segments_ = spawn_layer(assets::materials::segment, kTrailLayer);
     emitter(line_heads_).order_in_layer = 1;
 }
 
@@ -111,6 +114,7 @@ void FieldView::update(const Frame& frame) {
     build_grid(frame);
     build_flow(frame);
     build_probe(frame);
+    build_trails(frame);
 }
 
 bool FieldView::lines_dirty(const Frame& frame) const {
@@ -233,6 +237,33 @@ void FieldView::build_probe(const Frame& frame) {
     // The arrow quad is centred on its position, so shift it to start at the cursor.
     arrow.push_back(make_static(*frame.probe + 0.5f * length * dir, std::atan2(dir.y, dir.x),
             {length, kProbeWidthPx * frame.world_per_pixel}, {1.f, 1.f, 1.f, 0.95f}));
+}
+
+void FieldView::build_trails(const Frame& frame) {
+    auto& segments = emitter(trail_segments_).particles;
+    segments.clear();
+    if (!frame.layers.trails || frame.trails == nullptr) {
+        return;
+    }
+    const float width = kTrailWidthPx * frame.world_per_pixel;
+    const float duration = std::max(frame.trails->duration, 1e-3f);
+    for (const Trail& trail : frame.trails->trails()) {
+        const glm::vec3 tint = trail.q >= 0.f ? glm::vec3{1.f, 0.85f, 0.65f} : glm::vec3{0.65f, 0.85f, 1.f};
+        for (std::size_t i = 0; i + 1 < trail.points.size(); ++i) {
+            const TrailPoint& a = trail.points[i];
+            const TrailPoint& b = trail.points[i + 1];
+            const glm::vec3 d = b.position - a.position;
+            const float length = glm::length(d);
+            if (length <= 0.f) {
+                continue;
+            }
+            // Fade with age so the newest part of the path is the brightest.
+            const float age01 = std::clamp((frame.sim_time - b.time) / duration, 0.f, 1.f);
+            const float alpha = 0.95f * std::pow(1.f - age01, 1.5f);
+            segments.push_back(make_static(0.5f * (a.position + b.position), std::atan2(d.y, d.x),
+                    {length + width, width}, glm::vec4{tint, alpha}));
+        }
+    }
 }
 
 }
