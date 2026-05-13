@@ -24,12 +24,11 @@ enum class Preset {
     Quadrupole,
     Capacitor,
     Orbit,
+    Rutherford,
+    Swarm,
 };
 
 [[nodiscard]] std::vector<Charge> make_preset(Preset preset);
-
-// Radius of the drawn core disc in world units; grows with |q| so bigger charges read as bigger.
-[[nodiscard]] float charge_radius(float q);
 
 // Nearest charge whose core (slightly enlarged for easier grabbing) contains `point`.
 [[nodiscard]] std::optional<std::size_t> pick_charge(std::span<const Charge> charges, glm::vec3 point);

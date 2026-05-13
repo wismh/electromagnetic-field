@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <numbers>
 
 namespace game {
 namespace {
@@ -51,12 +52,37 @@ std::vector<Charge> make_preset(Preset preset) {
                     Charge{.position = {0.f, kRadius, 0.f}, .velocity = {speed, 0.f, 0.f}, .q = kSatelliteQ},
             };
         }
+        case Preset::Rutherford: {
+            // Light + projectiles fired at a heavy fixed + nucleus with a spread of impact parameters:
+            // the trails trace Rutherford's hyperbolic scattering orbits.
+            std::vector<Charge> charges{Charge{.position = {0.f, 0.f, 0.f}, .q = 4.f, .fixed = true}};
+            for (int i = -6; i <= 6; ++i) {
+                const float impact = 0.75f * static_cast<float>(i);
+                charges.push_back(Charge{.position = {-14.f, impact, 0.f}, .velocity = {2.f, 0.f, 0.f},
+                        .q = kMinAbsCharge, .mass = 1.f});
+            }
+            return charges;
+        }
+        case Preset::Swarm: {
+            // Free charges of alternating sign on two rings, released from rest: they pull together,
+            // collide and settle into bound clusters.
+            std::vector<Charge> charges;
+            for (int ring = 0; ring < 2; ++ring) {
+                const int count = ring == 0 ? 6 : 10;
+                const float radius = ring == 0 ? 3.f : 7.f;
+                for (int k = 0; k < count; ++k) {
+                    const float angle = 2.f * std::numbers::pi_v<float> * static_cast<float>(k) /
+                            static_cast<float>(count) + 0.3f * static_cast<float>(ring);
+                    charges.push_back(Charge{
+                            .position = {radius * std::cos(angle), radius * std::sin(angle), 0.f},
+                            .q = (k + ring) % 2 == 0 ? 1.f : -1.f,
+                    });
+                }
+            }
+            return charges;
+        }
     }
     return {};
-}
-
-float charge_radius(float q) {
-    return 0.2f + 0.15f * std::sqrt(std::abs(q));
 }
 
 std::optional<std::size_t> pick_charge(std::span<const Charge> charges, glm::vec3 point) {

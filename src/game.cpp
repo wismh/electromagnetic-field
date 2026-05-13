@@ -57,8 +57,11 @@ void Game::on_fixed_update() {
         const float dt = engine::kFixed * scale / static_cast<float>(substeps);
         for (int i = 0; i < substeps; ++i) {
             sim_.step(dt);
+            sim_time_ += dt;
         }
         step_requested_ = false;
+        assign_ids();
+        trails_.record(sim_.charges(), sim_time_);
     }
     GameBase::on_fixed_update();
 }
@@ -66,6 +69,7 @@ void Game::on_fixed_update() {
 void Game::on_update() {
     handle_mouse();
     handle_keys();
+    assign_ids();
     // The camera may have moved (pan, zoom, reset), so re-derive the world point under the cursor.
     pointer_world_ = pointer_to_world(pointer_screen_);
     on_mouse_move();
@@ -252,6 +256,16 @@ void Game::on_key(engine::KeyCode key) {
         case KeyCode::F5:
             layers_.probe = !layers_.probe;
             return;
+        case KeyCode::F6:
+            layers_.trails = !layers_.trails;
+            return;
+        case KeyCode::K: {
+            DynamicsOptions dynamics = sim_.dynamics();
+            dynamics.collisions = !dynamics.collisions;
+            sim_.set_dynamics(dynamics);
+            engine::log::info(dynamics.collisions ? "collisions on" : "collisions off");
+            return;
+        }
         case KeyCode::Home:
             set_camera_view(CameraView{.position = {0.f, 0.f, 0.f}, .ortho_half = kOrthoHalf});
             return;
@@ -277,6 +291,12 @@ void Game::on_key(engine::KeyCode key) {
             return;
         case KeyCode::Digit5:
             load_preset(Preset::Orbit);
+            return;
+        case KeyCode::Digit6:
+            load_preset(Preset::Rutherford);
+            return;
+        case KeyCode::Digit7:
+            load_preset(Preset::Swarm);
             return;
         default:
             break;
@@ -328,6 +348,15 @@ void Game::remove_charge(std::size_t index) {
     auto& charges = sim_.charges();
     charges.erase(charges.begin() + static_cast<std::ptrdiff_t>(index));
     hovered_.reset();
+}
+
+// New charges (placed, or loaded from a preset) get the next free id; trails are keyed by it.
+void Game::assign_ids() {
+    for (Charge& c : sim_.charges()) {
+        if (c.id == 0) {
+            c.id = next_id_++;
+        }
+    }
 }
 
 void Game::end_drag() {
@@ -388,6 +417,8 @@ void Game::update_field_view() {
             // the simulation is paused.
             .dt = world_.ctx<engine::Time>().delta_time,
             .probe = probe,
+            .trails = &trails_,
+            .sim_time = sim_time_,
             .layers = layers_,
     });
 }

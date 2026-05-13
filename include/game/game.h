@@ -10,11 +10,13 @@
 #include <game/field_view.h>
 #include <game/scene.h>
 #include <game/simulation.h>
+#include <game/trails.h>
 
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 
 #include <cstddef>
+#include <cstdint>
 #include <optional>
 #include <vector>
 
@@ -55,6 +57,7 @@ private:
     void add_charge(float q);
     void remove_charge(std::size_t index);
     void end_drag();
+    void assign_ids();
     [[nodiscard]] glm::vec3 pointer_to_world(glm::vec2 screen);
     void update_hover();
 
@@ -65,6 +68,9 @@ private:
 
     engine::AssetsDb& assets_;
     Simulation sim_;
+    Trails trails_;
+    float sim_time_ = 0.f;
+    std::uint32_t next_id_ = 1;
     Preset preset_ = Preset::Dipole;
 
     engine::ecs::Entity camera_{};

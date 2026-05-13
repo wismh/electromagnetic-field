@@ -13,7 +13,8 @@ engine_add_game(electromagnetic-field
     src/scene.cpp
     src/camera_control.cpp
     src/field_viz.cpp
-    src/field_view.cpp)
+    src/field_view.cpp
+    src/trails.cpp)
 
 add_executable(electromagnetic_field_tests
     tests/electrostatics_test.cpp
@@ -21,11 +22,13 @@ add_executable(electromagnetic_field_tests
     tests/scene_test.cpp
     tests/camera_control_test.cpp
     tests/field_viz_test.cpp
+    tests/dynamics_test.cpp
     src/electrostatics.cpp
     src/simulation.cpp
     src/scene.cpp
     src/camera_control.cpp
-    src/field_viz.cpp)
+    src/field_viz.cpp
+    src/trails.cpp)
 target_compile_features(electromagnetic_field_tests PRIVATE cxx_std_23)
 target_include_directories(electromagnetic_field_tests PRIVATE include)
 target_link_libraries(electromagnetic_field_tests PRIVATE GTest::gtest_main glm::glm)

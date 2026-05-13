@@ -8,15 +8,18 @@ Physics sandbox built on the **Wind** engine (git submodule `external/engine`, f
 ```bash
 git submodule update --init --recursive
 cmake --preset vs
-cmake --build --preset game --config Debug
-./build/bin/Debug/electromagnetic-field.exe
+cmake --build --preset game --config RelWithDebInfo
+./build/bin/RelWithDebInfo/electromagnetic-field.exe
 ```
+
+Run an optimized config (`RelWithDebInfo` or `Release`) for normal use. `Debug` is roughly 80× slower in the
+field-line tracer (glm is not inlined), so scenes with moving charges drop to ~15 FPS there.
 
 Tests:
 
 ```bash
 cmake --build build --target electromagnetic_field_tests --config Debug
-ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest|CameraControlTest|FieldVizTest" --output-on-failure
+ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest|CameraControlTest|FieldVizTest|DynamicsTest|TrailsTest" --output-on-failure
 ```
 
 Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine's README:
@@ -39,9 +42,10 @@ Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine'
 | `Space` | pause / resume |
 | `Right` (while paused) | single step |
 | `Up` / `Down` | time scale ×2 / ÷2 (1/8 … 8) |
-| `1`–`5` | presets: dipole, like pair, quadrupole, capacitor, orbit |
+| `1`–`7` | presets: dipole, like pair, quadrupole, capacitor, orbit, Rutherford scattering, swarm |
 | `R` / `C` | reload current preset / clear all |
-| `F1`–`F5` | toggle layers: potential, field lines, vector grid, flow tracers, cursor probe |
+| `F1`–`F6` | toggle layers: potential, field lines, vector grid, flow tracers, cursor probe, trails |
+| `K` | toggle collisions |
 
 ## Updating the engine
 

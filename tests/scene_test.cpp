@@ -27,7 +27,8 @@ TEST(SceneTest, NeutralPresetsHaveZeroNetCharge) {
 
 TEST(SceneTest, PresetsFitShaderLimitAndStayInPlane) {
     for (const Preset preset :
-            {Preset::Dipole, Preset::LikePair, Preset::Quadrupole, Preset::Capacitor, Preset::Orbit}) {
+            {Preset::Dipole, Preset::LikePair, Preset::Quadrupole, Preset::Capacitor, Preset::Orbit,
+                    Preset::Rutherford, Preset::Swarm}) {
         const std::vector<Charge> charges = make_preset(preset);
         EXPECT_FALSE(charges.empty());
         EXPECT_LE(charges.size(), kMaxCharges);
@@ -48,6 +49,25 @@ TEST(SceneTest, OrbitPresetSpeedBalancesCoulombAttraction) {
     const float centripetal = satellite.mass * glm::dot(satellite.velocity, satellite.velocity) / r;
 
     EXPECT_NEAR(glm::length(f), centripetal, 1e-5f);
+}
+
+TEST(SceneTest, RutherfordProjectilesAreRepelledByFixedNucleus) {
+    const std::vector<Charge> charges = make_preset(Preset::Rutherford);
+    ASSERT_GT(charges.size(), 2u);
+    EXPECT_TRUE(charges[0].fixed);
+    for (std::size_t i = 1; i < charges.size(); ++i) {
+        EXPECT_FALSE(charges[i].fixed);
+        EXPECT_GT(charges[i].q * charges[0].q, 0.f) << "same sign as the nucleus";
+        EXPECT_GT(charges[i].velocity.x, 0.f) << "flying towards it";
+    }
+}
+
+TEST(SceneTest, SwarmIsNeutralAndFree) {
+    const std::vector<Charge> charges = make_preset(Preset::Swarm);
+    EXPECT_FLOAT_EQ(net_charge(charges), 0.f);
+    for (const Charge& c : charges) {
+        EXPECT_FALSE(c.fixed);
+    }
 }
 
 TEST(SceneTest, PickFindsChargeUnderPoint) {
