@@ -1,0 +1,164 @@
+<Canvas id="hud">
+    <!-- Top-left status: run state, time scale, scene. -->
+    <Stack class="status" direction="vertical">
+        <Label class="status-main" text="{binding statusText}" var-accent="{binding statusColor}"/>
+        <Label class="status-sub" text="{binding sceneText}"/>
+    </Stack>
+
+    <!-- Field readout that follows the cursor (positioned in window pixels by the ViewModel). -->
+    <Stack class="probe" direction="vertical" var-px="{binding probeLeft}" var-py="{binding probeTop}"
+            var-pvis="{binding probeVisibility}">
+        <Label class="probe-line" text="{binding probeField}"/>
+        <Label class="probe-line" text="{binding probeComponents}"/>
+        <Label class="probe-line" text="{binding probePotential}"/>
+    </Stack>
+
+    <Label class="hint" text="ЛКМ +q · ПКМ −q / видалити · колесо |q| або масштаб · СКМ камера · Tab панель"/>
+
+    <!-- Right control panel. A ScrollView is hit-testable, so clicks on its background never reach
+         the scene underneath. -->
+    <ScrollView class="panel" direction="vertical" var-panel-right="{binding panelRight}">
+        <Label class="title" text="Електростатика"/>
+
+        <Label class="section" text="ЧАС"/>
+        <Stack class="row" direction="horizontal">
+            <Button class="btn wide" content="{binding pauseLabel}" command="{binding togglePause}"/>
+            <Button class="btn" content="Крок" command="{binding step}"/>
+        </Stack>
+        <Stack class="row" direction="horizontal">
+            <Button class="btn" content="÷2" command="{binding slower}"/>
+            <Label class="time-value" text="{binding timeScaleText}"/>
+            <Button class="btn" content="×2" command="{binding faster}"/>
+        </Stack>
+
+        <Label class="section" text="СЦЕНИ"/>
+        <Stack class="row" direction="horizontal">
+            <Button class="btn half" content="1 Диполь" command="{binding presetDipole}"/>
+            <Button class="btn half" content="2 Однакові" command="{binding presetLikePair}"/>
+        </Stack>
+        <Stack class="row" direction="horizontal">
+            <Button class="btn half" content="3 Квадруполь" command="{binding presetQuadrupole}"/>
+            <Button class="btn half" content="4 Конденсатор" command="{binding presetCapacitor}"/>
+        </Stack>
+        <Stack class="row" direction="horizontal">
+            <Button class="btn half" content="5 Орбіта" command="{binding presetOrbit}"/>
+            <Button class="btn half" content="6 Резерфорд" command="{binding presetRutherford}"/>
+        </Stack>
+        <Stack class="row" direction="horizontal">
+            <Button class="btn half" content="7 Рій" command="{binding presetSwarm}"/>
+            <Button class="btn half" content="Очистити" command="{binding clearAll}"/>
+        </Stack>
+
+        <Label class="section" text="ШАРИ"/>
+        <Checkbox class="toggle" checked="{binding showPotential}">
+            <Stack class="toggle-content" direction="horizontal">
+                <Stack class="toggle-left" direction="horizontal">
+                    <Stack class="box" checked="{binding showPotential}"/>
+                    <Label class="toggle-label" text="Потенціал φ"/>
+                </Stack>
+                <Label class="key" text="F1"/>
+            </Stack>
+        </Checkbox>
+        <Checkbox class="toggle" checked="{binding showLines}">
+            <Stack class="toggle-content" direction="horizontal">
+                <Stack class="toggle-left" direction="horizontal">
+                    <Stack class="box" checked="{binding showLines}"/>
+                    <Label class="toggle-label" text="Силові лінії"/>
+                </Stack>
+                <Label class="key" text="F2"/>
+            </Stack>
+        </Checkbox>
+        <Checkbox class="toggle" checked="{binding showGrid}">
+            <Stack class="toggle-content" direction="horizontal">
+                <Stack class="toggle-left" direction="horizontal">
+                    <Stack class="box" checked="{binding showGrid}"/>
+                    <Label class="toggle-label" text="Сітка векторів E"/>
+                </Stack>
+                <Label class="key" text="F3"/>
+            </Stack>
+        </Checkbox>
+        <Checkbox class="toggle" checked="{binding showFlow}">
+            <Stack class="toggle-content" direction="horizontal">
+                <Stack class="toggle-left" direction="horizontal">
+                    <Stack class="box" checked="{binding showFlow}"/>
+                    <Label class="toggle-label" text="Потік"/>
+                </Stack>
+                <Label class="key" text="F4"/>
+            </Stack>
+        </Checkbox>
+        <Checkbox class="toggle" checked="{binding showProbe}">
+            <Stack class="toggle-content" direction="horizontal">
+                <Stack class="toggle-left" direction="horizontal">
+                    <Stack class="box" checked="{binding showProbe}"/>
+                    <Label class="toggle-label" text="Пробний заряд"/>
+                </Stack>
+                <Label class="key" text="F5"/>
+            </Stack>
+        </Checkbox>
+        <Checkbox class="toggle" checked="{binding showTrails}">
+            <Stack class="toggle-content" direction="horizontal">
+                <Stack class="toggle-left" direction="horizontal">
+                    <Stack class="box" checked="{binding showTrails}"/>
+                    <Label class="toggle-label" text="Сліди"/>
+                </Stack>
+                <Label class="key" text="F6"/>
+            </Stack>
+        </Checkbox>
+        <Checkbox class="toggle" checked="{binding collisions}">
+            <Stack class="toggle-content" direction="horizontal">
+                <Stack class="toggle-left" direction="horizontal">
+                    <Stack class="box" checked="{binding collisions}"/>
+                    <Label class="toggle-label" text="Зіткнення"/>
+                </Stack>
+                <Label class="key" text="K"/>
+            </Stack>
+        </Checkbox>
+
+        <Label class="section" text="ПАРАМЕТРИ"/>
+        <Stack class="param-head" direction="horizontal">
+            <Label class="param-name" text="k — стала Кулона"/>
+            <Label class="param-value" text="{binding kText}"/>
+        </Stack>
+        <Stack class="slider" drag="{binding kFrac}">
+            <Stack class="track">
+                <Stack class="fill" var-fill="{binding kFill}"/>
+            </Stack>
+        </Stack>
+        <Stack class="param-head" direction="horizontal">
+            <Label class="param-name" text="ε — згладжування"/>
+            <Label class="param-value" text="{binding epsText}"/>
+        </Stack>
+        <Stack class="slider" drag="{binding epsFrac}">
+            <Stack class="track">
+                <Stack class="fill" var-fill="{binding epsFill}"/>
+            </Stack>
+        </Stack>
+        <Stack class="param-head" direction="horizontal">
+            <Label class="param-name" text="|q| нових зарядів"/>
+            <Label class="param-value" text="{binding newChargeText}"/>
+        </Stack>
+        <Stack class="slider" drag="{binding newChargeFrac}">
+            <Stack class="track">
+                <Stack class="fill" var-fill="{binding newChargeFill}"/>
+            </Stack>
+        </Stack>
+
+        <Label class="section" text="ЕНЕРГІЯ"/>
+        <Stack class="stat" direction="horizontal">
+            <Label class="stat-name" text="Кінетична K"/>
+            <Label class="stat-value" text="{binding energyKinetic}"/>
+        </Stack>
+        <Stack class="stat" direction="horizontal">
+            <Label class="stat-name" text="Потенціальна U"/>
+            <Label class="stat-value" text="{binding energyPotential}"/>
+        </Stack>
+        <Stack class="stat" direction="horizontal">
+            <Label class="stat-name" text="Повна E = K + U"/>
+            <Label class="stat-value" text="{binding energyTotal}"/>
+        </Stack>
+        <Stack class="stat" direction="horizontal">
+            <Label class="stat-name" text="Заряди: вільні / закріплені"/>
+            <Label class="stat-value" text="{binding chargeCount}"/>
+        </Stack>
+    </ScrollView>
+</Canvas>
