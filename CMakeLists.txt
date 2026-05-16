@@ -14,7 +14,8 @@ engine_add_game(electromagnetic-field
     src/camera_control.cpp
     src/field_viz.cpp
     src/field_view.cpp
-    src/trails.cpp)
+    src/trails.cpp
+    src/panel_view_model.cpp)
 
 add_executable(electromagnetic_field_tests
     tests/electrostatics_test.cpp
@@ -23,6 +24,7 @@ add_executable(electromagnetic_field_tests
     tests/camera_control_test.cpp
     tests/field_viz_test.cpp
     tests/dynamics_test.cpp
+    tests/slider_test.cpp
     src/electrostatics.cpp
     src/simulation.cpp
     src/scene.cpp

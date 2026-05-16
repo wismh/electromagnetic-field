@@ -19,13 +19,17 @@ Tests:
 
 ```bash
 cmake --build build --target electromagnetic_field_tests --config Debug
-ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest|CameraControlTest|FieldVizTest|DynamicsTest|TrailsTest" --output-on-failure
+ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest|CameraControlTest|FieldVizTest|DynamicsTest|TrailsTest|SliderTest" --output-on-failure
 ```
 
 Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine's README:
 `external/engine/README.md`.
 
 ## Controls
+
+The right-hand panel mirrors most shortcuts (time, scenes, layers) and adds sliders for the Coulomb constant `k`,
+the softening `ε` and the `|q|` of newly placed charges, plus live energy totals. The readout next to the cursor
+shows `|E|`, the components of `E` and the potential `φ` at that point.
 
 | Input | Action |
 |---|---|
@@ -46,6 +50,7 @@ Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine'
 | `R` / `C` | reload current preset / clear all |
 | `F1`–`F6` | toggle layers: potential, field lines, vector grid, flow tracers, cursor probe, trails |
 | `K` | toggle collisions |
+| `Tab` | show / hide the control panel |
 
 ## Updating the engine
 

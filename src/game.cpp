@@ -1,17 +1,23 @@
 #include <game/game.h>
 
+#include <game/slider.h>
+
 #include <engine/builtin_ids.h>
 #include <engine/core/time.h>
 #include <engine/ecs/camera.h>
 #include <engine/ecs/transform.h>
 #include <engine/log.h>
 #include <engine/render/renderable.h>
+#include <engine/ecs/schedule.h>
 #include <engine/ui/canvas.h>
 
 #include <asset_ids.h>
 
+#include <glm/geometric.hpp>
+
 #include <algorithm>
 #include <cmath>
+#include <cstddef>
 #include <format>
 #include <string>
 
@@ -21,7 +27,6 @@ namespace {
 constexpr int kWindowW = 1280;
 constexpr int kWindowH = 720;
 constexpr float kOrthoHalf = 10.f;
-// Large enough to cover the view at any window aspect.
 // The background quad follows the camera and spans this many view heights, enough for any sane aspect.
 constexpr float kPotentialLayerViewHeights = 4.f;
 // Must match kQuadRadii in assets/shaders/charge.shader.
@@ -32,6 +37,47 @@ constexpr float kMaxTimeScale = 8.f;
 
 constexpr glm::vec4 kPositiveColor{1.f, 0.42f, 0.2f, 1.f};
 constexpr glm::vec4 kNegativeColor{0.25f, 0.55f, 1.f, 1.f};
+
+constexpr SliderRange kCoulombRange{.min = 0.1f, .max = 5.f, .step = 0.05f};
+constexpr SliderRange kSofteningRange{.min = 0.05f, .max = 1.f, .step = 0.01f};
+constexpr SliderRange kNewChargeRange{.min = kMinAbsCharge, .max = kMaxAbsCharge, .step = kChargeStep};
+
+// Probe readout offset from the cursor, and its rough size for keeping it on screen.
+constexpr float kProbeOffsetPx = 18.f;
+constexpr float kProbeBoxW = 170.f;
+constexpr float kProbeBoxH = 64.f;
+constexpr float kPanelHiddenRight = -320.f;
+
+const char* preset_name(Preset preset) {
+    switch (preset) {
+        case Preset::Dipole:
+            return "Диполь";
+        case Preset::LikePair:
+            return "Однакові заряди";
+        case Preset::Quadrupole:
+            return "Квадруполь";
+        case Preset::Capacitor:
+            return "Конденсатор";
+        case Preset::Orbit:
+            return "Орбіта";
+        case Preset::Rutherford:
+            return "Розсіювання Резерфорда";
+        case Preset::Swarm:
+            return "Рій";
+    }
+    return "";
+}
+
+std::string time_scale_text(float scale) {
+    if (scale < 1.f) {
+        return std::format("×1/{}", static_cast<int>(std::lround(1.f / scale)));
+    }
+    return std::format("×{}", static_cast<int>(std::lround(scale)));
+}
+
+std::string percent(float fraction) {
+    return std::format("{:.1f}%", 100.f * std::clamp(fraction, 0.f, 1.f));
+}
 
 }
 
@@ -46,7 +92,11 @@ void Game::on_start() {
     spawn_camera();
     spawn_potential_layer();
     field_view_.emplace(world_, assets_);
+    spawn_panel();
     load_preset(preset_);
+    world_.add_system(engine::ecs::Schedule::Frame, engine::ecs::Phase::Game, [this](engine::ecs::World&) {
+        frame_update();
+    });
 }
 
 void Game::on_fixed_update() {
@@ -66,7 +116,7 @@ void Game::on_fixed_update() {
     GameBase::on_fixed_update();
 }
 
-void Game::on_update() {
+void Game::frame_update() {
     handle_mouse();
     handle_keys();
     assign_ids();
@@ -78,7 +128,7 @@ void Game::on_update() {
     update_field_view();
     sync_charge_views();
     sync_potential_uniforms();
-    GameBase::on_update();
+    sync_panel();
 }
 
 void Game::spawn_camera() {
@@ -126,6 +176,9 @@ void Game::handle_mouse() {
         if (event.window != engine::kPrimaryWindow) {
             continue;
         }
+        // The UI already routed all of this frame's events, so MouseConsumed is the final hover
+        // state for the frame.
+        pointer_on_ui_ = world_.ctx<engine::ui::MouseConsumed>().consumed_for(engine::kPrimaryWindow);
         pointer_screen_ = event.position;
         switch (event.kind) {
             case engine::MouseEvent::Kind::Move:
@@ -138,6 +191,9 @@ void Game::handle_mouse() {
                 on_mouse_move();
                 break;
             case engine::MouseEvent::Kind::Down:
+                if (pointer_over_ui()) {
+                    break;
+                }
                 pointer_world_ = pointer_to_world(event.position);
                 update_hover();
                 on_mouse_down(event.button);
@@ -147,6 +203,9 @@ void Game::handle_mouse() {
                 on_mouse_up(event.button);
                 break;
             case engine::MouseEvent::Kind::Wheel:
+                if (pointer_over_ui()) {
+                    break;
+                }
                 pointer_world_ = pointer_to_world(event.position);
                 update_hover();
                 on_wheel(event.wheel_y);
@@ -185,13 +244,13 @@ void Game::on_mouse_down(engine::MouseButton button) {
             c.fixed = true;
             c.velocity = glm::vec3{0.f};
         } else {
-            add_charge(1.f);
+            add_charge(new_charge_);
         }
     } else if (button == engine::MouseButton::Right) {
         if (hovered_) {
             remove_charge(*hovered_);
         } else {
-            add_charge(-1.f);
+            add_charge(-new_charge_);
         }
     }
 }
@@ -228,7 +287,9 @@ void Game::on_key(engine::KeyCode key) {
     switch (key) {
         case KeyCode::Space:
             paused_ = !paused_;
-            engine::log::info(paused_ ? "paused" : "running");
+            return;
+        case KeyCode::Tab:
+            panel_visible_ = !panel_visible_;
             return;
         case KeyCode::Right:
             if (paused_) {
@@ -236,10 +297,10 @@ void Game::on_key(engine::KeyCode key) {
             }
             return;
         case KeyCode::Up:
+            set_time_scale(time_scale_ * 2.f);
+            return;
         case KeyCode::Down:
-            time_scale_ = std::clamp(key == KeyCode::Up ? time_scale_ * 2.f : time_scale_ * 0.5f, kMinTimeScale,
-                    kMaxTimeScale);
-            engine::log::info(std::format("time scale x{}", time_scale_));
+            set_time_scale(time_scale_ * 0.5f);
             return;
         case KeyCode::F1:
             layers_.potential = !layers_.potential;
@@ -263,16 +324,13 @@ void Game::on_key(engine::KeyCode key) {
             DynamicsOptions dynamics = sim_.dynamics();
             dynamics.collisions = !dynamics.collisions;
             sim_.set_dynamics(dynamics);
-            engine::log::info(dynamics.collisions ? "collisions on" : "collisions off");
             return;
         }
         case KeyCode::Home:
             set_camera_view(CameraView{.position = {0.f, 0.f, 0.f}, .ortho_half = kOrthoHalf});
             return;
         case KeyCode::C:
-            end_drag();
-            sim_.charges().clear();
-            hovered_.reset();
+            clear_charges();
             return;
         case KeyCode::R:
             load_preset(preset_);
@@ -331,8 +389,20 @@ void Game::on_key(engine::KeyCode key) {
 void Game::load_preset(Preset preset) {
     end_drag();
     preset_ = preset;
+    scene_cleared_ = false;
     sim_.charges() = make_preset(preset);
     hovered_.reset();
+}
+
+void Game::clear_charges() {
+    end_drag();
+    sim_.charges().clear();
+    hovered_.reset();
+    scene_cleared_ = true;
+}
+
+void Game::set_time_scale(float scale) {
+    time_scale_ = std::clamp(scale, kMinTimeScale, kMaxTimeScale);
 }
 
 void Game::add_charge(float q) {
@@ -405,7 +475,7 @@ void Game::update_field_view() {
     // The probe hides while the cursor is over (or dragging) a charge, where the field is dominated
     // by that charge itself.
     std::optional<glm::vec3> probe;
-    if (!hovered_ && !drag_ && !pan_grab_) {
+    if (!hovered_ && !drag_ && !pan_grab_ && !pointer_over_ui()) {
         probe = pointer_world_;
     }
     field_view_->update(FieldView::Frame{
@@ -472,6 +542,142 @@ void Game::sync_potential_uniforms() {
     }
     const FieldParams& params = sim_.params();
     override.set_vec4("uParams", {static_cast<float>(count), params.k, params.softening, 0.f});
+}
+
+bool Game::pointer_over_ui() {
+    return pointer_on_ui_;
+}
+
+void Game::spawn_panel() {
+    panel_ = std::make_shared<PanelViewModel>();
+    bind_panel_commands();
+    const engine::ecs::Entity canvas = world_.create();
+    world_.emplace<engine::ui::UiCanvas>(canvas, engine::ui::UiCanvas{
+            .document = assets::ui::panel,
+            .stylesheet = assets::css::panel,
+            .data_context = panel_,
+            .fit = engine::ui::UiFit::FillWindow,
+            .order = 10,
+    });
+}
+
+void Game::bind_panel_commands() {
+    PanelViewModel& vm = *panel_;
+    vm.togglePause = [this] { paused_ = !paused_; };
+    vm.step = [this] {
+        paused_ = true;
+        step_requested_ = true;
+    };
+    vm.slower = [this] { set_time_scale(time_scale_ * 0.5f); };
+    vm.faster = [this] { set_time_scale(time_scale_ * 2.f); };
+    vm.presetDipole = [this] { load_preset(Preset::Dipole); };
+    vm.presetLikePair = [this] { load_preset(Preset::LikePair); };
+    vm.presetQuadrupole = [this] { load_preset(Preset::Quadrupole); };
+    vm.presetCapacitor = [this] { load_preset(Preset::Capacitor); };
+    vm.presetOrbit = [this] { load_preset(Preset::Orbit); };
+    vm.presetRutherford = [this] { load_preset(Preset::Rutherford); };
+    vm.presetSwarm = [this] { load_preset(Preset::Swarm); };
+    vm.clearAll = [this] { clear_charges(); };
+}
+
+// Two-way sync with the panel. Toggles and sliders the user changed since the last frame are
+// applied to the game first (detected by comparing against the value written last frame); then the
+// game state, which keyboard shortcuts may also have changed, is written back for display.
+void Game::sync_panel() {
+    PanelViewModel& vm = *panel_;
+
+    const bool pull = panel_synced_;
+    panel_synced_ = true;
+    const auto pull_toggle = [pull](const engine::ui::Bindable<bool>& field, bool echo, bool& target) {
+        if (pull && field.get() != echo) {
+            target = field.get();
+        }
+    };
+    pull_toggle(vm.showPotential, panel_echo_.layers.potential, layers_.potential);
+    pull_toggle(vm.showLines, panel_echo_.layers.lines, layers_.lines);
+    pull_toggle(vm.showGrid, panel_echo_.layers.grid, layers_.grid);
+    pull_toggle(vm.showFlow, panel_echo_.layers.flow, layers_.flow);
+    pull_toggle(vm.showProbe, panel_echo_.layers.probe, layers_.probe);
+    pull_toggle(vm.showTrails, panel_echo_.layers.trails, layers_.trails);
+    DynamicsOptions dynamics = sim_.dynamics();
+    pull_toggle(vm.collisions, panel_echo_.collisions, dynamics.collisions);
+    sim_.set_dynamics(dynamics);
+
+    FieldParams params = sim_.params();
+    if (pull && vm.kFrac.get() != panel_echo_.k_frac) {
+        params.k = kCoulombRange.from_fraction(vm.kFrac.get());
+    }
+    if (pull && vm.epsFrac.get() != panel_echo_.eps_frac) {
+        params.softening = kSofteningRange.from_fraction(vm.epsFrac.get());
+    }
+    sim_.set_params(params);
+    if (pull && vm.newChargeFrac.get() != panel_echo_.new_charge_frac) {
+        new_charge_ = kNewChargeRange.from_fraction(vm.newChargeFrac.get());
+    }
+
+    // Push state back.
+    vm.showPotential = layers_.potential;
+    vm.showLines = layers_.lines;
+    vm.showGrid = layers_.grid;
+    vm.showFlow = layers_.flow;
+    vm.showProbe = layers_.probe;
+    vm.showTrails = layers_.trails;
+    vm.collisions = dynamics.collisions;
+    panel_echo_.layers = layers_;
+    panel_echo_.collisions = dynamics.collisions;
+
+    const float k_frac = kCoulombRange.to_fraction(params.k);
+    const float eps_frac = kSofteningRange.to_fraction(params.softening);
+    const float q_frac = kNewChargeRange.to_fraction(new_charge_);
+    vm.kFrac = k_frac;
+    vm.epsFrac = eps_frac;
+    vm.newChargeFrac = q_frac;
+    panel_echo_.k_frac = k_frac;
+    panel_echo_.eps_frac = eps_frac;
+    panel_echo_.new_charge_frac = q_frac;
+    vm.kText = std::format("{:.2f}", params.k);
+    vm.kFill = percent(k_frac);
+    vm.epsText = std::format("{:.2f}", params.softening);
+    vm.epsFill = percent(eps_frac);
+    vm.newChargeText = std::format("{:.2f}", new_charge_);
+    vm.newChargeFill = percent(q_frac);
+
+    vm.statusText = std::format("{} · {}", paused_ ? "Пауза" : "Симуляція", time_scale_text(time_scale_));
+    vm.statusColor = paused_ ? "#fcd34d" : "#a5f3c4";
+    vm.sceneText = scene_cleared_ ? std::string("Сцена: порожня") : std::format("Сцена: {}", preset_name(preset_));
+    vm.pauseLabel = paused_ ? "Старт (Space)" : "Пауза (Space)";
+    vm.timeScaleText = time_scale_text(time_scale_);
+    vm.panelRight = std::format("{}", panel_visible_ ? 12.f : kPanelHiddenRight);
+
+    const auto& charges = sim_.charges();
+    const float kinetic = kinetic_energy(charges);
+    const float potential = potential_energy(charges, params);
+    vm.energyKinetic = std::format("{:.3f}", kinetic);
+    vm.energyPotential = std::format("{:.3f}", potential);
+    vm.energyTotal = std::format("{:.3f}", kinetic + potential);
+    const auto fixed_count = std::count_if(charges.begin(), charges.end(), [](const Charge& c) { return c.fixed; });
+    vm.chargeCount = std::format("{} / {}", static_cast<std::ptrdiff_t>(charges.size()) - fixed_count, fixed_count);
+
+    // Probe readout next to the cursor; flipped to the other side near the window edges.
+    const bool show_probe = layers_.probe && !hovered_ && !drag_ && !pan_grab_ && !pointer_over_ui();
+    vm.probeVisibility = show_probe ? "visible" : "hidden";
+    if (show_probe) {
+        const engine::ui::WindowSize window = engine::ui::window_size_for(world_, engine::kPrimaryWindow);
+        float x = pointer_screen_.x + kProbeOffsetPx;
+        float y = pointer_screen_.y + kProbeOffsetPx;
+        if (x + kProbeBoxW > static_cast<float>(window.width)) {
+            x = pointer_screen_.x - kProbeOffsetPx - kProbeBoxW;
+        }
+        if (y + kProbeBoxH > static_cast<float>(window.height)) {
+            y = pointer_screen_.y - kProbeOffsetPx - kProbeBoxH;
+        }
+        vm.probeLeft = std::format("{:.0f}", x);
+        vm.probeTop = std::format("{:.0f}", y);
+        const glm::vec3 e = field_at(charges, pointer_world_, params);
+        vm.probeField = std::format("|E| = F/q = {:.3f}", glm::length(e));
+        vm.probeComponents = std::format("E = ({:.3f}, {:.3f})", e.x, e.y);
+        vm.probePotential = std::format("φ = {:.3f}", potential_at(charges, pointer_world_, params));
+    }
 }
 
 }
