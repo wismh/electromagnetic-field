@@ -674,9 +674,10 @@ void Game::sync_panel() {
         vm.probeLeft = std::format("{:.0f}", x);
         vm.probeTop = std::format("{:.0f}", y);
         const glm::vec3 e = field_at(charges, pointer_world_, params);
+        // TeX for the <Math> readouts; ASCII '-' is typeset as a real minus.
         vm.probeField = std::format("|E| = F/q = {:.3f}", glm::length(e));
-        vm.probeComponents = std::format("E = ({:.3f}, {:.3f})", e.x, e.y);
-        vm.probePotential = std::format("φ = {:.3f}", potential_at(charges, pointer_world_, params));
+        vm.probeComponents = std::format("E = ({:.3f},\\, {:.3f})", e.x, e.y);
+        vm.probePotential = std::format("\\varphi = {:.3f}", potential_at(charges, pointer_world_, params));
     }
 }
 

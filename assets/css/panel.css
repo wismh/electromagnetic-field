@@ -46,7 +46,11 @@ Stack.probe {
     border-width: 1;
     border-color: #ffffff1f;
 }
-Label.probe-line { font-size: 12; color: #e6e9f2; }
+/* Formulas are set in the engine's builtin STIX Two Math (font-family is ignored on Math). */
+Math { color: #ffffff; font-size: 15; }
+Math.probe-math { font-size: 14; color: #e6e9f2; }
+/* Nudged up so the formula baseline lines up with the Inter label next to it. */
+Math.inline-math { font-size: 15; color: #ffffff; position: relative; top: -2; }
 
 /* ---- Bottom hint ---- */
 
@@ -90,7 +94,8 @@ Label.time-value { width: 122; text-align: center; align-items: center; font-siz
 Checkbox.toggle { width: 262; height: 24; border-radius: 5; }
 Checkbox.toggle:hover { background: #ffffff0f; }
 Stack.toggle-content { width: 100%; height: 100%; align-items: center; justify-content: space-between; padding: 0 4; }
-Stack.toggle-left { height: 100%; align-items: center; gap: 9; }
+Stack.toggle-left { height: 100%; align-items: center; gap: 6; }
+Stack.box { margin: 0 3 0 0; }
 Stack.box { width: 14; height: 14; border-radius: 4; border-width: 2; border-color: #5b6275; }
 Stack.box:checked { background: #6366f1; border-color: #818cf8; }
 Label.toggle-label { color: #d7dbe6; }
@@ -99,6 +104,7 @@ Label.key { font-size: 11; color: #6b7286; }
 /* Sliders: the outer Stack is the drag target (taller than the visible track for an easy grab). */
 Stack.param-head { width: 262; height: 18; align-items: center; justify-content: space-between; margin: 4 0 0 0; }
 Label.param-name { color: #d7dbe6; }
+Stack.name-group { height: 100%; align-items: center; gap: 5; }
 Label.param-value { color: #ffffff; }
 Stack.slider { width: 262; height: 18; padding: 6 0; }
 Stack.track { width: 100%; height: 6; background: #ffffff1f; border-radius: 3; }

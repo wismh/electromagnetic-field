@@ -8,9 +8,9 @@
     <!-- Field readout that follows the cursor (positioned in window pixels by the ViewModel). -->
     <Stack class="probe" direction="vertical" var-px="{binding probeLeft}" var-py="{binding probeTop}"
             var-pvis="{binding probeVisibility}">
-        <Label class="probe-line" text="{binding probeField}"/>
-        <Label class="probe-line" text="{binding probeComponents}"/>
-        <Label class="probe-line" text="{binding probePotential}"/>
+        <Math class="probe-math" formula="{binding probeField}"/>
+        <Math class="probe-math" formula="{binding probeComponents}"/>
+        <Math class="probe-math" formula="{binding probePotential}"/>
     </Stack>
 
     <Label class="hint" text="ЛКМ +q · ПКМ −q / видалити · колесо |q| або масштаб · СКМ камера · Tab панель"/>
@@ -54,7 +54,8 @@
             <Stack class="toggle-content" direction="horizontal">
                 <Stack class="toggle-left" direction="horizontal">
                     <Stack class="box" checked="{binding showPotential}"/>
-                    <Label class="toggle-label" text="Потенціал φ"/>
+                    <Label class="toggle-label" text="Потенціал"/>
+                    <Math class="inline-math" formula="\varphi"/>
                 </Stack>
                 <Label class="key" text="F1"/>
             </Stack>
@@ -72,7 +73,8 @@
             <Stack class="toggle-content" direction="horizontal">
                 <Stack class="toggle-left" direction="horizontal">
                     <Stack class="box" checked="{binding showGrid}"/>
-                    <Label class="toggle-label" text="Сітка векторів E"/>
+                    <Label class="toggle-label" text="Сітка векторів"/>
+                    <Math class="inline-math" formula="E"/>
                 </Stack>
                 <Label class="key" text="F3"/>
             </Stack>
@@ -116,7 +118,10 @@
 
         <Label class="section" text="ПАРАМЕТРИ"/>
         <Stack class="param-head" direction="horizontal">
-            <Label class="param-name" text="k — стала Кулона"/>
+            <Stack class="name-group" direction="horizontal">
+                <Math class="inline-math" formula="k"/>
+                <Label class="param-name" text="— стала Кулона"/>
+            </Stack>
             <Label class="param-value" text="{binding kText}"/>
         </Stack>
         <Stack class="slider" drag="{binding kFrac}">
@@ -125,7 +130,10 @@
             </Stack>
         </Stack>
         <Stack class="param-head" direction="horizontal">
-            <Label class="param-name" text="ε — згладжування"/>
+            <Stack class="name-group" direction="horizontal">
+                <Math class="inline-math" formula="\varepsilon"/>
+                <Label class="param-name" text="— згладжування"/>
+            </Stack>
             <Label class="param-value" text="{binding epsText}"/>
         </Stack>
         <Stack class="slider" drag="{binding epsFrac}">
@@ -134,7 +142,10 @@
             </Stack>
         </Stack>
         <Stack class="param-head" direction="horizontal">
-            <Label class="param-name" text="|q| нових зарядів"/>
+            <Stack class="name-group" direction="horizontal">
+                <Math class="inline-math" formula="|q|"/>
+                <Label class="param-name" text="нових зарядів"/>
+            </Stack>
             <Label class="param-value" text="{binding newChargeText}"/>
         </Stack>
         <Stack class="slider" drag="{binding newChargeFrac}">
@@ -145,15 +156,24 @@
 
         <Label class="section" text="ЕНЕРГІЯ"/>
         <Stack class="stat" direction="horizontal">
-            <Label class="stat-name" text="Кінетична K"/>
+            <Stack class="name-group" direction="horizontal">
+                <Label class="stat-name" text="Кінетична"/>
+                <Math class="inline-math" formula="K"/>
+            </Stack>
             <Label class="stat-value" text="{binding energyKinetic}"/>
         </Stack>
         <Stack class="stat" direction="horizontal">
-            <Label class="stat-name" text="Потенціальна U"/>
+            <Stack class="name-group" direction="horizontal">
+                <Label class="stat-name" text="Потенціальна"/>
+                <Math class="inline-math" formula="U"/>
+            </Stack>
             <Label class="stat-value" text="{binding energyPotential}"/>
         </Stack>
         <Stack class="stat" direction="horizontal">
-            <Label class="stat-name" text="Повна E = K + U"/>
+            <Stack class="name-group" direction="horizontal">
+                <Label class="stat-name" text="Повна"/>
+                <Math class="inline-math" formula="E = K + U"/>
+            </Stack>
             <Label class="stat-value" text="{binding energyTotal}"/>
         </Stack>
         <Stack class="stat" direction="horizontal">
