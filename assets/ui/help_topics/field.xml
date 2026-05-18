@@ -1,0 +1,56 @@
+<!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
+     HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
+<Stack class="topic-body" direction="vertical">
+    <Label class="kicker" text="ТЕМА 3"/>
+    <Label class="title" text="Електричне поле"/>
+    <Label class="h" text="ІДЕЯ ПРОСТИМИ СЛОВАМИ"/>
+    <Label class="p" text="Можна казати «заряд A тягне заряд B». А можна інакше: заряд A змінює простір навколо себе — створює електричне поле. Поле є в кожній точці, навіть там, де інших зарядів зовсім немає."/>
+    <Label class="p" text="Найпростіше уявляти поле як карту стрілок. У кожній точці стоїть стрілка: куди і як сильно штовхнуло б маленький пробний заряд +1, якби його туди поставили. Біля плюса стрілки дивляться назовні, біля мінуса — всередину."/>
+    <Label class="p" text="Коли поле відоме, силу на будь-який заряд знайти просто: помножити поле на цей заряд. Позитивний заряд штовхає вздовж стрілки, негативний — проти неї."/>
+    <Label class="h" text="ФОРМУЛИ"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\vec{E} = \frac{\vec{F}}{q}"/>
+        <Math class="display-math" display="true" formula="E = k \, \frac{|Q|}{r^2}"/>
+        <Math class="display-math" display="true" formula="\vec{F} = q \, \vec{E}"/>
+    </Stack>
+    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\vec{E}"/>
+            </Stack>
+            <Label class="legend-text" text="напруженість поля — стрілка в точці. Її довжина |E| — сила, що припадає на одиницю заряду."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="Q"/>
+            </Stack>
+            <Label class="legend-text" text="заряд, який створює поле."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="q"/>
+            </Stack>
+            <Label class="legend-text" text="пробний заряд, який ми подумки ставимо в точку."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="r"/>
+            </Stack>
+            <Label class="legend-text" text="відстань від Q до точки."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\vec{F}"/>
+            </Stack>
+            <Label class="legend-text" text="сила, яка подіє на заряд q у цій точці."/>
+        </Stack>
+    </Stack>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="Друга формула — поле одного заряду Q. Перша й третя працюють для будь-якого поля, навіть створеного тисячею зарядів."/>
+    </Stack>
+    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
+    <Label class="p" text="Клавіша F3 вмикає сітку векторів: стрілки поля в рівномірно розставлених точках. Довжина й колір показують, наскільки поле сильне: жовті стрілки — сильне, фіолетові — слабке."/>
+    <Label class="p" text="Клавіша F5 — пробний заряд під курсором: біла стрілка показує напрям поля, а підказка поруч — числа |E|, компоненти E та потенціал φ. Це і є поле: сила на заряд +1 у цій точці."/>
+    <Button class="try" content="Спробуй: диполь із сіткою векторів" command="{binding tryIt}"/>
+</Stack>

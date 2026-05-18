@@ -1,0 +1,120 @@
+/* Full-screen reference (assets/ui/help.xml + assets/ui/help_topics/*.xml). No `Canvas { background }`:
+   the closed help canvas must be fully transparent. Fonts are not inherited, so every text kind
+   gets Inter from an element-level rule; <Math> always uses the engine's STIX Two Math. */
+
+Label { font-family: cee217b3729e4247be377a0830041a0a; color: #d7dbe6; font-size: 15; }
+Button {
+    font-family: cee217b3729e4247be377a0830041a0a;
+    font-size: 14;
+    color: #e6e9f2;
+    text-align: center;
+    align-items: center;
+    background: #ffffff14;
+    border-radius: 8;
+}
+Button:hover { background: #ffffff2a; }
+Button:pressed { background: #6366f1; }
+Math { color: #ffffff; }
+
+/* ---- Frame ---- */
+
+Stack.backdrop {
+    display: var(--display, none);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #05060ad9;
+}
+Stack.window {
+    position: absolute;
+    left: 36;
+    top: 28;
+    right: 36;
+    bottom: 28;
+    background: #0e1018f7;
+    border-radius: 14;
+    border-width: 1;
+    border-color: #ffffff1f;
+}
+
+/* Nav column: 280 wide + 1px divider. */
+Stack.nav { width: 280; height: 100%; padding: 24 14 18 18; gap: 2; }
+Label.nav-title { font-size: 22; color: #ffffff; }
+Label.nav-sub { font-size: 13; color: #8b93a7; margin: 2 0 16 0; }
+ItemsControl.nav-list { width: 100%; gap: 2; }
+Button.nav-item {
+    width: 100%;
+    height: 34;
+    padding: 0 12;
+    text-align: start;
+    background: var(--bg, #00000000);
+    color: var(--fg, #aab1c3);
+}
+Button.nav-item:hover { background: #ffffff14; }
+Label.nav-hint { font-size: 12; color: #6b7286; margin: 16 0 0 0; }
+Stack.divider { width: 1; height: 100%; background: #ffffff14; }
+
+/* Main column: everything right of nav + divider. */
+Stack.main { width: calc(100% - 281px); height: 100%; padding: 14 18 0 44; }
+/* Fixed 40px bar; the content takes the rest (see ScrollView.content height). */
+Stack.main-bar { width: 100%; height: 40; justify-content: end; align-items: center; }
+Button.close { width: 110; height: 32; }
+ScrollView.content {
+    width: 100%;
+    height: calc(100% - 40px);
+    padding: 0 26 40 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff40 #00000000;
+}
+ItemsControl.topic { display: var(--display, none); width: 100%; }
+
+/* ---- Topic body ---- */
+
+Stack.topic-body { width: 100%; max-width: 820; gap: 10; }
+Label.kicker { font-size: 12; color: #818cf8; }
+Label.title { font-size: 30; color: #ffffff; margin: 0 0 4 0; }
+Label.h { font-size: 12; color: #7c8499; margin: 18 0 0 0; }
+Label.p { font-size: 16; color: #d7dbe6; width: 100%; }
+
+Stack.formula {
+    width: 100%;
+    padding: 18 16;
+    gap: 14;
+    align-items: center;
+    background: #ffffff0a;
+    border-radius: 10;
+    border-width: 1;
+    border-color: #ffffff12;
+}
+Math.display-math { font-size: 30; color: #ffffff; }
+
+Stack.legend { width: 100%; gap: 8; }
+/* 120px symbol column + 16px gap; the text takes the rest and wraps inside it. */
+Stack.legend-row { width: 100%; gap: 16; align-items: center; }
+Stack.sym { width: 120; align-items: center; }
+Math.sym-math { font-size: 20; color: #ffffff; }
+Label.legend-text { width: calc(100% - 136px); font-size: 15; color: #c9cedb; }
+
+Stack.note {
+    width: 100%;
+    padding: 12 16;
+    gap: 10;
+    background: #6366f11a;
+    border-radius: 10;
+    border-width: 1;
+    border-color: #6366f140;
+}
+Label.note-text { width: 100%; font-size: 15; color: #d7dbe6; }
+Math.note-math { font-size: 20; color: #ffffff; }
+
+Button.try {
+    height: 40;
+    padding: 0 20;
+    margin: 14 0 0 0;
+    background: #6366f1;
+    color: #ffffff;
+}
+Button.try:hover { background: #7c7ff5; }

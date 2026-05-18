@@ -44,6 +44,7 @@ public:
     engine::ui::RelayCommand presetRutherford;
     engine::ui::RelayCommand presetSwarm;
     engine::ui::RelayCommand clearAll;
+    engine::ui::RelayCommand openHelp;
 
     // Layer toggles (two-way: checkbox clicks write back).
     engine::ui::Bindable<bool> showPotential;

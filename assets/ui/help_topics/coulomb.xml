@@ -1,0 +1,59 @@
+<!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
+     HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
+<Stack class="topic-body" direction="vertical">
+    <Label class="kicker" text="ТЕМА 2"/>
+    <Label class="title" text="Закон Кулона"/>
+    <Label class="h" text="ІДЕЯ ПРОСТИМИ СЛОВАМИ"/>
+    <Label class="p" text="Два заряди діють один на одного з силою. Вона тим більша, чим більші самі заряди, і дуже швидко слабшає з відстанню: якщо розвести заряди вдвічі далі, сила стане вчетверо меншою, а якщо втричі — вдев'ятеро."/>
+    <Label class="p" text="Чому саме так? Уяви, що заряд розсилає свій вплив на всі боки однаково — як лампочка світло. На відстані r цей вплив розтікається по поверхні сфери радіуса r, а площа сфери росте як r². Тому на кожну точку припадає в r² разів менше."/>
+    <Label class="p" text="Сила завжди діє вздовж прямої, що з'єднує заряди. І вона взаємна: перший заряд тягне (або штовхає) другий рівно з такою самою силою, з якою другий діє на перший, — тільки в протилежний бік."/>
+    <Label class="h" text="ФОРМУЛА"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="F = k \, \frac{|q_1 \, q_2|}{r^2}"/>
+    </Stack>
+    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="F"/>
+            </Stack>
+            <Label class="legend-text" text="сила, з якою заряди діють один на одного."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="k"/>
+            </Stack>
+            <Label class="legend-text" text="стала Кулона — «наскільки сильна електрика взагалі». У програмі k = 1 (його змінює повзунок), у справжньому світі — майже 9 мільярдів у одиницях СІ."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="q_1, \, q_2"/>
+            </Stack>
+            <Label class="legend-text" text="величини двох зарядів. Беремо модуль, бо знак визначає лише напрям: притягування чи відштовхування."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="r"/>
+            </Stack>
+            <Label class="legend-text" text="відстань між центрами зарядів."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="r^2"/>
+            </Stack>
+            <Label class="legend-text" text="відстань у квадраті: удвічі далі — учетверо слабше."/>
+        </Stack>
+    </Stack>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\vec{F}_{12} = -\vec{F}_{21}"/>
+    </Stack>
+    <Label class="p" text="Стрілка над буквою означає вектор — величину, яка має не лише розмір, а й напрям. Мінус каже: сили однакові за розміром і протилежні за напрямом."/>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="Приклад: k = 1, обидва заряди по 1, відстань 2. Якщо відстань збільшити до 4, сила стане вчетверо меншою — 0.0625."/>
+        <Math class="note-math" formula="F = 1 \cdot \frac{1 \cdot 1}{2^2} = 0.25"/>
+    </Stack>
+    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
+    <Label class="p" text="Щокроку програма рахує цю силу для кожної пари зарядів і складає всі сили, що діють на заряд. Повзунок «k — стала Кулона» на панелі змінює k: збільш його — і всі сили зростуть разом."/>
+    <Label class="p" text="У сцені «Орбіта» негативний заряд кружляє навколо позитивного: сила Кулона весь час тягне його до центру, як мотузка, на якій розкручують м'ячик."/>
+    <Button class="try" content="Спробуй: «Орбіта» — сила Кулона тримає заряд на колі" command="{binding tryIt}"/>
+</Stack>

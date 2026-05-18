@@ -93,6 +93,7 @@ void Game::on_start() {
     spawn_potential_layer();
     field_view_.emplace(world_, assets_);
     spawn_panel();
+    help_.emplace(world_, [this](const HelpDemo& demo) { apply_demo(demo); });
     load_preset(preset_);
     world_.add_system(engine::ecs::Schedule::Frame, engine::ecs::Phase::Game, [this](engine::ecs::World&) {
         frame_update();
@@ -284,6 +285,31 @@ void Game::on_wheel(float notches) {
 
 void Game::on_key(engine::KeyCode key) {
     using engine::KeyCode;
+    if (key == KeyCode::H) {
+        help_->toggle();
+        return;
+    }
+    // While the reference is open, the scene shortcuts are off: Up/Down pick a topic, Return runs
+    // its "try it", Esc closes.
+    if (help_->is_open()) {
+        switch (key) {
+            case KeyCode::Escape:
+                help_->close();
+                break;
+            case KeyCode::Up:
+                help_->select_previous();
+                break;
+            case KeyCode::Down:
+                help_->select_next();
+                break;
+            case KeyCode::Return:
+                help_->try_selected();
+                break;
+            default:
+                break;
+        }
+        return;
+    }
     switch (key) {
         case KeyCode::Space:
             paused_ = !paused_;
@@ -394,6 +420,14 @@ void Game::load_preset(Preset preset) {
     hovered_.reset();
 }
 
+// A help topic's "try it": its scene with the layers that illustrate it, running at normal speed.
+void Game::apply_demo(const HelpDemo& demo) {
+    load_preset(demo.preset);
+    layers_ = demo.layers;
+    paused_ = false;
+    set_time_scale(1.f);
+}
+
 void Game::clear_charges() {
     end_drag();
     sim_.charges().clear();
@@ -475,7 +509,7 @@ void Game::update_field_view() {
     // The probe hides while the cursor is over (or dragging) a charge, where the field is dominated
     // by that charge itself.
     std::optional<glm::vec3> probe;
-    if (!hovered_ && !drag_ && !pan_grab_ && !pointer_over_ui()) {
+    if (!hovered_ && !drag_ && !pan_grab_ && !pointer_over_ui() && !help_->is_open()) {
         probe = pointer_world_;
     }
     field_view_->update(FieldView::Frame{
@@ -544,8 +578,9 @@ void Game::sync_potential_uniforms() {
     override.set_vec4("uParams", {static_cast<float>(count), params.k, params.softening, 0.f});
 }
 
+// The open reference covers the whole window, so it owns the pointer everywhere.
 bool Game::pointer_over_ui() {
-    return pointer_on_ui_;
+    return pointer_on_ui_ || help_->is_open();
 }
 
 void Game::spawn_panel() {
@@ -578,6 +613,7 @@ void Game::bind_panel_commands() {
     vm.presetRutherford = [this] { load_preset(Preset::Rutherford); };
     vm.presetSwarm = [this] { load_preset(Preset::Swarm); };
     vm.clearAll = [this] { clear_charges(); };
+    vm.openHelp = [this] { help_->open(); };
 }
 
 // Two-way sync with the panel. Toggles and sliders the user changed since the last frame are
@@ -659,7 +695,8 @@ void Game::sync_panel() {
     vm.chargeCount = std::format("{} / {}", static_cast<std::ptrdiff_t>(charges.size()) - fixed_count, fixed_count);
 
     // Probe readout next to the cursor; flipped to the other side near the window edges.
-    const bool show_probe = layers_.probe && !hovered_ && !drag_ && !pan_grab_ && !pointer_over_ui();
+    const bool show_probe =
+            layers_.probe && !hovered_ && !drag_ && !pan_grab_ && !pointer_over_ui() && !help_->is_open();
     vm.probeVisibility = show_probe ? "visible" : "hidden";
     if (show_probe) {
         const engine::ui::WindowSize window = engine::ui::window_size_for(world_, engine::kPrimaryWindow);

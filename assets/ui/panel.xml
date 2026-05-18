@@ -19,6 +19,7 @@
          the scene underneath. -->
     <ScrollView class="panel" direction="vertical" var-panel-right="{binding panelRight}">
         <Label class="title" text="Електростатика"/>
+        <Button class="btn help" content="Довідник: ідеї та формули (H)" command="{binding openHelp}"/>
 
         <Label class="section" text="ЧАС"/>
         <Stack class="row" direction="horizontal">

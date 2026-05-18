@@ -1,0 +1,69 @@
+<!-- Full-screen reference. Topic bodies are separate files under help_topics/, pulled in through
+     <ItemTemplate src> (the engine's only include). Only the selected topic is shown; the rest have
+     display: none, so they take no space and get no clicks. Topic order matches kTopics in src/help.cpp. -->
+<Canvas id="help">
+    <!-- While this is open the game ignores scene mouse input itself (Game::handle_mouse), so the
+         backdrop needs no hit-testable trick to keep clicks off the simulation. -->
+    <Stack class="backdrop" var-display="{binding helpDisplay}">
+        <Stack class="window" direction="horizontal">
+            <Stack class="nav" direction="vertical">
+                <Label class="nav-title" text="Довідник"/>
+                <Label class="nav-sub" text="Ідеї та формули простими словами"/>
+                <ItemsControl class="nav-list" items_source="{binding navItems}">
+                    <ItemTemplate>
+                        <Button class="nav-item" content="{binding title}" command="{binding select}"
+                                var-bg="{binding background}" var-fg="{binding textColor}"/>
+                    </ItemTemplate>
+                </ItemsControl>
+                <Label class="nav-hint" text="↑ ↓ — тема · Enter — спробуй · H або Esc — закрити"/>
+            </Stack>
+            <Stack class="divider"/>
+            <Stack class="main" direction="vertical">
+                <Stack class="main-bar" direction="horizontal">
+                    <Button class="close" content="Закрити" command="{binding closeHelp}"/>
+                </Stack>
+                <ScrollView class="content" direction="vertical" scroll-y="{binding contentScroll}">
+                <ItemsControl class="topic" items_source="{binding topicCharge}" var-display="{binding topicChargeDisplay}">
+                    <ItemTemplate src="help_topics/charge.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicCoulomb}" var-display="{binding topicCoulombDisplay}">
+                    <ItemTemplate src="help_topics/coulomb.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicField}" var-display="{binding topicFieldDisplay}">
+                    <ItemTemplate src="help_topics/field.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicSuperposition}" var-display="{binding topicSuperpositionDisplay}">
+                    <ItemTemplate src="help_topics/superposition.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicFieldLines}" var-display="{binding topicFieldLinesDisplay}">
+                    <ItemTemplate src="help_topics/field_lines.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicPotential}" var-display="{binding topicPotentialDisplay}">
+                    <ItemTemplate src="help_topics/potential.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicEnergy}" var-display="{binding topicEnergyDisplay}">
+                    <ItemTemplate src="help_topics/energy.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicMotion}" var-display="{binding topicMotionDisplay}">
+                    <ItemTemplate src="help_topics/motion.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicSoftening}" var-display="{binding topicSofteningDisplay}">
+                    <ItemTemplate src="help_topics/softening.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicCollisions}" var-display="{binding topicCollisionsDisplay}">
+                    <ItemTemplate src="help_topics/collisions.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicExperiments}" var-display="{binding topicExperimentsDisplay}">
+                    <ItemTemplate src="help_topics/experiments.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicUnits}" var-display="{binding topicUnitsDisplay}">
+                    <ItemTemplate src="help_topics/units.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicLimits}" var-display="{binding topicLimitsDisplay}">
+                    <ItemTemplate src="help_topics/limits.xml"/>
+                </ItemsControl>
+                </ScrollView>
+            </Stack>
+        </Stack>
+    </Stack>
+</Canvas>

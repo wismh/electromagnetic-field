@@ -8,6 +8,7 @@
 
 #include <game/camera_control.h>
 #include <game/field_view.h>
+#include <game/help.h>
 #include <game/panel_view_model.h>
 #include <game/scene.h>
 #include <game/simulation.h>
@@ -62,6 +63,7 @@ private:
     void on_key(engine::KeyCode key);
 
     void load_preset(Preset preset);
+    void apply_demo(const HelpDemo& demo);
     void clear_charges();
     void set_time_scale(float scale);
     void add_charge(float q);
@@ -90,6 +92,8 @@ private:
     std::optional<FieldView> field_view_;
     FieldLayers layers_;
     std::shared_ptr<PanelViewModel> panel_;
+    // Built in on_start, after the panel (its canvas draws above it).
+    std::optional<Help> help_;
     bool panel_visible_ = true;
     // Last values written into the panel's two-way fields; a difference means the user changed them.
     struct PanelEcho {
