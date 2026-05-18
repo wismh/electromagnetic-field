@@ -118,6 +118,10 @@ void Game::on_fixed_update() {
 }
 
 void Game::frame_update() {
+    if (help_was_open_ && !help_->is_open()) {
+        pointer_on_ui_ = true;
+    }
+    help_was_open_ = help_->is_open();
     handle_mouse();
     handle_keys();
     assign_ids();
@@ -178,8 +182,11 @@ void Game::handle_mouse() {
             continue;
         }
         // The UI already routed all of this frame's events, so MouseConsumed is the final hover
-        // state for the frame.
-        pointer_on_ui_ = world_.ctx<engine::ui::MouseConsumed>().consumed_for(engine::kPrimaryWindow);
+        // state for the frame. Up events never set it (only Move/Down/Wheel hit-test), so a frame
+        // holding just a button release must not overwrite the latched value.
+        if (event.kind != engine::MouseEvent::Kind::Up) {
+            pointer_on_ui_ = world_.ctx<engine::ui::MouseConsumed>().consumed_for(engine::kPrimaryWindow);
+        }
         pointer_screen_ = event.position;
         switch (event.kind) {
             case engine::MouseEvent::Kind::Move:

@@ -54,6 +54,7 @@ std::span<const HelpTopic, kHelpTopicCount> help_topics() {
 }
 
 Help::Help(engine::ecs::World& world, DemoHandler on_demo) :
+    world_(world),
     vm_(std::make_shared<HelpViewModel>()),
     on_demo_(std::move(on_demo)) {
     vm_->closeHelp = [this] { close(); };
@@ -75,16 +76,16 @@ Help::Help(engine::ecs::World& world, DemoHandler on_demo) :
         vm_->topics[i]->set({std::move(topic)});
     }
     vm_->navItems.set(std::move(nav));
-    sync();
 
-    const engine::ecs::Entity canvas = world.create();
-    world.emplace<engine::ui::UiCanvas>(canvas, engine::ui::UiCanvas{
+    canvas_ = world.create();
+    world.emplace<engine::ui::UiCanvas>(canvas_, engine::ui::UiCanvas{
             .document = assets::ui::help,
             .stylesheet = assets::css::help,
             .data_context = vm_,
             .fit = engine::ui::UiFit::FillWindow,
             .order = kHelpCanvasOrder,
     });
+    sync();
 }
 
 void Help::open() {
@@ -128,6 +129,14 @@ void Help::try_selected() {
 }
 
 void Help::sync() {
+    // The engine routes the pointer to the highest-order canvas whose rect contains it, whether or
+    // not anything there is clickable. A closed full-window help canvas would therefore swallow every
+    // click meant for the panel below, so while closed it gets an empty Fixed rect instead.
+    auto& canvas = world_.get<engine::ui::UiCanvas>(canvas_);
+    canvas.fit = open_ ? engine::ui::UiFit::FillWindow : engine::ui::UiFit::Fixed;
+    if (!open_) {
+        canvas.rect = {};
+    }
     vm_->helpDisplay = open_ ? "block" : "none";
     const auto& nav = vm_->navItems.get();
     for (std::size_t i = 0; i < kTopics.size(); ++i) {

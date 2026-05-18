@@ -1,5 +1,6 @@
 #pragma once
 
+#include <engine/ecs/entity.h>
 #include <engine/ecs/world.h>
 
 #include <game/field_view.h>
@@ -52,6 +53,8 @@ public:
 private:
     void sync();
 
+    engine::ecs::World& world_;
+    engine::ecs::Entity canvas_{};
     std::shared_ptr<HelpViewModel> vm_;
     DemoHandler on_demo_;
     bool open_ = false;

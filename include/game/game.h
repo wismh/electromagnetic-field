@@ -116,6 +116,9 @@ private:
     // that have mouse events: the engine clears MouseConsumed every frame and only re-sets it while
     // routing events, so on an idle frame it would wrongly read "not over UI".
     bool pointer_on_ui_ = false;
+    // Help open state last frame: when it closes, pointer_on_ui_ still describes the help screen,
+    // so it is assumed "over UI" until the next mouse event re-latches it.
+    bool help_was_open_ = false;
     glm::vec3 pointer_world_{0.f};
     // World point grabbed by a middle-button pan; the camera moves so it stays under the cursor.
     std::optional<glm::vec3> pan_grab_;
