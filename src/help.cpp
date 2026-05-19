@@ -4,6 +4,7 @@
 
 #include <asset_ids.h>
 
+#include <algorithm>
 #include <array>
 #include <string>
 #include <utility>
@@ -13,6 +14,8 @@ namespace game {
 namespace {
 
 constexpr int kHelpCanvasOrder = 20;  // above the control panel (10)
+constexpr int kWindowMargin = 36;
+constexpr int kMaxWindowWidth = 1280;
 
 constexpr const char* kNavSelectedBackground = "#6366f133";
 constexpr const char* kNavBackground = "#00000000";
@@ -126,6 +129,17 @@ void Help::try_selected() {
         close();
         on_demo_(*kTopics[selected_].demo);
     }
+}
+
+// The cap is an explicit px width rather than CSS max-width: while measuring content height the engine
+// resolves children's percentage widths against the parent's *unclamped* width (content_basis ignores
+// max-width), so wrapped text under a max-width box is measured wider than it is laid out and the
+// scroll range comes out short. See docs/engine-limits.md.
+void Help::update_layout(glm::ivec2 window_size) {
+    const int width = std::max(0, std::min(window_size.x - 2 * kWindowMargin, kMaxWindowWidth));
+    const int left = (window_size.x - width) / 2;
+    vm_->windowLeft = std::to_string(left);
+    vm_->windowWidth = std::to_string(width);
 }
 
 void Help::sync() {

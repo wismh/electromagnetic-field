@@ -5,7 +5,7 @@
     <!-- While this is open the game ignores scene mouse input itself (Game::handle_mouse), so the
          backdrop needs no hit-testable trick to keep clicks off the simulation. -->
     <Stack class="backdrop" var-display="{binding helpDisplay}">
-        <Stack class="window" direction="horizontal">
+        <Stack class="window" direction="horizontal" var-wl="{binding windowLeft}" var-ww="{binding windowWidth}">
             <Stack class="nav" direction="vertical">
                 <Label class="nav-title" text="Довідник"/>
                 <Label class="nav-sub" text="Ідеї та формули простими словами"/>

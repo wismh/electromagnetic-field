@@ -122,6 +122,10 @@ void Game::frame_update() {
         pointer_on_ui_ = true;
     }
     help_was_open_ = help_->is_open();
+    {
+        const engine::ui::WindowSize window = engine::ui::window_size_for(world_, engine::kPrimaryWindow);
+        help_->update_layout({window.width, window.height});
+    }
     handle_mouse();
     handle_keys();
     assign_ids();

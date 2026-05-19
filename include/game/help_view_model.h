@@ -41,6 +41,9 @@ public:
     engine::ui::Bindable<std::string> helpDisplay{std::string("none")};
     engine::ui::BindableList<std::shared_ptr<HelpNavItem>> navItems;
     engine::ui::RelayCommand closeHelp;
+    // Exact px geometry of the help window (see Help::update_layout for why it is not CSS max-width).
+    engine::ui::Bindable<std::string> windowLeft{std::string("36")};
+    engine::ui::Bindable<std::string> windowWidth{std::string("1208")};
     engine::ui::Bindable<float> contentScroll;
 
     // One ItemsControl per topic file; shown with display:block-like values, hidden with "none".

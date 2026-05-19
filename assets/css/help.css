@@ -27,11 +27,13 @@ Stack.backdrop {
     bottom: 0;
     background: #05060ad9;
 }
+/* Left and width come from Help::update_layout (centred, capped at 1280): an explicit width keeps
+   content measurement and layout in agreement, which max-width would not. */
 Stack.window {
     position: absolute;
-    left: 36;
+    left: var(--wl, 36);
+    width: var(--ww, 1208);
     top: 28;
-    right: 36;
     bottom: 28;
     background: #0e1018f7;
     border-radius: 14;
@@ -73,7 +75,8 @@ ItemsControl.topic { display: var(--display, none); width: 100%; }
 
 /* ---- Topic body ---- */
 
-Stack.topic-body { width: 100%; max-width: 820; gap: 10; }
+/* No max-width here: see Stack.window. */
+Stack.topic-body { width: 100%; gap: 10; }
 Label.kicker { font-size: 12; color: #818cf8; }
 Label.title { font-size: 30; color: #ffffff; margin: 0 0 4 0; }
 Label.h { font-size: 12; color: #7c8499; margin: 18 0 0 0; }

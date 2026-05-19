@@ -9,6 +9,7 @@
 
 #include <cstddef>
 #include <functional>
+#include <glm/vec2.hpp>
 #include <memory>
 #include <optional>
 #include <span>
@@ -49,6 +50,8 @@ public:
     void select_previous();
     void select_next();
     void try_selected();
+    // Centres the help window and caps its width for readable line lengths. Call every frame.
+    void update_layout(glm::ivec2 window_size);
 
 private:
     void sync();
