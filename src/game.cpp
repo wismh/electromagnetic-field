@@ -38,6 +38,8 @@ constexpr float kMaxTimeScale = 8.f;
 constexpr glm::vec4 kPositiveColor{1.f, 0.42f, 0.2f, 1.f};
 constexpr glm::vec4 kNegativeColor{0.25f, 0.55f, 1.f, 1.f};
 
+// The time slider works on log2(scale) so that halving and doubling are equal distances.
+constexpr SliderRange kTimeScaleLog2Range{.min = -3.f, .max = 3.f, .step = 0.25f};
 constexpr SliderRange kCoulombRange{.min = 0.1f, .max = 5.f, .step = 0.05f};
 constexpr SliderRange kSofteningRange{.min = 0.05f, .max = 1.f, .step = 0.01f};
 constexpr SliderRange kNewChargeRange{.min = kMinAbsCharge, .max = kMaxAbsCharge, .step = kChargeStep};
@@ -68,7 +70,12 @@ const char* preset_name(Preset preset) {
     return "";
 }
 
+// Powers of two read as x1/4, x2, ...; the in-between slider stops as decimals (x1.4, x0.59).
 std::string time_scale_text(float scale) {
+    const float octaves = std::log2(scale);
+    if (std::abs(octaves - std::round(octaves)) > 1e-3f) {
+        return std::format("×{:.2g}", scale);
+    }
     if (scale < 1.f) {
         return std::format("×1/{}", static_cast<int>(std::lround(1.f / scale)));
     }
@@ -614,8 +621,6 @@ void Game::bind_panel_commands() {
         paused_ = true;
         step_requested_ = true;
     };
-    vm.slower = [this] { set_time_scale(time_scale_ * 0.5f); };
-    vm.faster = [this] { set_time_scale(time_scale_ * 2.f); };
     vm.presetDipole = [this] { load_preset(Preset::Dipole); };
     vm.presetLikePair = [this] { load_preset(Preset::LikePair); };
     vm.presetQuadrupole = [this] { load_preset(Preset::Quadrupole); };
@@ -651,6 +656,9 @@ void Game::sync_panel() {
     sim_.set_dynamics(dynamics);
 
     FieldParams params = sim_.params();
+    if (pull && vm.timeFrac.get() != panel_echo_.time_frac) {
+        set_time_scale(std::exp2(kTimeScaleLog2Range.from_fraction(vm.timeFrac.get())));
+    }
     if (pull && vm.kFrac.get() != panel_echo_.k_frac) {
         params.k = kCoulombRange.from_fraction(vm.kFrac.get());
     }
@@ -673,6 +681,10 @@ void Game::sync_panel() {
     panel_echo_.layers = layers_;
     panel_echo_.collisions = dynamics.collisions;
 
+    const float time_frac = kTimeScaleLog2Range.to_fraction(std::log2(time_scale_));
+    vm.timeFrac = time_frac;
+    panel_echo_.time_frac = time_frac;
+    vm.timeFill = percent(time_frac);
     const float k_frac = kCoulombRange.to_fraction(params.k);
     const float eps_frac = kSofteningRange.to_fraction(params.softening);
     const float q_frac = kNewChargeRange.to_fraction(new_charge_);

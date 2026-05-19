@@ -90,7 +90,6 @@ Button.half { width: 128; }
 Button.wide { width: 192; }
 Button.help { width: 262; height: 30; margin: 4 0 0 0; background: #6366f133; }
 Button.help:hover { background: #6366f155; }
-Label.time-value { width: 122; text-align: center; align-items: center; font-size: 14; color: #ffffff; }
 
 /* Checkbox rows: a Checkbox does not pack its children, so one full-size Stack lays out the row. */
 Checkbox.toggle { width: 262; height: 24; border-radius: 5; }

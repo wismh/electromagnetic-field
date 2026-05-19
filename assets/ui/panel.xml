@@ -26,10 +26,14 @@
             <Button class="btn wide" content="{binding pauseLabel}" command="{binding togglePause}"/>
             <Button class="btn" content="Крок" command="{binding step}"/>
         </Stack>
-        <Stack class="row" direction="horizontal">
-            <Button class="btn" content="÷2" command="{binding slower}"/>
-            <Label class="time-value" text="{binding timeScaleText}"/>
-            <Button class="btn" content="×2" command="{binding faster}"/>
+        <Stack class="param-head" direction="horizontal">
+            <Label class="param-name" text="Швидкість часу (↑ ↓)"/>
+            <Label class="param-value" text="{binding timeScaleText}"/>
+        </Stack>
+        <Stack class="slider" drag="{binding timeFrac}">
+            <Stack class="track">
+                <Stack class="fill" var-fill="{binding timeFill}"/>
+            </Stack>
         </Stack>
 
         <Label class="section" text="СЦЕНИ"/>

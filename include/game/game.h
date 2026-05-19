@@ -99,6 +99,7 @@ private:
     struct PanelEcho {
         FieldLayers layers;
         bool collisions = true;
+        float time_frac = -1.f;
         float k_frac = -1.f;
         float eps_frac = -1.f;
         float new_charge_frac = -1.f;

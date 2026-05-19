@@ -30,10 +30,11 @@ public:
     // Time.
     engine::ui::Bindable<std::string> pauseLabel;
     engine::ui::Bindable<std::string> timeScaleText;
+    // Log-scale slider: the fraction maps to log2(scale) in [-3, 3], so x1 sits in the middle.
+    engine::ui::Bindable<float> timeFrac;
+    engine::ui::Bindable<std::string> timeFill;
     engine::ui::RelayCommand togglePause;
     engine::ui::RelayCommand step;
-    engine::ui::RelayCommand slower;
-    engine::ui::RelayCommand faster;
 
     // Scenes.
     engine::ui::RelayCommand presetDipole;
