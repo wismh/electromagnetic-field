@@ -7,6 +7,7 @@
 #include <game/help_view_model.h>
 #include <game/scene.h>
 
+#include <array>
 #include <cstddef>
 #include <functional>
 #include <glm/vec2.hpp>
@@ -23,11 +24,12 @@ struct HelpDemo {
 };
 
 struct HelpTopic {
+    const char* section;  // nav header shown above the first topic of each section
     const char* title;
     std::optional<HelpDemo> demo;
 };
 
-// The 13 reference topics in navigation order; matches HelpViewModel::topics and assets/ui/help_topics/.
+// The reference topics in navigation order; matches HelpViewModel::topics and assets/ui/help_topics/.
 [[nodiscard]] std::span<const HelpTopic, kHelpTopicCount> help_topics();
 
 // Full-screen in-app reference (assets/ui/help.xml): a nav list plus one topic file per topic,
@@ -62,6 +64,8 @@ private:
     DemoHandler on_demo_;
     bool open_ = false;
     std::size_t selected_ = 0;
+    // Topic index -> row in navItems (section headers sit between topic rows).
+    std::array<std::size_t, kHelpTopicCount> nav_rows_{};
 };
 
 }

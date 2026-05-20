@@ -8,13 +8,20 @@
         <Stack class="window" direction="horizontal" var-wl="{binding windowLeft}" var-ww="{binding windowWidth}">
             <Stack class="nav" direction="vertical">
                 <Label class="nav-title" text="Довідник"/>
-                <Label class="nav-sub" text="Ідеї та формули простими словами"/>
-                <ItemsControl class="nav-list" items_source="{binding navItems}">
-                    <ItemTemplate>
-                        <Button class="nav-item" content="{binding title}" command="{binding select}"
-                                var-bg="{binding background}" var-fg="{binding textColor}"/>
-                    </ItemTemplate>
-                </ItemsControl>
+                <Label class="nav-sub" text="Ідеї та формули симуляції"/>
+                <ScrollView class="nav-scroll" direction="vertical">
+                    <!-- One row per section header or topic; the unused half is display: none. -->
+                    <ItemsControl class="nav-list" items_source="{binding navItems}">
+                        <ItemTemplate>
+                            <Stack class="nav-row" direction="vertical">
+                                <Label class="nav-header" text="{binding title}" var-display="{binding headerDisplay}"/>
+                                <Button class="nav-item" content="{binding title}" command="{binding select}"
+                                        var-display="{binding topicDisplay}" var-bg="{binding background}"
+                                        var-fg="{binding textColor}"/>
+                            </Stack>
+                        </ItemTemplate>
+                    </ItemsControl>
+                </ScrollView>
                 <Label class="nav-hint" text="↑ ↓ — тема · Enter — спробуй · H або Esc — закрити"/>
             </Stack>
             <Stack class="divider"/>
@@ -38,29 +45,41 @@
                 <ItemsControl class="topic" items_source="{binding topicFieldLines}" var-display="{binding topicFieldLinesDisplay}">
                     <ItemTemplate src="help_topics/field_lines.xml"/>
                 </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicGauss}" var-display="{binding topicGaussDisplay}">
+                    <ItemTemplate src="help_topics/gauss.xml"/>
+                </ItemsControl>
                 <ItemsControl class="topic" items_source="{binding topicPotential}" var-display="{binding topicPotentialDisplay}">
                     <ItemTemplate src="help_topics/potential.xml"/>
                 </ItemsControl>
-                <ItemsControl class="topic" items_source="{binding topicEnergy}" var-display="{binding topicEnergyDisplay}">
-                    <ItemTemplate src="help_topics/energy.xml"/>
+                <ItemsControl class="topic" items_source="{binding topicPotentialEnergy}" var-display="{binding topicPotentialEnergyDisplay}">
+                    <ItemTemplate src="help_topics/potential_energy.xml"/>
                 </ItemsControl>
-                <ItemsControl class="topic" items_source="{binding topicMotion}" var-display="{binding topicMotionDisplay}">
-                    <ItemTemplate src="help_topics/motion.xml"/>
+                <ItemsControl class="topic" items_source="{binding topicVoltage}" var-display="{binding topicVoltageDisplay}">
+                    <ItemTemplate src="help_topics/voltage.xml"/>
                 </ItemsControl>
-                <ItemsControl class="topic" items_source="{binding topicSoftening}" var-display="{binding topicSofteningDisplay}">
-                    <ItemTemplate src="help_topics/softening.xml"/>
+                <ItemsControl class="topic" items_source="{binding topicGradient}" var-display="{binding topicGradientDisplay}">
+                    <ItemTemplate src="help_topics/gradient.xml"/>
                 </ItemsControl>
-                <ItemsControl class="topic" items_source="{binding topicCollisions}" var-display="{binding topicCollisionsDisplay}">
-                    <ItemTemplate src="help_topics/collisions.xml"/>
+                <ItemsControl class="topic" items_source="{binding topicPairEnergy}" var-display="{binding topicPairEnergyDisplay}">
+                    <ItemTemplate src="help_topics/pair_energy.xml"/>
                 </ItemsControl>
-                <ItemsControl class="topic" items_source="{binding topicExperiments}" var-display="{binding topicExperimentsDisplay}">
-                    <ItemTemplate src="help_topics/experiments.xml"/>
+                <ItemsControl class="topic" items_source="{binding topicEnergyZero}" var-display="{binding topicEnergyZeroDisplay}">
+                    <ItemTemplate src="help_topics/energy_zero.xml"/>
                 </ItemsControl>
-                <ItemsControl class="topic" items_source="{binding topicUnits}" var-display="{binding topicUnitsDisplay}">
-                    <ItemTemplate src="help_topics/units.xml"/>
+                <ItemsControl class="topic" items_source="{binding topicWorkMotion}" var-display="{binding topicWorkMotionDisplay}">
+                    <ItemTemplate src="help_topics/work_motion.xml"/>
                 </ItemsControl>
-                <ItemsControl class="topic" items_source="{binding topicLimits}" var-display="{binding topicLimitsDisplay}">
-                    <ItemTemplate src="help_topics/limits.xml"/>
+                <ItemsControl class="topic" items_source="{binding topicConfigEnergy}" var-display="{binding topicConfigEnergyDisplay}">
+                    <ItemTemplate src="help_topics/config_energy.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicGravity}" var-display="{binding topicGravityDisplay}">
+                    <ItemTemplate src="help_topics/gravity.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicOverview}" var-display="{binding topicOverviewDisplay}">
+                    <ItemTemplate src="help_topics/overview.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicSimulation}" var-display="{binding topicSimulationDisplay}">
+                    <ItemTemplate src="help_topics/simulation.xml"/>
                 </ItemsControl>
                 </ScrollView>
             </Stack>

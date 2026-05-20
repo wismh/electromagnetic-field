@@ -3,10 +3,10 @@
 <Stack class="topic-body" direction="vertical">
     <Label class="kicker" text="ТЕМА 3"/>
     <Label class="title" text="Електричне поле"/>
-    <Label class="h" text="ІДЕЯ ПРОСТИМИ СЛОВАМИ"/>
-    <Label class="p" text="Можна казати «заряд A тягне заряд B». А можна інакше: заряд A змінює простір навколо себе — створює електричне поле. Поле є в кожній точці, навіть там, де інших зарядів зовсім немає."/>
-    <Label class="p" text="Найпростіше уявляти поле як карту стрілок. У кожній точці стоїть стрілка: куди і як сильно штовхнуло б маленький пробний заряд +1, якби його туди поставили. Біля плюса стрілки дивляться назовні, біля мінуса — всередину."/>
-    <Label class="p" text="Коли поле відоме, силу на будь-який заряд знайти просто: помножити поле на цей заряд. Позитивний заряд штовхає вздовж стрілки, негативний — проти неї."/>
+    <Label class="h" text="ІДЕЯ"/>
+    <Label class="p" text="Замість того щоб описувати силу між кожною парою зарядів, кажуть: заряди-джерела створюють у просторі електричне поле, а поле діє на будь-який інший заряд, що опиниться в точці. Поле визначене в кожній точці — і там, де інших зарядів немає."/>
+    <Label class="p" text="Напруженість поля E — це сила, що діяла б у цій точці на пробний заряд, поділена на величину цього заряду. Сила пропорційна пробному заряду, тому відношення F/q від нього не залежить і описує лише джерела та положення точки."/>
+    <Label class="p" text="Знаючи поле, силу на конкретний заряд отримуємо множенням: F = qE. Для позитивного q сила напрямлена вздовж E, для негативного — проти. Поле точкового заряду напрямлене від нього, якщо Q &gt; 0, і до нього, якщо Q &lt; 0."/>
     <Label class="h" text="ФОРМУЛИ"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="\vec{E} = \frac{\vec{F}}{q}"/>
@@ -19,38 +19,77 @@
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\vec{E}"/>
             </Stack>
-            <Label class="legend-text" text="напруженість поля — стрілка в точці. Її довжина |E| — сила, що припадає на одиницю заряду."/>
+            <Label class="legend-text" text="напруженість поля — вектор у точці; |E| — сила на одиницю заряду (Н/Кл)."/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="Q"/>
             </Stack>
-            <Label class="legend-text" text="заряд, який створює поле."/>
+            <Label class="legend-text" text="заряд-джерело, що створює поле."/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="q"/>
             </Stack>
-            <Label class="legend-text" text="пробний заряд, який ми подумки ставимо в точку."/>
+            <Label class="legend-text" text="пробний заряд, на який діє поле. Не плутати з Q."/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="r"/>
             </Stack>
-            <Label class="legend-text" text="відстань від Q до точки."/>
+            <Label class="legend-text" text="відстань від джерела Q до точки."/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\vec{F}"/>
             </Stack>
-            <Label class="legend-text" text="сила, яка подіє на заряд q у цій точці."/>
+            <Label class="legend-text" text="сила на заряд q у цій точці."/>
         </Stack>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Друга формула — поле одного заряду Q. Перша й третя працюють для будь-якого поля, навіть створеного тисячею зарядів."/>
+        <Label class="note-text" text="Друга формула описує лише поле одного точкового заряду. Перша й третя — визначення поля і сила в ньому — справджуються для будь-якого електростатичного поля."/>
+    </Stack>
+    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Що фізично означає поле в порожньому просторі?"/>
+            <Label class="qa-a" text="В електростатиці поле можна сприймати як точний опис того, яка сила виникне в кожній точці, якщо туди помістити заряд. Але поле — не лише зручна бухгалтерія: воно несе енергію, і коли заряди зсуваються, зміна поля поширюється простором зі швидкістю світла, а не миттєво. Тому поле вважають фізичним об'єктом, а не лише формулою."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чи потрібно постійно витрачати енергію, щоб поле існувало?"/>
+            <Label class="qa-a" text="Ні. Статичне поле нерухомих зарядів нічого не витрачає — так само, як підняте тіло не витрачає енергії, щоб залишатися на висоті. Енергію треба витратити один раз, щоб створити конфігурацію (розсунути різнойменні заряди чи зсунути однойменні); далі вона зберігається в полі. Витрати з'являються лише тоді, коли щось рухається: струм у провіднику з опором, випромінювання."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чому q у E = F/q — пробний заряд, а не джерело?"/>
+            <Label class="qa-a" text="Бо поле створюють джерела (Q), а пробний заряд потрібен лише для того, щоб це поле «виміряти». Ми ділимо силу на q саме для того, щоб прибрати з відповіді властивості вимірювального заряду. Пробний заряд беруть малим, щоб він не зсунув джерела і не спотворив поле, яке вимірює."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чому зміна пробного заряду не змінює поле?"/>
+            <Label class="qa-a" text="Сила пропорційна пробному заряду: удвічі більший q — удвічі більша F. Тому відношення F/q залишається тим самим. Зміниться сила, але не поле."/>
+            <Math class="qa-math" formula="\frac{F}{q} = \frac{2F}{2q} = E"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чим поле відрізняється від сили?"/>
+            <Label class="qa-a" text="Поле E — властивість точки простору (його задають джерела), однакова для будь-якого заряду, що туди потрапить. Сила F — властивість взаємодії конкретного заряду з полем. В одній точці заряди +1, +2 і −1 відчувають сили E, 2E і −E: поле одне, сили різні."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="Між двома однаковими зарядами +1 є точка, де поле дорівнює нулю. Де вона? А чи є така точка між +1 і −1?"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+            <Label class="predict-a-text" text="Для однакових зарядів — рівно посередині: поля рівні за величиною й протилежні за напрямом. Для +1 і −1 на відрізку між ними такої точки немає: поле від плюса і поле до мінуса там напрямлені в один бік і додаються. Перевір пробником (F5) у сценах «Однакові» та «Диполь»."/>
+        </Stack>
+    </Stack>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="Пробний заряд +1 показує в точці стрілку E. Що зміниться, якщо уявити там заряд −1?"/>
+        <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
+            <Label class="predict-a-text" text="Поле не зміниться зовсім — його задають джерела. Зміниться лише сила: F = qE, тож для q = −1 вона напрямлена протилежно до стрілки E."/>
+        </Stack>
     </Stack>
     <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
-    <Label class="p" text="Клавіша F3 вмикає сітку векторів: стрілки поля в рівномірно розставлених точках. Довжина й колір показують, наскільки поле сильне: жовті стрілки — сильне, фіолетові — слабке."/>
-    <Label class="p" text="Клавіша F5 — пробний заряд під курсором: біла стрілка показує напрям поля, а підказка поруч — числа |E|, компоненти E та потенціал φ. Це і є поле: сила на заряд +1 у цій точці."/>
-    <Button class="try" content="Спробуй: диполь із сіткою векторів" command="{binding tryIt}"/>
+    <Label class="p" text="F3 вмикає сітку векторів: стрілки E у вузлах сітки, довжина і колір — |E| у логарифмічній шкалі (жовті — сильне поле, фіолетові — слабке)."/>
+    <Label class="p" text="F5 — пробний заряд +1 під курсором: біла стрілка показує напрям E, підказка поруч — |E|, компоненти E і потенціал φ. Для q = +1 числа E і F збігаються, тому підказка пише |E| = F/q."/>
+    <Button class="try" content="Спробуй: диполь із сіткою векторів і пробним зарядом" command="{binding tryIt}"/>
 </Stack>

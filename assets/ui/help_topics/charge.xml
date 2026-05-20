@@ -3,13 +3,14 @@
 <Stack class="topic-body" direction="vertical">
     <Label class="kicker" text="ТЕМА 1"/>
     <Label class="title" text="Електричний заряд"/>
-    <Label class="h" text="ІДЕЯ ПРОСТИМИ СЛОВАМИ"/>
-    <Label class="p" text="Заряд — це властивість частинок речовини, через яку вони штовхають або тягнуть одна одну навіть на відстані, без дотику. Заряд буває двох видів: позитивний (+) і негативний (−)."/>
-    <Label class="p" text="Правило одне: однакові заряди відштовхуються, різні — притягуються. Плюс тікає від плюса, мінус — від мінуса, а плюс і мінус тягнуться одне до одного."/>
-    <Label class="p" text="У звичайних предметах плюсів і мінусів порівну, тому вони не тягнуть і не штовхають інші предмети. Але якщо потерти повітряну кульку об волосся, частина електронів (крихітних носіїв мінуса) перейде з волосся на кульку. Кулька стане негативною, волосся — позитивним, і волосся потягнеться за кулькою."/>
-    <Label class="h" text="ФОРМУЛА"/>
+    <Label class="h" text="ІДЕЯ"/>
+    <Label class="p" text="Електричний заряд — фізична величина, яка визначає, як тіло бере участь в електричній взаємодії. Заряд має знак: позитивний або негативний. Тіла з однаковими знаками відштовхуються, з різними — притягуються."/>
+    <Label class="p" text="Заряд квантований: будь-який заряд складається з цілої кількості елементарних порцій e — заряду протона (+e) або електрона (−e). Звичайна речовина нейтральна, бо протонів і електронів у ній порівну. Наелектризувати тіло означає перенести частину електронів: тертям, дотиком, у провіднику — полем."/>
+    <Label class="p" text="Заряд зберігається: в ізольованій системі сума всіх зарядів стала. Заряди можуть переходити з тіла на тіло, але не з'являються і не зникають поодинці."/>
+    <Label class="h" text="ФОРМУЛИ"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="q = \pm N e"/>
+        <Math class="display-math" display="true" formula="\sum_i q_i = \mathrm{const}"/>
     </Stack>
     <Label class="h" text="ЩО ТУТ ЩО"/>
     <Stack class="legend" direction="vertical">
@@ -17,45 +18,53 @@
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="q"/>
             </Stack>
-            <Label class="legend-text" text="заряд — число зі знаком. Чим більший |q|, тим сильніше цей заряд діє на інші."/>
+            <Label class="legend-text" text="заряд тіла — число зі знаком, у СІ вимірюється в кулонах (Кл)."/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="e"/>
             </Stack>
-            <Label class="legend-text" text="найменша порція заряду в природі (заряд одного електрона чи протона). Менших шматочків не буває."/>
+            <Label class="legend-text" text="елементарний заряд, найменша вільна порція заряду в природі."/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="N"/>
             </Stack>
-            <Label class="legend-text" text="скільки таких порцій: ціле число 0, 1, 2, 3 …"/>
+            <Label class="legend-text" text="ціле число порцій: 0, 1, 2, …"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
-                <Math class="sym-math" formula="\pm"/>
+                <Math class="sym-math" formula="\sum_i q_i"/>
             </Stack>
-            <Label class="legend-text" text="знак: «+» якщо порцій плюса більше, «−» якщо більше мінуса."/>
+            <Label class="legend-text" text="сумарний заряд ізольованої системи — не змінюється з часом."/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="q_1 q_2 &gt; 0"/>
             </Stack>
-            <Label class="legend-text" text="знаки однакові — заряди відштовхуються."/>
+            <Label class="legend-text" text="знаки однакові — відштовхування."/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="q_1 q_2 &lt; 0"/>
             </Stack>
-            <Label class="legend-text" text="знаки різні — заряди притягуються."/>
+            <Label class="legend-text" text="знаки різні — притягування."/>
         </Stack>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Порція e дуже маленька: щоб набрати заряд в один кулон (одиниця заряду в системі СІ), потрібно приблизно шість мільярдів мільярдів електронів."/>
-        <Math class="note-math" formula="e \approx 1.6 \cdot 10^{-19}"/>
+        <Label class="note-text" text="Елементарний заряд дуже малий: один кулон — це приблизно 6.24 мільярда мільярдів елементарних зарядів."/>
+        <Math class="note-math" formula="e \approx 1.602 \cdot 10^{-19} \; \mathrm{C}"/>
+    </Stack>
+    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="Постав два вільні заряди +1 і −1 на відстані кількох клітинок і запусти симуляцію. Що станеться? А якщо обидва будуть +1?"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+            <Label class="predict-a-text" text="Різнойменні рушать назустріч одне одному, і їхня швидкість зростатиме аж до зіткнення: що ближче, то більша сила. Однойменні розлетяться, і з часом прискорюватимуться дедалі менше, бо сила спадає з відстанню. Перевір: ЛКМ і ПКМ на порожньому місці, потім клавіша L знімає закріплення, якщо воно є."/>
+        </Stack>
     </Stack>
     <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
-    <Label class="p" text="Помаранчеві кола зі знаком «+» — позитивні заряди, сині зі знаком «−» — негативні. Чим більший |q|, тим більше коло. Ліва кнопка миші ставить заряд +q, права — −q. Колесо над зарядом змінює |q|, клавіша F перевертає знак."/>
-    <Label class="p" text="Заряди в програмі задані в умовних одиницях: 1 — це просто «один заряд», без кулонів. Так числа лишаються зручними, а вся поведінка — така сама, як у справжніх зарядів."/>
-    <Button class="try" content="Спробуй: «Рій» — різні знаки збираються в групи" command="{binding tryIt}"/>
+    <Label class="p" text="Помаранчеві кола «+» — позитивні заряди, сині «−» — негативні; радіус кола росте з |q|. ЛКМ ставить +q, ПКМ — −q (величину задає повзунок «|q| нових зарядів»), колесо над зарядом змінює |q|, F змінює знак."/>
+    <Label class="p" text="Заряди в програмі задані в умовних одиницях, без кулонів. Це лише масштаб: усі співвідношення між силами, полями й енергіями ті самі, що й у СІ (див. тему «Одиниці»)."/>
+    <Button class="try" content="Спробуй: «Рій» — різнойменні заряди збираються в групи" command="{binding tryIt}"/>
 </Stack>

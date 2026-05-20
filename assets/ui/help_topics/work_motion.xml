@@ -1,8 +1,8 @@
 <!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
      HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
-    <Label class="kicker" text="ТЕМА 10"/>
-    <Label class="title" text="Зіткнення"/>
+    <Label class="kicker" text="ТЕМА 13"/>
+    <Label class="title" text="Робота поля і рух"/>
     <Stack class="note" direction="vertical">
         <Label class="note-text" text="Цей розділ ще пишеться."/>
     </Stack>

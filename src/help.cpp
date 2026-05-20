@@ -33,21 +33,31 @@ FieldLayers layers(bool potential, bool lines, bool grid, bool flow, bool probe,
     };
 }
 
+constexpr const char* kBasics = "I. ОСНОВИ";
+constexpr const char* kPotentialEnergy = "II. ПОТЕНЦІАЛ І ЕНЕРГІЯ";
+constexpr const char* kSummary = "III. ПІДСУМОК";
+constexpr const char* kAppendix = "ДОДАТОК";
+
 // Order must match HelpViewModel::topics and the ItemsControls in assets/ui/help.xml.
+// layers(potential, lines, grid, flow, probe, trails)
 const std::array<HelpTopic, kHelpTopicCount> kTopics{
-        HelpTopic{"1. Електричний заряд", HelpDemo{Preset::Swarm, layers(true, true, false, true, true, true)}},
-        HelpTopic{"2. Закон Кулона", HelpDemo{Preset::Orbit, layers(true, true, false, false, true, true)}},
-        HelpTopic{"3. Електричне поле", HelpDemo{Preset::Dipole, layers(false, false, true, false, true, false)}},
-        HelpTopic{"4. Суперпозиція", HelpDemo{Preset::Quadrupole, layers(false, false, true, false, true, false)}},
-        HelpTopic{"5. Силові лінії", HelpDemo{Preset::Dipole, layers(false, true, false, true, true, false)}},
-        HelpTopic{"6. Потенціал", HelpDemo{Preset::LikePair, layers(true, false, false, false, true, false)}},
-        HelpTopic{"7. Енергія", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
-        HelpTopic{"8. Рух і кроки в часі", HelpDemo{Preset::Orbit, layers(false, false, false, false, false, true)}},
-        HelpTopic{"9. Згладжування", HelpDemo{Preset::Swarm, layers(true, false, false, false, true, true)}},
-        HelpTopic{"10. Зіткнення", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
-        HelpTopic{"11. Сцени як досліди", HelpDemo{Preset::Rutherford, layers(false, false, false, false, false, true)}},
-        HelpTopic{"12. Одиниці", std::nullopt},
-        HelpTopic{"13. Межі моделі", std::nullopt},
+        HelpTopic{kBasics, "1. Електричний заряд", HelpDemo{Preset::Swarm, layers(true, true, false, true, true, true)}},
+        HelpTopic{kBasics, "2. Закон Кулона", HelpDemo{Preset::Orbit, layers(true, true, false, false, true, true)}},
+        HelpTopic{kBasics, "3. Електричне поле", HelpDemo{Preset::Dipole, layers(false, false, true, false, true, false)}},
+        HelpTopic{kBasics, "4. Суперпозиція", HelpDemo{Preset::Quadrupole, layers(false, false, true, false, true, false)}},
+        HelpTopic{kBasics, "5. Силові лінії", HelpDemo{Preset::Dipole, layers(false, true, false, true, true, false)}},
+        HelpTopic{kBasics, "6. Потік і закон Гаусса", HelpDemo{Preset::Capacitor, layers(false, true, false, true, true, false)}},
+        HelpTopic{kPotentialEnergy, "7. Потенціал", HelpDemo{Preset::LikePair, layers(true, false, false, false, true, false)}},
+        HelpTopic{kPotentialEnergy, "8. Потенціал і енергія заряду", HelpDemo{Preset::Dipole, layers(true, false, false, false, true, false)}},
+        HelpTopic{kPotentialEnergy, "9. Напруга й однорідне поле", HelpDemo{Preset::Capacitor, layers(true, true, false, false, true, false)}},
+        HelpTopic{kPotentialEnergy, "10. Поле як нахил потенціалу", HelpDemo{Preset::Dipole, layers(true, false, true, false, true, false)}},
+        HelpTopic{kPotentialEnergy, "11. Енергія пари зарядів", HelpDemo{Preset::Rutherford, layers(false, false, false, false, false, true)}},
+        HelpTopic{kPotentialEnergy, "12. Нуль енергії і від'ємна U", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
+        HelpTopic{kPotentialEnergy, "13. Робота поля і рух", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
+        HelpTopic{kPotentialEnergy, "14. Енергія конфігурації", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
+        HelpTopic{kSummary, "15. Електрика і гравітація", HelpDemo{Preset::Orbit, layers(false, true, false, false, false, true)}},
+        HelpTopic{kSummary, "16. Загальна картина", HelpDemo{Preset::Dipole, layers(true, true, false, true, true, false)}},
+        HelpTopic{kAppendix, "Як працює симуляція", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
 };
 
 }
@@ -63,7 +73,17 @@ Help::Help(engine::ecs::World& world, DemoHandler on_demo) :
     vm_->closeHelp = [this] { close(); };
 
     std::vector<std::shared_ptr<HelpNavItem>> nav;
+    const char* section = nullptr;
     for (std::size_t i = 0; i < kTopics.size(); ++i) {
+        if (section != kTopics[i].section) {
+            section = kTopics[i].section;
+            auto header = std::make_shared<HelpNavItem>();
+            header->title = std::string(section);
+            header->headerDisplay = std::string("block");
+            header->topicDisplay = std::string("none");
+            nav.push_back(std::move(header));
+        }
+        nav_rows_[i] = nav.size();
         auto item = std::make_shared<HelpNavItem>();
         item->title = std::string(kTopics[i].title);
         item->select = [this, i] { select(i); };
@@ -156,8 +176,9 @@ void Help::sync() {
     for (std::size_t i = 0; i < kTopics.size(); ++i) {
         const bool selected = i == selected_;
         *vm_->topic_displays[i] = selected ? "block" : "none";
-        nav[i]->background = selected ? kNavSelectedBackground : kNavBackground;
-        nav[i]->textColor = selected ? kNavSelectedText : kNavText;
+        HelpNavItem& row = *nav[nav_rows_[i]];
+        row.background = selected ? kNavSelectedBackground : kNavBackground;
+        row.textColor = selected ? kNavSelectedText : kNavText;
     }
 }
 

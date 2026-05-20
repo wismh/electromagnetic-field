@@ -11,9 +11,12 @@
 
 namespace game {
 
-inline constexpr std::size_t kHelpTopicCount = 13;
+inline constexpr std::size_t kHelpTopicCount = 17;
+// "Predict, then check" questions per topic; answers stay collapsed until revealed.
+inline constexpr std::size_t kHelpPredictionsPerTopic = 3;
 
-// One row of the help navigation list (assets/ui/help.xml, the nav ItemsControl).
+// One row of the help navigation list: either a section header or a topic button. Both live in one
+// ItemsControl; the unused half of the row is removed with display: none.
 class HelpNavItem final : public engine::ui::ViewModel {
 public:
     HelpNavItem();
@@ -21,6 +24,8 @@ public:
     engine::ui::Bindable<std::string> title;
     engine::ui::Bindable<std::string> background;
     engine::ui::Bindable<std::string> textColor;
+    engine::ui::Bindable<std::string> headerDisplay{std::string("none")};
+    engine::ui::Bindable<std::string> topicDisplay{std::string("block")};
     engine::ui::RelayCommand select;
 };
 
@@ -31,6 +36,16 @@ public:
     HelpTopicViewModel();
 
     engine::ui::RelayCommand tryIt;
+
+    // Bindings reveal1..3 / answer1Display..3 / revealLabel1..3 for the "predict, then check" blocks.
+    std::array<engine::ui::RelayCommand, kHelpPredictionsPerTopic> reveal;
+    std::array<engine::ui::Bindable<std::string>, kHelpPredictionsPerTopic> answer_display;
+    std::array<engine::ui::Bindable<std::string>, kHelpPredictionsPerTopic> reveal_label;
+
+private:
+    void toggle(std::size_t i);
+
+    std::array<bool, kHelpPredictionsPerTopic> revealed_{};
 };
 
 // Data context of assets/ui/help.xml. Member names must match the XML binding paths exactly.
@@ -47,33 +62,45 @@ public:
     engine::ui::Bindable<float> contentScroll;
 
     // One ItemsControl per topic file; shown with display:block-like values, hidden with "none".
+    // I. Basics
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicCharge;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicCoulomb;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicField;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicSuperposition;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicFieldLines;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicGauss;
+    // II. Potential and energy
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicPotential;
-    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicEnergy;
-    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicMotion;
-    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicSoftening;
-    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicCollisions;
-    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicExperiments;
-    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicUnits;
-    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicLimits;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicPotentialEnergy;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicVoltage;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicGradient;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicPairEnergy;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicEnergyZero;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicWorkMotion;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicConfigEnergy;
+    // III. Summary
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicGravity;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicOverview;
+    // Appendix
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicSimulation;
 
     engine::ui::Bindable<std::string> topicChargeDisplay;
     engine::ui::Bindable<std::string> topicCoulombDisplay;
     engine::ui::Bindable<std::string> topicFieldDisplay;
     engine::ui::Bindable<std::string> topicSuperpositionDisplay;
     engine::ui::Bindable<std::string> topicFieldLinesDisplay;
+    engine::ui::Bindable<std::string> topicGaussDisplay;
     engine::ui::Bindable<std::string> topicPotentialDisplay;
-    engine::ui::Bindable<std::string> topicEnergyDisplay;
-    engine::ui::Bindable<std::string> topicMotionDisplay;
-    engine::ui::Bindable<std::string> topicSofteningDisplay;
-    engine::ui::Bindable<std::string> topicCollisionsDisplay;
-    engine::ui::Bindable<std::string> topicExperimentsDisplay;
-    engine::ui::Bindable<std::string> topicUnitsDisplay;
-    engine::ui::Bindable<std::string> topicLimitsDisplay;
+    engine::ui::Bindable<std::string> topicPotentialEnergyDisplay;
+    engine::ui::Bindable<std::string> topicVoltageDisplay;
+    engine::ui::Bindable<std::string> topicGradientDisplay;
+    engine::ui::Bindable<std::string> topicPairEnergyDisplay;
+    engine::ui::Bindable<std::string> topicEnergyZeroDisplay;
+    engine::ui::Bindable<std::string> topicWorkMotionDisplay;
+    engine::ui::Bindable<std::string> topicConfigEnergyDisplay;
+    engine::ui::Bindable<std::string> topicGravityDisplay;
+    engine::ui::Bindable<std::string> topicOverviewDisplay;
+    engine::ui::Bindable<std::string> topicSimulationDisplay;
 
     // The fields above in navigation order, so code can index them.
     std::array<engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>>*, kHelpTopicCount> topics;

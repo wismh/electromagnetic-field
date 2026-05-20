@@ -45,8 +45,25 @@ Stack.window {
 Stack.nav { width: 280; height: 100%; padding: 24 14 18 18; gap: 2; }
 Label.nav-title { font-size: 22; color: #ffffff; }
 Label.nav-sub { font-size: 13; color: #8b93a7; margin: 2 0 16 0; }
+/* Title block 24 top pad + ~22 title + ~15 sub + 16 gap below; hint ~30 with its margin. The list scrolls
+   in what is left: 664 window - 42 padding - 70 header - 40 hint, kept as one calc on the window height. */
+ScrollView.nav-scroll {
+    width: 100%;
+    height: calc(100% - 112px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff30 #00000000;
+}
 ItemsControl.nav-list { width: 100%; gap: 2; }
+Stack.nav-row { width: 100%; }
+Label.nav-header {
+    display: var(--display, none);
+    font-size: 11;
+    color: #7c8499;
+    margin: 12 0 4 4;
+}
 Button.nav-item {
+    display: var(--display, block);
     width: 100%;
     height: 34;
     padding: 0 12;
@@ -112,6 +129,39 @@ Stack.note {
 }
 Label.note-text { width: 100%; font-size: 15; color: #d7dbe6; }
 Math.note-math { font-size: 20; color: #ffffff; }
+
+/* FAQ: question in the accent colour, answer as body text. */
+Stack.faq { width: 100%; gap: 14; }
+Stack.qa {
+    width: 100%;
+    gap: 6;
+    padding: 0 0 0 14;
+    border-width: 0;
+}
+Label.qa-q { width: 100%; font-size: 16; color: #a5b4fc; }
+Label.qa-a { width: 100%; font-size: 15; color: #c9cedb; }
+Math.qa-math { font-size: 20; color: #ffffff; margin: 2 0 0 0; }
+
+/* "Predict, then check": the answer stack is display: none until revealed (HelpTopicViewModel). */
+Stack.predict {
+    width: 100%;
+    padding: 12 16;
+    gap: 10;
+    background: #10b98114;
+    border-radius: 10;
+    border-width: 1;
+    border-color: #10b98140;
+}
+Label.predict-q { width: 100%; font-size: 15; color: #d7dbe6; }
+Button.reveal {
+    height: 30;
+    padding: 0 14;
+    background: #10b98126;
+    color: #a7f3d0;
+}
+Button.reveal:hover { background: #10b98140; }
+Stack.predict-a { display: var(--display, none); width: 100%; }
+Label.predict-a-text { width: 100%; font-size: 15; color: #a7f3d0; }
 
 Button.try {
     height: 40;
