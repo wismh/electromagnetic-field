@@ -47,7 +47,8 @@ public:
         return open_;
     }
 
-    void select(std::size_t topic);
+    // `reveal_in_nav` scrolls the nav list so the topic row is visible (keyboard selection).
+    void select(std::size_t topic, bool reveal_in_nav = false);
     // Keyboard navigation: previous / next topic, and the selected topic's "try it".
     void select_previous();
     void select_next();
@@ -66,6 +67,11 @@ private:
     std::size_t selected_ = 0;
     // Topic index -> row in navItems (section headers sit between topic rows).
     std::array<std::size_t, kHelpTopicCount> nav_rows_{};
+    // Topic index -> y of its nav row inside the scrolled list, for reveal_in_nav.
+    std::array<float, kHelpTopicCount> nav_row_y_{};
+    float nav_list_height_ = 0.f;
+    // Visible height of the nav list, derived from the window size in update_layout.
+    float nav_view_height_ = 0.f;
 };
 
 }

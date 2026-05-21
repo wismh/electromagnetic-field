@@ -3,8 +3,89 @@
 <Stack class="topic-body" direction="vertical">
     <Label class="kicker" text="ТЕМА 6"/>
     <Label class="title" text="Потік і закон Гаусса"/>
-    <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Цей розділ ще пишеться."/>
+    <Label class="h" text="ІДЕЯ"/>
+    <Label class="p" text="Потік поля через поверхню показує, скільки поля «проходить крізь» неї: у картині силових ліній — скільки ліній її перетинає, з урахуванням напряму (назовні — плюс, усередину — мінус). Точніше, це сума добутків нормальної складової поля на площу всіх маленьких шматочків поверхні."/>
+    <Label class="p" text="Закон Гаусса: потік через будь-яку замкнену поверхню дорівнює заряду всередині неї, поділеному на ε0. Форма поверхні й заряди зовні не важать: скільки ліній від зовнішнього заряду входить у поверхню, стільки ж і виходить. Саме тому кількість ліній, що виходить із заряду, пропорційна його величині."/>
+    <Label class="p" text="З закону Гаусса виводиться закон Кулона. Оточимо точковий заряд сферою: за симетрією поле на ній однакове й радіальне, тож потік дорівнює полю, помноженому на площу сфери. Звідси поле спадає як квадрат відстані — лінії нікуди не зникають, лише розходяться по дедалі більшій сфері."/>
+    <Label class="h" text="ФОРМУЛИ"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\Phi = \oint \vec{E} \cdot d\vec{A} = \frac{Q_{\mathrm{in}}}{\varepsilon_0}"/>
+        <Math class="display-math" display="true" formula="E \cdot 4 \pi r^2 = \frac{Q}{\varepsilon_0} \quad \Rightarrow \quad E = \frac{1}{4 \pi \varepsilon_0} \, \frac{Q}{r^2}"/>
+        <Math class="display-math" display="true" formula="E = \frac{\sigma}{\varepsilon_0}"/>
     </Stack>
-    <Button class="try" content="Спробуй цю тему в симуляції" command="{binding tryIt}"/>
+    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\Phi"/>
+            </Stack>
+            <Label class="legend-text" text="потік поля через замкнену поверхню."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\oint"/>
+            </Stack>
+            <Label class="legend-text" text="сума (інтеграл) по всій замкненій поверхні."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="d\vec{A}"/>
+            </Stack>
+            <Label class="legend-text" text="маленький шматочок поверхні: вектор, напрямлений назовні, довжиною в його площу."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="Q_{\mathrm{in}}"/>
+            </Stack>
+            <Label class="legend-text" text="сумарний заряд усередині поверхні; заряди зовні в нього не входять."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\varepsilon_0"/>
+            </Stack>
+            <Label class="legend-text" text="електрична стала; k = 1/(4π ε0)."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\sigma"/>
+            </Stack>
+            <Label class="legend-text" text="поверхнева густина заряду — заряд на одиницю площі пластини."/>
+        </Stack>
+    </Stack>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="Остання формула — поле між двома великими протилежно зарядженими пластинами (конденсатор). Воно однакове в кожній точці між ними й майже нульове зовні — однорідне поле, з яким працює тема 9."/>
+    </Stack>
+    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Якщо заряд лежить зовні поверхні, поле на поверхні ж не нуль. Чому потік нуль?"/>
+            <Label class="qa-a" text="Бо потік рахується зі знаком. Лінії від зовнішнього заряду входять у поверхню з одного боку і стільки ж їх виходить з іншого: внески «усередину» і «назовні» компенсуються. Ненульовий потік дає лише заряд, на якому лінії починаються або закінчуються всередині."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Навіщо закон Гаусса, якщо є закон Кулона?"/>
+            <Label class="qa-a" text="Для нерухомих зарядів вони рівносильні: один виводиться з іншого. Але закон Гаусса — одне з рівнянь Максвелла і справедливий завжди, також для рухомих зарядів, де закон Кулона вже не точний. До того ж для симетричних систем (сфера, нитка, площина) він дає поле одним рядком."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чи можна рахувати силу поля за густиною ліній у програмі?"/>
+            <Label class="qa-a" text="Лише якісно. Справжні заряди тривимірні, і їхні лінії розходяться в усіх трьох вимірах, а програма малює лише ті, що лежать у площині екрана. Тому на екрані лінії рідшають з відстанню повільніше, ніж слабшає поле. Точну величину показують сітка векторів (F3) і пробник (F5)."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="У сцені «Конденсатор» де поле найсильніше й найоднорідніше? Що відбувається зовні та біля країв?"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+            <Label class="predict-a-text" text="Між рядами зарядів поле сильне й майже однорідне: лінії йдуть паралельно від плюсів до мінусів. Зовні поля двох рядів майже компенсуються, тож поле слабке. Біля країв лінії вигинаються назовні — це крайові ефекти скінченних пластин. Перевір пробником (F5): уздовж середини значення |E| майже не змінюється."/>
+        </Stack>
+    </Stack>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="Яким буде потік через сферу, що охоплює весь диполь?"/>
+        <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
+            <Label class="predict-a-text" text="Нуль: сумарний заряд усередині +1 − 1 = 0. Усі лінії, що виходять із плюса крізь сферу, повертаються крізь неї ж до мінуса."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
+    <Label class="p" text="Правило «8 силових ліній на одиницю заряду» (F2) — пряме застосування закону Гаусса: кількість ліній з кожного заряду пропорційна заряду. Сцена «Конденсатор» — два ряди протилежних зарядів, наближення до двох пластин з однорідним полем між ними."/>
+    <Button class="try" content="Спробуй: «Конденсатор» із силовими лініями та потоком" command="{binding tryIt}"/>
 </Stack>

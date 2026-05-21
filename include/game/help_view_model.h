@@ -60,6 +60,7 @@ public:
     engine::ui::Bindable<std::string> windowLeft{std::string("36")};
     engine::ui::Bindable<std::string> windowWidth{std::string("1208")};
     engine::ui::Bindable<float> contentScroll;
+    engine::ui::Bindable<float> navScroll;
 
     // One ItemsControl per topic file; shown with display:block-like values, hidden with "none".
     // I. Basics

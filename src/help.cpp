@@ -16,6 +16,14 @@ namespace {
 constexpr int kHelpCanvasOrder = 20;  // above the control panel (10)
 constexpr int kWindowMargin = 36;
 constexpr int kMaxWindowWidth = 1280;
+// Nav row heights from assets/css/help.css (Button.nav-item 34 + list gap 2; header ~14 text + 16 margin + gap).
+constexpr float kNavTopicRowHeight = 36.f;
+constexpr float kNavHeaderRowHeight = 32.f;
+// Rows kept visible beyond the selected one when the nav scrolls to it.
+constexpr float kNavRevealContext = kNavTopicRowHeight;
+// Vertical chrome around the nav list, mirroring assets/css/help.css: window top/bottom insets (28 + 28),
+// nav padding (24 + 18) and the list's `calc(100% - 112px)`.
+constexpr float kNavChromeHeight = 56.f + 42.f + 112.f;
 
 constexpr const char* kNavSelectedBackground = "#6366f133";
 constexpr const char* kNavBackground = "#00000000";
@@ -74,6 +82,7 @@ Help::Help(engine::ecs::World& world, DemoHandler on_demo) :
 
     std::vector<std::shared_ptr<HelpNavItem>> nav;
     const char* section = nullptr;
+    float row_y = 0.f;
     for (std::size_t i = 0; i < kTopics.size(); ++i) {
         if (section != kTopics[i].section) {
             section = kTopics[i].section;
@@ -82,8 +91,11 @@ Help::Help(engine::ecs::World& world, DemoHandler on_demo) :
             header->headerDisplay = std::string("block");
             header->topicDisplay = std::string("none");
             nav.push_back(std::move(header));
+            row_y += kNavHeaderRowHeight;
         }
         nav_rows_[i] = nav.size();
+        nav_row_y_[i] = row_y;
+        row_y += kNavTopicRowHeight;
         auto item = std::make_shared<HelpNavItem>();
         item->title = std::string(kTopics[i].title);
         item->select = [this, i] { select(i); };
@@ -99,6 +111,7 @@ Help::Help(engine::ecs::World& world, DemoHandler on_demo) :
         vm_->topics[i]->set({std::move(topic)});
     }
     vm_->navItems.set(std::move(nav));
+    nav_list_height_ = row_y;
 
     canvas_ = world.create();
     world.emplace<engine::ui::UiCanvas>(canvas_, engine::ui::UiCanvas{
@@ -125,7 +138,7 @@ void Help::toggle() {
     open_ ? close() : open();
 }
 
-void Help::select(std::size_t topic) {
+void Help::select(std::size_t topic, bool reveal_in_nav) {
     if (topic >= kTopics.size()) {
         return;
     }
@@ -133,15 +146,30 @@ void Help::select(std::size_t topic) {
         selected_ = topic;
         vm_->contentScroll = 0.f;  // a new topic starts at its top
     }
+    if (reveal_in_nav && nav_view_height_ > 0.f) {
+        // Scroll only as far as needed to bring the row (plus a row of context) into view. The range is
+        // clamped here: the engine clamps scroll offsets only when it re-lays-out, which a pure scroll
+        // change does not trigger.
+        const float top = nav_row_y_[topic];
+        const float bottom = top + kNavTopicRowHeight;
+        float scroll = vm_->navScroll.get();
+        if (top - kNavRevealContext < scroll) {
+            scroll = top - kNavRevealContext;
+        } else if (bottom + kNavRevealContext > scroll + nav_view_height_) {
+            scroll = bottom + kNavRevealContext - nav_view_height_;
+        }
+        const float max_scroll = std::max(0.f, nav_list_height_ - nav_view_height_);
+        vm_->navScroll = std::clamp(scroll, 0.f, max_scroll);
+    }
     sync();
 }
 
 void Help::select_previous() {
-    select(selected_ == 0 ? kTopics.size() - 1 : selected_ - 1);
+    select(selected_ == 0 ? kTopics.size() - 1 : selected_ - 1, true);
 }
 
 void Help::select_next() {
-    select((selected_ + 1) % kTopics.size());
+    select((selected_ + 1) % kTopics.size(), true);
 }
 
 void Help::try_selected() {
@@ -160,6 +188,7 @@ void Help::update_layout(glm::ivec2 window_size) {
     const int left = (window_size.x - width) / 2;
     vm_->windowLeft = std::to_string(left);
     vm_->windowWidth = std::to_string(width);
+    nav_view_height_ = std::max(0.f, static_cast<float>(window_size.y) - kNavChromeHeight);
 }
 
 void Help::sync() {

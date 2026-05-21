@@ -9,7 +9,7 @@
             <Stack class="nav" direction="vertical">
                 <Label class="nav-title" text="Довідник"/>
                 <Label class="nav-sub" text="Ідеї та формули симуляції"/>
-                <ScrollView class="nav-scroll" direction="vertical">
+                <ScrollView class="nav-scroll" direction="vertical" scroll-y="{binding navScroll}">
                     <!-- One row per section header or topic; the unused half is display: none. -->
                     <ItemsControl class="nav-list" items_source="{binding navItems}">
                         <ItemTemplate>

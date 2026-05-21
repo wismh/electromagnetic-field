@@ -3,8 +3,61 @@
 <Stack class="topic-body" direction="vertical">
     <Label class="kicker" text="ТЕМА 5"/>
     <Label class="title" text="Силові лінії"/>
-    <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Цей розділ ще пишеться."/>
+    <Label class="h" text="ІДЕЯ"/>
+    <Label class="p" text="Силова лінія — крива, дотична до якої в кожній точці напрямлена вздовж поля E. Це спосіб побачити векторне поле цілісно: стрілки сітки показують поле в окремих точках, а лінії з'єднують ці напрями в неперервну картину."/>
+    <Label class="p" text="Властивості ліній електростатичного поля: починаються на позитивних зарядах і закінчуються на негативних (або йдуть у нескінченність); ніде не перетинаються, бо в кожній точці поле має один напрям; густіші там, де поле сильніше; кількість ліній, що виходять із заряду, пропорційна його величині."/>
+    <Label class="p" text="Кількість ліній на одиницю заряду — умовність, її обирають довільно. Фізичний зміст має лише пропорція: удвічі більший заряд — удвічі більше ліній. Чому це правило працює, пояснює закон Гаусса (тема 6)."/>
+    <Label class="h" text="ФОРМУЛИ"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\frac{d\vec{r}}{ds} = \frac{\vec{E}}{|\vec{E}|}"/>
+        <Math class="display-math" display="true" formula="N \propto |q|"/>
     </Stack>
-    <Button class="try" content="Спробуй цю тему в симуляції" command="{binding tryIt}"/>
+    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\vec{r}(s)"/>
+            </Stack>
+            <Label class="legend-text" text="точка на лінії; s — довжина, пройдена вздовж лінії."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\frac{d\vec{r}}{ds}"/>
+            </Stack>
+            <Label class="legend-text" text="одиничний напрям лінії в точці — він збігається з напрямом поля."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="N"/>
+            </Stack>
+            <Label class="legend-text" text="кількість ліній, що виходять із заряду (або входять у нього)."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чи рухається відпущений заряд уздовж силової лінії?"/>
+            <Label class="qa-a" text="У загальному випадку ні. Поле задає прискорення, а не швидкість. На прямій лінії заряд справді рухається по ній, але на вигнутій інерція виносить його назовні від вигину, і траєкторія відходить від лінії. Лінії й траєкторії збігаються лише тоді, коли швидкість увесь час мала, наприклад у дуже в'язкому середовищі."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чому силові лінії не перетинаються?"/>
+            <Label class="qa-a" text="У точці перетину поле мало б два напрями одночасно, а воно в кожній точці одне. Єдиний виняток — точки, де E = 0 (наприклад, посередині між двома однаковими зарядами): там напрям не визначений, і лінії можуть сходитися."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Частинки потоку (F4) течуть уздовж ліній. Це рух зарядів?"/>
+            <Label class="qa-a" text="Ні, це лише візуалізація. Швидкість кожної частинки потоку щомиті просто задана вздовж поля, без маси й інерції, тому вони йдуть точно по лініях. Справжні заряди в симуляції рухаються за законом Ньютона — з прискоренням, і їхні траєкторії видно в слідах (F6)."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="Відпусти вільний легкий заряд у полі диполя збоку від осі. Чи поїде він уздовж силової лінії?"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+            <Label class="predict-a-text" text="Лише на самому початку, поки швидкість мала. Далі інерція відведе його від вигнутої лінії. Перевір: постав вільний заряд (L знімає закріплення), увімкни сліди (F6) і лінії (F2) і порівняй слід з лінією."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
+    <Label class="p" text="F2 вмикає силові лінії. Програма запускає їх від позитивних зарядів — 8 ліній на одиницю заряду — і покроково просуває вздовж E методом Рунге — Кутти четвертого порядку, роблячи дрібніші кроки біля зарядів. Лінія обривається на негативному заряді або за межею екрана. Від негативних зарядів лінії простежуються назад, щоб показати й ті, що приходять з нескінченності. Яскравість лінії — сила поля, стрілки — напрям."/>
+    <Label class="p" text="F4 — анімований потік частинок уздовж ліній: вони народжуються біля позитивних зарядів і стікають до негативних, рухаючись швидше там, де поле сильніше."/>
+    <Button class="try" content="Спробуй: диполь із силовими лініями та потоком" command="{binding tryIt}"/>
 </Stack>

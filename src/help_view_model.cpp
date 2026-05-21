@@ -84,6 +84,10 @@ HelpViewModel::HelpViewModel() :
             &topicSimulationDisplay,
     } {
     assets::ui::Help::bind(*this);
+    // The asset codegen does not collect scroll-x / scroll-y bindings into bind(), so these two are
+    // registered by hand (docs/engine-limits.md).
+    property(engine::ui::intern("contentScroll"), contentScroll);
+    property(engine::ui::intern("navScroll"), navScroll);
 }
 
 }
