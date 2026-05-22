@@ -3,8 +3,82 @@
 <Stack class="topic-body" direction="vertical">
     <Label class="kicker" text="ТЕМА 9"/>
     <Label class="title" text="Напруга й однорідне поле"/>
-    <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Цей розділ ще пишеться."/>
+    <Label class="h" text="ІДЕЯ"/>
+    <Label class="p" text="Напруга між двома точками — це різниця потенціалів між ними. Саме вона має фізичний зміст: від неї залежить робота, яку поле виконує над зарядом при переході між цими точками. Тому вольтметр завжди має два щупи — він вимірює не потенціал, а різницю."/>
+    <Label class="p" text="Застереження про позначення. У шкільних підручниках напругу часто позначають буквою U. У цьому довіднику U — потенціальна енергія, тому напругу записуємо як Δφ, щоб не плутати."/>
+    <Label class="p" text="«1.5 В» на батарейці означає: між її контактами різниця потенціалів 1.5 В, тож кожен кулон заряду, що проходить зовнішнім колом, отримує від поля 1.5 Дж. Хімія батарейки підтримує цю різницю."/>
+    <Label class="p" text="Найпростіший приклад — однорідне поле між пластинами конденсатора (тема 6). Поле там однакове в кожній точці, тому потенціал змінюється рівномірно, лінійно з відстанню: еквіпотенціалі — паралельні рівновіддалені прямі. Звідси зв'язок поля й напруги — і друга одиниця поля, В/м, яка дорівнює Н/Кл."/>
+    <Label class="h" text="ФОРМУЛИ"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\Delta \varphi_{AB} = \varphi_A - \varphi_B"/>
+        <Math class="display-math" display="true" formula="W_{A \to B} = q \, \Delta \varphi_{AB}"/>
+        <Math class="display-math" display="true" formula="E = \frac{\Delta \varphi}{d}"/>
+        <Math class="display-math" display="true" formula="1 \; \mathrm{eV} = e \cdot 1 \; \mathrm{V} \approx 1.6 \cdot 10^{-19} \; \mathrm{J}"/>
     </Stack>
-    <Button class="try" content="Спробуй цю тему в симуляції" command="{binding tryIt}"/>
+    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\Delta \varphi_{AB}"/>
+            </Stack>
+            <Label class="legend-text" text="напруга між точками A і B, у вольтах."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="W_{A \to B}"/>
+            </Stack>
+            <Label class="legend-text" text="робота поля над зарядом q при переході з A в B."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="d"/>
+            </Stack>
+            <Label class="legend-text" text="відстань між еквіпотенціалями (наприклад, між пластинами) уздовж поля."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="E"/>
+            </Stack>
+            <Label class="legend-text" text="напруженість однорідного поля, В/м = Н/Кл."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\mathrm{eV}"/>
+            </Stack>
+            <Label class="legend-text" text="електронвольт — енергія, яку отримує заряд e, пройшовши напругу 1 В."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чому поле вимірюють і в Н/Кл, і в В/м?"/>
+            <Label class="qa-a" text="Це та сама одиниця: вольт — це джоуль на кулон, а джоуль — ньютон, помножений на метр. Тому В/м = Дж/(Кл·м) = Н·м/(Кл·м) = Н/Кл. Перший запис зручний, коли думаємо про силу, другий — коли про напругу й відстань."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чи небезпечна висока напруга сама по собі?"/>
+            <Label class="qa-a" text="Не обов'язково. Іскра статичної електрики від дверної ручки — це тисячі вольт, але заряд такий малий (мільйонні частки кулона), що енергія розряду — лише тисячні частки джоуля. Небезпеку визначає енергія та струм, які джерело здатне дати, а не лише напруга. Це гарна ілюстрація різниці між потенціалом і енергією."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Що «тече» в колі: потенціал чи заряд?"/>
+            <Label class="qa-a" text="Тече заряд (електрони). Потенціал лише описує, скільки енергії поле передає кожному кулону між двома точками. Падіння потенціалу вздовж дроту чи лампи — це місця, де поле віддає енергію зарядам, а ті — провіднику (тепло, світло)."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="У сцені «Конденсатор» проведи пробником (F5) по прямій від верхнього ряду до нижнього. Як змінюється φ? А |E|?"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+            <Label class="predict-a-text" text="У середній частині φ спадає майже рівномірно — від додатних значень біля плюсів до від'ємних біля мінусів, проходячи нуль посередині. |E| там майже не змінюється: поле однорідне. Біля самих рядів картина нерівна, бо пластини в сцені складені з окремих зарядів."/>
+        </Stack>
+    </Stack>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="Яку кінетичну енергію набере заряд +1, пролетівши з верхнього ряду до нижнього?"/>
+        <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
+            <Label class="predict-a-text" text="Таку, що дорівнює різниці потенціалів між рядами: W = qΔφ при q = 1. Її можна виміряти пробником — різниця показів φ біля плюсів і біля мінусів."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
+    <Label class="p" text="Сцена «Конденсатор»: фон (F1) показує лінійне спадання потенціалу між рядами, еквіпотенціалі між ними — майже паралельні прямі, силові лінії (F2) — паралельні відрізки від плюсів до мінусів. Пробник (F5) дає φ і |E| у будь-якій точці."/>
+    <Button class="try" content="Спробуй: «Конденсатор» з потенціалом, лініями й пробним зарядом" command="{binding tryIt}"/>
 </Stack>

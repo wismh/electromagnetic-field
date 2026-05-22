@@ -3,8 +3,87 @@
 <Stack class="topic-body" direction="vertical">
     <Label class="kicker" text="ТЕМА 7"/>
     <Label class="title" text="Потенціал"/>
-    <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Цей розділ ще пишеться."/>
+    <Label class="h" text="ІДЕЯ"/>
+    <Label class="p" text="Почнімо з факту, без якого потенціалу не було б. Коли заряд переходить з точки A в точку B, електростатичне поле виконує над ним роботу, і ця робота не залежить від шляху — лише від того, де шлях почався і де закінчився. Такі поля називають консервативними; гравітація теж така."/>
+    <Label class="p" text="Раз робота залежить лише від кінцевих точок, кожній точці можна приписати число так, щоб робота дорівнювала різниці цих чисел. Для пробного заряду q це його потенціальна енергія U. Вона пропорційна q, тому, поділивши на q, отримуємо величину, що описує лише саму точку й джерела поля: потенціал φ — енергію на одиницю заряду. Одиниця — вольт: 1 В = 1 Дж/Кл."/>
+    <Label class="p" text="Потенціал — скаляр, просто число в кожній точці, тому потенціали від кількох зарядів складаються як звичайні числа, без напрямів. Для точкового заряду φ = kQ/r: знак такий, як у Q, і спадає він повільніше за поле — як перший степінь відстані. Нуль потенціалу обирають самі, зазвичай на нескінченності; фізичний зміст мають лише різниці потенціалів (теми 9 і 12)."/>
+    <Label class="p" text="Еквіпотенціаль — лінія (у просторі — поверхня), уздовж якої φ однаковий. Поле завжди перпендикулярне до еквіпотенціалей, і рух уздовж них не потребує роботи — як рух уздовж горизонталі на карті висот."/>
+    <Label class="h" text="ФОРМУЛИ"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="W_{A \to B} = q \, (\varphi_A - \varphi_B)"/>
+        <Math class="display-math" display="true" formula="\varphi = \frac{U}{q}"/>
+        <Math class="display-math" display="true" formula="\varphi = k \, \frac{Q}{r} \qquad \varphi = \sum_i k \, \frac{q_i}{r_i}"/>
     </Stack>
-    <Button class="try" content="Спробуй цю тему в симуляції" command="{binding tryIt}"/>
+    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="W_{A \to B}"/>
+            </Stack>
+            <Label class="legend-text" text="робота поля над зарядом q під час переходу з A в B — будь-яким шляхом."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\varphi_A, \, \varphi_B"/>
+            </Stack>
+            <Label class="legend-text" text="потенціали в точках A і B."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\varphi"/>
+            </Stack>
+            <Label class="legend-text" text="потенціал: енергія на одиницю заряду, у вольтах."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="U"/>
+            </Stack>
+            <Label class="legend-text" text="потенціальна енергія пробного заряду q у цій точці (тема 8)."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="Q"/>
+            </Stack>
+            <Label class="legend-text" text="заряд-джерело зі знаком: від'ємний Q дає від'ємний потенціал."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\sum_i"/>
+            </Stack>
+            <Label class="legend-text" text="сума внесків усіх зарядів — звичайних чисел, без напрямів."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Що фізично означає потенціал у точці?"/>
+            <Label class="qa-a" text="Якщо нуль обрано на нескінченності, φ у точці — це робота, яку виконає поле, переносячи заряд +1 з цієї точки на нескінченність. Або, що те саме, робота, яку треба виконати проти поля, щоб принести +1 з нескінченності сюди. Тобто потенціал описує, наскільки «енергетично високо» лежить точка для одиничного позитивного заряду."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чому робота електростатичного поля не залежить від шляху?"/>
+            <Label class="qa-a" text="Сила точкового заряду напрямлена вздовж радіуса й залежить лише від відстані. Тому на кожному малому кроці робота залежить лише від того, наскільки змінилася відстань до заряду, а не від напрямку кроку вбік. Підсумок — лише різниця відстаней на початку й у кінці. За суперпозицією це правило переходить на будь-яку систему нерухомих зарядів. Для сили тертя або для вихрового електричного поля, яке породжує змінне магнітне поле, це вже не так — і потенціалу там немає."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чому потенціал спадає як 1/r, а поле — як квадрат відстані?"/>
+            <Label class="qa-a" text="Поле — це нахил потенціалу (тема 10): наскільки швидко φ змінюється з відстанню. Нахил функції 1/r дорівнює 1/r у квадраті, тому поле спадає на один степінь швидше."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="У диполі (+1 і −1) де потенціал дорівнює нулю? Чи дорівнює там нулю й поле?"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+            <Label class="predict-a-text" text="φ = 0 на всій прямій, що проходить посередині між зарядами перпендикулярно до них: внески +1 і −1 там рівні за величиною й протилежні за знаком. А поле там не нуль — воно напрямлене від плюса до мінуса. Нуль потенціалу не означає нуля поля. На фоні (F1) це біла вертикальна лінія між червоною й синьою областями."/>
+        </Stack>
+    </Stack>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="Посередині між двома однаковими зарядами +1 поле дорівнює нулю (тема 4). А потенціал?"/>
+        <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
+            <Label class="predict-a-text" text="Ні, потенціал там додатний — обидва внески додатні й додаються. Нуль поля означає лише, що потенціал у цій точці не змінюється при малому зсуві, а не що він нульовий. Перевір пробником (F5): |E| ≈ 0, а φ &gt; 0."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
+    <Label class="p" text="F1 — фон-потенціал: колір показує знак φ (червоний — додатний, синій — від'ємний), яскравість — величину, а тонкі світлі лінії — еквіпотенціалі через кожні 0.25. Пробник (F5) показує точне значення φ під курсором."/>
+    <Button class="try" content="Спробуй: диполь із фоном потенціалу і пробним зарядом" command="{binding tryIt}"/>
 </Stack>
