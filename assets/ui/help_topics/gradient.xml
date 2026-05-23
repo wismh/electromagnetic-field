@@ -3,8 +3,78 @@
 <Stack class="topic-body" direction="vertical">
     <Label class="kicker" text="ТЕМА 10"/>
     <Label class="title" text="Поле як нахил потенціалу"/>
-    <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Цей розділ ще пишеться."/>
+    <Label class="h" text="ІДЕЯ"/>
+    <Label class="p" text="Потенціал і поле — не дві незалежні величини, а два описи одного й того самого. Уяви φ як карту висот: кожній точці відповідає число. Тоді поле E — це схил цієї карти: у кожній точці воно показує, в який бік потенціал спадає найшвидше і наскільки круто."/>
+    <Label class="p" text="Математично це градієнт: вектор ∇φ, складений з того, як швидко φ змінюється вздовж x і вздовж y. Градієнт напрямлений туди, де φ зростає найшвидше, а поле — навпаки, тому в формулі стоїть мінус. Звідси ж випливає, що поле перпендикулярне до еквіпотенціалей: уздовж еквіпотенціалі φ не змінюється зовсім."/>
+    <Label class="p" text="Модуль поля — крутизна схилу: що густіше лежать еквіпотенціалі, то швидше змінюється φ і то сильніше поле. Там, де φ має вершину, западину чи сідло, схил нульовий і E = 0. Обернений зв'язок теж є: знаючи поле, потенціал отримують, підсумовуючи E вздовж шляху, — з точністю до сталої, тобто до вибору нуля."/>
+    <Label class="h" text="ФОРМУЛИ"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\vec{E} = -\nabla \varphi"/>
+        <Math class="display-math" display="true" formula="\nabla \varphi = \left( \frac{\partial \varphi}{\partial x}, \, \frac{\partial \varphi}{\partial y} \right)"/>
+        <Math class="display-math" display="true" formula="E = -\frac{d \varphi}{dx} \qquad F = -\frac{dU}{dx}"/>
     </Stack>
-    <Button class="try" content="Спробуй цю тему в симуляції" command="{binding tryIt}"/>
+    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\nabla \varphi"/>
+            </Stack>
+            <Label class="legend-text" text="градієнт потенціалу — вектор у бік найшвидшого зростання φ, довжиною в цю швидкість."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\frac{\partial \varphi}{\partial x}"/>
+            </Stack>
+            <Label class="legend-text" text="наскільки швидко φ змінюється, якщо зсуватися лише вздовж x."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="E = -\frac{d \varphi}{dx}"/>
+            </Stack>
+            <Label class="legend-text" text="те саме в одному вимірі: поле — це швидкість спадання потенціалу."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="F = -\frac{dU}{dx}"/>
+            </Stack>
+            <Label class="legend-text" text="той самий зв'язок у механіці: сила — схил потенціальної енергії."/>
+        </Stack>
+    </Stack>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="Оцінка на око: якщо сусідні еквіпотенціалі відрізняються на Δφ і лежать на відстані Δs, то поле між ними приблизно таке."/>
+        <Math class="note-math" formula="|E| \approx \frac{\Delta \varphi}{\Delta s}"/>
+    </Stack>
+    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Як саме пов'язані поле і потенціал?"/>
+            <Label class="qa-a" text="Поле — це просторова швидкість зміни потенціалу з мінусом. Потенціал дає скалярну «карту висот», поле — її схил у кожній точці. Одне однозначно визначає інше: E отримують з φ взяттям градієнта, а φ з E — підсумовуванням уздовж шляху (до сталої)."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чому в E = −∇φ стоїть мінус?"/>
+            <Label class="qa-a" text="Градієнт вказує в бік зростання φ, а позитивний заряд поле штовхає туди, де його енергія U = qφ менша, тобто в бік спадання φ. Мінус розвертає градієнт у цей бік. Тому «поле спрямоване до меншого потенціалу» — це той самий мінус, сказаний словами."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чи може поле бути нульовим там, де потенціал не нуль, і навпаки?"/>
+            <Label class="qa-a" text="Так. Поле залежить від того, як φ змінюється, а не від його значення. Посередині між двома однаковими зарядами φ &gt; 0, але це «сідло», тож нахил нульовий і E = 0. А в середині диполя φ = 0, хоча схил там найкрутіший."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="Увімкни фон потенціалу (F1) і сітку векторів (F3) у диполі. Де еквіпотенціалі найгустіші і що там зі стрілками?"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+            <Label class="predict-a-text" text="Найгустіші — біля зарядів і між ними. Саме там стрілки найдовші й найяскравіші, і скрізь вони перпендикулярні до еквіпотенціалей. Далеко від зарядів лінії рідшають — поле слабне."/>
+        </Stack>
+    </Stack>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="Пробник показує φ = 0.8 у точці A і φ = 0.6 у точці B на відстані 0.1 від неї вздовж поля. Яке поле між ними?"/>
+        <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
+            <Label class="predict-a-text" text="Приблизно |E| ≈ (0.8 − 0.6)/0.1 = 2, і напрямлене воно від A до B — у бік меншого потенціалу."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
+    <Label class="p" text="Фон F1 — та сама «карта висот»: колір — φ, тонкі лінії — еквіпотенціалі через кожні 0.25. Сітка векторів F3 показує її схил. Порівнюючи їх, видно, що стрілки завжди перетинають еквіпотенціалі під прямим кутом і довшають там, де лінії згущуються. У самій програмі це співвідношення закладене точно: потенціал і поле обчислюються з однієї формули, і поле — рівно мінус градієнт потенціалу."/>
+    <Button class="try" content="Спробуй: диполь із фоном потенціалу й сіткою векторів" command="{binding tryIt}"/>
 </Stack>
