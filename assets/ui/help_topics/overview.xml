@@ -3,8 +3,65 @@
 <Stack class="topic-body" direction="vertical">
     <Label class="kicker" text="ТЕМА 16"/>
     <Label class="title" text="Загальна картина"/>
-    <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Цей розділ ще пишеться."/>
+    <Label class="h" text="ІДЕЯ"/>
+    <Label class="p" text="Уся базова електростатика складається в один ланцюжок. Заряди-джерела створюють поле E. Поле визначає силу на будь-який заряд, F = qE. Те саме поле можна описати потенціалом φ, бо E = −grad φ. Потенціал переводить опис в енергетичну мову: U = qφ. Зміна енергії — це робота поля, ΔU = −W, яка стає кінетичною енергією руху."/>
+    <Label class="p" text="Тобто E, φ і U — не три окремі теорії, а три способи описати ту саму систему: через силу, через енергію на одиницю заряду і через енергію конкретної конфігурації. Обирають той, що зручніший для питання."/>
+    <Label class="h" text="ЛАНЦЮЖОК"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="Q \;\to\; \vec{E} \;\to\; \vec{F} = q \, \vec{E}"/>
+        <Math class="display-math" display="true" formula="\vec{E} = -\nabla \varphi \;\to\; U = q \, \varphi"/>
+        <Math class="display-math" display="true" formula="\Delta U = -W \;\to\; \Delta K = W \;\to\; K + U = \mathrm{const}"/>
     </Stack>
-    <Button class="try" content="Спробуй цю тему в симуляції" command="{binding tryIt}"/>
+    <Label class="h" text="ЧОТИРИ ВЕЛИЧИНИ"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\vec{E}"/>
+            </Stack>
+            <Label class="legend-text" text="поле — вектор, сила на одиницю заряду (Н/Кл = В/м). Властивість точки."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\varphi"/>
+            </Stack>
+            <Label class="legend-text" text="потенціал — скаляр, енергія на одиницю заряду (В = Дж/Кл). Властивість точки."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\vec{F} = q \vec{E}"/>
+            </Stack>
+            <Label class="legend-text" text="сила — вектор (Н). Властивість конкретного заряду в точці."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="U = q \varphi"/>
+            </Stack>
+            <Label class="legend-text" text="потенціальна енергія — скаляр (Дж). Властивість конфігурації зарядів."/>
+        </Stack>
+    </Stack>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="Три головні ідеї: E каже, що станеться із зарядом у точці (яку силу на одиницю заряду він відчує); φ описує електричний стан точки через енергію на одиницю заряду; U — енергетичний стан конкретної конфігурації. Фізичний зміст мають різниці φ і U, а не їхні значення."/>
+    </Stack>
+    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Коли зручніше думати силою, а коли енергією?"/>
+            <Label class="qa-a" text="Сила й поле потрібні, щоб знайти траєкторію: напрям руху, прискорення, де буде заряд за секунду. Енергія й потенціал відповідають на питання «що буде в кінці» без розв'язання руху: з якою швидкістю заряд прилетить, чи дістанеться він точки, чи втече на нескінченність."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Що в цій картині зміниться, коли заряди рухатимуться швидко?"/>
+            <Label class="qa-a" text="З'явиться магнітне поле, і сила стане F = q(E + v × B). Електричне поле перестане бути лише нахилом потенціалу: змінне магнітне поле створює вихрове E, для якого робота залежить від шляху. Це наступний етап програми."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="Відомо лише φ у точках A і B. Чи можна знайти швидкість, з якою заряд, відпущений з A, прилетить у B? А час польоту?"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+            <Label class="predict-a-text" text="Швидкість — так, із збереження енергії: добуток заряду на різницю потенціалів між A і B дорівнює приросту кінетичної енергії. Час — ні: для нього потрібна траєкторія, тобто поле вздовж усього шляху, а не лише значення в двох точках."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
+    <Label class="p" text="Кожна ланка ланцюжка має свій шар: сітка векторів і пробник — E (F3, F5); фон з еквіпотенціалями — φ (F1); силові лінії й потік — структура поля (F2, F4); панель енергії — U, K і E; сліди — рух, у який переходить енергія (F6)."/>
+    <Button class="try" content="Спробуй: диполь з усіма шарами" command="{binding tryIt}"/>
 </Stack>

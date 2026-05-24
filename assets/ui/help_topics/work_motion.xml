@@ -3,8 +3,79 @@
 <Stack class="topic-body" direction="vertical">
     <Label class="kicker" text="ТЕМА 13"/>
     <Label class="title" text="Робота поля і рух"/>
-    <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Цей розділ ще пишеться."/>
+    <Label class="h" text="ІДЕЯ"/>
+    <Label class="p" text="Робота сили — це те, наскільки сила допомагає рухові: добуток сили на переміщення вздовж неї, підсумований по шляху. Повна робота всіх сил дорівнює зміні кінетичної енергії тіла (теорема про кінетичну енергію). Для електростатичного поля, як для будь-якої консервативної сили, ту саму роботу можна виразити через потенціальну енергію: вона дорівнює її спаду, ΔU = −W."/>
+    <Label class="p" text="Поєднуючи ці два факти: що поле додало до кінетичної енергії, те воно забрало з потенціальної. Сума K + U не змінюється — це закон збереження механічної енергії. Потенціальна енергія переходить у кінетичну і назад, як у маятника."/>
+    <Label class="p" text="Фразу «система рухається до меншої потенціальної енергії» варто розуміти точно. Сила завжди напрямлена вниз по схилу U, тому відпущена з місця система рушає в бік меншої U. Але потім інерція може винести її вгору по схилу: заряд на еліптичній орбіті то наближається до центру, то віддаляється, і його U то спадає, то зростає. Незмінна лише сума K + U."/>
+    <Label class="p" text="Звідки береться збереження енергії? Глибока відповідь — теорема Нетер: закони фізики однакові сьогодні й завтра (симетрія щодо зсуву в часі), і з цієї симетрії випливає, що повна енергія ізольованої системи зберігається."/>
+    <Label class="h" text="ФОРМУЛИ"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="W = \int_A^B \vec{F} \cdot d\vec{r}"/>
+        <Math class="display-math" display="true" formula="\Delta K = W \qquad \Delta U = -W"/>
+        <Math class="display-math" display="true" formula="K + U = \mathrm{const}"/>
     </Stack>
-    <Button class="try" content="Спробуй цю тему в симуляції" command="{binding tryIt}"/>
+    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="W"/>
+            </Stack>
+            <Label class="legend-text" text="робота поля на шляху з A в B: сума добутків сили на малі переміщення."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\vec{F} \cdot d\vec{r}"/>
+            </Stack>
+            <Label class="legend-text" text="скалярний добуток: працює лише складова сили вздовж переміщення."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\Delta K"/>
+            </Stack>
+            <Label class="legend-text" text="зміна кінетичної енергії — суми енергій руху всіх вільних зарядів."/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\Delta U"/>
+            </Stack>
+            <Label class="legend-text" text="зміна потенціальної енергії системи."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чому ΔU = −W, саме з мінусом?"/>
+            <Label class="qa-a" text="Потенціальна енергія — це запас здатності поля виконати роботу. Коли поле виконує додатну роботу (розганяє заряд), воно цей запас витрачає, тож U зменшується. Коли зовнішня сила працює проти поля (зводить однойменні заряди), W поля від'ємна, і запас поповнюється. Так само камінь, що падає: гравітація виконує додатну роботу, а потенціальна енергія висоти спадає."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Що насправді означає «система рухається до меншої потенціальної енергії»?"/>
+            <Label class="qa-a" text="Що сила напрямлена в бік спадання U: F = −dU/dx. Тому з нерухомого стану система рушає вниз по U і, якщо є тертя чи непружні зіткнення, врешті осідає в мінімумі U. Без втрат вона проскакує мінімум і коливається навколо нього — U то спадає, то зростає, а K + U стала."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Як саме потенціальна енергія переходить у кінетичну?"/>
+            <Label class="qa-a" text="Через роботу поля. На кожному малому кроці поле виконує роботу dW: рівно на стільки зростає K і рівно на стільки спадає U. Ніякого окремого механізму «перетікання» немає — це один і той самий процес, записаний двома способами."/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="Чи зберігається енергія в програмі?"/>
+            <Label class="qa-a" text="Майже, з відомими винятками. Інтегратор (додаток) зберігає K + U з точністю до десятої частки відсотка: це перевіряє автоматичний тест на 20 000 кроках. Але непружні зіткнення (коефіцієнт 0.8) забирають кінетичну енергію, обмеження швидкості зрізає її при дуже близьких прольотах, а перетягування мишею додає енергію ззовні."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="У сцені «Орбіта» збільш k повзунком — орбіта стане еліптичною. Як поводитимуться K і U на панелі?"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+            <Label class="predict-a-text" text="Протифазно: коли заряд ближче до центру, U від'ємніша, а K більша; коли далі — навпаки. Їхня сума E на панелі (з новим k) майже не змінюється."/>
+        </Stack>
+    </Stack>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="У «Рої» подивись на повну енергію E = K + U. Чому вона з часом спадає? Що зміниться, якщо вимкнути зіткнення (K)?"/>
+        <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
+            <Label class="predict-a-text" text="Спадає через непружні зіткнення: при кожному ударі частина кінетичної енергії зникає (у реальності — перейшла б у тепло). Без зіткнень E майже стала, зате різнойменні заряди пролітають один крізь одного й розлітаються з великими швидкостями."/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
+    <Label class="p" text="Панель енергії показує K (кінетична енергія вільних зарядів), U (сума по парах) і E = K + U. Сліди (F6) показують, як цей обмін енергією виглядає в русі."/>
+    <Button class="try" content="Спробуй: «Орбіта» з потенціалом і слідами" command="{binding tryIt}"/>
 </Stack>
