@@ -1,6 +1,10 @@
 #include <game/simulation.h>
 
+#include <game/magnetism.h>
+
 #include <glm/geometric.hpp>
+
+#include <algorithm>
 
 namespace game {
 
@@ -8,9 +12,19 @@ Simulation::Simulation(FieldParams params, DynamicsOptions dynamics) :
     params_(params),
     dynamics_(dynamics) {}
 
+// Symmetric (Strang) splitting: electric half kick, magnetic half rotation, drift, magnetic half rotation
+// (with Bz re-evaluated at the new positions), electric half kick. The symmetry is what keeps K + U from
+// drifting when E and B act together; a single full rotation before the drift made it creep by percents
+// per minute. With the flag off the rotations are skipped and the step is the electric velocity Verlet.
 void Simulation::step(float dt) {
     kick(0.5f * dt);
+    if (dynamics_.magnetic) {
+        rotate_magnetic(charges_, params_, 0.5f * dt, coils_);
+    }
     drift(dt);
+    if (dynamics_.magnetic) {
+        rotate_magnetic(charges_, params_, 0.5f * dt, coils_);
+    }
     kick(0.5f * dt);
     if (dynamics_.collisions) {
         resolve_collisions();
@@ -76,10 +90,14 @@ void Simulation::resolve_collisions() {
 }
 
 void Simulation::limit_speed() {
+    float cap = dynamics_.max_speed;
+    if (params_.light_speed > 0.f) {
+        cap = std::min(cap, kMaxLightFraction * params_.light_speed);
+    }
     for (Charge& c : charges_) {
         const float speed = glm::length(c.velocity);
-        if (speed > dynamics_.max_speed) {
-            c.velocity *= dynamics_.max_speed / speed;
+        if (speed > cap) {
+            c.velocity *= cap / speed;
         }
     }
 }
