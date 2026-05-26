@@ -81,8 +81,72 @@ std::vector<Charge> make_preset(Preset preset) {
             }
             return charges;
         }
+        case Preset::Cyclotron: {
+            // Free charges in a uniform Bz, each started at the top (bottom for −q) of its circle moving
+            // right, so the circles sit side by side. q/m = 0.5 for all, hence one period 2π m / (|q| B)
+            // for every speed: the radius m v / (|q| B) grows with v, the period does not. Small charges
+            // keep their mutual Coulomb pull negligible.
+            constexpr float kQ = kMinAbsCharge;
+            constexpr float kMass = 0.5f;
+            const auto at = [&](float centre_x, float centre_y, float speed, float q) {
+                const float radius = kMass * speed / (std::abs(q) * kCyclotronField);
+                const float start_y = q > 0.f ? centre_y + radius : centre_y - radius;
+                return Charge{.position = {centre_x, start_y, 0.f}, .velocity = {speed, 0.f, 0.f}, .q = q,
+                        .mass = kMass};
+            };
+            return {
+                    at(-7.f, 1.f, 1.f, kQ),
+                    at(0.f, 1.f, 2.f, kQ),
+                    at(8.f, 1.f, 3.f, kQ),
+                    at(0.f, -6.f, 2.f, -kQ),
+            };
+        }
+        case Preset::ExBDrift: {
+            // Two fixed rows (a capacitor, E pointing down) in a uniform Bz. Charges released from rest
+            // between them roll along cycloids and drift sideways at E / B; the drift direction E × B is the
+            // same for both signs, only the loops turn the other way.
+            std::vector<Charge> charges;
+            for (int i = -4; i <= 4; ++i) {
+                const float x = 2.f * static_cast<float>(i);
+                charges.push_back(Charge{.position = {x, 3.f, 0.f}, .q = 1.f, .fixed = true});
+                charges.push_back(Charge{.position = {x, -3.f, 0.f}, .q = -1.f, .fixed = true});
+            }
+            constexpr float kMass = 0.5f;
+            charges.push_back(Charge{.position = {7.f, 1.f, 0.f}, .q = kMinAbsCharge, .mass = kMass});
+            charges.push_back(Charge{.position = {3.5f, -0.5f, 0.f}, .q = kMinAbsCharge, .mass = kMass});
+            charges.push_back(Charge{.position = {0.f, -1.2f, 0.f}, .q = -kMinAbsCharge, .mass = kMass});
+            return charges;
+        }
+        case Preset::Coil: {
+            // One coil (scene_settings) and four free charges with q/m = ±0.5. Each circles with a gyroradius
+            // smaller than the distance over which the coil field changes, so the circle is slightly tighter
+            // on its strong-field side and does not close: it slides sideways (grad-B drift) around the coil.
+            // + and − drift in opposite directions. Inside the field grows towards the wire; outside it has
+            // the opposite sign and falls off like a dipole field, the in-plane picture of a radiation belt.
+            constexpr float kMass = 0.5f;
+            constexpr float kQ = kMinAbsCharge;
+            return {
+                    Charge{.position = {3.f, 0.f, 0.f}, .velocity = {0.f, 1.f, 0.f}, .q = kQ, .mass = kMass},
+                    Charge{.position = {-3.f, 0.f, 0.f}, .velocity = {0.f, 1.f, 0.f}, .q = -kQ, .mass = kMass},
+                    Charge{.position = {7.5f, 0.f, 0.f}, .velocity = {0.f, 0.5f, 0.f}, .q = kQ, .mass = kMass},
+                    Charge{.position = {-7.5f, 0.f, 0.f}, .velocity = {0.f, 0.5f, 0.f}, .q = -kQ, .mass = kMass},
+            };
+        }
     }
     return {};
+}
+
+SceneSettings scene_settings(Preset preset) {
+    switch (preset) {
+        case Preset::Cyclotron:
+            return SceneSettings{.magnetic = true, .b_external = kCyclotronField};
+        case Preset::ExBDrift:
+            return SceneSettings{.magnetic = true, .b_external = kExBDriftField};
+        case Preset::Coil:
+            return SceneSettings{.magnetic = true, .coils = {kSceneCoil}};
+        default:
+            return SceneSettings{};
+    }
 }
 
 std::optional<std::size_t> pick_charge(std::span<const Charge> charges, glm::vec3 point) {

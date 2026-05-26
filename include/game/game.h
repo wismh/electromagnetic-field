@@ -13,6 +13,7 @@
 #include <game/scene.h>
 #include <game/simulation.h>
 #include <game/trails.h>
+#include <game/welcome.h>
 
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
@@ -21,6 +22,7 @@
 #include <cstdint>
 #include <memory>
 #include <optional>
+#include <string_view>
 #include <vector>
 
 namespace game {
@@ -30,6 +32,7 @@ public:
     explicit Game(engine::AssetsDb& assets);
 
     engine::WindowDesc primary_window() const override;
+    std::optional<engine::AssetId> window_icon() const override;
 
     void on_start() override;
     void on_fixed_update() override;
@@ -48,6 +51,9 @@ private:
     void spawn_panel();
     void bind_panel_commands();
     void sync_panel();
+    void load_locale();
+    void set_locale(std::string_view tag);
+    void paint_panel_locale();
     [[nodiscard]] bool pointer_over_ui();
     void spawn_potential_layer();
     [[nodiscard]] CameraView camera_view();
@@ -94,15 +100,19 @@ private:
     std::shared_ptr<PanelViewModel> panel_;
     // Built in on_start, after the panel (its canvas draws above it).
     std::optional<Help> help_;
+    std::optional<Welcome> welcome_;
     bool panel_visible_ = true;
     // Last values written into the panel's two-way fields; a difference means the user changed them.
     struct PanelEcho {
         FieldLayers layers;
         bool collisions = true;
+        bool magnetic = false;
         float time_frac = -1.f;
         float k_frac = -1.f;
+        float c_frac = -1.f;
         float eps_frac = -1.f;
         float new_charge_frac = -1.f;
+        float b_frac = -1.f;
     } panel_echo_;
     // False until the first sync has written the game state into the panel; until then the panel's
     // default-constructed fields are not user input.
@@ -117,9 +127,9 @@ private:
     // that have mouse events: the engine clears MouseConsumed every frame and only re-sets it while
     // routing events, so on an idle frame it would wrongly read "not over UI".
     bool pointer_on_ui_ = false;
-    // Help open state last frame: when it closes, pointer_on_ui_ still describes the help screen,
-    // so it is assumed "over UI" until the next mouse event re-latches it.
-    bool help_was_open_ = false;
+    // Overlay open state last frame: when the welcome screen or the reference closes, pointer_on_ui_
+    // still describes that overlay, so it is assumed "over UI" until the next mouse event re-latches it.
+    bool overlay_was_open_ = false;
     glm::vec3 pointer_world_{0.f};
     // World point grabbed by a middle-button pan; the camera moves so it stays under the cursor.
     std::optional<glm::vec3> pan_grab_;

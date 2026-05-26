@@ -1,11 +1,13 @@
 #include <game/game.h>
 
+#include <game/magnetism.h>
 #include <game/slider.h>
 
 #include <engine/builtin_ids.h>
 #include <engine/core/time.h>
 #include <engine/ecs/camera.h>
 #include <engine/ecs/transform.h>
+#include <engine/loc/catalog.h>
 #include <engine/log.h>
 #include <engine/render/renderable.h>
 #include <engine/ecs/schedule.h>
@@ -18,12 +20,17 @@
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
+#include <cstdlib>
+#include <filesystem>
 #include <format>
+#include <fstream>
+#include <span>
 #include <string>
 
 namespace game {
 namespace {
 
+// Restored size. The window opens maximized; this is what it returns to.
 constexpr int kWindowW = 1280;
 constexpr int kWindowH = 720;
 constexpr float kOrthoHalf = 10.f;
@@ -43,43 +50,135 @@ constexpr SliderRange kTimeScaleLog2Range{.min = -3.f, .max = 3.f, .step = 0.25f
 constexpr SliderRange kCoulombRange{.min = 0.1f, .max = 5.f, .step = 0.05f};
 constexpr SliderRange kSofteningRange{.min = 0.05f, .max = 1.f, .step = 0.01f};
 constexpr SliderRange kNewChargeRange{.min = kMinAbsCharge, .max = kMaxAbsCharge, .step = kChargeStep};
+// Signed and linear, so 0 sits in the middle of the track.
+constexpr SliderRange kExternalBRange{.min = -2.f, .max = 2.f, .step = 0.05f};
+// The c slider works on log10(c): 3 ... 100. Low c exaggerates magnetism between moving charges.
+constexpr SliderRange kLightSpeedLog10Range{.min = 0.48f, .max = 2.f, .step = 0.02f};
 
 // Probe readout offset from the cursor, and its rough size for keeping it on screen.
 constexpr float kProbeOffsetPx = 18.f;
 constexpr float kProbeBoxW = 170.f;
 constexpr float kProbeBoxH = 64.f;
+constexpr float kProbeBoxHMagnetic = 84.f;
 constexpr float kPanelHiddenRight = -320.f;
 
-const char* preset_name(Preset preset) {
+const char* preset_key(Preset preset) {
     switch (preset) {
         case Preset::Dipole:
-            return "Диполь";
+            return "preset.dipole";
         case Preset::LikePair:
-            return "Однакові заряди";
+            return "preset.like_pair";
         case Preset::Quadrupole:
-            return "Квадруполь";
+            return "preset.quadrupole";
         case Preset::Capacitor:
-            return "Конденсатор";
+            return "preset.capacitor";
         case Preset::Orbit:
-            return "Орбіта";
+            return "preset.orbit";
         case Preset::Rutherford:
-            return "Розсіювання Резерфорда";
+            return "preset.rutherford";
         case Preset::Swarm:
-            return "Рій";
+            return "preset.swarm";
+        case Preset::Cyclotron:
+            return "preset.cyclotron";
+        case Preset::ExBDrift:
+            return "preset.exb_drift";
+        case Preset::Coil:
+            return "preset.coil";
     }
-    return "";
+    return "preset.dipole";
 }
 
-// Powers of two read as x1/4, x2, ...; the in-between slider stops as decimals (x1.4, x0.59).
+constexpr const char* kLocaleOnBg = "#6366f133";
+constexpr const char* kLocaleOnFg = "#ffffff";
+constexpr const char* kLocaleOffBg = "#ffffff14";
+constexpr const char* kLocaleOffFg = "#aab1c3";
+
+std::filesystem::path locale_file() {
+    char* appdata = nullptr;
+    size_t length = 0;
+    if (_dupenv_s(&appdata, &length, "APPDATA") != 0 || appdata == nullptr || appdata[0] == '\0') {
+        std::free(appdata);
+        return {};
+    }
+    const std::filesystem::path path = std::filesystem::path(appdata) / "electromagnetic-field" / "locale.txt";
+    std::free(appdata);
+    return path;
+}
+
+std::string saved_locale() {
+    const std::filesystem::path path = locale_file();
+    if (path.empty()) {
+        return "en";
+    }
+    std::ifstream in(path);
+    std::string tag;
+    if (in >> tag && (tag == "en" || tag == "uk")) {
+        return tag;
+    }
+    return "en";
+}
+
+void save_locale(std::string_view tag) {
+    const std::filesystem::path path = locale_file();
+    if (path.empty()) {
+        return;
+    }
+    std::error_code ec;
+    std::filesystem::create_directories(path.parent_path(), ec);
+    std::ofstream out(path, std::ios::trunc);
+    if (out) {
+        out << tag << '\n';
+    }
+}
+
+std::filesystem::path welcome_file() {
+    const std::filesystem::path locale = locale_file();
+    if (locale.empty()) {
+        return {};
+    }
+    return locale.parent_path() / "welcome.txt";
+}
+
+bool welcome_seen() {
+    const std::filesystem::path path = welcome_file();
+    if (path.empty()) {
+        return false;
+    }
+    std::ifstream in(path);
+    std::string flag;
+    return static_cast<bool>(in >> flag) && flag == "seen";
+}
+
+void save_welcome_seen() {
+    const std::filesystem::path path = welcome_file();
+    if (path.empty()) {
+        return;
+    }
+    std::error_code ec;
+    std::filesystem::create_directories(path.parent_path(), ec);
+    std::ofstream out(path, std::ios::trunc);
+    if (out) {
+        out << "seen\n";
+    }
+}
+
+std::string catalog_text(const engine::loc::Catalog& catalog, std::string_view key) {
+    return catalog.text(key).text;
+}
+
+// Powers of two read as \times 1/4, \times 2; the in-between slider stops as decimals.
+// A slash, not a stacked fraction: the status and the slider row are one line tall.
+// The leading thin space is the gap in front of the formula. Text before \(\) is measured
+// by ink, so a word space there would not show.
 std::string time_scale_text(float scale) {
     const float octaves = std::log2(scale);
     if (std::abs(octaves - std::round(octaves)) > 1e-3f) {
-        return std::format("×{:.2g}", scale);
+        return std::format("\\(\\ \\times {:.2g}\\)", scale);
     }
     if (scale < 1.f) {
-        return std::format("×1/{}", static_cast<int>(std::lround(1.f / scale)));
+        return std::format("\\(\\ \\times 1/{}\\)", static_cast<int>(std::lround(1.f / scale)));
     }
-    return std::format("×{}", static_cast<int>(std::lround(scale)));
+    return std::format("\\(\\ \\times {}\\)", static_cast<int>(std::lround(scale)));
 }
 
 std::string percent(float fraction) {
@@ -92,15 +191,29 @@ Game::Game(engine::AssetsDb& assets) :
     assets_(assets) {}
 
 engine::WindowDesc Game::primary_window() const {
-    return {.title = "Electromagnetic Field", .size = {kWindowW, kWindowH}};
+    return {
+            .title = "Electromagnetic Field",
+            .size = {kWindowW, kWindowH},
+            .style = {.resizable = true, .maximized = true},
+    };
+}
+
+std::optional<engine::AssetId> Game::window_icon() const {
+    return assets::textures::icon;
 }
 
 void Game::on_start() {
+    load_locale();
     spawn_camera();
     spawn_potential_layer();
     field_view_.emplace(world_, assets_);
     spawn_panel();
-    help_.emplace(world_, [this](const HelpDemo& demo) { apply_demo(demo); });
+    help_.emplace(world_, [this](const HelpDemo& demo) { apply_demo(demo); },
+            [this](std::string_view tag) { set_locale(tag); });
+    welcome_.emplace(world_, [this](std::string_view tag) { set_locale(tag); }, [this] { save_welcome_seen(); });
+    if (!welcome_seen()) {
+        welcome_->open();
+    }
     load_preset(preset_);
     world_.add_system(engine::ecs::Schedule::Frame, engine::ecs::Phase::Game, [this](engine::ecs::World&) {
         frame_update();
@@ -125,13 +238,16 @@ void Game::on_fixed_update() {
 }
 
 void Game::frame_update() {
-    if (help_was_open_ && !help_->is_open()) {
+    const bool overlay_open = help_->is_open() || welcome_->is_open();
+    if (overlay_was_open_ && !overlay_open) {
         pointer_on_ui_ = true;
     }
-    help_was_open_ = help_->is_open();
+    overlay_was_open_ = overlay_open;
     {
         const engine::ui::WindowSize window = engine::ui::window_size_for(world_, engine::kPrimaryWindow);
-        help_->update_layout({window.width, window.height});
+        const glm::ivec2 size{window.width, window.height};
+        help_->update_layout(size);
+        welcome_->update_layout(size);
     }
     handle_mouse();
     handle_keys();
@@ -303,6 +419,12 @@ void Game::on_wheel(float notches) {
 
 void Game::on_key(engine::KeyCode key) {
     using engine::KeyCode;
+    if (welcome_->is_open()) {
+        if (key == KeyCode::Escape) {
+            welcome_->close();
+        }
+        return;
+    }
     if (key == KeyCode::H) {
         help_->toggle();
         return;
@@ -364,9 +486,18 @@ void Game::on_key(engine::KeyCode key) {
         case KeyCode::F6:
             layers_.trails = !layers_.trails;
             return;
+        case KeyCode::F7:
+            layers_.magnetic = !layers_.magnetic;
+            return;
         case KeyCode::K: {
             DynamicsOptions dynamics = sim_.dynamics();
             dynamics.collisions = !dynamics.collisions;
+            sim_.set_dynamics(dynamics);
+            return;
+        }
+        case KeyCode::M: {
+            DynamicsOptions dynamics = sim_.dynamics();
+            dynamics.magnetic = !dynamics.magnetic;
             sim_.set_dynamics(dynamics);
             return;
         }
@@ -399,6 +530,15 @@ void Game::on_key(engine::KeyCode key) {
             return;
         case KeyCode::Digit7:
             load_preset(Preset::Swarm);
+            return;
+        case KeyCode::Digit8:
+            load_preset(Preset::Cyclotron);
+            return;
+        case KeyCode::Digit9:
+            load_preset(Preset::ExBDrift);
+            return;
+        case KeyCode::Digit0:
+            load_preset(Preset::Coil);
             return;
         default:
             break;
@@ -436,6 +576,16 @@ void Game::load_preset(Preset preset) {
     scene_cleared_ = false;
     sim_.charges() = make_preset(preset);
     hovered_.reset();
+    // Each scene brings its own magnetic setup, so a magnetic scene always shows its effect and an
+    // electrostatic one never inherits a field from the previous scene.
+    const SceneSettings settings = scene_settings(preset);
+    FieldParams params = sim_.params();
+    params.b_external = settings.b_external;
+    sim_.set_params(params);
+    DynamicsOptions dynamics = sim_.dynamics();
+    dynamics.magnetic = settings.magnetic;
+    sim_.set_dynamics(dynamics);
+    sim_.coils() = settings.coils;
 }
 
 // A help topic's "try it": its scene with the layers that illustrate it, running at normal speed.
@@ -449,6 +599,7 @@ void Game::apply_demo(const HelpDemo& demo) {
 void Game::clear_charges() {
     end_drag();
     sim_.charges().clear();
+    sim_.coils().clear();
     hovered_.reset();
     scene_cleared_ = true;
 }
@@ -527,11 +678,12 @@ void Game::update_field_view() {
     // The probe hides while the cursor is over (or dragging) a charge, where the field is dominated
     // by that charge itself.
     std::optional<glm::vec3> probe;
-    if (!hovered_ && !drag_ && !pan_grab_ && !pointer_over_ui() && !help_->is_open()) {
+    if (!hovered_ && !drag_ && !pan_grab_ && !pointer_over_ui() && !help_->is_open() && !welcome_->is_open()) {
         probe = pointer_world_;
     }
     field_view_->update(FieldView::Frame{
             .charges = sim_.charges(),
+            .coils = sim_.coils(),
             .params = sim_.params(),
             .view = view_bounds(),
             .world_per_pixel = 2.f * camera_view().ortho_half / static_cast<float>(window.height),
@@ -542,6 +694,7 @@ void Game::update_field_view() {
             .trails = &trails_,
             .sim_time = sim_time_,
             .layers = layers_,
+            .magnetic_force = sim_.dynamics().magnetic,
     });
 }
 
@@ -598,7 +751,47 @@ void Game::sync_potential_uniforms() {
 
 // The open reference covers the whole window, so it owns the pointer everywhere.
 bool Game::pointer_over_ui() {
-    return pointer_on_ui_ || help_->is_open();
+    return pointer_on_ui_ || help_->is_open() || welcome_->is_open();
+}
+
+void Game::load_locale() {
+    auto& catalog = world_.ctx<engine::loc::Catalog>();
+    const auto english = assets_.get<engine::loc::StringTable>(assets::locale::en);
+    const auto ukrainian = assets_.get<engine::loc::StringTable>(assets::locale::uk);
+    catalog.add(*english, engine::loc::Role::Source);
+    catalog.add(*ukrainian);
+    catalog.set_fallback("en");
+    catalog.set_active(saved_locale());
+}
+
+void Game::set_locale(std::string_view tag) {
+    if (tag != "en" && tag != "uk") {
+        return;
+    }
+    auto& catalog = world_.ctx<engine::loc::Catalog>();
+    if (catalog.active() == tag) {
+        return;
+    }
+    catalog.set_active(std::string(tag));
+    save_locale(tag);
+    if (help_) {
+        help_->apply_locale();
+    }
+    if (welcome_) {
+        welcome_->apply_locale();
+    }
+    if (panel_) {
+        sync_panel();
+    }
+}
+
+void Game::paint_panel_locale() {
+    const bool english = world_.ctx<engine::loc::Catalog>().active() == "en";
+    PanelViewModel& vm = *panel_;
+    vm.localeEnBg = english ? kLocaleOnBg : kLocaleOffBg;
+    vm.localeEnFg = english ? kLocaleOnFg : kLocaleOffFg;
+    vm.localeUkBg = english ? kLocaleOffBg : kLocaleOnBg;
+    vm.localeUkFg = english ? kLocaleOffFg : kLocaleOnFg;
 }
 
 void Game::spawn_panel() {
@@ -628,8 +821,14 @@ void Game::bind_panel_commands() {
     vm.presetOrbit = [this] { load_preset(Preset::Orbit); };
     vm.presetRutherford = [this] { load_preset(Preset::Rutherford); };
     vm.presetSwarm = [this] { load_preset(Preset::Swarm); };
+    vm.presetCyclotron = [this] { load_preset(Preset::Cyclotron); };
+    vm.presetExBDrift = [this] { load_preset(Preset::ExBDrift); };
+    vm.presetCoil = [this] { load_preset(Preset::Coil); };
     vm.clearAll = [this] { clear_charges(); };
     vm.openHelp = [this] { help_->open(); };
+    vm.localeEn = [this] { set_locale("en"); };
+    vm.localeUk = [this] { set_locale("uk"); };
+    paint_panel_locale();
 }
 
 // Two-way sync with the panel. Toggles and sliders the user changed since the last frame are
@@ -651,8 +850,10 @@ void Game::sync_panel() {
     pull_toggle(vm.showFlow, panel_echo_.layers.flow, layers_.flow);
     pull_toggle(vm.showProbe, panel_echo_.layers.probe, layers_.probe);
     pull_toggle(vm.showTrails, panel_echo_.layers.trails, layers_.trails);
+    pull_toggle(vm.showMagnetic, panel_echo_.layers.magnetic, layers_.magnetic);
     DynamicsOptions dynamics = sim_.dynamics();
     pull_toggle(vm.collisions, panel_echo_.collisions, dynamics.collisions);
+    pull_toggle(vm.magnetic, panel_echo_.magnetic, dynamics.magnetic);
     sim_.set_dynamics(dynamics);
 
     FieldParams params = sim_.params();
@@ -664,6 +865,12 @@ void Game::sync_panel() {
     }
     if (pull && vm.epsFrac.get() != panel_echo_.eps_frac) {
         params.softening = kSofteningRange.from_fraction(vm.epsFrac.get());
+    }
+    if (pull && vm.bFrac.get() != panel_echo_.b_frac) {
+        params.b_external = kExternalBRange.from_fraction(vm.bFrac.get());
+    }
+    if (pull && vm.cFrac.get() != panel_echo_.c_frac) {
+        params.light_speed = std::pow(10.f, kLightSpeedLog10Range.from_fraction(vm.cFrac.get()));
     }
     sim_.set_params(params);
     if (pull && vm.newChargeFrac.get() != panel_echo_.new_charge_frac) {
@@ -677,9 +884,12 @@ void Game::sync_panel() {
     vm.showFlow = layers_.flow;
     vm.showProbe = layers_.probe;
     vm.showTrails = layers_.trails;
+    vm.showMagnetic = layers_.magnetic;
     vm.collisions = dynamics.collisions;
+    vm.magnetic = dynamics.magnetic;
     panel_echo_.layers = layers_;
     panel_echo_.collisions = dynamics.collisions;
+    panel_echo_.magnetic = dynamics.magnetic;
 
     const float time_frac = kTimeScaleLog2Range.to_fraction(std::log2(time_scale_));
     vm.timeFrac = time_frac;
@@ -700,11 +910,30 @@ void Game::sync_panel() {
     vm.epsFill = percent(eps_frac);
     vm.newChargeText = std::format("{:.2f}", new_charge_);
     vm.newChargeFill = percent(q_frac);
+    const float b_frac = kExternalBRange.to_fraction(params.b_external);
+    vm.bFrac = b_frac;
+    panel_echo_.b_frac = b_frac;
+    vm.bText = std::format("{:+.2f}", params.b_external);
+    vm.bFill = percent(b_frac);
+    const float c_frac = kLightSpeedLog10Range.to_fraction(std::log10(params.light_speed));
+    vm.cFrac = c_frac;
+    panel_echo_.c_frac = c_frac;
+    vm.cText = std::format("{:.0f}", params.light_speed);
+    vm.cFill = percent(c_frac);
 
-    vm.statusText = std::format("{} · {}", paused_ ? "Пауза" : "Симуляція", time_scale_text(time_scale_));
+    const engine::loc::Catalog& catalog = world_.ctx<engine::loc::Catalog>();
+    vm.statusText = std::format("{} · {}",
+            catalog_text(catalog, paused_ ? "status.paused" : "status.running"), time_scale_text(time_scale_));
     vm.statusColor = paused_ ? "#fcd34d" : "#a5f3c4";
-    vm.sceneText = scene_cleared_ ? std::string("Сцена: порожня") : std::format("Сцена: {}", preset_name(preset_));
-    vm.pauseLabel = paused_ ? "Старт (Space)" : "Пауза (Space)";
+    if (scene_cleared_) {
+        vm.sceneText = catalog_text(catalog, "status.scene_empty");
+    } else {
+        const std::string name = catalog_text(catalog, preset_key(preset_));
+        const engine::loc::Arg name_arg{"name", std::string_view{name}};
+        vm.sceneText = catalog.text("status.scene", std::span<const engine::loc::Arg>(&name_arg, 1)).text;
+    }
+    vm.pauseLabel = catalog_text(catalog, paused_ ? "panel.resume" : "panel.pause");
+    paint_panel_locale();
     vm.timeScaleText = time_scale_text(time_scale_);
     vm.panelRight = std::format("{}", panel_visible_ ? 12.f : kPanelHiddenRight);
 
@@ -716,6 +945,13 @@ void Game::sync_panel() {
     vm.energyTotal = std::format("{:.3f}", kinetic + potential);
     const auto fixed_count = std::count_if(charges.begin(), charges.end(), [](const Charge& c) { return c.fixed; });
     vm.chargeCount = std::format("{} / {}", static_cast<std::ptrdiff_t>(charges.size()) - fixed_count, fixed_count);
+    float fastest = 0.f;
+    for (const Charge& c : charges) {
+        if (!c.fixed) {
+            fastest = std::max(fastest, glm::length(c.velocity));
+        }
+    }
+    vm.speedRatio = std::format("{:.2f}", params.light_speed > 0.f ? fastest / params.light_speed : 0.f);
 
     // Probe readout next to the cursor; flipped to the other side near the window edges.
     const bool show_probe =
@@ -728,8 +964,9 @@ void Game::sync_panel() {
         if (x + kProbeBoxW > static_cast<float>(window.width)) {
             x = pointer_screen_.x - kProbeOffsetPx - kProbeBoxW;
         }
-        if (y + kProbeBoxH > static_cast<float>(window.height)) {
-            y = pointer_screen_.y - kProbeOffsetPx - kProbeBoxH;
+        const float probe_box_h = layers_.magnetic ? kProbeBoxHMagnetic : kProbeBoxH;
+        if (y + probe_box_h > static_cast<float>(window.height)) {
+            y = pointer_screen_.y - kProbeOffsetPx - probe_box_h;
         }
         vm.probeLeft = std::format("{:.0f}", x);
         vm.probeTop = std::format("{:.0f}", y);
@@ -738,6 +975,12 @@ void Game::sync_panel() {
         vm.probeField = std::format("|E| = F/q = {:.3f}", glm::length(e));
         vm.probeComponents = std::format("E = ({:.3f},\\, {:.3f})", e.x, e.y);
         vm.probePotential = std::format("\\varphi = {:.3f}", potential_at(charges, pointer_world_, params));
+        vm.probeMagneticDisplay = layers_.magnetic ? "block" : "none";
+        if (layers_.magnetic) {
+            vm.probeMagnetic = std::format("B_z = {:.3f}", magnetic_z(charges, pointer_world_, params, kNoCharge, sim_.coils()));
+        }
+    } else {
+        vm.probeMagneticDisplay = "none";
     }
 }
 
