@@ -9,6 +9,7 @@
 #include <game/charge.h>
 #include <game/electrostatics.h>
 #include <game/field_viz.h>
+#include <game/magnetism.h>
 #include <game/trails.h>
 
 #include <glm/vec3.hpp>
@@ -26,6 +27,7 @@ struct FieldLayers {
     bool flow = true;
     bool probe = true;
     bool trails = true;
+    bool magnetic = false;
 };
 
 // Draws field lines, the vector grid, flow tracers, charge trails and the cursor probe. Every element is an
@@ -37,6 +39,7 @@ public:
 
     struct Frame {
         std::span<const Charge> charges;
+        std::span<const Coil> coils;
         FieldParams params;
         Bounds view;              // visible world rectangle
         float world_per_pixel = 0.f;
@@ -45,6 +48,9 @@ public:
         const Trails* trails = nullptr;
         float sim_time = 0.f;
         FieldLayers layers;
+        // Whether the Lorentz force acts. Without it the Bz marks are drawn faded: the field exists but
+        // does not move anything.
+        bool magnetic_force = false;
     };
 
     void update(const Frame& frame);
@@ -55,6 +61,8 @@ private:
 
     void build_lines(const Frame& frame);
     void build_grid(const Frame& frame);
+    void build_magnetic(const Frame& frame);
+    void build_coils(const Frame& frame);
     void build_flow(const Frame& frame);
     void build_probe(const Frame& frame);
     void build_trails(const Frame& frame);
@@ -66,6 +74,9 @@ private:
     engine::ecs::Entity line_segments_{};
     engine::ecs::Entity line_heads_{};
     engine::ecs::Entity grid_arrows_{};
+    engine::ecs::Entity magnetic_marks_{};
+    engine::ecs::Entity coil_segments_{};
+    engine::ecs::Entity coil_heads_{};
     engine::ecs::Entity flow_dots_{};
     engine::ecs::Entity probe_arrow_{};
     engine::ecs::Entity trail_segments_{};

@@ -1,5 +1,7 @@
 #include <game/field_view.h>
 
+#include <game/magnetism.h>
+
 #include <asset_ids.h>
 
 #include <glm/common.hpp>
@@ -9,15 +11,26 @@
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <numbers>
 
 namespace game {
 namespace {
 
 // Draw order: potential background is -100, charges are 0.
+constexpr int kMagneticLayer = -70;
+// Opacity factor of the Bz marks while the Lorentz force is off.
+constexpr float kInactiveMagneticAlpha = 0.35f;
 constexpr int kGridLayer = -60;
 constexpr int kLinesLayer = -50;
 constexpr int kFlowLayer = -40;
 constexpr int kTrailLayer = -30;
+// Coils are physical objects of the scene: above the field layers, below the charges.
+constexpr int kCoilLayer = -20;
+constexpr float kCoilWidthPx = 5.f;
+constexpr int kCoilDrawSegments = 96;
+// Current-direction arrows on the ring.
+constexpr int kCoilArrows = 8;
+constexpr glm::vec4 kCoilColor{0.93f, 0.62f, 0.32f, 0.95f};
 constexpr int kProbeLayer = 10;
 
 constexpr float kLineWidthPx = 2.2f;
@@ -89,9 +102,13 @@ FieldView::FieldView(engine::ecs::World& world, engine::AssetsDb& assets) :
     line_segments_ = spawn_layer(assets::materials::segment, kLinesLayer);
     line_heads_ = spawn_layer(assets::materials::head, kLinesLayer);
     grid_arrows_ = spawn_layer(assets::materials::arrow, kGridLayer);
+    magnetic_marks_ = spawn_layer(assets::materials::bmark, kMagneticLayer);
     flow_dots_ = spawn_layer(assets::materials::dot, kFlowLayer);
     probe_arrow_ = spawn_layer(assets::materials::arrow, kProbeLayer);
     trail_segments_ = spawn_layer(assets::materials::segment, kTrailLayer);
+    coil_segments_ = spawn_layer(assets::materials::segment, kCoilLayer);
+    coil_heads_ = spawn_layer(assets::materials::head, kCoilLayer);
+    emitter(coil_heads_).order_in_layer = 1;
     emitter(line_heads_).order_in_layer = 1;
 }
 
@@ -112,6 +129,8 @@ engine::render::ParticleEmitter& FieldView::emitter(engine::ecs::Entity entity) 
 void FieldView::update(const Frame& frame) {
     build_lines(frame);
     build_grid(frame);
+    build_magnetic(frame);
+    build_coils(frame);
     build_flow(frame);
     build_probe(frame);
     build_trails(frame);
@@ -193,6 +212,45 @@ void FieldView::build_grid(const Frame& frame) {
     }
 }
 
+void FieldView::build_magnetic(const Frame& frame) {
+    auto& marks = emitter(magnetic_marks_).particles;
+    marks.clear();
+    if (!frame.layers.magnetic) {
+        return;
+    }
+    const float spacing = kGridSpacingPx * frame.world_per_pixel;
+    if (spacing <= 0.f) {
+        return;
+    }
+    // Half a cell off the vector grid, so the marks do not sit on the arrows.
+    const float half = 0.5f * spacing;
+    const float x0 = std::ceil((frame.view.min.x - half) / spacing) * spacing + half;
+    const float y0 = std::ceil((frame.view.min.y - half) / spacing) * spacing + half;
+    for (float y = y0; y <= frame.view.max.y; y += spacing) {
+        for (float x = x0; x <= frame.view.max.x; x += spacing) {
+            const glm::vec3 p{x, y, 0.f};
+            const bool inside_charge = std::any_of(frame.charges.begin(), frame.charges.end(), [&](const Charge& c) {
+                return glm::length(c.position - p) < 1.5f * charge_radius(c.q);
+            });
+            if (inside_charge) {
+                continue;
+            }
+            const float field_z = magnetic_z(frame.charges, p, frame.params, kNoCharge, frame.coils);
+            const float magnitude = std::abs(field_z);
+            if (magnitude <= 1e-8f) {
+                continue;
+            }
+            const float strength = field_strength01(magnitude);
+            const float side = spacing * (0.22f + 0.28f * strength);
+            // r > b is a dot (out of the page); b > r is a cross. The shader branches on that.
+            const float alpha = (0.55f + 0.4f * strength) * (frame.magnetic_force ? 1.f : kInactiveMagneticAlpha);
+            const glm::vec4 color = field_z > 0.f ? glm::vec4{0.98f, 0.72f, 0.35f, alpha}
+                                                   : glm::vec4{0.35f, 0.72f, 0.98f, alpha};
+            marks.push_back(make_static(p, 0.f, {side, side}, color));
+        }
+    }
+}
+
 void FieldView::build_flow(const Frame& frame) {
     auto& dots = emitter(flow_dots_).particles;
     dots.clear();
@@ -262,6 +320,40 @@ void FieldView::build_trails(const Frame& frame) {
             const float alpha = 0.95f * std::pow(1.f - age01, 1.5f);
             segments.push_back(make_static(0.5f * (a.position + b.position), std::atan2(d.y, d.x),
                     {length + width, width}, glm::vec4{tint, alpha}));
+        }
+    }
+}
+
+// The wire of every coil as a ring of segments, with arrows along it in the direction of the current
+// (counter-clockwise for a positive centre field). Drawn whether or not the Lorentz force is on: the coil
+// is there either way.
+void FieldView::build_coils(const Frame& frame) {
+    auto& segments = emitter(coil_segments_).particles;
+    auto& heads = emitter(coil_heads_).particles;
+    segments.clear();
+    heads.clear();
+    const float width = kCoilWidthPx * frame.world_per_pixel;
+    const glm::vec2 head_size{2.f * kHeadLengthPx * frame.world_per_pixel, 2.f * kHeadWidthPx * frame.world_per_pixel};
+    for (const Coil& coil : frame.coils) {
+        const auto point = [&](float angle) {
+            return coil.centre + coil.radius * glm::vec3{std::cos(angle), std::sin(angle), 0.f};
+        };
+        for (int i = 0; i < kCoilDrawSegments; ++i) {
+            const float a0 = 2.f * std::numbers::pi_v<float> * static_cast<float>(i) / kCoilDrawSegments;
+            const float a1 = 2.f * std::numbers::pi_v<float> * static_cast<float>(i + 1) / kCoilDrawSegments;
+            const glm::vec3 p0 = point(a0);
+            const glm::vec3 p1 = point(a1);
+            const glm::vec3 d = p1 - p0;
+            segments.push_back(make_static(0.5f * (p0 + p1), std::atan2(d.y, d.x), {glm::length(d) + width, width},
+                    kCoilColor));
+        }
+        const float direction = coil.centre_field >= 0.f ? 1.f : -1.f;
+        for (int i = 0; i < kCoilArrows; ++i) {
+            const float angle = 2.f * std::numbers::pi_v<float> * (static_cast<float>(i) + 0.5f) / kCoilArrows;
+            // Tangent of a counter-clockwise loop is (−sin, cos); flipped for a clockwise current.
+            const glm::vec3 tangent = direction * glm::vec3{-std::sin(angle), std::cos(angle), 0.f};
+            heads.push_back(make_static(point(angle), std::atan2(tangent.y, tangent.x), head_size,
+                    glm::vec4{1.f, 0.85f, 0.6f, 1.f}));
         }
     }
 }
