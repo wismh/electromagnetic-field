@@ -1,0 +1,2105 @@
+locale = "en"
+
+[[string]]
+id = "help.charge.a1"
+text = "No. They are made of quarks. A proton is two u quarks and one d quark (uud); a neutron is one u and two d (udd). The u quark has charge \\(\\ +\\frac{{2}}{{3}}e\\) and the d quark \\(\\ -\\frac{{1}}{{3}}e\\), so a proton totals \\(\\ +e\\) and a neutron totals 0. Quarks are never observed alone (confinement), so the smallest free charge in nature is still \\(\\ e\\). As far as we know, the electron really is elementary."
+
+[[string]]
+id = "help.charge.a2"
+text = "Not in ordinary conditions. Protons sit inside nuclei, and changing them takes nuclear reactions. Charging always means moving electrons, so a positively charged body is one that is short of electrons, not one that has extra protons."
+
+[[string]]
+id = "help.charge.answer"
+text = "Opposite charges move toward each other, and they speed up all the way to the collision: the closer they are, the stronger the force. Like charges fly apart, and their acceleration fades because the force falls with distance. Try it: left click and right click on empty space, then L unpins a charge if it is pinned."
+
+[[string]]
+id = "help.charge.kicker"
+text = "TOPIC 1"
+
+[[string]]
+id = "help.charge.legend1"
+text = "the charge of a body — a signed number. In SI it is measured in coulombs (C)."
+
+[[string]]
+id = "help.charge.legend2"
+text = "the elementary charge, the smallest free portion of charge in nature."
+
+[[string]]
+id = "help.charge.legend3"
+text = "a whole number of portions: 0, 1, 2, …"
+
+[[string]]
+id = "help.charge.legend4"
+text = "the total charge of an isolated system. It does not change with time."
+
+[[string]]
+id = "help.charge.legend5"
+text = "like signs — repulsion."
+
+[[string]]
+id = "help.charge.legend6"
+text = "opposite signs — attraction."
+
+[[string]]
+id = "help.charge.note"
+text = "The elementary charge is tiny: one coulomb is about 6.24 billion billion elementary charges."
+
+[[string]]
+id = "help.charge.p1"
+text = "Electric charge is the quantity that says how a body takes part in electric interaction. Charge has a sign: positive or negative. Like signs repel; opposite signs attract."
+
+[[string]]
+id = "help.charge.p2"
+text = "Charge is quantized: any free charge is a whole number of elementary portions \\(\\ e\\) — the charge of a proton (\\(+e\\)) or an electron (\\(-e\\)). Ordinary matter is neutral because it holds equal numbers of protons and electrons. Charging a body means moving some electrons, by friction or by contact. A field near a conductor only redistributes the electrons inside it; to change the body's total charge, the body also has to be grounded."
+
+[[string]]
+id = "help.charge.p3"
+text = "Charge is conserved. In an isolated system the sum of all charges stays constant. Charges can pass from one body to another, but they do not appear or vanish one at a time."
+
+[[string]]
+id = "help.charge.p4"
+text = "Orange “+” circles are positive charges, blue “−” circles are negative. The radius grows with \\(\\ |q|\\). Left click places \\(\\ +q\\), right click places \\(\\ -q\\) (the amount is the “\\(|q|\\) of new charges” slider), the wheel over a charge changes \\(\\ |q|\\), and F flips the sign."
+
+[[string]]
+id = "help.charge.p5"
+text = "Charges in the program are in arbitrary units, not coulombs. That is only a choice of scale: every relation among forces, fields, and energies is the same as in SI (see the Units section)."
+
+[[string]]
+id = "help.charge.predict"
+text = "Place two free charges, \\(\\ +1\\) and \\(\\ -1\\), a few cells apart and run the simulation. What happens? What if both are \\(\\ +1\\)?"
+
+[[string]]
+id = "help.charge.q1"
+text = "Are the proton and the neutron elementary particles?"
+
+[[string]]
+id = "help.charge.q2"
+text = "Can you charge a body by changing how many protons it has?"
+
+[[string]]
+id = "help.charge.title"
+text = "Electric charge"
+
+[[string]]
+id = "help.charge.try"
+text = "Try it: “Swarm” — opposite charges gather into clusters"
+
+[[string]]
+id = "help.close"
+text = "Close"
+
+[[string]]
+id = "help.config_energy.a1"
+text = "“The energy of a charge”, \\(\\ q\\varphi\\), is the energy of its interaction with the others when those others are treated as fixed. Configuration energy is the energy of the whole system, in which any charge may move. If both charges are free, the energy that is released is shared between them (so that momentum is conserved), not handed to only one. So \\(\\ q\\varphi\\) is a useful approximation, and the energy belongs to the pair, or to the system."
+
+[[string]]
+id = "help.config_energy.a2"
+text = "Because the same charge has a different energy in a different arrangement. The energy depends on the distances to the others, not on the charge alone. There is no place “inside the charge” where it would sit. If one still asks “where”, the answer is in the field between the charges — and that is not a substance, but a state of space."
+
+[[string]]
+id = "help.config_energy.a3"
+text = "The energy of the field is the configuration energy, stored once when the configuration was assembled. While the charges stay still, it goes nowhere and nothing is spent. It changes only when the configuration changes (the charges move) or when the field leaves as a wave — radiation (topic 3)."
+
+[[string]]
+id = "help.config_energy.answer1"
+text = "Three pairs, each with energy \\(\\ k\\frac{{1\\cdot 1}}{{1}} = 1\\), so \\(\\ U = 3\\). That is the work of bringing the charges in from infinity, and the kinetic energy they gain if they fly apart."
+
+[[string]]
+id = "help.config_energy.answer2"
+text = "\\(-0.5\\) at distance 2, and \\(\\ -0.25\\) at distance 4. The magnitude is half as large when the distance doubles, and the sign is negative because the charges are opposite."
+
+[[string]]
+id = "help.config_energy.kicker"
+text = "TOPIC 14"
+
+[[string]]
+id = "help.config_energy.legend1"
+text = "the potential at charge i due to every other charge (not its own)."
+
+[[string]]
+id = "help.config_energy.legend2"
+text = "each pair is counted twice in the sum over i — hence the factor of one half."
+
+[[string]]
+id = "help.config_energy.legend3"
+text = "the energy density of the field: energy per unit volume of space."
+
+[[string]]
+id = "help.config_energy.legend4"
+text = "the sum of that density over all space."
+
+[[string]]
+id = "help.config_energy.note"
+text = "A subtle point: adding up u over all space around a point charge gives infinity, because the field grows without bound at the point. This “self-energy” is a known trouble in classical theory; quantum electrodynamics works around it. In the program, charges are balls of finite size (softening), so there are no infinities. The interaction energy on the panel does not include self-energy."
+
+[[string]]
+id = "help.config_energy.p1"
+text = "Potential energy belongs to the system, not to one charge — to how all the charges are arranged. \\(\\ U = q\\varphi\\) for a single charge is a convenient shorthand when the sources are fixed (a pinned nucleus, for example): only the position of \\(\\ q\\) changes, so the whole change can be “assigned” to it. What it really is, though, is the energy of \\(\\ q\\) interacting with those sources."
+
+[[string]]
+id = "help.config_energy.p2"
+text = "For many charges the energy is a sum over every pair. The same sum can be written as the sum of \\(\\ q\\varphi\\) for each charge in the potential of the rest, divided by two: in that sum every pair is counted twice."
+
+[[string]]
+id = "help.config_energy.p3"
+text = "Where does this energy sit? The modern answer is: in the field itself. Every bit of space that holds a field \\(\\ E\\) carries energy with a density proportional to the square of the field (the formula below). For a smooth charge distribution the total over all space equals the interaction energy. For point charges that integral diverges because of each charge's self-energy (the note below); the panel shows only the finite energy of the pairs. The clearest evidence that a field really carries energy is sunlight: an electromagnetic field crossing empty space and delivering energy to the Earth, with no charges along the way."
+
+[[string]]
+id = "help.config_energy.p4"
+text = "“Potential \\(\\ U\\)” on the panel is the energy of the whole configuration, the sum over pairs. It changes whenever any charge moves — whether the field moves it, or you drag it with the mouse."
+
+[[string]]
+id = "help.config_energy.predict1"
+text = "How much energy does it take to assemble three charges of \\(\\ +1\\) at the corners of an equilateral triangle of side 1 (\\(k = 1\\))?"
+
+[[string]]
+id = "help.config_energy.predict2"
+text = "A pair \\(\\ +1\\) and \\(\\ +1\\) at distance 2 has \\(\\ U = 0.5\\). What is the energy of \\(\\ +1\\) and \\(\\ -1\\) at the same distance? And at distance 4?"
+
+[[string]]
+id = "help.config_energy.q1"
+text = "How is the energy of one charge different from the energy of a configuration?"
+
+[[string]]
+id = "help.config_energy.q2"
+text = "Why is it a bad picture to think of potential energy as stuff stored inside a charge?"
+
+[[string]]
+id = "help.config_energy.q3"
+text = "How does this relate to whether a field spends energy just by existing?"
+
+[[string]]
+id = "help.config_energy.title"
+text = "Configuration energy"
+
+[[string]]
+id = "help.config_energy.try"
+text = "Try it: “Swarm” — configuration energy turns into motion"
+
+[[string]]
+id = "help.coulomb.a1"
+text = "No. The scene is a classical model: it is how two charged balls would move in a vacuum. An electron in an atom follows quantum mechanics and has no trajectory. Its state is a wave function \\(\\ \\psi\\), and \\(\\ |\\psi|^2\\) is the probability density of finding the electron at a place. An orbital is a region where that probability is large. A classical charge on a circular orbit is also accelerating, so it would radiate electromagnetic waves: such a “classical atom” would lose its energy and fall into the nucleus in about a hundred-billionth of a second. The stability of atoms is one reason quantum mechanics was needed."
+
+[[string]]
+id = "help.coulomb.a2"
+text = "In a model of point charges, they do: as \\(\\ r \\to 0\\) the force grows without bound. That is why the simulation has softening and collisions (see the appendix). In reality an electron does not fall into a proton, because of quantum effects. Squeezing an electron into a smaller region takes more kinetic energy (the uncertainty relation), and the balance of that energy against Coulomb attraction sets the size of an atom. The fields are not what holds them apart: each charge’s field fills all of space, and fields of different charges always overlap and simply add, at any distance. The exception is a particle and its antiparticle: an electron and a positron can meet and annihilate into photons."
+
+[[string]]
+id = "help.coulomb.answer1"
+text = "The attraction doubles, while the speed at that instant stays the same. The force is then stronger than a circle of that radius needs, so the charge starts to fall inward. The orbit becomes elongated (an ellipse), and the point where you changed \\(\\ k\\) is the farthest point from the center."
+
+[[string]]
+id = "help.coulomb.answer2"
+text = "Triple the distance and the force is 9 times smaller. Double one charge and the force is twice as large. Together: 2/9 of the original, about 4.5 times weaker."
+
+[[string]]
+id = "help.coulomb.kicker"
+text = "TOPIC 2"
+
+[[string]]
+id = "help.coulomb.legend1"
+text = "the magnitude of the interaction force."
+
+[[string]]
+id = "help.coulomb.legend2"
+text = "Coulomb’s constant. In the program \\(\\ k = 1\\) (the slider changes it). The SI value is below."
+
+[[string]]
+id = "help.coulomb.legend3"
+text = "the charges, with their signs. The sign of the product sets the direction: plus is repulsion, minus is attraction."
+
+[[string]]
+id = "help.coulomb.legend4"
+text = "the distance between the charges."
+
+[[string]]
+id = "help.coulomb.legend5"
+text = "the vector from charge 2 to charge 1. Dividing by \\(\\ r\\) turns it into a unit direction."
+
+[[string]]
+id = "help.coulomb.legend6"
+text = "the force with which charge 2 acts on charge 1."
+
+[[string]]
+id = "help.coulomb.note1"
+text = "Coulomb’s constant in SI. The factor \\(\\ 4\\pi\\) is the area of a unit sphere; the denominator also holds the electric constant."
+
+[[string]]
+id = "help.coulomb.note2"
+text = "The same shape as the law of gravity, except that mass has one sign and charge has two. The electric interaction is also vastly stronger: between a proton and an electron it exceeds gravity by about 39 orders of magnitude."
+
+[[string]]
+id = "help.coulomb.note3"
+text = "An example in the program: \\(\\ k = 1\\), both charges equal to 1, distance 2. Doubling the distance cuts the force by four."
+
+[[string]]
+id = "help.coulomb.p1"
+text = "Two charges at rest push or pull each other with a force proportional to the product of the charges and inversely proportional to the square of the distance between them. The force lies along the line that joins them: away from the other charge when the signs match, toward it when they differ."
+
+[[string]]
+id = "help.coulomb.p2"
+text = "The square of the distance comes from geometry. The influence of a point charge spreads equally in every direction, over a sphere of radius \\(\\ r\\). The area of a sphere grows as the square of the radius, so the share per unit area falls as the inverse square of the distance. That is also where the \\(\\ 4\\pi\\) in Coulomb’s constant comes from. The same geometry gives the same dependence for gravity and for illumination."
+
+[[string]]
+id = "help.coulomb.p3"
+text = "The two forces are mutual and opposite (Newton’s third law). Forces from several charges add as vectors — that is superposition (topic 4)."
+
+[[string]]
+id = "help.coulomb.p4"
+text = "On every simulation step the program computes this force for every pair of charges and adds up the forces on each charge. The slider “\\(k\\) — Coulomb constant” scales every force at once."
+
+[[string]]
+id = "help.coulomb.p5"
+text = "In the “Orbit” scene the Coulomb force plays the role of the centripetal force: it always points at the center and holds the negative charge on a circular orbit around the positive one."
+
+[[string]]
+id = "help.coulomb.predict1"
+text = "In the “Orbit” scene the charge moves in a circle. What happens if you double \\(\\ k\\) with the slider while it is moving?"
+
+[[string]]
+id = "help.coulomb.predict2"
+text = "How does the force between two charges change if you triple the distance and double one of the charges?"
+
+[[string]]
+id = "help.coulomb.q1"
+text = "Does an electron really orbit a nucleus the way the charge does in the “Orbit” scene?"
+
+[[string]]
+id = "help.coulomb.q2"
+text = "Why don’t opposite charges fall into each other?"
+
+[[string]]
+id = "help.coulomb.title"
+text = "Coulomb’s law"
+
+[[string]]
+id = "help.coulomb.try"
+text = "Try it: “Orbit” — Coulomb attraction as a centripetal force"
+
+[[string]]
+id = "help.energy_zero.a1"
+text = "The same way a Celsius temperature or a height below sea level can be negative: the number is negative only relative to a chosen zero. A negative \\(\\ U\\) for a pair of opposite charges means their energy is lower than the energy of those same charges pulled infinitely far apart. There is no “negative substance of energy” behind it."
+
+[[string]]
+id = "help.energy_zero.a2"
+text = "Because physics only sees changes in \\(\\ U\\). Force is the slope of \\(\\ U\\) (\\(F = -\\frac{{dU}}{{dx}}\\)), and the constant \\(\\ C\\) drops out. Work, the exchange with kinetic energy, and the motion all depend on \\(\\ \\Delta U\\), and a constant cancels in a difference."
+
+[[string]]
+id = "help.energy_zero.a3"
+text = "Because only they can be measured. Every experiment compares two states: speed before and after, position before and after. The energy a system can give away, or the energy you must give it, is always the difference between a starting state and an ending state."
+
+[[string]]
+id = "help.energy_zero.a4"
+text = "For convenience and for a single answer: each configuration then has one number, and \\(\\ U = k\\frac{{Qq}}{{r}}\\) needs no extra constant. The sign of \\(\\ U\\) then also tells you at once whether the system is bound (\\(E < 0\\))."
+
+[[string]]
+id = "help.energy_zero.answer1"
+text = "Negative (about \\(\\ -0.17\\)). The charge cannot escape the central one, because that would take \\(\\ E \\geq 0\\). That is why it keeps circling — it is a bound state."
+
+[[string]]
+id = "help.energy_zero.answer2"
+text = "No. Forces depend only on how \\(\\ U\\) changes with distance, and a constant drops out of that. Only the numbers on the panel would change. The trajectories would not."
+
+[[string]]
+id = "help.energy_zero.kicker"
+text = "TOPIC 12"
+
+[[string]]
+id = "help.energy_zero.legend1"
+text = "any constant: a shift of the zero level."
+
+[[string]]
+id = "help.energy_zero.legend2"
+text = "the energy difference of two states. It does not depend on the choice of zero."
+
+[[string]]
+id = "help.energy_zero.legend3"
+text = "the total mechanical energy \\(\\ K + U\\), not the field strength. With the zero at infinity, \\(\\ E < 0\\) means a bound state: the charge cannot leave its partner."
+
+[[string]]
+id = "help.energy_zero.note"
+text = "On a circular orbit the kinetic energy is exactly half the magnitude of the potential energy, so the total energy is negative and equal to half of \\(\\ U\\). In the “Orbit” scene, \\(\\ K \\approx 0.17,\\ U \\approx -0.33,\\ E \\approx -0.17\\)."
+
+[[string]]
+id = "help.energy_zero.p1"
+text = "The zero of potential energy is a choice, not a fact of nature. Add the same constant \\(\\ C\\) to every value of \\(\\ U\\) and nothing you can observe changes: forces, motion, and every measurement depend only on how \\(\\ U\\) changes, that is, on differences \\(\\ \\Delta U\\). Height can be measured from the floor, from a table, or from sea level — a body falls the same way."
+
+[[string]]
+id = "help.energy_zero.p2"
+text = "A negative potential energy is therefore nothing strange. It only means the state lies below the zero you chose. For charges it is convenient to put the zero at infinity: the interaction vanishes there, and \\(\\ U = k\\frac{{Qq}}{{r}}\\) needs no extra constant. Negative \\(\\ U\\) then means the system has to be “lifted”, by adding energy, before the charges can be pulled apart."
+
+[[string]]
+id = "help.energy_zero.p3"
+text = "That is the idea of a bound state. Here and in the later energy topics, the letter \\(\\ E\\) means the total mechanical energy \\(\\ K + U\\), not the field strength. If this \\(\\ E\\) is negative, there is not enough kinetic energy to reach infinity, where \\(\\ U = 0\\), and \\(\\ K\\) cannot be negative. The charge is stuck moving near its partner — like a planet near the Sun, or (in the classical picture) an electron near a nucleus. If \\(\\ E \\geq 0\\), it can leave forever."
+
+[[string]]
+id = "help.energy_zero.p4"
+text = "The energy panel computes \\(\\ U\\) with the zero at infinity, so the sign of the total energy \\(\\ E = K + U\\) shows at once whether the system is bound. “Orbit” is a bound state with \\(\\ E < 0\\). In “Rutherford” the projectiles have \\(\\ E > 0\\) and fly off forever."
+
+[[string]]
+id = "help.energy_zero.predict1"
+text = "In the “Orbit” scene, look at the panel. What is the sign of the total energy \\(\\ E = K + U\\), and what does it mean?"
+
+[[string]]
+id = "help.energy_zero.predict2"
+text = "If you added 100 to every energy in the simulation, would the motion change?"
+
+[[string]]
+id = "help.energy_zero.q1"
+text = "How can potential energy be negative?"
+
+[[string]]
+id = "help.energy_zero.q2"
+text = "Why can the zero of potential energy be chosen freely?"
+
+[[string]]
+id = "help.energy_zero.q3"
+text = "Why, then, are the differences \\(\\ \\Delta U\\) the ones that matter physically?"
+
+[[string]]
+id = "help.energy_zero.q4"
+text = "Why agree on a zero at infinity at all?"
+
+[[string]]
+id = "help.energy_zero.title"
+text = "The zero of energy, and negative \\(\\ U\\)"
+
+[[string]]
+id = "help.energy_zero.try"
+text = "Try it: “Orbit” with the potential background and trails"
+
+[[string]]
+id = "help.field.a1"
+text = "In electrostatics you can read the field as a precise account of the force that would appear at each point if a charge were placed there. But a field is more than tidy bookkeeping: it carries energy, and when charges move, the change in the field spreads through space at the speed of light, not instantly. That is why the field is treated as a physical object, not only as a formula."
+
+[[string]]
+id = "help.field.a2"
+text = "No. The static field of charges at rest spends nothing — just as a raised body spends nothing by staying up. Energy is spent once, to build the configuration (to pull opposite charges apart, or to push like charges together). After that it is stored in the field. Spending appears only when something moves: a current in a resistor, or radiation."
+
+[[string]]
+id = "help.field.a3"
+text = "Because the sources (\\(Q\\)) create the field, and the test charge is there only to “measure” it. Dividing the force by \\(\\ q\\) removes the properties of the measuring charge from the answer. The test charge is taken to be small so that it does not shift the sources and distort the field it is measuring."
+
+[[string]]
+id = "help.field.a4"
+text = "The force is proportional to the test charge: twice the \\(\\ q\\) means twice the \\(\\ F\\). The ratio \\(\\ \\frac{{F}}{{q}}\\) stays the same. The force changes. The field does not."
+
+[[string]]
+id = "help.field.a5"
+text = "The field \\(\\ E\\) is a property of a point in space (the sources set it), the same for any charge that arrives there. The force \\(\\ F\\) is a property of one particular charge interacting with that field. At one point, charges \\(\\ +1\\), \\(\\ +2\\), and \\(\\ -1\\) feel forces \\(\\ E\\), \\(\\ 2E\\), and \\(\\ -E\\): one field, three forces."
+
+[[string]]
+id = "help.field.answer1"
+text = "For equal charges, exactly in the middle: the fields match in size and oppose in direction. Between \\(\\ +1\\) and \\(\\ -1\\) there is no such point on the segment that joins them: the field away from the plus and the field toward the minus point the same way and add. Check it with the probe (F5) in “Like charges” and “Dipole”."
+
+[[string]]
+id = "help.field.answer2"
+text = "The field does not change at all — the sources set it. Only the force changes: \\(\\ F = qE\\), so for \\(\\ q = -1\\) it points opposite the arrow \\(\\ E\\)."
+
+[[string]]
+id = "help.field.kicker"
+text = "TOPIC 3"
+
+[[string]]
+id = "help.field.legend1"
+text = "the field strength — a vector at a point. \\(\\ |E|\\) is the force per unit charge \\(\\ (\\mathrm{{N}}/\\mathrm{{C}})\\)."
+
+[[string]]
+id = "help.field.legend2"
+text = "the source charge that creates the field."
+
+[[string]]
+id = "help.field.legend3"
+text = "the test charge the field acts on. Do not confuse it with \\(\\ Q\\)."
+
+[[string]]
+id = "help.field.legend4"
+text = "the distance from the source \\(\\ Q\\) to the point."
+
+[[string]]
+id = "help.field.legend5"
+text = "the force on the charge \\(\\ q\\) at this point."
+
+[[string]]
+id = "help.field.note"
+text = "The second formula describes only the field of one point charge. The first and the third — the definition of the field, and the force in it — hold for any electrostatic field."
+
+[[string]]
+id = "help.field.p1"
+text = "Instead of describing the force between every pair of charges, one says: source charges create an electric field in space, and the field acts on any other charge that happens to be at a point. The field is defined at every point — including places where no other charge sits."
+
+[[string]]
+id = "help.field.p2"
+text = "The field strength \\(\\ E\\) is the force that would act on a test charge at that point, divided by the size of that charge. The force is proportional to the test charge, so the ratio \\(\\ \\frac{{F}}{{q}}\\) does not depend on it. It describes only the sources and the location of the point."
+
+[[string]]
+id = "help.field.p3"
+text = "Once you know the field, the force on a particular charge is the product \\(\\ F = qE\\). For a positive \\(\\ q\\) the force points along \\(\\ E\\); for a negative \\(\\ q\\) it points against \\(\\ E\\). The field of a point charge points away from it when \\(\\ Q > 0\\), and toward it when \\(\\ Q < 0\\)."
+
+[[string]]
+id = "help.field.p4"
+text = "F3 turns on the vector grid: arrows of \\(\\ E\\) at the grid points. Length and color are \\(\\ |E|\\) on a logarithmic scale (yellow is a strong field, purple a weak one)."
+
+[[string]]
+id = "help.field.p5"
+text = "F5 is a test charge of \\(\\ +1\\) under the cursor. A white arrow shows the direction of \\(\\ E\\), and the readout beside it shows \\(\\ |E|\\), the components of \\(\\ E\\), and the potential \\(\\ \\varphi\\). For \\(\\ q = +1\\) the numbers for \\(\\ E\\) and \\(\\ F\\) match, so the readout writes \\(\\ |E| = F/q\\)."
+
+[[string]]
+id = "help.field.predict1"
+text = "Between two equal charges of \\(\\ +1\\) there is a point where the field is zero. Where is it? Is there such a point between \\(\\ +1\\) and \\(\\ -1\\)?"
+
+[[string]]
+id = "help.field.predict2"
+text = "A test charge of \\(\\ +1\\) shows an arrow \\(\\ E\\) at a point. What changes if you imagine a charge of \\(\\ -1\\) there instead?"
+
+[[string]]
+id = "help.field.q1"
+text = "What does a field in empty space mean, physically?"
+
+[[string]]
+id = "help.field.q2"
+text = "Does a field have to be fed energy all the time just to exist?"
+
+[[string]]
+id = "help.field.q3"
+text = "Why is the \\(\\ q\\) in \\(\\ E = \\frac{{F}}{{q}}\\) a test charge, not the source?"
+
+[[string]]
+id = "help.field.q4"
+text = "Why doesn’t changing the test charge change the field?"
+
+[[string]]
+id = "help.field.q5"
+text = "How is a field different from a force?"
+
+[[string]]
+id = "help.field.title"
+text = "The electric field"
+
+[[string]]
+id = "help.field.try"
+text = "Try it: a dipole with the vector grid and a test charge"
+
+[[string]]
+id = "help.field_lines.a1"
+text = "Not in general. The field sets the acceleration, not the velocity. On a straight line the charge does follow it, but on a curve inertia carries it outside the bend, and the trajectory leaves the line. Lines and trajectories match only when the speed stays very small, for example in a very viscous medium."
+
+[[string]]
+id = "help.field_lines.a2"
+text = "At a crossing the field would have two directions at once, and at each point it has only one. The only exception is a point where \\(\\ E = 0\\) (halfway between two equal charges, for example): the direction is undefined there, and lines may meet."
+
+[[string]]
+id = "help.field_lines.a3"
+text = "No. It is only a picture. Each flow particle’s velocity is set, at every instant, along the field, with no mass and no inertia, so they follow the lines exactly. Real charges in the simulation move by Newton’s law — with acceleration — and their trajectories show up in the trails (F6)."
+
+[[string]]
+id = "help.field_lines.answer"
+text = "Only at the very start, while the speed is small. After that, inertia pulls it off the curved line. Check it: place a free charge (L unpins one), turn on trails (F6) and lines (F2), and compare the trail with the line."
+
+[[string]]
+id = "help.field_lines.kicker"
+text = "TOPIC 5"
+
+[[string]]
+id = "help.field_lines.legend1"
+text = "a point on the line. s is the distance traveled along the line."
+
+[[string]]
+id = "help.field_lines.legend2"
+text = "the unit direction of the line at the point. It matches the direction of the field."
+
+[[string]]
+id = "help.field_lines.legend3"
+text = "the number of lines leaving a charge (or entering it)."
+
+[[string]]
+id = "help.field_lines.p1"
+text = "A field line is a curve whose tangent at every point lies along the field \\(\\ E\\). It is a way to see a vector field as a whole: the grid arrows show the field at separate points, and the lines join those directions into a continuous picture."
+
+[[string]]
+id = "help.field_lines.p2"
+text = "Lines of an electrostatic field start on positive charges and end on negative ones (or run off to infinity). They never cross, because at each point the field has one direction. In space they are denser where the field is stronger. The number of lines leaving a charge is proportional to its size. On the screen this is only qualitative: the drawn lines thin out with distance more slowly than the field weakens (topic 6)."
+
+[[string]]
+id = "help.field_lines.p3"
+text = "How many lines you draw per unit charge is a convention; you may choose it freely. Only the proportion has physical meaning: twice the charge, twice the lines. Gauss’s law (topic 6) is why that rule works."
+
+[[string]]
+id = "help.field_lines.p4"
+text = "F2 turns on field lines. The program launches them from positive charges — 8 lines per unit charge — and steps them along \\(\\ E\\) with a fourth-order Runge–Kutta method, taking shorter steps near charges. A line stops on a negative charge or past the edge of the screen. Lines are also traced backward from negative charges, so the ones that arrive from infinity are shown too. The brightness of a line is the field strength; the arrows are the direction."
+
+[[string]]
+id = "help.field_lines.p5"
+text = "F4 is an animated flow of particles along the lines. About a third are born near positive charges, and the rest appear anywhere in view. From there they all follow the field, toward a negative charge or off the screen, moving faster where the field is stronger."
+
+[[string]]
+id = "help.field_lines.predict"
+text = "Release a free light charge in a dipole field, off to the side of the axis. Does it ride along a field line?"
+
+[[string]]
+id = "help.field_lines.q1"
+text = "Does a charge you release travel along a field line?"
+
+[[string]]
+id = "help.field_lines.q2"
+text = "Why don’t field lines cross?"
+
+[[string]]
+id = "help.field_lines.q3"
+text = "The flow particles (F4) run along the lines. Is that charges moving?"
+
+[[string]]
+id = "help.field_lines.title"
+text = "Field lines"
+
+[[string]]
+id = "help.field_lines.try"
+text = "Try it: a dipole with field lines and flow"
+
+[[string]]
+id = "help.gauss.a1"
+text = "Because flux is counted with a sign. Lines from an outside charge enter on one side and the same number leave on the other: the “in” and “out” contributions cancel. Only a charge on which lines begin or end inside the surface gives a nonzero flux."
+
+[[string]]
+id = "help.gauss.a2"
+text = "For charges at rest the two are equivalent: each can be derived from the other. But Gauss’s law is one of Maxwell’s equations and always holds, including for moving charges, where Coulomb’s law is no longer exact. For symmetric systems (a sphere, a line, a plane) it also gives the field in one line of algebra."
+
+[[string]]
+id = "help.gauss.a3"
+text = "Only qualitatively. Real charges are three-dimensional, and their lines spread in all three dimensions, while the program draws only the ones that lie in the plane of the screen. On the screen the lines thin out with distance more slowly than the field weakens. The vector grid (F3) and the probe (F5) show the true magnitude."
+
+[[string]]
+id = "help.gauss.answer1"
+text = "Between the rows of charges the field is strong and nearly uniform: the lines run parallel from the pluses to the minuses. Outside, the fields of the two rows nearly cancel, so the field is weak. Near the edges the lines bend outward — the edge effects of finite plates. Check it with the probe (F5): along the middle, \\(\\ |E|\\) hardly changes."
+
+[[string]]
+id = "help.gauss.answer2"
+text = "Zero: the total charge inside is \\(\\ +1 - 1 = 0\\). Every line that leaves the plus through the sphere comes back through the same sphere to the minus."
+
+[[string]]
+id = "help.gauss.kicker"
+text = "TOPIC 6"
+
+[[string]]
+id = "help.gauss.legend1"
+text = "the flux of the field through a closed surface."
+
+[[string]]
+id = "help.gauss.legend2"
+text = "the sum (the integral) over the whole closed surface."
+
+[[string]]
+id = "help.gauss.legend3"
+text = "a small patch of the surface: a vector pointing outward, with length equal to its area."
+
+[[string]]
+id = "help.gauss.legend4"
+text = "the total charge inside the surface. Charges outside are not included."
+
+[[string]]
+id = "help.gauss.legend5"
+text = "the electric constant; \\(\\ k = \\frac{{1}}{{4\\pi\\varepsilon_0}}\\)."
+
+[[string]]
+id = "help.gauss.legend6"
+text = "the surface charge density — charge per unit area of a plate."
+
+[[string]]
+id = "help.gauss.note"
+text = "The last formula is the field between two large plates with opposite charge (a capacitor). It is the same at every point between them and nearly zero outside — the uniform field of topic 9."
+
+[[string]]
+id = "help.gauss.p1"
+text = "The flux of a field through a surface says how much field “passes through” it. In the picture of field lines, it is how many lines cross the surface, with a sign (outward is plus, inward is minus). More precisely, it is the sum of the field’s normal component times the area, over every small patch of the surface."
+
+[[string]]
+id = "help.gauss.p2"
+text = "Gauss’s law: the flux through any closed surface equals the charge inside it, divided by \\(\\ \\varepsilon_0\\). The shape of the surface does not matter, and neither do charges outside: however many lines from an outside charge enter the surface, the same number leave. That is why the number of lines leaving a charge is proportional to its size."
+
+[[string]]
+id = "help.gauss.p3"
+text = "Coulomb’s law follows from Gauss’s law. Surround a point charge with a sphere. By symmetry the field on the sphere is uniform and radial, so the flux equals the field times the area of the sphere. The field therefore falls as the inverse square of the distance — the lines do not disappear, they only spread over a larger and larger sphere."
+
+[[string]]
+id = "help.gauss.p4"
+text = "The rule “8 field lines per unit charge” (F2) is Gauss’s law applied directly: the number of lines from each charge is proportional to the charge. The “Capacitor” scene is two rows of opposite charges, an approximation to two plates with a uniform field between them."
+
+[[string]]
+id = "help.gauss.predict1"
+text = "In the “Capacitor” scene, where is the field strongest and most uniform? What happens outside, and near the edges?"
+
+[[string]]
+id = "help.gauss.predict2"
+text = "What is the flux through a sphere that encloses a whole dipole?"
+
+[[string]]
+id = "help.gauss.q1"
+text = "If a charge sits outside the surface, the field on the surface is not zero. Why is the flux zero?"
+
+[[string]]
+id = "help.gauss.q2"
+text = "Why bother with Gauss’s law if Coulomb’s law exists?"
+
+[[string]]
+id = "help.gauss.q3"
+text = "Can you read the field strength off the density of lines in the program?"
+
+[[string]]
+id = "help.gauss.title"
+text = "Flux and Gauss’s law"
+
+[[string]]
+id = "help.gauss.try"
+text = "Try it: “Capacitor” with field lines and flow"
+
+[[string]]
+id = "help.gradient.a1"
+text = "The field is the spatial rate of change of the potential, with a minus sign. The potential is a scalar “height map”; the field is its slope at each point. Each determines the other: \\(\\ E\\) is the gradient of \\(\\ \\varphi\\), and \\(\\ \\varphi\\) is the sum of \\(\\ E\\) along a path (up to a constant)."
+
+[[string]]
+id = "help.gradient.a2"
+text = "The gradient points toward growing \\(\\ \\varphi\\), but the field pushes a positive charge toward where its energy \\(\\ U = q\\varphi\\) is smaller, that is, toward falling \\(\\ \\varphi\\). The minus turns the gradient that way. “The field points toward lower potential” is that same minus, said in words."
+
+[[string]]
+id = "help.gradient.a3"
+text = "Yes. The field depends on how \\(\\ \\varphi\\) changes, not on its value. Halfway between two equal charges, \\(\\ \\varphi > 0\\), but that point is a saddle, so the slope is zero and \\(\\ E = 0\\). In the middle of a dipole, \\(\\ \\varphi = 0\\), yet the field there is not zero: it points from the plus to the minus. Along the line between the charges that midpoint is actually the least steep place; the slope is steepest near the charges themselves."
+
+[[string]]
+id = "help.gradient.answer1"
+text = "Densest near the charges and between them. That is where the arrows are longest and brightest, and everywhere they cross the equipotentials at a right angle. Far from the charges the lines spread out — the field weakens."
+
+[[string]]
+id = "help.gradient.answer2"
+text = "About \\(\\ |E| \\approx \\frac{{0.8 - 0.6}}{{0.1}} = 2\\), pointing from A to B — toward the lower potential."
+
+[[string]]
+id = "help.gradient.kicker"
+text = "TOPIC 10"
+
+[[string]]
+id = "help.gradient.legend1"
+text = "the gradient of the potential — a vector toward the fastest growth of \\(\\ \\varphi\\), with length equal to that rate."
+
+[[string]]
+id = "help.gradient.legend2"
+text = "how fast \\(\\ \\varphi\\) changes if you move only along \\(\\ x\\)."
+
+[[string]]
+id = "help.gradient.legend3"
+text = "the same link in one dimension: the field is the rate at which the potential falls."
+
+[[string]]
+id = "help.gradient.legend4"
+text = "the same link in mechanics: force is the slope of potential energy."
+
+[[string]]
+id = "help.gradient.note"
+text = "A rough estimate: if neighboring equipotentials differ by \\(\\ \\Delta\\varphi\\) and sit a distance \\(\\ \\Delta s\\) apart, the field between them is about this."
+
+[[string]]
+id = "help.gradient.p1"
+text = "Potential and field are not two independent quantities. They are two descriptions of the same thing. Picture \\(\\ \\varphi\\) as a height map: every point has a number. Then the field \\(\\ E\\) is the slope of that map. At each point it says which way the potential falls fastest, and how steeply."
+
+[[string]]
+id = "help.gradient.p2"
+text = "Mathematically that slope is the gradient: the vector \\(\\ \\nabla\\varphi\\), built from how fast \\(\\ \\varphi\\) changes along \\(\\ x\\) and along \\(\\ y\\). The gradient points where \\(\\ \\varphi\\) grows fastest, and the field points the other way, which is why the formula carries a minus. It also follows that the field is perpendicular to the equipotentials: along an equipotential, \\(\\ \\varphi\\) does not change at all."
+
+[[string]]
+id = "help.gradient.p3"
+text = "The magnitude of the field is the steepness of the slope. The closer the equipotentials lie, the faster \\(\\ \\varphi\\) changes and the stronger the field. Where \\(\\ \\varphi\\) has a peak, a hollow, or a saddle, the slope is zero and \\(\\ E = 0\\). The link runs the other way too: given the field, the potential is the sum of \\(\\ E\\) along a path — up to a constant, that is, up to the choice of zero."
+
+[[string]]
+id = "help.gradient.p4"
+text = "The F1 background is that same “height map”: color is \\(\\ \\varphi\\), and the thin lines are equipotentials every \\(\\ 0.25\\). The F3 vector grid shows its slope. Set them side by side and the arrows always cross the equipotentials at a right angle, and grow longer where the lines crowd together. In the program the relation is exact: potential and field are computed from one formula, and the field is precisely minus the gradient of the potential."
+
+[[string]]
+id = "help.gradient.predict1"
+text = "Turn on the potential background (F1) and the vector grid (F3) on a dipole. Where are the equipotentials densest, and what are the arrows doing there?"
+
+[[string]]
+id = "help.gradient.predict2"
+text = "The probe reads \\(\\ \\varphi = 0.8\\) at point A and \\(\\ \\varphi = 0.6\\) at point B, a distance 0.1 from A along the field. What is the field between them?"
+
+[[string]]
+id = "help.gradient.q1"
+text = "How exactly are the field and the potential related?"
+
+[[string]]
+id = "help.gradient.q2"
+text = "Why is there a minus in \\(\\ E = -\\nabla\\varphi\\)?"
+
+[[string]]
+id = "help.gradient.q3"
+text = "Can the field be zero where the potential is not, and the other way around?"
+
+[[string]]
+id = "help.gradient.title"
+text = "The field as the slope of the potential"
+
+[[string]]
+id = "help.gradient.try"
+text = "Try it: a dipole with the potential background and the vector grid"
+
+[[string]]
+id = "help.gravity.a1"
+text = "Because it does not cancel. Charges of both signs neutralize each other, so a large body is almost uncharged as a whole and barely acts on others electrically. Masses only add: a planet has an enormous number of them, and they all pull the same way."
+
+[[string]]
+id = "help.gravity.a2"
+text = "No. An electric field can be weakened by placing opposite charges nearby (that is how a conducting shell works). Shielding gravity would take negative mass, and none has been found in nature."
+
+[[string]]
+id = "help.gravity.a3"
+text = "Yes, when the force attracts. Any central force that falls as \\(\\ \\sim \\frac{{1}}{{r^2}}\\) gives ellipses, parabolas, or hyperbolas, and the same Kepler laws. That is why “Orbit” looks like a planetary orbit. “Rutherford” is the same \\(\\ \\sim \\frac{{1}}{{r^2}}\\) law with repulsion: a projectile bends around the nucleus from the outside, while a comet bends around the Sun from the inside."
+
+[[string]]
+id = "help.gravity.answer"
+text = "At the point closest to the center (as a planet does at perihelion): \\(\\ U\\) is smallest there, so \\(\\ K\\) is largest. That is Kepler’s second law — in equal times the radius sweeps out equal areas."
+
+[[string]]
+id = "help.gravity.kicker"
+text = "TOPIC 15"
+
+[[string]]
+id = "help.gravity.legend1"
+text = "the gravitational constant. The energy formula carries a minus because masses only attract."
+
+[[string]]
+id = "help.gravity.legend2"
+text = "the masses — gravitational “charges”, always positive."
+
+[[string]]
+id = "help.gravity.legend3"
+text = "the gravitational field strength — the acceleration of free fall, the same for every body."
+
+[[string]]
+id = "help.gravity.legend4"
+text = "the charge-to-mass ratio: it sets how strongly an electric field speeds a body up."
+
+[[string]]
+id = "help.gravity.p1"
+text = "Newton’s law of gravity has the same shape as Coulomb’s law: the force is proportional to the product of the “charges” (for gravity, the masses) and inversely proportional to the square of the distance. So the whole construction of this reference — field as force per unit, potential as energy per unit, \\(\\ \\Delta U = -W\\) — works for gravity almost word for word."
+
+[[string]]
+id = "help.gravity.p2"
+text = "The main difference is the signs. Mass is only positive, and gravity only attracts. Gravitational potential energy is therefore always negative, and systems under gravity readily form bound states (planets, stars, galaxies). Electric charges come in two signs, and matter as a whole is neutral: the contributions cancel."
+
+[[string]]
+id = "help.gravity.p3"
+text = "Hence a paradox: the electric interaction between protons is stronger than gravity by about 36 orders of magnitude, yet on a large scale gravity rules. Charges cancel one another, while masses only add. A planet accumulates a huge mass, and its charges are compensated."
+
+[[string]]
+id = "help.gravity.p4"
+text = "Another difference: the acceleration in a gravitational field is the same for every body (mass appears in the force and in the inertia, and cancels), while in an electric field it depends on the ratio \\(\\ \\frac{{q}}{{m}}\\). Every body falls the same way. Electrons and protons in the same electric field speed up very differently."
+
+[[string]]
+id = "help.gravity.p5"
+text = "The simulation has no gravity. “Orbit” is the electric analogue of a planetary orbit: the same attractive force, \\(\\ \\sim \\frac{{1}}{{r^2}}\\). “Rutherford” has the same distance dependence, but the force repels, so the hyperbolas bend away from the nucleus rather than toward it."
+
+[[string]]
+id = "help.gravity.predict"
+text = "In the “Orbit” scene, raise \\(\\ k\\) so the orbit becomes an ellipse. Where does the charge move fastest?"
+
+[[string]]
+id = "help.gravity.q1"
+text = "Why does gravity rule in space when it is so weak?"
+
+[[string]]
+id = "help.gravity.q2"
+text = "Can gravity be shielded the way an electric field can?"
+
+[[string]]
+id = "help.gravity.q3"
+text = "Does a charge on a Coulomb orbit follow Kepler’s laws?"
+
+[[string]]
+id = "help.gravity.title"
+text = "Electricity and gravity"
+
+[[string]]
+id = "help.gravity.try"
+text = "Try it: “Orbit” — a Coulomb “planet”"
+
+[[string]]
+id = "help.h.faq"
+text = "COMMON QUESTIONS"
+
+[[string]]
+id = "help.h.formulas"
+text = "FORMULAS"
+
+[[string]]
+id = "help.h.idea"
+text = "IDEA"
+
+[[string]]
+id = "help.h.legend"
+text = "WHAT'S WHAT"
+
+[[string]]
+id = "help.h.predict"
+text = "PREDICT, THEN CHECK"
+
+[[string]]
+id = "help.h.where"
+text = "IN THE PROGRAM"
+
+[[string]]
+id = "help.nav_hint"
+text = "↑ ↓ — topic · Enter — try it · H or Esc — close"
+
+[[string]]
+id = "help.nav_sub"
+text = "Ideas and formulas in the simulation"
+
+[[string]]
+id = "help.nav_title"
+text = "Reference"
+
+[[string]]
+id = "help.overview.a1"
+text = "Force and field are what you need for a trajectory: the direction of the motion, the acceleration, where the charge will be in a second. Energy and potential answer “what happens at the end” without solving the motion: how fast the charge will arrive, whether it can reach a point, whether it will escape to infinity."
+
+[[string]]
+id = "help.overview.a2"
+text = "A magnetic field appears, and the force becomes \\(\\ F = q(E + v \\times B)\\). The electric field is no longer only the slope of a potential: a changing magnetic field creates a circulating \\(\\ E\\), for which the work depends on the path. That is the next stage of the program."
+
+[[string]]
+id = "help.overview.answer"
+text = "The speed, yes, from conservation of energy: the charge times the potential difference between A and B equals the gain in kinetic energy. The time, no: that needs the trajectory, that is, the field along the whole path, not only the values at two points."
+
+[[string]]
+id = "help.overview.kicker"
+text = "TOPIC 16"
+
+[[string]]
+id = "help.overview.legend1"
+text = "the field — a vector, force per unit charge (\\(\\mathrm{{N}}/\\mathrm{{C}} = \\mathrm{{V}}/\\mathrm{{m}}\\)). A property of a point."
+
+[[string]]
+id = "help.overview.legend2"
+text = "the potential — a scalar, energy per unit charge (\\(\\mathrm{{V}} = \\mathrm{{J}}/\\mathrm{{C}}\\)). A property of a point."
+
+[[string]]
+id = "help.overview.legend3"
+text = "the force — a vector (N). A property of one particular charge at a point."
+
+[[string]]
+id = "help.overview.legend4"
+text = "potential energy — a scalar (J). A property of a configuration of charges."
+
+[[string]]
+id = "help.overview.note"
+text = "Three main ideas. \\(\\ E\\) says what will happen to a charge at a point (the force per unit charge it will feel). \\(\\ \\varphi\\) describes the electric state of a point through energy per unit charge. \\(\\ U\\) is the energy state of one particular configuration. Differences of \\(\\ \\varphi\\) and of \\(\\ U\\) are what carry physical meaning, not the values themselves."
+
+[[string]]
+id = "help.overview.p1"
+text = "Basic electrostatics is one chain. Source charges create a field \\(\\ E\\). The field sets the force on any charge, \\(\\ F = qE\\). The same field can be described by a potential \\(\\ \\varphi\\), because \\(\\ E = -\\nabla\\varphi\\). The potential turns the description into the language of energy: \\(\\ U = q\\varphi\\). A change in energy is the work of the field, \\(\\ \\Delta U = -W\\), and that work becomes the kinetic energy of the motion."
+
+[[string]]
+id = "help.overview.p2"
+text = "So \\(\\ E\\), \\(\\ \\varphi\\), and \\(\\ U\\) are not three separate theories. They are three ways to describe the same system: through force per unit charge, through energy per unit charge, and through the energy of one particular configuration. You pick the one that fits the question."
+
+[[string]]
+id = "help.overview.p3"
+text = "Each link in the chain has its own layer. The vector grid and the probe are the field \\(\\ E\\) (F3, F5). The background with equipotentials is \\(\\ \\varphi\\) (F1). Field lines and flow are the structure of the field (F2, F4). The energy panel is \\(\\ U\\), \\(\\ K\\), and the total \\(\\ K + U\\). Trails are the motion that the energy turns into (F6)."
+
+[[string]]
+id = "help.overview.predict"
+text = "You know only \\(\\ \\varphi\\) at points A and B. Can you find the speed with which a charge released at A arrives at B? And the time of flight?"
+
+[[string]]
+id = "help.overview.q1"
+text = "When is it easier to think in forces, and when in energy?"
+
+[[string]]
+id = "help.overview.q2"
+text = "What in this picture changes when charges move quickly?"
+
+[[string]]
+id = "help.overview.s1"
+text = "THE CHAIN"
+
+[[string]]
+id = "help.overview.s2"
+text = "FOUR QUANTITIES"
+
+[[string]]
+id = "help.overview.title"
+text = "The whole picture"
+
+[[string]]
+id = "help.overview.try"
+text = "Try it: a dipole with every layer"
+
+[[string]]
+id = "help.pair_energy.a1"
+text = "Because bringing them in from infinity means pushing against repulsion the whole way. An outside force does positive work, and that work is stored as the energy of the configuration. A system you release pays it back by flying apart."
+
+[[string]]
+id = "help.pair_energy.a2"
+text = "Because, as you bring them in from infinity, the field itself does positive work — the energy is given away, not stored. The configuration ends up below the level “infinitely far apart”, that is, below zero. Returning the charges to infinity means giving that energy back."
+
+[[string]]
+id = "help.pair_energy.a3"
+text = "\\(U = k\\frac{{Qq}}{{r}}\\) with \\(\\ Qq < 0\\) is a negative number whose magnitude is inversely proportional to the distance. Closer means a larger magnitude, so \\(\\ U\\) is more negative (for example \\(\\ -100\\) instead of \\(\\ -50\\)). Farther means a smaller magnitude, so \\(\\ U\\) is closer to zero: \\(\\ -50\\), \\(\\ -10\\), 0. “Rises” here means “becomes less negative”."
+
+[[string]]
+id = "help.pair_energy.a4"
+text = "Because \\(\\ U\\) is the energy of the pair’s interaction, not of each charge separately. If you walk through every charge and add \\(\\ q\\varphi\\) from the others, each pair is counted twice — and then you have to divide by 2."
+
+[[string]]
+id = "help.pair_energy.answer1"
+text = "The pair’s energy \\(\\ k\\frac{{1\\cdot 1}}{{2}} = 0.5\\) becomes kinetic, shared equally: each charge has kinetic energy \\(\\ 0.25\\), so the speed is \\(\\ v \\approx 0.71\\). Check the panel: \\(\\ K\\) rises nearly to 0.5, \\(\\ U\\) falls nearly to 0, and the sum \\(\\ K + U\\) hardly changes. With the usual softening \\(\\ \\varepsilon = 0.25\\) the start has \\(\\ U \\approx 0.496\\), so \\(\\ K\\) ends near 0.496 rather than exactly 0.5."
+
+[[string]]
+id = "help.pair_energy.answer2"
+text = "The ones that fly closest to the axis through the nucleus: they approach more closely, where the repulsion is stronger. The most central one turns almost all the way back."
+
+[[string]]
+id = "help.pair_energy.kicker"
+text = "TOPIC 11"
+
+[[string]]
+id = "help.pair_energy.legend1"
+text = "the energy of a pair at distance \\(\\ r\\). The zero is at infinite distance."
+
+[[string]]
+id = "help.pair_energy.legend2"
+text = "the product of the charges. Its sign sets the sign of \\(\\ U\\)."
+
+[[string]]
+id = "help.pair_energy.legend3"
+text = "the sum over every pair of charges, each pair once."
+
+[[string]]
+id = "help.pair_energy.legend4"
+text = "the distance between charges i and j."
+
+[[string]]
+id = "help.pair_energy.legend5"
+text = "the closest distance a charge reaches when it flies in from far away, straight at a fixed charge of the same sign, and momentarily stops."
+
+[[string]]
+id = "help.pair_energy.note"
+text = "The last formula is Rutherford’s experiment (1911). Alpha particles were fired at gold foil, and some bounced back. Stopping a fast particle like that takes a very small distance of closest approach — hence the conclusion that the positive charge of an atom is gathered into a tiny nucleus."
+
+[[string]]
+id = "help.pair_energy.p1"
+text = "Two charges a distance \\(\\ r\\) apart share a potential energy \\(\\ U = k\\frac{{Qq}}{{r}}\\) — if the zero is chosen at an infinite separation. This is the energy of their configuration: it equals the work it would take to bring them in from infinity to the distance \\(\\ r\\)."
+
+[[string]]
+id = "help.pair_energy.p2"
+text = "Like charges: \\(\\ U > 0\\). Bringing them together takes work against the repulsion, and that work is stored. Let them go and they fly apart, \\(\\ U\\) falls to zero, and the stored energy becomes kinetic."
+
+[[string]]
+id = "help.pair_energy.p3"
+text = "Opposite charges: \\(\\ U < 0\\). The field itself draws them together and does positive work, so as they approach, \\(\\ U\\) becomes more and more negative and the kinetic energy grows. Separating them to infinity takes energy you have to add: \\(\\ U\\) rises toward zero — the number increases, even though its magnitude shrinks."
+
+[[string]]
+id = "help.pair_energy.p4"
+text = "For several charges the energy is the sum over every pair, each pair once. That is the quantity shown on the panel as “Potential \\(\\ U\\)”."
+
+[[string]]
+id = "help.pair_energy.p5"
+text = "The “Potential \\(\\ U\\)” row on the panel is exactly the sum over pairs. Because of softening (the appendix), the program uses a distance that is slightly “softened” near zero, so the values are close to the formula but stay finite even in a collision."
+
+[[string]]
+id = "help.pair_energy.p6"
+text = "In “Rutherford” the nucleus has charge 4 and the projectiles have charge \\(\\ 0.25\\) at speed 2, so a head-on \\(\\ r_{{\\min}} = 0.5\\). The balls in the program already touch at about 0.78, so the central projectile bounces off the nucleus ball. The ones that pass to the side draw the clean scattering hyperbolas."
+
+[[string]]
+id = "help.pair_energy.predict1"
+text = "Two free charges of \\(\\ +1\\), each of mass 1, are released from a distance 2 (\\(k = 1\\)). How fast is each one moving once they are far apart?"
+
+[[string]]
+id = "help.pair_energy.predict2"
+text = "In the “Rutherford” scene, which projectiles are deflected the most?"
+
+[[string]]
+id = "help.pair_energy.q1"
+text = "Why is \\(\\ U > 0\\) for like charges?"
+
+[[string]]
+id = "help.pair_energy.q2"
+text = "Why is \\(\\ U < 0\\) for opposite charges?"
+
+[[string]]
+id = "help.pair_energy.q3"
+text = "Why does \\(\\ U\\) become more negative as opposite charges approach, and rise toward zero as they separate?"
+
+[[string]]
+id = "help.pair_energy.q4"
+text = "Why is each pair counted only once?"
+
+[[string]]
+id = "help.pair_energy.title"
+text = "The energy of a pair of charges"
+
+[[string]]
+id = "help.pair_energy.try"
+text = "Try it: “Rutherford” with trajectory trails"
+
+[[string]]
+id = "help.potential.a1"
+text = "If the zero is at infinity, \\(\\ \\varphi\\) at a point is the work the field does in carrying a charge of \\(\\ +1\\) from that point out to infinity. Equivalently, it is the work you must do against the field to bring \\(\\ +1\\) in from infinity to here. Potential says how “high”, in energy, the point sits for a unit positive charge."
+
+[[string]]
+id = "help.potential.a2"
+text = "The force of a point charge points along the radius and depends only on the distance. On each small step the work depends only on how much the distance to the charge changed, not on a sideways part of the step. The total is only the difference of the distances at the start and at the end. By superposition the same rule extends to any system of charges at rest. It is no longer true for friction, or for the circulating electric field that a changing magnetic field produces — and there is no potential there."
+
+[[string]]
+id = "help.potential.a3"
+text = "The field is the slope of the potential (topic 10): how fast \\(\\ \\varphi\\) changes with distance. The slope of \\(\\ \\frac{{1}}{{r}}\\) is \\(\\ \\frac{{1}}{{r^2}}\\), so the field falls one power faster."
+
+[[string]]
+id = "help.potential.answer1"
+text = "\\(\\varphi = 0\\) everywhere on the line that runs through the middle, perpendicular to the charges: the contributions of \\(\\ +1\\) and \\(\\ -1\\) match in size and oppose in sign. The field there is not zero — it points from the plus toward the minus. A zero of potential does not mean a zero of field. On the background (F1) this is the white vertical line between the red and blue regions."
+
+[[string]]
+id = "help.potential.answer2"
+text = "It is not zero. The potential there is positive — both contributions are positive and they add. A zero field only means the potential does not change if you shift a little, not that the potential itself is zero. Check it with the probe (F5): \\(\\ |E| \\approx 0\\), while \\(\\ \\varphi > 0\\)."
+
+[[string]]
+id = "help.potential.kicker"
+text = "TOPIC 7"
+
+[[string]]
+id = "help.potential.legend1"
+text = "the work the field does on a charge \\(\\ q\\) as it goes from A to B, by any path."
+
+[[string]]
+id = "help.potential.legend2"
+text = "the potentials at points A and B."
+
+[[string]]
+id = "help.potential.legend3"
+text = "the potential: energy per unit charge, in volts."
+
+[[string]]
+id = "help.potential.legend4"
+text = "the potential energy of a test charge \\(\\ q\\) at this point (topic 8)."
+
+[[string]]
+id = "help.potential.legend5"
+text = "the source charge, with its sign. A negative \\(\\ Q\\) gives a negative potential."
+
+[[string]]
+id = "help.potential.legend6"
+text = "the sum of the contributions of every charge — ordinary numbers, with no directions."
+
+[[string]]
+id = "help.potential.p1"
+text = "Start from the fact without which there would be no potential. When a charge goes from point A to point B, the electrostatic field does work on it, and that work does not depend on the path — only on where the path started and where it ended. Fields like that are called conservative. Gravity is one of them too."
+
+[[string]]
+id = "help.potential.p2"
+text = "Because the work depends only on the endpoints, each point can be given a number so that the work equals the difference of those numbers. For a test charge \\(\\ q\\), that number is its potential energy \\(\\ U\\). \\(\\ U\\) is proportional to \\(\\ q\\), so dividing by \\(\\ q\\) leaves a quantity that describes only the point and the sources: the potential \\(\\ \\varphi\\), energy per unit charge. The unit is the volt: \\(\\ 1\\,\\mathrm{{V}} = 1\\,\\mathrm{{J}}/\\mathrm{{C}}\\)."
+
+[[string]]
+id = "help.potential.p3"
+text = "Potential is a scalar, just a number at each point, so potentials from several charges add as ordinary numbers, with no directions. For a point charge, \\(\\ \\varphi = k\\frac{{Q}}{{r}}\\): the sign matches \\(\\ Q\\), and it falls more slowly than the field — inversely with distance. You choose the zero of potential yourself, usually at infinity. Only differences of potential have physical meaning (topics 9 and 12)."
+
+[[string]]
+id = "help.potential.p4"
+text = "An equipotential is a line (in space, a surface) along which \\(\\ \\varphi\\) is the same. The field is always perpendicular to the equipotentials, and moving along them takes no work — like walking along a contour line on a height map."
+
+[[string]]
+id = "help.potential.p5"
+text = "F1 is the potential background. Color shows the sign of \\(\\ \\varphi\\) (red positive, blue negative), brightness shows the magnitude, and the thin light lines are equipotentials every \\(\\ 0.25\\). The probe (F5) shows the exact value of \\(\\ \\varphi\\) under the cursor."
+
+[[string]]
+id = "help.potential.predict1"
+text = "In a dipole (\\(+1\\) and \\(\\ -1\\)), where is the potential zero? Is the field zero there too?"
+
+[[string]]
+id = "help.potential.predict2"
+text = "Halfway between two equal charges of \\(\\ +1\\) the field is zero (topic 4). What about the potential?"
+
+[[string]]
+id = "help.potential.q1"
+text = "What does the potential at a point mean, physically?"
+
+[[string]]
+id = "help.potential.q2"
+text = "Why doesn’t the work of an electrostatic field depend on the path?"
+
+[[string]]
+id = "help.potential.q3"
+text = "Why does the potential fall as \\(\\ \\frac{{1}}{{r}}\\), while the field falls as \\(\\ \\frac{{1}}{{r^2}}\\)?"
+
+[[string]]
+id = "help.potential.title"
+text = "Potential"
+
+[[string]]
+id = "help.potential.try"
+text = "Try it: a dipole with the potential background and a test charge"
+
+[[string]]
+id = "help.potential_energy.a1"
+text = "Potential characterizes a point of the field, and it is the same for any charge placed there. Potential energy is the energy of one particular charge at one particular point. More precisely, \\(\\ U\\) is the energy of the interaction of the charge \\(\\ q\\) with the sources of the field — the energy of the whole configuration, not a “store” inside the charge (topic 14)."
+
+[[string]]
+id = "help.potential_energy.a2"
+text = "Because \\(\\ \\varphi\\) was defined precisely so as to remove the dependence on the charge. The energy is proportional to \\(\\ q\\), and dividing by \\(\\ q\\) leaves only the contribution of the sources and of the position of the point. Going back from \\(\\ \\varphi\\) to \\(\\ U\\), you multiply by \\(\\ q\\) again — and the dependence on the charge returns."
+
+[[string]]
+id = "help.potential_energy.a3"
+text = "Toward higher. Any charge seeks a lower energy \\(\\ U = q\\varphi\\). For \\(\\ q < 0\\) the energy is smaller when \\(\\ \\varphi\\) is larger, so electrons in a conductor flow toward points of higher potential — against the direction of the field \\(\\ E\\)."
+
+[[string]]
+id = "help.potential_energy.a4"
+text = "The energy a charge of one electron gains by crossing a potential difference of \\(\\ 1\\,\\mathrm{{V}}\\): \\(\\ 1\\,\\mathrm{{eV}} \\approx 1.6\\cdot 10^{{-19}}\\,\\mathrm{{J}}\\) (see the formula in topic 9). It is a convenient unit for atoms and particles: binding energies in atoms are a few electronvolts."
+
+[[string]]
+id = "help.potential_energy.answer1"
+text = "\\(U = q\\varphi\\): for \\(\\ +2\\) it is 6, for \\(\\ -2\\) it is \\(\\ -6\\). The field at the point is one field. The energies differ, even in sign."
+
+[[string]]
+id = "help.potential_energy.answer2"
+text = "\\(+1\\) heads toward lower \\(\\ \\varphi\\) — away from the positive charges, where the background is dimmer. \\(\\ -1\\) heads toward higher \\(\\ \\varphi\\) — toward the charges, into the brighter red region."
+
+[[string]]
+id = "help.potential_energy.kicker"
+text = "TOPIC 8"
+
+[[string]]
+id = "help.potential_energy.legend1"
+text = "the potential of the point — set by the sources, independent of \\(\\ q\\)."
+
+[[string]]
+id = "help.potential_energy.legend2"
+text = "the charge whose energy we want, with its sign."
+
+[[string]]
+id = "help.potential_energy.legend3"
+text = "the potential energy of that charge at that point: it depends on both \\(\\ \\varphi\\) and \\(\\ q\\)."
+
+[[string]]
+id = "help.potential_energy.note"
+text = "An example: at a point with potential 1000 V, a charge of \\(\\ +1\\) C has energy 1000 J, a charge of \\(\\ +2\\) C has 2000 J, and a charge of \\(\\ -1\\) C has minus 1000 J. The potential stays the same the whole time. Only the energy changes."
+
+[[string]]
+id = "help.potential_energy.p1"
+text = "The potential \\(\\ \\varphi\\) and the potential energy \\(\\ U\\) are easy to mix up, and they are different quantities. Potential is a property of a point in space: the sources set it, and it is the same no matter which charge you put there. Potential energy is a property of one particular charge at that point: \\(\\ U = q\\varphi\\). Twice the charge means twice the energy, and a charge of the opposite sign has energy of the opposite sign."
+
+[[string]]
+id = "help.potential_energy.p2"
+text = "It is the same pair of ideas as field and force. \\(\\ E = \\frac{{F}}{{q}}\\) describes the point; \\(\\ F = qE\\) describes one charge. Likewise \\(\\ \\varphi = \\frac{{U}}{{q}}\\) describes the point, and \\(\\ U = q\\varphi\\) describes one charge."
+
+[[string]]
+id = "help.potential_energy.p3"
+text = "An important consequence follows. A charge in a field moves toward where its energy \\(\\ U\\) is smaller. For a positive charge that is a region of lower potential. For a negative charge it is the opposite, a region of higher potential: when \\(\\ q < 0\\), a smaller \\(\\ U\\) corresponds to a larger \\(\\ \\varphi\\). Pluses “roll down” the potential hill. Minuses “climb” it."
+
+[[string]]
+id = "help.potential_energy.p4"
+text = "The probe (F5) is a charge of \\(\\ +1\\), so the \\(\\ \\varphi\\) it shows is both the potential of the point and the energy of that test charge there. The “Potential \\(\\ U\\)” row on the panel is the energy of every pair of charges in the scene together (topic 11)."
+
+[[string]]
+id = "help.potential_energy.predict1"
+text = "At a point the potential is \\(\\ \\varphi = 3\\). What energy do charges of \\(\\ +2\\) and \\(\\ -2\\) have there?"
+
+[[string]]
+id = "help.potential_energy.predict2"
+text = "In the field of two equal positive charges (the “Like charges” scene), place a free \\(\\ +1\\) and a free \\(\\ -1\\) off to the side. Where does each one head, in terms of potential?"
+
+[[string]]
+id = "help.potential_energy.q1"
+text = "How is potential different from potential energy?"
+
+[[string]]
+id = "help.potential_energy.q2"
+text = "Why does \\(\\ U = q\\varphi\\) depend on the charge, while \\(\\ \\varphi\\) does not?"
+
+[[string]]
+id = "help.potential_energy.q3"
+text = "Does a negative charge move toward higher potential, or toward lower?"
+
+[[string]]
+id = "help.potential_energy.q4"
+text = "What is an electronvolt?"
+
+[[string]]
+id = "help.potential_energy.title"
+text = "Potential and the energy of a charge"
+
+[[string]]
+id = "help.potential_energy.try"
+text = "Try it: “Like charges” with the potential background and a test charge"
+
+[[string]]
+id = "help.reveal.hide"
+text = "Hide answer"
+
+[[string]]
+id = "help.reveal.show"
+text = "Show answer"
+
+[[string]]
+id = "help.section.appendix"
+text = "APPENDIX"
+
+[[string]]
+id = "help.section.basics"
+text = "I. BASICS"
+
+[[string]]
+id = "help.section.potential"
+text = "II. POTENTIAL AND ENERGY"
+
+[[string]]
+id = "help.section.summary"
+text = "III. SUMMARY"
+
+[[string]]
+id = "help.section.using"
+text = "PROGRAM"
+
+[[string]]
+id = "help.simulation.a1"
+text = "The update \\(\\ x \\leftarrow x + v\\,\\Delta t\\) is the explicit Euler method: it systematically adds energy on every step. On an orbit the charge slowly spirals outward, even though the physical orbit is steady. Leapfrog builds the step so that it is symmetric in time, and it does not have that systematic error."
+
+[[string]]
+id = "help.simulation.a2"
+text = "With no collisions and no speed cap, to a relative error below 0.1% over 20,000 steps of a circular orbit. An automatic test checks that. The total energy on the panel changes noticeably only because of collisions, the speed cap, or dragging with the mouse."
+
+[[string]]
+id = "help.simulation.answer"
+text = "Close encounters weaken: the charges behave like large blurred balls, forces at short range are smaller, and clusters become looser. Distant interactions hardly change."
+
+[[string]]
+id = "help.simulation.kicker"
+text = "APPENDIX"
+
+[[string]]
+id = "help.simulation.p1"
+text = "The charges are point particles in the plane of the screen, but they follow the \\(\\ \\sim \\frac{{1}}{{r^2}}\\) law of the real three-dimensional world: this is a slice of a 3D scene, not “two-dimensional physics”. Every vector in the code is three-dimensional with \\(\\ z = 0\\), so the forces and the motion stay in the plane. The field is instantaneous: changes spread with no delay. There is no magnetism yet."
+
+[[string]]
+id = "help.simulation.p2"
+text = "The program advances the motion in fixed steps of \\(\\ \\frac{{1}}{{60}}\\) of a second (at a higher time scale, in several smaller steps). The method is leapfrog, or velocity Verlet: half a step of velocity, a full step of position, then another half step of velocity with the new force. Unlike the simplest \\(\\ x \\leftarrow x + v\\,\\Delta t\\), it is symplectic: the energy does not drift away, it only jitters a little, so orbits do not spiral out or fall in over time."
+
+[[string]]
+id = "help.simulation.p3"
+text = "For point charges the force is unbounded as \\(\\ r \\to 0\\), and a close flyby would fling charges off at huge speeds. So the distance in every formula is “softened” by \\(\\ \\varepsilon\\) (the slider on the panel): a charge behaves like a blurred ball of size about \\(\\ \\varepsilon\\). The softening is the same for the field, the potential, and the energy, so \\(\\ E = -\\nabla\\varphi\\) and energy conservation hold exactly. Far from a charge (a distance much larger than \\(\\ \\varepsilon\\)) there is no difference."
+
+[[string]]
+id = "help.simulation.p4"
+text = "Charges are balls of radius \\(\\ 0.2 + 0.15\\sqrt{{|q|}}\\). When the balls overlap, they are pushed apart, and the relative velocity reverses and is multiplied by a coefficient of restitution of 0.8: momentum is conserved, and some kinetic energy disappears (in reality, as heat). The K key turns collisions off. Speed is capped at 30, so no flyby can throw a charge to infinity."
+
+[[string]]
+id = "help.simulation.p5"
+text = "Everything is in arbitrary units: \\(\\ k = 1\\) (the slider), charge mass 1, distances in grid units, time in simulation seconds. That is only a choice of scale. The formulas are the same as in SI; only the numbers change. To move to SI, replace \\(\\ k\\) with \\(\\ \\frac{{1}}{{4\\pi\\varepsilon_0}} \\approx 8.99\\cdot 10^{{9}}\\) in SI units (topic 2), charges with coulombs, and distances with meters."
+
+[[string]]
+id = "help.simulation.p6"
+text = "The potential background is computed by the graphics card for every pixel. Field lines are traced with a fourth-order Runge–Kutta method and rebuilt only when the charges or the camera change. Flow particles and the vector grid read the same field. Softening and the \\(\\ \\sim \\frac{{1}}{{r^2}}\\) law are the same in every layer and in the physics of the motion."
+
+[[string]]
+id = "help.simulation.p7"
+text = "An atom does not look like the “Orbit” scene. An electron is described by a wave function, not a trajectory, and a classical charge on an orbit would radiate and fall into the nucleus. An electron does not fall into a proton because of the uncertainty relation, not because their fields “overlap” — fields always overlap and add. The Pauli principle explains something else: why many electrons, and a piece of matter, do not collapse into one point. Protons and neutrons are made of quarks. A particle and an antiparticle can annihilate. Softening and collisions in the program are deliberate stand-ins for these effects, not a model of them (topics 1–2)."
+
+[[string]]
+id = "help.simulation.p8"
+text = "The program also leaves out: the magnetic field of moving charges, the finite speed at which the field spreads, radiation from accelerating charges, conductors and dielectrics, and the fact that real field lines spread in three dimensions (topic 6)."
+
+[[string]]
+id = "help.simulation.predict"
+text = "Turn the softening \\(\\ \\varepsilon\\) all the way up with the slider in the “Swarm” scene. What changes in the motion?"
+
+[[string]]
+id = "help.simulation.q1"
+text = "Why not just add velocity to position (\\(x \\leftarrow x + v\\,\\Delta t\\))?"
+
+[[string]]
+id = "help.simulation.q2"
+text = "How closely does the program conserve energy?"
+
+[[string]]
+id = "help.simulation.s1"
+text = "MODEL"
+
+[[string]]
+id = "help.simulation.s2"
+text = "MOTION: THE INTEGRATOR"
+
+[[string]]
+id = "help.simulation.s3"
+text = "SOFTENING"
+
+[[string]]
+id = "help.simulation.s4"
+text = "COLLISIONS AND LIMITS"
+
+[[string]]
+id = "help.simulation.s5"
+text = "UNITS"
+
+[[string]]
+id = "help.simulation.s6"
+text = "VISUALIZATION"
+
+[[string]]
+id = "help.simulation.s7"
+text = "WHAT IS DIFFERENT IN REALITY"
+
+[[string]]
+id = "help.simulation.title"
+text = "How the simulation works"
+
+[[string]]
+id = "help.simulation.try"
+text = "Try it: “Swarm” — collisions and the exchange of energy"
+
+[[string]]
+id = "help.superposition.a1"
+text = "They do affect one another — by forces — and if the charges are free they will shove each other around. But for a given arrangement, the field of each charge at a point is the same as if that charge were alone: the presence of the others does not distort it. That is an experimental fact, built into the linearity of Maxwell’s equations. It fails only in extraordinarily strong fields, where quantum electrodynamics takes over."
+
+[[string]]
+id = "help.superposition.a2"
+text = "Because the contributions almost completely cancel. The total charge of a quadrupole is zero, so far away there is no “leading” piece that falls as \\(\\ \\sim \\frac{{1}}{{r^2}}\\), and no dipole piece is left either. What remains falls as \\(\\ \\sim \\frac{{1}}{{r^4}}\\) — much faster than the field of a single charge."
+
+[[string]]
+id = "help.superposition.answer1"
+text = "Zero. Each pair of opposite corners holds charges of the same sign at the same distance from the center, so their fields at the center are equal and opposite. Check it with the probe (F5): the arrow disappears at the center."
+
+[[string]]
+id = "help.superposition.answer2"
+text = "To the right, from the plus toward the minus, and twice as strong. The field from \\(\\ +1\\) points away from it (to the right), the field toward \\(\\ -1\\) points toward it (also to the right), so the contributions add."
+
+[[string]]
+id = "help.superposition.kicker"
+text = "TOPIC 4"
+
+[[string]]
+id = "help.superposition.legend1"
+text = "the field charge i would create if it were alone."
+
+[[string]]
+id = "help.superposition.legend2"
+text = "charge i, with its sign. A negative charge reverses its contribution."
+
+[[string]]
+id = "help.superposition.legend3"
+text = "the vector from charge i to the point where the field is wanted. Its length is the distance from the charge to the point."
+
+[[string]]
+id = "help.superposition.legend4"
+text = "the components of the total field. Each one is an ordinary sum of numbers."
+
+[[string]]
+id = "help.superposition.note"
+text = "Potential adds even more simply — as ordinary numbers, with no directions (topic 7). Complicated fields are often easier to find through the potential."
+
+[[string]]
+id = "help.superposition.p1"
+text = "The field of several charges equals the vector sum of the fields each charge would create on its own. The field of one charge does not depend on whether others are nearby: at a given arrangement, each charge contributes its own piece, and the pieces simply add. The same is true of forces."
+
+[[string]]
+id = "help.superposition.p2"
+text = "The sum has to be a vector sum — directions included. The field of two charges can therefore be weaker than the field of either one, and it can even be zero: the contributions can cancel. In practice it is convenient to add the vectors component by component: all the \\(\\ x\\) pieces together, all the \\(\\ y\\) pieces together."
+
+[[string]]
+id = "help.superposition.p3"
+text = "Superposition is not obvious. It is a property of nature: the equations of electromagnetism are linear. That is what lets you take any complicated system of charges apart into simple points and compute the field as a sum."
+
+[[string]]
+id = "help.superposition.p4"
+text = "The program computes the field exactly this way: at each point it walks through every charge and adds the contributions. That is how the vector grid (F3), the field lines (F2), the probe reading (F5), and the forces between charges are all obtained."
+
+[[string]]
+id = "help.superposition.predict1"
+text = "In the “Quadrupole” scene four charges sit at the corners of a square, with alternating signs. What is the field at the center of the square?"
+
+[[string]]
+id = "help.superposition.predict2"
+text = "In a dipole (\\(+1\\) on the left, \\(\\ -1\\) on the right), which way does the field point halfway between the charges, and is it stronger than the field of one charge alone at that spot?"
+
+[[string]]
+id = "help.superposition.q1"
+text = "Don’t charges affect one another? Why do their fields just add?"
+
+[[string]]
+id = "help.superposition.q2"
+text = "Why is the field of a quadrupole so weak far away?"
+
+[[string]]
+id = "help.superposition.title"
+text = "Superposition"
+
+[[string]]
+id = "help.superposition.try"
+text = "Try it: “Quadrupole” with the vector grid and a test charge"
+
+[[string]]
+id = "help.using.kicker"
+text = "PROGRAM"
+
+[[string]]
+id = "help.using.title"
+text = "How to use"
+
+[[string]]
+id = "help.voltage.a1"
+text = "It is the same unit. A volt is a joule per coulomb, and a joule is a newton times a meter. So \\(\\ \\mathrm{{V}}/\\mathrm{{m}} = \\mathrm{{J}}/(\\mathrm{{C}}\\cdot\\mathrm{{m}}) = \\mathrm{{N}}/\\mathrm{{C}}\\). The first form is handy when you are thinking about force; the second, when you are thinking about voltage and distance."
+
+[[string]]
+id = "help.voltage.a2"
+text = "Not necessarily. The spark of static electricity from a doorknob is thousands of volts, but the charge is so small (millionths of a coulomb) that the energy of the discharge is only thousandths of a joule. What makes it dangerous is the energy and the current the source can deliver, not the voltage alone. It is a good illustration of the difference between potential and energy."
+
+[[string]]
+id = "help.voltage.a3"
+text = "Charge flows (electrons). Potential only says how much energy the field hands to each coulomb between two points. A drop in potential along a wire or a lamp is a place where the field gives energy to the charges, and the charges give it to the conductor (heat, light)."
+
+[[string]]
+id = "help.voltage.answer1"
+text = "In the middle, \\(\\ \\varphi\\) falls almost uniformly — from positive values near the pluses to negative values near the minuses, passing through zero halfway. \\(\\ |E|\\) hardly changes there: the field is uniform. Right next to the rows the picture is uneven, because the plates in the scene are built from separate charges."
+
+[[string]]
+id = "help.voltage.answer2"
+text = "An amount equal to the potential difference between the rows: \\(\\ W = q\\Delta\\varphi\\) with \\(\\ q = 1\\). You can measure it with the probe — the difference of the \\(\\ \\varphi\\) readings near the pluses and near the minuses."
+
+[[string]]
+id = "help.voltage.kicker"
+text = "TOPIC 9"
+
+[[string]]
+id = "help.voltage.legend1"
+text = "the voltage between points A and B, in volts."
+
+[[string]]
+id = "help.voltage.legend2"
+text = "the work the field does on a charge \\(\\ q\\) going from A to B."
+
+[[string]]
+id = "help.voltage.legend3"
+text = "the distance between equipotentials (for example, between the plates) along the field."
+
+[[string]]
+id = "help.voltage.legend4"
+text = "the strength of a uniform field, \\(\\ \\mathrm{{V}}/\\mathrm{{m}} = \\mathrm{{N}}/\\mathrm{{C}}\\)."
+
+[[string]]
+id = "help.voltage.legend5"
+text = "the electronvolt — the energy a charge \\(\\ e\\) gains by crossing a voltage of \\(\\ 1\\,\\mathrm{{V}}\\)."
+
+[[string]]
+id = "help.voltage.p1"
+text = "The voltage between two points is the potential difference between them. That is the quantity with physical meaning: the work the field does on a charge going from one point to the other depends on it. A voltmeter always has two probes — it measures a difference, not a potential."
+
+[[string]]
+id = "help.voltage.p2"
+text = "A warning about notation. School textbooks often use the letter \\(\\ U\\) for voltage. In this reference \\(\\ U\\) is potential energy, so voltage is written \\(\\ \\Delta\\varphi\\), to keep the two apart."
+
+[[string]]
+id = "help.voltage.p3"
+text = "“1.5 V” on a battery means: between its terminals the potential difference is 1.5 V, so every coulomb of charge that passes around the outside circuit receives 1.5 J from the field. The chemistry of the battery maintains that difference."
+
+[[string]]
+id = "help.voltage.p4"
+text = "The simplest example is the uniform field between the plates of a capacitor (topic 6). The field there is the same at every point, so the potential changes steadily, linearly with distance: the equipotentials are parallel, equally spaced lines. That is the link between field and voltage — and the second unit of field, \\(\\ \\mathrm{{V}}/\\mathrm{{m}}\\), which equals \\(\\ \\mathrm{{N}}/\\mathrm{{C}}\\)."
+
+[[string]]
+id = "help.voltage.p5"
+text = "The “Capacitor” scene: the background (F1) shows the potential falling linearly between the rows, the equipotentials between them are nearly parallel lines, and the field lines (F2) are parallel segments from the pluses to the minuses. The probe (F5) gives \\(\\ \\varphi\\) and \\(\\ |E|\\) at any point."
+
+[[string]]
+id = "help.voltage.predict1"
+text = "In the “Capacitor” scene, run the probe (F5) in a straight line from the upper row to the lower one. How does \\(\\ \\varphi\\) change? And \\(\\ |E|\\)?"
+
+[[string]]
+id = "help.voltage.predict2"
+text = "What kinetic energy does a charge of \\(\\ +1\\) gain if it flies from the upper row to the lower one?"
+
+[[string]]
+id = "help.voltage.q1"
+text = "Why is the field measured both in \\(\\ \\mathrm{{N}}/\\mathrm{{C}}\\) and in \\(\\ \\mathrm{{V}}/\\mathrm{{m}}\\)?"
+
+[[string]]
+id = "help.voltage.q2"
+text = "Is a high voltage dangerous by itself?"
+
+[[string]]
+id = "help.voltage.q3"
+text = "What “flows” in a circuit: potential, or charge?"
+
+[[string]]
+id = "help.voltage.title"
+text = "Voltage and a uniform field"
+
+[[string]]
+id = "help.voltage.try"
+text = "Try it: “Capacitor” with potential, lines, and a test charge"
+
+[[string]]
+id = "help.work_motion.a1"
+text = "Potential energy is the field’s stored ability to do work. When the field does positive work (it speeds a charge up), it spends that store, so \\(\\ U\\) decreases. When an outside force works against the field (it pushes like charges together), the field’s \\(\\ W\\) is negative, and the store is refilled. A falling stone is the same story: gravity does positive work, and the potential energy of the height falls."
+
+[[string]]
+id = "help.work_motion.a2"
+text = "That the force points toward decreasing \\(\\ U\\): \\(\\ F = -\\frac{{dU}}{{dx}}\\). From rest, the system therefore starts downhill on \\(\\ U\\) and, if there is friction or an inelastic collision, it eventually settles at a minimum of \\(\\ U\\). With no losses it overshoots the minimum and oscillates around it — \\(\\ U\\) falls and then rises, while \\(\\ K + U\\) stays constant."
+
+[[string]]
+id = "help.work_motion.a3"
+text = "Through the work of the field. On each small step the field does work \\(\\ dW\\): \\(\\ K\\) grows by exactly that much, and \\(\\ U\\) falls by exactly that much. There is no separate mechanism of “flowing”. It is one process, written two ways."
+
+[[string]]
+id = "help.work_motion.a4"
+text = "Almost, with known exceptions. The integrator (the appendix) keeps \\(\\ K + U\\) to about a tenth of a percent: an automatic test checks that over 20,000 steps. Inelastic collisions (coefficient 0.8) remove kinetic energy, the speed cap clips it on very close flybys, and dragging with the mouse adds energy from outside."
+
+[[string]]
+id = "help.work_motion.answer1"
+text = "In opposite phase: when the charge is closer to the center, \\(\\ U\\) is more negative and \\(\\ K\\) is larger; when it is farther, the reverse. Their sum \\(\\ E\\) on the panel (at the new \\(\\ k\\)) hardly changes."
+
+[[string]]
+id = "help.work_motion.answer2"
+text = "It falls because of inelastic collisions: at each impact some kinetic energy disappears (in reality it would have become heat). With collisions off, the total energy is nearly constant. Opposite charges pass through one another and are fast at the moment they meet, then slow down again. They started from rest, so not every one flies off forever — only those that a few neighbors sling outward."
+
+[[string]]
+id = "help.work_motion.kicker"
+text = "TOPIC 13"
+
+[[string]]
+id = "help.work_motion.legend1"
+text = "the work of the field on the path from A to B: the sum of force times small displacements."
+
+[[string]]
+id = "help.work_motion.legend2"
+text = "the dot product: only the component of the force along the displacement does work."
+
+[[string]]
+id = "help.work_motion.legend3"
+text = "the change in kinetic energy — the sum of the energies of motion of every free charge."
+
+[[string]]
+id = "help.work_motion.legend4"
+text = "the change in the potential energy of the system."
+
+[[string]]
+id = "help.work_motion.p1"
+text = "The work of a force is how much the force helps the motion: the force times the displacement along it, added up along the path. The total work of all the forces equals the change in the kinetic energy of the body (the work–energy theorem). For an electrostatic field, as for any conservative force, that same work can be written through the potential energy: it equals the drop in potential energy, \\(\\ \\Delta U = -W\\)."
+
+[[string]]
+id = "help.work_motion.p2"
+text = "Put the two facts together: what the field adds to the kinetic energy, it takes from the potential energy. The sum \\(\\ K + U\\) does not change — that is conservation of mechanical energy. Potential energy turns into kinetic energy and back, as in a pendulum."
+
+[[string]]
+id = "help.work_motion.p3"
+text = "The phrase “a system moves toward lower potential energy” needs a precise reading. The force always points downhill on \\(\\ U\\), so a system released from rest starts toward lower \\(\\ U\\). Inertia can then carry it back up the slope: a charge on an elliptical orbit moves closer to the center and then farther away, and its \\(\\ U\\) falls and then rises. Only the sum \\(\\ K + U\\) stays fixed."
+
+[[string]]
+id = "help.work_motion.p4"
+text = "Where does conservation of energy come from? The deep answer is Noether’s theorem: the laws of physics are the same today and tomorrow (symmetry under a shift in time), and from that symmetry it follows that the total energy of an isolated system is conserved."
+
+[[string]]
+id = "help.work_motion.p5"
+text = "The energy panel shows \\(\\ K\\) (the kinetic energy of the free charges), \\(\\ U\\) (the sum over pairs), and \\(\\ E = K + U\\). Trails (F6) show what that exchange of energy looks like in the motion."
+
+[[string]]
+id = "help.work_motion.predict1"
+text = "In the “Orbit” scene, raise \\(\\ k\\) with the slider so the orbit becomes elliptical. How do \\(\\ K\\) and \\(\\ U\\) behave on the panel?"
+
+[[string]]
+id = "help.work_motion.predict2"
+text = "In “Swarm”, watch the total energy \\(\\ E = K + U\\). Why does it fall over time? What changes if you turn collisions off (K)?"
+
+[[string]]
+id = "help.work_motion.q1"
+text = "Why is \\(\\ \\Delta U = -W\\), with that minus sign?"
+
+[[string]]
+id = "help.work_motion.q2"
+text = "What does “a system moves toward lower potential energy” actually mean?"
+
+[[string]]
+id = "help.work_motion.q3"
+text = "How exactly does potential energy turn into kinetic energy?"
+
+[[string]]
+id = "help.work_motion.q4"
+text = "Does the program conserve energy?"
+
+[[string]]
+id = "help.work_motion.title"
+text = "The work of the field, and motion"
+
+[[string]]
+id = "help.work_motion.try"
+text = "Try it: “Orbit” with potential and trails"
+
+[[string]]
+id = "panel.charges"
+text = "Charges: free / pinned"
+
+[[string]]
+id = "panel.clear"
+text = "Clear"
+
+[[string]]
+id = "panel.energy.kinetic"
+text = "Kinetic \\(\\ K\\)"
+
+[[string]]
+id = "panel.energy.potential"
+text = "Potential \\(\\ U\\)"
+
+[[string]]
+id = "panel.energy.total"
+text = "Total \\(\\ E = K + U\\)"
+
+[[string]]
+id = "panel.eps_name"
+text = "\\(\\varepsilon\\) — softening"
+
+[[string]]
+id = "panel.help"
+text = "Reference: ideas and formulas (H)"
+
+[[string]]
+id = "panel.hint"
+text = "LMB \\(\\ +q\\) · RMB \\(\\ -q\\) / delete · wheel \\(\\ |q|\\) or zoom · MMB camera · Tab panel"
+
+[[string]]
+id = "panel.k_name"
+text = "\\(k\\) — Coulomb constant"
+
+[[string]]
+id = "panel.layer.collisions"
+text = "Collisions"
+
+[[string]]
+id = "panel.layer.flow"
+text = "Flow"
+
+[[string]]
+id = "panel.layer.grid"
+text = "Vector grid \\(\\ E\\)"
+
+[[string]]
+id = "panel.layer.lines"
+text = "Field lines"
+
+[[string]]
+id = "panel.layer.potential"
+text = "Potential \\(\\ \\varphi\\)"
+
+[[string]]
+id = "panel.layer.probe"
+text = "Test charge"
+
+[[string]]
+id = "panel.layer.trails"
+text = "Trails"
+
+[[string]]
+id = "panel.magnetic.b_ext"
+text = "External \\(B_z\\)"
+
+[[string]]
+id = "panel.magnetic.field"
+text = "Field \\(B\\)"
+
+[[string]]
+id = "panel.magnetic.force"
+text = "Lorentz force"
+
+[[string]]
+id = "panel.pause"
+text = "Pause (Space)"
+
+[[string]]
+id = "panel.preset.capacitor"
+text = "4 Capacitor"
+
+[[string]]
+id = "panel.preset.dipole"
+text = "1 Dipole"
+
+[[string]]
+id = "panel.preset.like_pair"
+text = "2 Like charges"
+
+[[string]]
+id = "panel.preset.orbit"
+text = "5 Orbit"
+
+[[string]]
+id = "panel.preset.quadrupole"
+text = "3 Quadrupole"
+
+[[string]]
+id = "panel.preset.rutherford"
+text = "6 Rutherford"
+
+[[string]]
+id = "panel.preset.swarm"
+text = "7 Swarm"
+
+[[string]]
+id = "panel.q_name"
+text = "\\(|q|\\) of new charges"
+
+[[string]]
+id = "panel.resume"
+text = "Start (Space)"
+
+[[string]]
+id = "panel.section.energy"
+text = "ENERGY"
+
+[[string]]
+id = "panel.section.layers"
+text = "LAYERS"
+
+[[string]]
+id = "panel.section.magnetic"
+text = "MAGNETIC FIELD"
+
+[[string]]
+id = "panel.section.params"
+text = "PARAMETERS"
+
+[[string]]
+id = "panel.section.scenes"
+text = "SCENES"
+
+[[string]]
+id = "panel.section.time"
+text = "TIME"
+
+[[string]]
+id = "panel.step"
+text = "Step"
+
+[[string]]
+id = "panel.time_scale"
+text = "Time scale (↑ ↓)"
+
+[[string]]
+id = "panel.title"
+text = "Electrostatics"
+
+[[string]]
+id = "preset.capacitor"
+text = "Capacitor"
+
+[[string]]
+id = "preset.dipole"
+text = "Dipole"
+
+[[string]]
+id = "preset.like_pair"
+text = "Like charges"
+
+[[string]]
+id = "preset.orbit"
+text = "Orbit"
+
+[[string]]
+id = "preset.quadrupole"
+text = "Quadrupole"
+
+[[string]]
+id = "preset.rutherford"
+text = "Rutherford scattering"
+
+[[string]]
+id = "preset.swarm"
+text = "Swarm"
+
+[[string]]
+id = "status.paused"
+text = "Paused"
+
+[[string]]
+id = "status.running"
+text = "Simulation"
+
+[[string]]
+id = "status.scene"
+text = "Scene: {name}"
+
+[[string]]
+id = "status.scene_empty"
+text = "Scene: empty"
+
+[[string]]
+id = "welcome.again"
+text = "Later, this is the first topic in the reference (H)."
+
+[[string]]
+id = "welcome.clear"
+text = "Remove every charge."
+
+[[string]]
+id = "welcome.collisions"
+text = "Collisions. On, the balls bounce and lose a little speed. Off, they pass through one another, which a real balloon would not."
+
+[[string]]
+id = "welcome.down"
+text = "Halve the time scale, down to \\(\\ \\times \\frac{{1}}{{8}}\\). Inside the reference this key moves to the next topic."
+
+[[string]]
+id = "welcome.energy"
+text = "\\(K\\) is kinetic energy, \\(\\ U\\) is potential, \\(\\ E = K + U\\) is the total. A bounce spends a little \\(\\ K\\). Dragging a charge with the mouse adds energy from outside."
+
+[[string]]
+id = "welcome.esc"
+text = "Close this screen. Also closes the reference."
+
+[[string]]
+id = "welcome.f1"
+text = "Potential, as a color wash."
+
+[[string]]
+id = "welcome.f2"
+text = "Field lines."
+
+[[string]]
+id = "welcome.f3"
+text = "A grid of arrows for the field \\(\\ E\\)."
+
+[[string]]
+id = "welcome.f4"
+text = "Tracers that drift along the field. They keep moving while the simulation is paused."
+
+[[string]]
+id = "welcome.f5"
+text = "The numbers beside the cursor: the magnitude of \\(\\ E\\), its components, and the potential. Hidden while the cursor is on a charge."
+
+[[string]]
+id = "welcome.f6"
+text = "Trails behind moving charges."
+
+[[string]]
+id = "welcome.flip"
+text = "Flip the sign of the charge under the cursor."
+
+[[string]]
+id = "welcome.h.camera"
+text = "CAMERA AND WINDOW"
+
+[[string]]
+id = "welcome.h.charge"
+text = "CHARGE UNDER THE CURSOR"
+
+[[string]]
+id = "welcome.h.layers"
+text = "WHAT IS DRAWN"
+
+[[string]]
+id = "welcome.h.mouse"
+text = "MOUSE"
+
+[[string]]
+id = "welcome.h.panel"
+text = "ONLY ON THE PANEL"
+
+[[string]]
+id = "welcome.h.scenes"
+text = "SCENES"
+
+[[string]]
+id = "welcome.h.time"
+text = "TIME"
+
+[[string]]
+id = "welcome.help"
+text = "Open the reference. This page is its first topic; the others are the ideas and the formulas."
+
+[[string]]
+id = "welcome.help_keys"
+text = "While the reference is open, ↑ and ↓ pick a topic, Enter runs “Try it”, and Esc closes it."
+
+[[string]]
+id = "welcome.home"
+text = "Put the camera back where it started."
+
+[[string]]
+id = "welcome.key.lmb"
+text = "LMB"
+
+[[string]]
+id = "welcome.key.mmb"
+text = "MMB"
+
+[[string]]
+id = "welcome.key.rmb"
+text = "RMB"
+
+[[string]]
+id = "welcome.key.wheel"
+text = "Wheel"
+
+[[string]]
+id = "welcome.kicker"
+text = "WELCOME"
+
+[[string]]
+id = "welcome.lang"
+text = "УК and EN switch the language. Letter keys stay as printed; the mouse labels follow the language."
+
+[[string]]
+id = "welcome.lmb_drag"
+text = "On a charge, drag it. While you hold it, it stays put, and it has no speed when you let go."
+
+[[string]]
+id = "welcome.lmb_place"
+text = "On empty space, place a positive charge. Its size is the \\(\\ |q|\\) slider."
+
+[[string]]
+id = "welcome.mmb"
+text = "Drag to move the camera."
+
+[[string]]
+id = "welcome.note"
+text = "Picture each charge as a charged balloon in a vacuum, not as an electron. A balloon has a size and bounces off its neighbors. A vacuum means no air drag: only the electric force changes the motion, and a soft bounce spends a little energy. An electron has no path to draw, and the Orbit scene is not an atom. The reference (H) says where the model parts from real particles."
+
+[[string]]
+id = "welcome.p1"
+text = "A sandbox for electric and magnetic fields. Charges sit on the screen and move under the Coulomb and Lorentz forces, and the program draws the field, the potential and the energy. Moving charges make a magnetic field; switch the Lorentz force on (M) to let magnetic fields act on them."
+
+[[string]]
+id = "welcome.p2"
+text = "Orange is positive, blue is negative. A white ring means pinned: that charge does not move. Dipole, like charges, quadrupole and the capacitor start pinned. Orbit, Rutherford and Swarm already have charges in motion. The L key over a charge pins or unpins it."
+
+[[string]]
+id = "welcome.panel_lead"
+text = "The buttons on the right repeat the keys above. The sliders and the energy are only on the panel."
+
+[[string]]
+id = "welcome.pin"
+text = "Pin or unpin the charge under the cursor."
+
+[[string]]
+id = "welcome.preset.capacitor"
+text = "Two pinned rows, positive opposite negative, like plates of a capacitor."
+
+[[string]]
+id = "welcome.preset.dipole"
+text = "A positive and a negative charge, both pinned. The field of a dipole."
+
+[[string]]
+id = "welcome.preset.like_pair"
+text = "Two positive charges, pinned. Unpinned, they fly apart."
+
+[[string]]
+id = "welcome.preset.orbit"
+text = "A negative charge circling a pinned positive one. A classical orbit, not an atom."
+
+[[string]]
+id = "welcome.preset.quadrupole"
+text = "Four pinned charges, signs alternating around a square."
+
+[[string]]
+id = "welcome.preset.rutherford"
+text = "Small positive charges fired past a pinned positive one. The trails bend."
+
+[[string]]
+id = "welcome.preset.swarm"
+text = "Many free charges of both signs, released from rest. They pull together and bounce."
+
+[[string]]
+id = "welcome.reload"
+text = "Load the current scene again."
+
+[[string]]
+id = "welcome.remove"
+text = "Remove the charge under the cursor."
+
+[[string]]
+id = "welcome.right"
+text = "While paused, advance one step. Hold the key to keep stepping."
+
+[[string]]
+id = "welcome.rmb_delete"
+text = "On a charge, remove it."
+
+[[string]]
+id = "welcome.rmb_place"
+text = "On empty space, place a negative charge of the same size."
+
+[[string]]
+id = "welcome.sliders"
+text = "\\(k\\) is how strong the force is. \\(\\ \\varepsilon\\) is softening: it keeps the force finite when charges meet. \\(\\ |q|\\) is the size of the next charge you place."
+
+[[string]]
+id = "welcome.space"
+text = "Pause or resume."
+
+[[string]]
+id = "welcome.start"
+text = "Start"
+
+[[string]]
+id = "welcome.tab"
+text = "Show or hide the panel."
+
+[[string]]
+id = "welcome.title"
+text = "Electromagnetic Field"
+
+[[string]]
+id = "welcome.up"
+text = "Double the time scale, up to \\(\\ \\times 8\\). Inside the reference this key moves to the previous topic."
+
+[[string]]
+id = "welcome.wheel_q"
+text = "Over a charge, change \\(\\ |q|\\) by \\(\\ 0.25\\), from \\(\\ 0.25\\) to \\(\\ 5\\). The sign stays."
+
+[[string]]
+id = "welcome.wheel_zoom"
+text = "Anywhere else, zoom toward the cursor."
+
+[[string]]
+id = "panel.preset.cyclotron"
+text = "8 Cyclotron"
+
+[[string]]
+id = "panel.preset.exb_drift"
+text = "9 E×B drift"
+
+[[string]]
+id = "preset.cyclotron"
+text = "Cyclotron"
+
+[[string]]
+id = "preset.exb_drift"
+text = "E×B drift"
+
+[[string]]
+id = "panel.magnetic.light_speed"
+text = "Speed of light \\(c\\)"
+
+[[string]]
+id = "panel.speed_ratio"
+text = "Fastest charge \\(v/c\\)"
+
+[[string]]
+id = "welcome.preset.cyclotron"
+text = "Free charges in a uniform magnetic field circle with one common period, whatever their speed."
+
+[[string]]
+id = "welcome.preset.exb_drift"
+text = "A capacitor in a magnetic field: charges released between the plates roll along loops and drift sideways, both signs the same way."
+
+[[string]]
+id = "welcome.f7"
+text = "Magnetic field marks: a ring with a dot points out of the screen, a ring with a cross into it."
+
+[[string]]
+id = "welcome.magnetic_force"
+text = "Lorentz force on or off: whether magnetic fields act on moving charges."
+
+[[string]]
+id = "panel.preset.coil"
+text = "0 Coil"
+
+[[string]]
+id = "preset.coil"
+text = "Coil"
+
+[[string]]
+id = "welcome.preset.coil"
+text = "A current loop with a non-uniform field: charges circle and slowly drift around the coil, + and − in opposite directions."
