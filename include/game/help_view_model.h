@@ -11,7 +11,7 @@
 
 namespace game {
 
-inline constexpr std::size_t kHelpTopicCount = 17;
+inline constexpr std::size_t kHelpTopicCount = 18;
 // "Predict, then check" questions per topic; answers stay collapsed until revealed.
 inline constexpr std::size_t kHelpPredictionsPerTopic = 3;
 
@@ -37,6 +37,9 @@ public:
 
     engine::ui::RelayCommand tryIt;
 
+    // Rewrites the show/hide labels from the active locale without changing which answers are open.
+    void set_reveal_labels(std::string show, std::string hide);
+
     // Bindings reveal1..3 / answer1Display..3 / revealLabel1..3 for the "predict, then check" blocks.
     std::array<engine::ui::RelayCommand, kHelpPredictionsPerTopic> reveal;
     std::array<engine::ui::Bindable<std::string>, kHelpPredictionsPerTopic> answer_display;
@@ -46,6 +49,8 @@ private:
     void toggle(std::size_t i);
 
     std::array<bool, kHelpPredictionsPerTopic> revealed_{};
+    std::string show_;
+    std::string hide_;
 };
 
 // Data context of assets/ui/help.xml. Member names must match the XML binding paths exactly.
@@ -56,6 +61,12 @@ public:
     engine::ui::Bindable<std::string> helpDisplay{std::string("none")};
     engine::ui::BindableList<std::shared_ptr<HelpNavItem>> navItems;
     engine::ui::RelayCommand closeHelp;
+    engine::ui::RelayCommand localeEn;
+    engine::ui::RelayCommand localeUk;
+    engine::ui::Bindable<std::string> localeEnBg{std::string("#6366f133")};
+    engine::ui::Bindable<std::string> localeEnFg{std::string("#ffffff")};
+    engine::ui::Bindable<std::string> localeUkBg{std::string("#ffffff14")};
+    engine::ui::Bindable<std::string> localeUkFg{std::string("#aab1c3")};
     // Exact px geometry of the help window (see Help::update_layout for why it is not CSS max-width).
     engine::ui::Bindable<std::string> windowLeft{std::string("36")};
     engine::ui::Bindable<std::string> windowWidth{std::string("1208")};
@@ -63,6 +74,7 @@ public:
     engine::ui::Bindable<float> navScroll;
 
     // One ItemsControl per topic file; shown with display:block-like values, hidden with "none".
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicUsing;
     // I. Basics
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicCharge;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicCoulomb;
@@ -85,6 +97,7 @@ public:
     // Appendix
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicSimulation;
 
+    engine::ui::Bindable<std::string> topicUsingDisplay;
     engine::ui::Bindable<std::string> topicChargeDisplay;
     engine::ui::Bindable<std::string> topicCoulombDisplay;
     engine::ui::Bindable<std::string> topicFieldDisplay;

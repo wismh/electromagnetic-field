@@ -1,67 +1,67 @@
 <!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
      HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
-    <Label class="kicker" text="ТЕМА 16"/>
-    <Label class="title" text="Загальна картина"/>
-    <Label class="h" text="ІДЕЯ"/>
-    <Label class="p" text="Уся базова електростатика складається в один ланцюжок. Заряди-джерела створюють поле E. Поле визначає силу на будь-який заряд, F = qE. Те саме поле можна описати потенціалом φ, бо E = −grad φ. Потенціал переводить опис в енергетичну мову: U = qφ. Зміна енергії — це робота поля, ΔU = −W, яка стає кінетичною енергією руху."/>
-    <Label class="p" text="Тобто E, φ і U — не три окремі теорії, а три способи описати ту саму систему: через силу, через енергію на одиницю заряду і через енергію конкретної конфігурації. Обирають той, що зручніший для питання."/>
-    <Label class="h" text="ЛАНЦЮЖОК"/>
+    <Label class="kicker" text="{tr help.overview.kicker}"/>
+    <Label class="title" text="{tr help.overview.title}"/>
+    <Label class="h" text="{tr help.h.idea}"/>
+    <Label class="p" text="{tr help.overview.p1}"/>
+    <Label class="p" text="{tr help.overview.p2}"/>
+    <Label class="h" text="{tr help.overview.s1}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="Q \;\to\; \vec{E} \;\to\; \vec{F} = q \, \vec{E}"/>
         <Math class="display-math" display="true" formula="\vec{E} = -\nabla \varphi \;\to\; U = q \, \varphi"/>
         <Math class="display-math" display="true" formula="\Delta U = -W \;\to\; \Delta K = W \;\to\; K + U = \mathrm{const}"/>
     </Stack>
-    <Label class="h" text="ЧОТИРИ ВЕЛИЧИНИ"/>
+    <Label class="h" text="{tr help.overview.s2}"/>
     <Stack class="legend" direction="vertical">
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\vec{E}"/>
             </Stack>
-            <Label class="legend-text" text="поле — вектор, сила на одиницю заряду (Н/Кл = В/м). Властивість точки."/>
+            <Label class="legend-text" text="{tr help.overview.legend1}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\varphi"/>
             </Stack>
-            <Label class="legend-text" text="потенціал — скаляр, енергія на одиницю заряду (В = Дж/Кл). Властивість точки."/>
+            <Label class="legend-text" text="{tr help.overview.legend2}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\vec{F} = q \vec{E}"/>
             </Stack>
-            <Label class="legend-text" text="сила — вектор (Н). Властивість конкретного заряду в точці."/>
+            <Label class="legend-text" text="{tr help.overview.legend3}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="U = q \varphi"/>
             </Stack>
-            <Label class="legend-text" text="потенціальна енергія — скаляр (Дж). Властивість конфігурації зарядів."/>
+            <Label class="legend-text" text="{tr help.overview.legend4}"/>
         </Stack>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Три головні ідеї: E каже, що станеться із зарядом у точці (яку силу на одиницю заряду він відчує); φ описує електричний стан точки через енергію на одиницю заряду; U — енергетичний стан конкретної конфігурації. Фізичний зміст мають різниці φ і U, а не їхні значення."/>
+        <Label class="note-text" text="{tr help.overview.note}"/>
     </Stack>
-    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Label class="h" text="{tr help.h.faq}"/>
     <Stack class="faq" direction="vertical">
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Коли зручніше думати силою, а коли енергією?"/>
-            <Label class="qa-a" text="Сила й поле потрібні, щоб знайти траєкторію: напрям руху, прискорення, де буде заряд за секунду. Енергія й потенціал відповідають на питання «що буде в кінці» без розв'язання руху: з якою швидкістю заряд прилетить, чи дістанеться він точки, чи втече на нескінченність."/>
+            <Label class="qa-q" text="{tr help.overview.q1}"/>
+            <Label class="qa-a" text="{tr help.overview.a1}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Що в цій картині зміниться, коли заряди рухатимуться швидко?"/>
-            <Label class="qa-a" text="З'явиться магнітне поле, і сила стане F = q(E + v × B). Електричне поле перестане бути лише нахилом потенціалу: змінне магнітне поле створює вихрове E, для якого робота залежить від шляху. Це наступний етап програми."/>
+            <Label class="qa-q" text="{tr help.overview.q2}"/>
+            <Label class="qa-a" text="{tr help.overview.a2}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Label class="h" text="{tr help.h.predict}"/>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="Відомо лише φ у точках A і B. Чи можна знайти швидкість, з якою заряд, відпущений з A, прилетить у B? А час польоту?"/>
+        <Label class="predict-q" text="{tr help.overview.predict}"/>
         <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
-            <Label class="predict-a-text" text="Швидкість — так, із збереження енергії: добуток заряду на різницю потенціалів між A і B дорівнює приросту кінетичної енергії. Час — ні: для нього потрібна траєкторія, тобто поле вздовж усього шляху, а не лише значення в двох точках."/>
+            <Label class="predict-a-text" text="{tr help.overview.answer}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
-    <Label class="p" text="Кожна ланка ланцюжка має свій шар: сітка векторів і пробник — E (F3, F5); фон з еквіпотенціалями — φ (F1); силові лінії й потік — структура поля (F2, F4); панель енергії — U, K і E; сліди — рух, у який переходить енергія (F6)."/>
-    <Button class="try" content="Спробуй: диполь з усіма шарами" command="{binding tryIt}"/>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.overview.p3}"/>
+    <Button class="try" content="{tr help.overview.try}" command="{binding tryIt}"/>
 </Stack>

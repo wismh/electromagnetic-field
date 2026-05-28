@@ -1,70 +1,70 @@
 <!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
      HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
-    <Label class="kicker" text="ТЕМА 15"/>
-    <Label class="title" text="Електрика і гравітація"/>
-    <Label class="h" text="ІДЕЯ"/>
-    <Label class="p" text="Закон тяжіння Ньютона має ту саму будову, що й закон Кулона: сила пропорційна добутку «зарядів» (для гравітації — мас) і обернено пропорційна квадрату відстані. Тому вся побудова цього довідника — поле як сила на одиницю, потенціал як енергія на одиницю, ΔU = −W — працює і для гравітації майже дослівно."/>
-    <Label class="p" text="Головна відмінність — знаки. Маса буває лише додатною, і гравітація лише притягує. Тому гравітаційна потенціальна енергія завжди від'ємна, а системи під дією гравітації охоче утворюють зв'язані стани (планети, зорі, галактики). Електричні заряди бувають двох знаків, і речовина в цілому нейтральна: внески компенсуються."/>
-    <Label class="p" text="Звідси парадокс: електрична взаємодія між протонами сильніша за гравітаційну приблизно на 36 порядків, але у великому масштабі панує гравітація. Заряди нейтралізують один одного, а маси лише додаються — у планети вони накопичуються, а заряди скомпенсовані."/>
-    <Label class="p" text="Ще одна відмінність: прискорення в гравітаційному полі однакове для всіх тіл (маса і в силі, і в інерції та скорочується), а в електричному залежить від відношення q/m. Тому всі тіла падають однаково, а електрони й протони в тому самому полі розганяються дуже по-різному."/>
-    <Label class="h" text="ФОРМУЛИ"/>
+    <Label class="kicker" text="{tr help.gravity.kicker}"/>
+    <Label class="title" text="{tr help.gravity.title}"/>
+    <Label class="h" text="{tr help.h.idea}"/>
+    <Label class="p" text="{tr help.gravity.p1}"/>
+    <Label class="p" text="{tr help.gravity.p2}"/>
+    <Label class="p" text="{tr help.gravity.p3}"/>
+    <Label class="p" text="{tr help.gravity.p4}"/>
+    <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="F = k \, \frac{|q_1 q_2|}{r^2} \qquad F = G \, \frac{m_1 m_2}{r^2}"/>
         <Math class="display-math" display="true" formula="U = k \, \frac{Q q}{r} \qquad U = -G \, \frac{M m}{r}"/>
         <Math class="display-math" display="true" formula="a = \frac{q}{m} E \qquad a = g"/>
     </Stack>
-    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Label class="h" text="{tr help.h.legend}"/>
     <Stack class="legend" direction="vertical">
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="G"/>
             </Stack>
-            <Label class="legend-text" text="гравітаційна стала. У формулі енергії стоїть мінус, бо маси лише притягуються."/>
+            <Label class="legend-text" text="{tr help.gravity.legend1}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="m, \, M"/>
             </Stack>
-            <Label class="legend-text" text="маси — гравітаційні «заряди», завжди додатні."/>
+            <Label class="legend-text" text="{tr help.gravity.legend2}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="g"/>
             </Stack>
-            <Label class="legend-text" text="напруженість гравітаційного поля — прискорення вільного падіння, однакове для всіх тіл."/>
+            <Label class="legend-text" text="{tr help.gravity.legend3}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\frac{q}{m}"/>
             </Stack>
-            <Label class="legend-text" text="питомий заряд: визначає, як сильно тіло розганяє електричне поле."/>
+            <Label class="legend-text" text="{tr help.gravity.legend4}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Label class="h" text="{tr help.h.faq}"/>
     <Stack class="faq" direction="vertical">
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чому гравітація панує в космосі, хоча вона така слабка?"/>
-            <Label class="qa-a" text="Бо вона не компенсується. Заряди обох знаків нейтралізують один одного, тож велике тіло в цілому майже не заряджене і електрично ледь діє на інші. Маси ж лише додаються: у планети їх величезна кількість, і всі тягнуть в один бік."/>
+            <Label class="qa-q" text="{tr help.gravity.q1}"/>
+            <Label class="qa-a" text="{tr help.gravity.a1}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чи можна екранувати гравітацію, як електричне поле?"/>
-            <Label class="qa-a" text="Ні. Електричне поле можна послабити, розташувавши поруч протилежні заряди (так працює провідна оболонка). Для гравітації це вимагало б від'ємної маси, якої в природі не знайдено."/>
+            <Label class="qa-q" text="{tr help.gravity.q2}"/>
+            <Label class="qa-a" text="{tr help.gravity.a2}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чи рухається заряд на кулонівській орбіті за законами Кеплера?"/>
-            <Label class="qa-a" text="Так: будь-яка сила, обернено пропорційна квадрату відстані й напрямлена до центру, дає еліпси, параболи чи гіперболи і ті самі закони Кеплера. Тому орбіта в програмі виглядає як планетна, а траєкторії в «Резерфорді» — як прольоти комет."/>
+            <Label class="qa-q" text="{tr help.gravity.q3}"/>
+            <Label class="qa-a" text="{tr help.gravity.a3}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Label class="h" text="{tr help.h.predict}"/>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="У сцені «Орбіта» збільш k — орбіта стане еліпсом. Де заряд рухається найшвидше?"/>
+        <Label class="predict-q" text="{tr help.gravity.predict}"/>
         <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
-            <Label class="predict-a-text" text="У точці, найближчій до центру (як планета в перигелії): там U найменша, тож K найбільша. Це другий закон Кеплера — за однакові проміжки часу радіус описує однакові площі."/>
+            <Label class="predict-a-text" text="{tr help.gravity.answer}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
-    <Label class="p" text="Гравітації в симуляції немає, але сцени «Орбіта» і «Резерфорд» — точні електричні аналоги планетної орбіти й прольоту комети: та сама сила, обернено пропорційна квадрату відстані, лише з електричними зарядами замість мас."/>
-    <Button class="try" content="Спробуй: «Орбіта» — кулонівська «планета»" command="{binding tryIt}"/>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.gravity.p5}"/>
+    <Button class="try" content="{tr help.gravity.try}" command="{binding tryIt}"/>
 </Stack>

@@ -1,74 +1,74 @@
 <!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
      HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
-    <Label class="kicker" text="ТЕМА 4"/>
-    <Label class="title" text="Суперпозиція"/>
-    <Label class="h" text="ІДЕЯ"/>
-    <Label class="p" text="Поле кількох зарядів дорівнює векторній сумі полів, які створив би кожен заряд окремо. Поле одного заряду не залежить від того, чи є поруч інші: при заданих положеннях зарядів кожен дає свій внесок, і ці внески просто складаються. Те саме стосується сил."/>
-    <Label class="p" text="Складати треба саме як вектори — з урахуванням напрямів. Тому поле двох зарядів може бути слабшим, ніж поле одного з них, і навіть дорівнювати нулю: внески можуть компенсувати один одного. На практиці вектори зручно складати покомпонентно: окремо всі x-складові, окремо всі y-складові."/>
-    <Label class="p" text="Суперпозиція — не очевидна річ, а властивість природи: рівняння електромагнетизму лінійні. Саме вона дозволяє розкласти будь-яку складну систему зарядів на прості точкові й порахувати поле як суму."/>
-    <Label class="h" text="ФОРМУЛИ"/>
+    <Label class="kicker" text="{tr help.superposition.kicker}"/>
+    <Label class="title" text="{tr help.superposition.title}"/>
+    <Label class="h" text="{tr help.h.idea}"/>
+    <Label class="p" text="{tr help.superposition.p1}"/>
+    <Label class="p" text="{tr help.superposition.p2}"/>
+    <Label class="p" text="{tr help.superposition.p3}"/>
+    <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="\vec{E} = \sum_i \vec{E}_i = \sum_i k \, \frac{q_i}{r_i^2} \cdot \frac{\vec{r}_i}{r_i}"/>
         <Math class="display-math" display="true" formula="E_x = \sum_i E_{x,i} \qquad E_y = \sum_i E_{y,i}"/>
     </Stack>
-    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Label class="h" text="{tr help.h.legend}"/>
     <Stack class="legend" direction="vertical">
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\vec{E}_i"/>
             </Stack>
-            <Label class="legend-text" text="поле, яке створив би заряд i, якби був один."/>
+            <Label class="legend-text" text="{tr help.superposition.legend1}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="q_i"/>
             </Stack>
-            <Label class="legend-text" text="заряд i зі знаком: від'ємний заряд розвертає свій внесок на протилежний."/>
+            <Label class="legend-text" text="{tr help.superposition.legend2}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\vec{r}_i"/>
             </Stack>
-            <Label class="legend-text" text="вектор від заряду i до точки, де шукаємо поле; його довжина — відстань від заряду до точки."/>
+            <Label class="legend-text" text="{tr help.superposition.legend3}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="E_x, \, E_y"/>
             </Stack>
-            <Label class="legend-text" text="компоненти сумарного поля: кожна — звичайна сума чисел."/>
+            <Label class="legend-text" text="{tr help.superposition.legend4}"/>
         </Stack>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Потенціал складається ще простіше — як звичайні числа, без напрямів (тема 7). Тому складні поля часто зручніше шукати через потенціал."/>
+        <Label class="note-text" text="{tr help.superposition.note}"/>
     </Stack>
-    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Label class="h" text="{tr help.h.faq}"/>
     <Stack class="faq" direction="vertical">
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Хіба заряди не впливають один на одного? Чому їхні поля просто додаються?"/>
-            <Label class="qa-a" text="Впливають — силами, і якщо заряди вільні, вони зрушать одне одного. Але для заданого розташування поле кожного заряду в точці таке саме, як якби він був сам: присутність інших зарядів його не спотворює. Це експериментальний факт, закладений у лінійність рівнянь Максвелла. Порушується він хіба що в надзвичайно сильних полях, де вже діє квантова електродинаміка."/>
+            <Label class="qa-q" text="{tr help.superposition.q1}"/>
+            <Label class="qa-a" text="{tr help.superposition.a1}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чому поле квадруполя далеко від нього таке слабке?"/>
-            <Label class="qa-a" text="Бо внески майже повністю компенсуються. Сумарний заряд квадруполя нуль, тож далеко немає «головного» внеску, що спадає як квадрат відстані; не залишається і дипольного внеску. Залишкове поле спадає обернено пропорційно четвертому степеню відстані — значно швидше, ніж поле одного заряду."/>
+            <Label class="qa-q" text="{tr help.superposition.q2}"/>
+            <Label class="qa-a" text="{tr help.superposition.a2}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Label class="h" text="{tr help.h.predict}"/>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="У сцені «Квадруполь» чотири заряди стоять у кутах квадрата, знаки чергуються. Яке поле в центрі квадрата?"/>
+        <Label class="predict-q" text="{tr help.superposition.predict1}"/>
         <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
-            <Label class="predict-a-text" text="Нуль. Кожна пара протилежних кутів містить заряди однакового знака на однаковій відстані від центру, тож їхні поля в центрі рівні й протилежні. Перевір пробником (F5): у центрі стрілка зникає."/>
+            <Label class="predict-a-text" text="{tr help.superposition.answer1}"/>
         </Stack>
     </Stack>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="У диполі (+1 зліва, −1 справа) куди напрямлене поле посередині між зарядами й чи воно сильніше, ніж поле одного заряду там само?"/>
+        <Label class="predict-q" text="{tr help.superposition.predict2}"/>
         <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
-            <Label class="predict-a-text" text="Праворуч, від плюса до мінуса, і вдвічі сильніше: поле від +1 напрямлене від нього (праворуч), поле до −1 напрямлене до нього (теж праворуч), тож внески додаються."/>
+            <Label class="predict-a-text" text="{tr help.superposition.answer2}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
-    <Label class="p" text="Програма рахує поле саме так: у кожній точці вона перебирає всі заряди й складає їхні внески. Так отримано і сітку векторів (F3), і силові лінії (F2), і значення пробника (F5), і сили між зарядами."/>
-    <Button class="try" content="Спробуй: «Квадруполь» із сіткою векторів і пробним зарядом" command="{binding tryIt}"/>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.superposition.p4}"/>
+    <Button class="try" content="{tr help.superposition.try}" command="{binding tryIt}"/>
 </Stack>

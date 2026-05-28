@@ -7,8 +7,14 @@
     <Stack class="backdrop" var-display="{binding helpDisplay}">
         <Stack class="window" direction="horizontal" var-wl="{binding windowLeft}" var-ww="{binding windowWidth}">
             <Stack class="nav" direction="vertical">
-                <Label class="nav-title" text="Довідник"/>
-                <Label class="nav-sub" text="Ідеї та формули симуляції"/>
+                <Label class="nav-title" text="{tr help.nav_title}"/>
+                <Label class="nav-sub" text="{tr help.nav_sub}"/>
+                <Stack class="lang" direction="horizontal">
+                    <Button class="lang" content="УК" command="{binding localeUk}" var-bg="{binding localeUkBg}"
+                            var-fg="{binding localeUkFg}"/>
+                    <Button class="lang" content="EN" command="{binding localeEn}" var-bg="{binding localeEnBg}"
+                            var-fg="{binding localeEnFg}"/>
+                </Stack>
                 <ScrollView class="nav-scroll" direction="vertical" scroll-y="{binding navScroll}">
                     <!-- One row per section header or topic; the unused half is display: none. -->
                     <ItemsControl class="nav-list" items_source="{binding navItems}">
@@ -22,14 +28,17 @@
                         </ItemTemplate>
                     </ItemsControl>
                 </ScrollView>
-                <Label class="nav-hint" text="↑ ↓ — тема · Enter — спробуй · H або Esc — закрити"/>
+                <Label class="nav-hint" text="{tr help.nav_hint}"/>
             </Stack>
             <Stack class="divider"/>
             <Stack class="main" direction="vertical">
                 <Stack class="main-bar" direction="horizontal">
-                    <Button class="close" content="Закрити" command="{binding closeHelp}"/>
+                    <Button class="close" content="{tr help.close}" command="{binding closeHelp}"/>
                 </Stack>
                 <ScrollView class="content" direction="vertical" scroll-y="{binding contentScroll}">
+                <ItemsControl class="topic" items_source="{binding topicUsing}" var-display="{binding topicUsingDisplay}">
+                    <ItemTemplate src="help_topics/howto.xml"/>
+                </ItemsControl>
                 <ItemsControl class="topic" items_source="{binding topicCharge}" var-display="{binding topicChargeDisplay}">
                     <ItemTemplate src="help_topics/charge.xml"/>
                 </ItemsControl>

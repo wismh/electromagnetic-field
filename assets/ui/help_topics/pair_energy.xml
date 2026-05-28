@@ -1,91 +1,91 @@
 <!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
      HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
-    <Label class="kicker" text="ТЕМА 11"/>
-    <Label class="title" text="Енергія пари зарядів"/>
-    <Label class="h" text="ІДЕЯ"/>
-    <Label class="p" text="Два заряди на відстані r мають спільну потенціальну енергію U = kQq/r — якщо нуль обрано при нескінченній відстані між ними. Це енергія їхньої конфігурації: вона дорівнює роботі, яку довелося б виконати, щоб звести їх з нескінченності на відстань r."/>
-    <Label class="p" text="Однойменні заряди: U &gt; 0. Щоб їх зблизити, треба виконати роботу проти відштовхування, і вона запасається. Якщо відпустити, вони розлітаються, U спадає до нуля, а запасена енергія переходить у кінетичну."/>
-    <Label class="p" text="Різнойменні заряди: U &lt; 0. Поле саме зводить їх, виконуючи додатну роботу, тож при зближенні U стає дедалі від'ємнішою, а кінетична енергія росте. Щоб розвести їх на нескінченність, енергію треба додати: U зростає до нуля — чисельно збільшується, хоча її модуль зменшується."/>
-    <Label class="p" text="Для кількох зарядів енергія — сума по всіх парах, кожна пара один раз. Саме ця величина показана на панелі як «Потенціальна U»."/>
-    <Label class="h" text="ФОРМУЛИ"/>
+    <Label class="kicker" text="{tr help.pair_energy.kicker}"/>
+    <Label class="title" text="{tr help.pair_energy.title}"/>
+    <Label class="h" text="{tr help.h.idea}"/>
+    <Label class="p" text="{tr help.pair_energy.p1}"/>
+    <Label class="p" text="{tr help.pair_energy.p2}"/>
+    <Label class="p" text="{tr help.pair_energy.p3}"/>
+    <Label class="p" text="{tr help.pair_energy.p4}"/>
+    <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="U(r) = k \, \frac{Q q}{r}"/>
         <Math class="display-math" display="true" formula="U = \sum_{i &lt; j} k \, \frac{q_i \, q_j}{r_{ij}}"/>
         <Math class="display-math" display="true" formula="\frac{m v^2}{2} = k \, \frac{Q q}{r_{\min}}"/>
     </Stack>
-    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Label class="h" text="{tr help.h.legend}"/>
     <Stack class="legend" direction="vertical">
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="U(r)"/>
             </Stack>
-            <Label class="legend-text" text="енергія пари на відстані r; нуль — при нескінченній відстані."/>
+            <Label class="legend-text" text="{tr help.pair_energy.legend1}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="Qq"/>
             </Stack>
-            <Label class="legend-text" text="добуток зарядів: його знак визначає знак U."/>
+            <Label class="legend-text" text="{tr help.pair_energy.legend2}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\sum_{i &lt; j}"/>
             </Stack>
-            <Label class="legend-text" text="сума по всіх парах зарядів, кожна пара — один раз."/>
+            <Label class="legend-text" text="{tr help.pair_energy.legend3}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="r_{ij}"/>
             </Stack>
-            <Label class="legend-text" text="відстань між зарядами i та j."/>
+            <Label class="legend-text" text="{tr help.pair_energy.legend4}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="r_{\min}"/>
             </Stack>
-            <Label class="legend-text" text="найменша відстань, на яку підлетить заряд, що летить прямо на інший однойменний."/>
+            <Label class="legend-text" text="{tr help.pair_energy.legend5}"/>
         </Stack>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Остання формула — дослід Резерфорда (1911). Альфа-частинки летіли на золоту фольгу, і деякі відскакували назад. Щоб так зупинити швидку частинку, потрібна дуже мала відстань підльоту — звідси висновок, що позитивний заряд атома зібраний у крихітному ядрі."/>
+        <Label class="note-text" text="{tr help.pair_energy.note}"/>
     </Stack>
-    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Label class="h" text="{tr help.h.faq}"/>
     <Stack class="faq" direction="vertical">
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чому для однойменних зарядів U &gt; 0?"/>
-            <Label class="qa-a" text="Бо щоб звести їх з нескінченності, треба весь час долати відштовхування — зовнішня сила виконує додатну роботу, і ця робота запасається як енергія конфігурації. Відпущена система повертає її, розлітаючись."/>
+            <Label class="qa-q" text="{tr help.pair_energy.q1}"/>
+            <Label class="qa-a" text="{tr help.pair_energy.a1}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чому для різнойменних зарядів U &lt; 0?"/>
-            <Label class="qa-a" text="Бо, зводячи їх з нескінченності, поле саме виконує додатну роботу — енергія не запасається, а віддається. Конфігурація опиняється нижче рівня «нескінченно далеко», тобто нижче нуля. Щоб повернути заряди на нескінченність, цю енергію треба віддати назад."/>
+            <Label class="qa-q" text="{tr help.pair_energy.q2}"/>
+            <Label class="qa-a" text="{tr help.pair_energy.a2}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чому при зближенні різнойменних зарядів U стає від'ємнішою, а при розділенні росте до нуля?"/>
-            <Label class="qa-a" text="U = kQq/r при Qq &lt; 0 — від'ємне число, модуль якого обернено пропорційний відстані. Ближче — модуль більший, отже U від'ємніша (наприклад, −100 замість −50). Далі — модуль менший, U ближча до нуля: −50, −10, 0. «Зростає» тут означає «стає менш від'ємною»."/>
+            <Label class="qa-q" text="{tr help.pair_energy.q3}"/>
+            <Label class="qa-a" text="{tr help.pair_energy.a3}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чому кожну пару рахують лише один раз?"/>
-            <Label class="qa-a" text="Бо U — енергія взаємодії пари, а не кожного заряду окремо. Якщо пройтися по всіх зарядах і для кожного додати qφ від інших, кожна пара порахується двічі — тоді треба поділити на 2."/>
+            <Label class="qa-q" text="{tr help.pair_energy.q4}"/>
+            <Label class="qa-a" text="{tr help.pair_energy.a4}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Label class="h" text="{tr help.h.predict}"/>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="Два вільні заряди +1 з масою 1 відпустили з відстані 2 (k = 1). З якою швидкістю кожен полетить, коли відлетить далеко?"/>
+        <Label class="predict-q" text="{tr help.pair_energy.predict1}"/>
         <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
-            <Label class="predict-a-text" text="Енергія пари k·1·1/2 = 0.5 перейде в кінетичну, порівну між зарядами: кінетична енергія кожного 0.25, тож швидкість v ≈ 0.71. Перевір на панелі: K зростає до 0.5, U спадає до 0, а сума K + U майже не змінюється."/>
+            <Label class="predict-a-text" text="{tr help.pair_energy.answer1}"/>
         </Stack>
     </Stack>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="У сцені «Резерфорд» які снаряди відхиляться найсильніше?"/>
+        <Label class="predict-q" text="{tr help.pair_energy.predict2}"/>
         <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
-            <Label class="predict-a-text" text="Ті, що летять найближче до осі, яка проходить через ядро: вони підлітають ближче, де відштовхування сильніше. Найцентральніший розвертається майже назад."/>
+            <Label class="predict-a-text" text="{tr help.pair_energy.answer2}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
-    <Label class="p" text="Рядок «Потенціальна U» на панелі — саме сума по парах. Через згладжування (додаток) програма використовує відстань, трохи «пом'якшену» біля нуля, тож значення близькі до формули, але скінченні навіть при зіткненні."/>
-    <Label class="p" text="У сцені «Резерфорд» ядро має заряд 4, снаряди — 0.25 при швидкості 2, тож для удару в лоб r_min = 0.5. Але кульки в програмі стикаються вже на відстані близько 0.78, тому центральний снаряд відскакує від кульки ядра; чисті гіперболи розсіювання малюють ті, що пролітають збоку."/>
-    <Button class="try" content="Спробуй: «Резерфорд» зі слідами траєкторій" command="{binding tryIt}"/>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.pair_energy.p5}"/>
+    <Label class="p" text="{tr help.pair_energy.p6}"/>
+    <Button class="try" content="{tr help.pair_energy.try}" command="{binding tryIt}"/>
 </Stack>

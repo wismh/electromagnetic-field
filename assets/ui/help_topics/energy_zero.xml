@@ -1,78 +1,78 @@
 <!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
      HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
-    <Label class="kicker" text="ТЕМА 12"/>
-    <Label class="title" text="Нуль енергії і від'ємна U"/>
-    <Label class="h" text="ІДЕЯ"/>
-    <Label class="p" text="Нуль потенціальної енергії — це вибір, а не властивість природи. Можна додати до всіх значень U ту саму сталу C — і нічого спостережуваного не зміниться: сили, рух, будь-які виміри залежать лише від того, як U змінюється, тобто від різниць ΔU. Так само висоту можна відраховувати від підлоги, від столу чи від рівня моря — тіло падає однаково."/>
-    <Label class="p" text="Тому від'ємна потенціальна енергія не є чимось дивним. Вона означає лише, що стан лежить нижче обраного нульового рівня. Для зарядів зручно взяти нуль на нескінченності: там взаємодія зникає, і формула U = kQq/r виходить без зайвої сталої. Тоді від'ємна U — ознака того, що систему треба «підняти», додавши енергію, щоб розвести заряди."/>
-    <Label class="p" text="Звідси корисне поняття зв'язаного стану. Якщо повна енергія E = K + U від'ємна, кінетичної енергії не вистачає, щоб дістатися до нескінченності, де U = 0, а K не може бути від'ємною. Заряд приречений рухатися біля партнера — як планета біля Сонця чи (у класичній картині) електрон біля ядра. Якщо E ≥ 0, він може піти назавжди."/>
-    <Label class="h" text="ФОРМУЛИ"/>
+    <Label class="kicker" text="{tr help.energy_zero.kicker}"/>
+    <Label class="title" text="{tr help.energy_zero.title}"/>
+    <Label class="h" text="{tr help.h.idea}"/>
+    <Label class="p" text="{tr help.energy_zero.p1}"/>
+    <Label class="p" text="{tr help.energy_zero.p2}"/>
+    <Label class="p" text="{tr help.energy_zero.p3}"/>
+    <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="U' = U + C"/>
         <Math class="display-math" display="true" formula="\Delta U = U_2 - U_1 = U'_2 - U'_1"/>
         <Math class="display-math" display="true" formula="E = K + U &lt; 0"/>
     </Stack>
-    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Label class="h" text="{tr help.h.legend}"/>
     <Stack class="legend" direction="vertical">
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="C"/>
             </Stack>
-            <Label class="legend-text" text="будь-яка стала: зсув нульового рівня."/>
+            <Label class="legend-text" text="{tr help.energy_zero.legend1}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\Delta U"/>
             </Stack>
-            <Label class="legend-text" text="різниця енергій двох станів — від вибору нуля не залежить."/>
+            <Label class="legend-text" text="{tr help.energy_zero.legend2}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="E = K + U"/>
             </Stack>
-            <Label class="legend-text" text="повна механічна енергія. При нулі на нескінченності E &lt; 0 означає зв'язаний стан: заряд не може піти від партнера."/>
+            <Label class="legend-text" text="{tr help.energy_zero.legend3}"/>
         </Stack>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Для колової орбіти кінетична енергія рівно вдвічі менша за модуль потенціальної, тож повна енергія від'ємна й дорівнює половині U. У сцені «Орбіта» K ≈ 0.17, U ≈ −0.33, E ≈ −0.17."/>
+        <Label class="note-text" text="{tr help.energy_zero.note}"/>
         <Math class="note-math" formula="K = -\frac{U}{2} \quad \Rightarrow \quad E = \frac{U}{2} &lt; 0"/>
     </Stack>
-    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Label class="h" text="{tr help.h.faq}"/>
     <Stack class="faq" direction="vertical">
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Як може існувати від'ємна потенціальна енергія?"/>
-            <Label class="qa-a" text="Так само, як від'ємна температура за Цельсієм чи висота нижче рівня моря: число від'ємне лише відносно обраного нуля. Від'ємна U пари різнойменних зарядів означає, що їхня енергія нижча, ніж у тих самих зарядів, розведених на нескінченність. Ніякої «від'ємної субстанції енергії» за цим немає."/>
+            <Label class="qa-q" text="{tr help.energy_zero.q1}"/>
+            <Label class="qa-a" text="{tr help.energy_zero.a1}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чому нуль потенціальної енергії можна вибирати довільно?"/>
-            <Label class="qa-a" text="Бо фізика бачить лише зміни U. Сила — це схил U (F = −dU/dx), і стала C при цьому зникає. Робота, обмін з кінетичною енергією, рух — усе залежить від ΔU, а в різниці стала скорочується."/>
+            <Label class="qa-q" text="{tr help.energy_zero.q2}"/>
+            <Label class="qa-a" text="{tr help.energy_zero.a2}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чому тоді фізично важливі саме різниці ΔU?"/>
-            <Label class="qa-a" text="Тому що лише їх можна виміряти. Будь-який дослід порівнює два стани: швидкість до і після, положення до і після. Енергія, яку система може віддати або яку треба їй надати, — це завжди різниця енергій початкового і кінцевого станів."/>
+            <Label class="qa-q" text="{tr help.energy_zero.q3}"/>
+            <Label class="qa-a" text="{tr help.energy_zero.a3}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Навіщо тоді взагалі домовлятися про нуль на нескінченності?"/>
-            <Label class="qa-a" text="Для зручності й однозначності: щоб у кожної конфігурації було одне число і щоб формула U = kQq/r не мала додаткової сталої. Крім того, тоді знак U одразу підказує, зв'язана система (E &lt; 0) чи ні."/>
+            <Label class="qa-q" text="{tr help.energy_zero.q4}"/>
+            <Label class="qa-a" text="{tr help.energy_zero.a4}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Label class="h" text="{tr help.h.predict}"/>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="У сцені «Орбіта» подивись на панель: який знак повної енергії E = K + U? Що це означає?"/>
+        <Label class="predict-q" text="{tr help.energy_zero.predict1}"/>
         <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
-            <Label class="predict-a-text" text="Від'ємний (приблизно −0.17): заряд не може втекти від центрального, бо для цього йому знадобилося б E ≥ 0. Тому він і крутиться по орбіті — це зв'язаний стан."/>
+            <Label class="predict-a-text" text="{tr help.energy_zero.answer1}"/>
         </Stack>
     </Stack>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="Якщо до всіх енергій у симуляції додати 100, чи зміниться рух?"/>
+        <Label class="predict-q" text="{tr help.energy_zero.predict2}"/>
         <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
-            <Label class="predict-a-text" text="Ні. Сили залежать лише від того, як U змінюється з відстанню, а стала при цьому зникає. Змінилися б лише числа на панелі, а траєкторії — ні."/>
+            <Label class="predict-a-text" text="{tr help.energy_zero.answer2}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
-    <Label class="p" text="Панель енергії рахує U з нулем на нескінченності, тож знак повної енергії E = K + U одразу показує, чи система зв'язана. Сцена «Орбіта» — зв'язаний стан з E &lt; 0; у «Резерфорді» снаряди мають E &gt; 0 і відлітають назавжди."/>
-    <Button class="try" content="Спробуй: «Орбіта» з фоном потенціалу і слідами" command="{binding tryIt}"/>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.energy_zero.p4}"/>
+    <Button class="try" content="{tr help.energy_zero.try}" command="{binding tryIt}"/>
 </Stack>

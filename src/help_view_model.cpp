@@ -7,12 +7,6 @@
 #include <string>
 
 namespace game {
-namespace {
-
-constexpr const char* kShowAnswer = "Показати відповідь";
-constexpr const char* kHideAnswer = "Сховати відповідь";
-
-}
 
 // Item view models are registered by hand: their bindings live in included template files, and
 // one class serves every nav row / every topic file.
@@ -30,7 +24,6 @@ HelpTopicViewModel::HelpTopicViewModel() {
     for (std::size_t i = 0; i < kHelpPredictionsPerTopic; ++i) {
         const std::string n = std::to_string(i + 1);
         answer_display[i] = std::string("none");
-        reveal_label[i] = std::string(kShowAnswer);
         reveal[i] = [this, i] { toggle(i); };
         command(engine::ui::intern("reveal" + n), reveal[i]);
         property(engine::ui::intern("answer" + n + "Display"), answer_display[i]);
@@ -38,14 +31,23 @@ HelpTopicViewModel::HelpTopicViewModel() {
     }
 }
 
+void HelpTopicViewModel::set_reveal_labels(std::string show, std::string hide) {
+    show_ = std::move(show);
+    hide_ = std::move(hide);
+    for (std::size_t i = 0; i < kHelpPredictionsPerTopic; ++i) {
+        reveal_label[i] = revealed_[i] ? hide_ : show_;
+    }
+}
+
 void HelpTopicViewModel::toggle(std::size_t i) {
     revealed_[i] = !revealed_[i];
     answer_display[i] = std::string(revealed_[i] ? "block" : "none");
-    reveal_label[i] = std::string(revealed_[i] ? kHideAnswer : kShowAnswer);
+    reveal_label[i] = revealed_[i] ? hide_ : show_;
 }
 
 HelpViewModel::HelpViewModel() :
     topics{
+            &topicUsing,
             &topicCharge,
             &topicCoulomb,
             &topicField,
@@ -65,6 +67,7 @@ HelpViewModel::HelpViewModel() :
             &topicSimulation,
     },
     topic_displays{
+            &topicUsingDisplay,
             &topicChargeDisplay,
             &topicCoulombDisplay,
             &topicFieldDisplay,

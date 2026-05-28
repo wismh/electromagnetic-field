@@ -1,100 +1,100 @@
 <!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
      HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
-    <Label class="kicker" text="ТЕМА 2"/>
-    <Label class="title" text="Закон Кулона"/>
-    <Label class="h" text="ІДЕЯ"/>
-    <Label class="p" text="Два нерухомі точкові заряди діють один на одного з силою, пропорційною добутку зарядів і обернено пропорційною квадрату відстані між ними. Сила напрямлена вздовж прямої, що з'єднує заряди: від іншого заряду при однакових знаках, до нього — при різних."/>
-    <Label class="p" text="Звідки квадрат відстані: вплив точкового заряду однаково розходиться в усі боки, тобто розподіляється по сфері радіуса r. Площа сфери росте як квадрат радіуса, тому на одиницю площі припадає частка, обернено пропорційна квадрату відстані. Звідси й множник 4π у сталій Кулона. Та сама геометрія дає таку саму залежність для гравітації та освітленості."/>
+    <Label class="kicker" text="{tr help.coulomb.kicker}"/>
+    <Label class="title" text="{tr help.coulomb.title}"/>
+    <Label class="h" text="{tr help.h.idea}"/>
+    <Label class="p" text="{tr help.coulomb.p1}"/>
+    <Label class="p" text="{tr help.coulomb.p2}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="S = 4 \pi r^2"/>
     </Stack>
-    <Label class="p" text="Сили взаємні й протилежні (третій закон Ньютона). Сили від кількох зарядів просто додаються як вектори — це принцип суперпозиції (тема 4)."/>
-    <Label class="h" text="ФОРМУЛИ"/>
+    <Label class="p" text="{tr help.coulomb.p3}"/>
+    <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="F = k \, \frac{|q_1 \, q_2|}{r^2}"/>
         <Math class="display-math" display="true" formula="\vec{F}_{12} = k \, \frac{q_1 \, q_2}{r^2} \cdot \frac{\vec{r}_{12}}{r}"/>
         <Math class="display-math" display="true" formula="\vec{F}_{12} = -\vec{F}_{21}"/>
     </Stack>
-    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Label class="h" text="{tr help.h.legend}"/>
     <Stack class="legend" direction="vertical">
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="F"/>
             </Stack>
-            <Label class="legend-text" text="модуль сили взаємодії."/>
+            <Label class="legend-text" text="{tr help.coulomb.legend1}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="k"/>
             </Stack>
-            <Label class="legend-text" text="стала Кулона. У програмі k = 1 (змінюється повзунком), значення в СІ — нижче."/>
+            <Label class="legend-text" text="{tr help.coulomb.legend2}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="q_1, \, q_2"/>
             </Stack>
-            <Label class="legend-text" text="заряди зі знаками. Знак добутку визначає напрям: плюс — відштовхування, мінус — притягування."/>
+            <Label class="legend-text" text="{tr help.coulomb.legend3}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="r"/>
             </Stack>
-            <Label class="legend-text" text="відстань між зарядами."/>
+            <Label class="legend-text" text="{tr help.coulomb.legend4}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\vec{r}_{12}"/>
             </Stack>
-            <Label class="legend-text" text="вектор від заряду 2 до заряду 1; ділення на r робить з нього одиничний напрям."/>
+            <Label class="legend-text" text="{tr help.coulomb.legend5}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\vec{F}_{12}"/>
             </Stack>
-            <Label class="legend-text" text="сила, з якою заряд 2 діє на заряд 1."/>
+            <Label class="legend-text" text="{tr help.coulomb.legend6}"/>
         </Stack>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Стала Кулона в СІ. Множник 4π — площа одиничної сфери, у знаменнику також електрична стала."/>
+        <Label class="note-text" text="{tr help.coulomb.note1}"/>
         <Math class="note-math" formula="k = \frac{1}{4 \pi \varepsilon_0} \approx 8.99 \cdot 10^{9} \; \mathrm{N} \cdot \mathrm{m}^2 / \mathrm{C}^2"/>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Та сама структура, що й у законі тяжіння, але маса має один знак, а заряд — два. Електрична взаємодія ще й незрівнянно сильніша: між протоном і електроном вона більша за гравітаційну приблизно на 39 порядків."/>
+        <Label class="note-text" text="{tr help.coulomb.note2}"/>
         <Math class="note-math" formula="F_{g} = G \, \frac{m_1 m_2}{r^2}"/>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Приклад у програмі: k = 1, обидва заряди по 1, відстань 2. Подвоєння відстані зменшує силу вчетверо."/>
+        <Label class="note-text" text="{tr help.coulomb.note3}"/>
         <Math class="note-math" formula="F = 1 \cdot \frac{1 \cdot 1}{2^2} = 0.25"/>
     </Stack>
-    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Label class="h" text="{tr help.h.faq}"/>
     <Stack class="faq" direction="vertical">
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чи справді електрон кружляє довкола ядра, як заряд у сцені «Орбіта»?"/>
-            <Label class="qa-a" text="Ні. Сцена — класична модель: так рухалися б дві заряджені кульки у вакуумі. Електрон в атомі підкоряється квантовій механіці й не має траєкторії: його стан описує хвильова функція ψ, а квадрат її модуля — густину ймовірності знайти електрон у певному місці. Орбіталь — область, де ця ймовірність велика. До того ж класичний заряд на коловій орбіті рухається з прискоренням і випромінює електромагнітні хвилі: такий «класичний атом» втратив би енергію й упав би на ядро приблизно за стомільярдну частку секунди. Стабільність атомів — одна з причин, чому знадобилася квантова механіка."/>
+            <Label class="qa-q" text="{tr help.coulomb.q1}"/>
+            <Label class="qa-a" text="{tr help.coulomb.a1}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чому різнойменні заряди не падають один на одного?"/>
-            <Label class="qa-a" text="У моделі точкових зарядів — падають: при r → 0 сила необмежено росте. Тому в симуляції є згладжування й зіткнення (див. додаток). У реальності електрон не падає на протон через квантові ефекти: щоб стиснути електрон у меншу область, потрібна більша кінетична енергія (співвідношення невизначеностей), і рівновага між нею та кулонівським притяганням задає розмір атома. Поля тут ні до чого: поле кожного заряду простягається на весь простір, і поля різних зарядів завжди накладаються й просто складаються — на будь-якій відстані. Виняток — частинка й античастинка: електрон і позитрон можуть зустрітися й анігілювати, перетворившись на фотони."/>
+            <Label class="qa-q" text="{tr help.coulomb.q2}"/>
+            <Label class="qa-a" text="{tr help.coulomb.a2}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Label class="h" text="{tr help.h.predict}"/>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="У сцені «Орбіта» заряд рухається по колу. Що буде, якщо під час руху збільшити k удвічі повзунком?"/>
+        <Label class="predict-q" text="{tr help.coulomb.predict1}"/>
         <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
-            <Label class="predict-a-text" text="Сила притягування подвоїться, а швидкість у цю мить лишиться тією самою. Сили стане більше, ніж потрібно для руху по колу такого радіуса, тож заряд почне падати до центру: орбіта стане витягнутою (еліптичною), а точка, де змінили k, — найдальшою від центру."/>
+            <Label class="predict-a-text" text="{tr help.coulomb.answer1}"/>
         </Stack>
     </Stack>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="Як зміниться сила між двома зарядами, якщо відстань між ними збільшити втричі, а один із зарядів — удвічі?"/>
+        <Label class="predict-q" text="{tr help.coulomb.predict2}"/>
         <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
-            <Label class="predict-a-text" text="Відстань утричі — сила в 9 разів менша; заряд удвічі — сила вдвічі більша. Разом: 2/9 від початкової, тобто приблизно в 4.5 раза слабша."/>
+            <Label class="predict-a-text" text="{tr help.coulomb.answer2}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
-    <Label class="p" text="На кожному кроці симуляції для кожної пари зарядів рахується ця сила, і всі сили, що діють на заряд, складаються. Повзунок «k — стала Кулона» масштабує всі сили одночасно."/>
-    <Label class="p" text="У сцені «Орбіта» сила Кулона відіграє роль доцентрової: вона весь час напрямлена до центру й утримує негативний заряд на коловій орбіті навколо позитивного."/>
-    <Button class="try" content="Спробуй: «Орбіта» — кулонівське притягування як доцентрова сила" command="{binding tryIt}"/>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.coulomb.p4}"/>
+    <Label class="p" text="{tr help.coulomb.p5}"/>
+    <Button class="try" content="{tr help.coulomb.try}" command="{binding tryIt}"/>
 </Stack>

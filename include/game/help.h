@@ -14,10 +14,11 @@
 #include <memory>
 #include <optional>
 #include <span>
+#include <string_view>
 
 namespace game {
 
-// What a topic's "Спробуй" button sets up in the simulation.
+// What a topic's "Try it" button sets up in the simulation.
 struct HelpDemo {
     Preset preset = Preset::Dipole;
     FieldLayers layers;
@@ -37,8 +38,12 @@ struct HelpTopic {
 class Help {
 public:
     using DemoHandler = std::function<void(const HelpDemo&)>;
+    using LocaleHandler = std::function<void(std::string_view locale)>;
 
-    Help(engine::ecs::World& world, DemoHandler on_demo);
+    Help(engine::ecs::World& world, DemoHandler on_demo, LocaleHandler on_locale);
+
+    // Rewrites nav titles, reveal buttons, and the language-segment highlight from the catalog.
+    void apply_locale();
 
     void open();
     void close();
@@ -63,6 +68,7 @@ private:
     engine::ecs::Entity canvas_{};
     std::shared_ptr<HelpViewModel> vm_;
     DemoHandler on_demo_;
+    LocaleHandler on_locale_;
     bool open_ = false;
     std::size_t selected_ = 0;
     // Topic index -> row in navItems (section headers sit between topic rows).

@@ -1,82 +1,82 @@
 <!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
      HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
-    <Label class="kicker" text="ТЕМА 1"/>
-    <Label class="title" text="Електричний заряд"/>
-    <Label class="h" text="ІДЕЯ"/>
-    <Label class="p" text="Електричний заряд — фізична величина, яка визначає, як тіло бере участь в електричній взаємодії. Заряд має знак: позитивний або негативний. Тіла з однаковими знаками відштовхуються, з різними — притягуються."/>
-    <Label class="p" text="Заряд квантований: будь-який заряд складається з цілої кількості елементарних порцій e — заряду протона (+e) або електрона (−e). Звичайна речовина нейтральна, бо протонів і електронів у ній порівну. Наелектризувати тіло означає перенести частину електронів: тертям, дотиком, у провіднику — полем."/>
-    <Label class="p" text="Заряд зберігається: в ізольованій системі сума всіх зарядів стала. Заряди можуть переходити з тіла на тіло, але не з'являються і не зникають поодинці."/>
-    <Label class="h" text="ФОРМУЛИ"/>
+    <Label class="kicker" text="{tr help.charge.kicker}"/>
+    <Label class="title" text="{tr help.charge.title}"/>
+    <Label class="h" text="{tr help.h.idea}"/>
+    <Label class="p" text="{tr help.charge.p1}"/>
+    <Label class="p" text="{tr help.charge.p2}"/>
+    <Label class="p" text="{tr help.charge.p3}"/>
+    <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="q = \pm N e"/>
         <Math class="display-math" display="true" formula="\sum_i q_i = \mathrm{const}"/>
     </Stack>
-    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Label class="h" text="{tr help.h.legend}"/>
     <Stack class="legend" direction="vertical">
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="q"/>
             </Stack>
-            <Label class="legend-text" text="заряд тіла — число зі знаком, у СІ вимірюється в кулонах (Кл)."/>
+            <Label class="legend-text" text="{tr help.charge.legend1}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="e"/>
             </Stack>
-            <Label class="legend-text" text="елементарний заряд, найменша вільна порція заряду в природі."/>
+            <Label class="legend-text" text="{tr help.charge.legend2}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="N"/>
             </Stack>
-            <Label class="legend-text" text="ціле число порцій: 0, 1, 2, …"/>
+            <Label class="legend-text" text="{tr help.charge.legend3}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\sum_i q_i"/>
             </Stack>
-            <Label class="legend-text" text="сумарний заряд ізольованої системи — не змінюється з часом."/>
+            <Label class="legend-text" text="{tr help.charge.legend4}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="q_1 q_2 &gt; 0"/>
             </Stack>
-            <Label class="legend-text" text="знаки однакові — відштовхування."/>
+            <Label class="legend-text" text="{tr help.charge.legend5}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="q_1 q_2 &lt; 0"/>
             </Stack>
-            <Label class="legend-text" text="знаки різні — притягування."/>
+            <Label class="legend-text" text="{tr help.charge.legend6}"/>
         </Stack>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Елементарний заряд дуже малий: один кулон — це приблизно 6.24 мільярда мільярдів елементарних зарядів."/>
+        <Label class="note-text" text="{tr help.charge.note}"/>
         <Math class="note-math" formula="e \approx 1.602 \cdot 10^{-19} \; \mathrm{C}"/>
     </Stack>
-    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Label class="h" text="{tr help.h.faq}"/>
     <Stack class="faq" direction="vertical">
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Протон і нейтрон — елементарні частинки?"/>
-            <Label class="qa-a" text="Ні. Вони складаються з кварків: протон — з двох u-кварків і одного d-кварка (uud), нейтрон — з одного u і двох d (udd). Заряд u-кварка +2/3 e, d-кварка −1/3 e, тому в сумі протон має +e, а нейтрон — 0. Кварки ніколи не спостерігаються поодинці (конфайнмент), тож найменший вільний заряд у природі — все одно e. Електрон, наскільки сьогодні відомо, справді елементарний."/>
+            <Label class="qa-q" text="{tr help.charge.q1}"/>
+            <Label class="qa-a" text="{tr help.charge.a1}"/>
             <Math class="qa-math" formula="q_p = \frac{2}{3}e + \frac{2}{3}e - \frac{1}{3}e = +e"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чи можна наелектризувати тіло, змінивши кількість протонів?"/>
-            <Label class="qa-a" text="У звичайних умовах — ні: протони сидять у ядрах, і щоб їх змінити, потрібні ядерні реакції. Електризація завжди означає перенесення електронів, тому позитивно заряджене тіло — це тіло, якому бракує електронів, а не яке має зайві протони."/>
+            <Label class="qa-q" text="{tr help.charge.q2}"/>
+            <Label class="qa-a" text="{tr help.charge.a2}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Label class="h" text="{tr help.h.predict}"/>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="Постав два вільні заряди +1 і −1 на відстані кількох клітинок і запусти симуляцію. Що станеться? А якщо обидва будуть +1?"/>
+        <Label class="predict-q" text="{tr help.charge.predict}"/>
         <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
-            <Label class="predict-a-text" text="Різнойменні рушать назустріч одне одному, і їхня швидкість зростатиме аж до зіткнення: що ближче, то більша сила. Однойменні розлетяться, і з часом прискорюватимуться дедалі менше, бо сила спадає з відстанню. Перевір: ЛКМ і ПКМ на порожньому місці, потім клавіша L знімає закріплення, якщо воно є."/>
+            <Label class="predict-a-text" text="{tr help.charge.answer}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
-    <Label class="p" text="Помаранчеві кола «+» — позитивні заряди, сині «−» — негативні; радіус кола росте з |q|. ЛКМ ставить +q, ПКМ — −q (величину задає повзунок «|q| нових зарядів»), колесо над зарядом змінює |q|, F змінює знак."/>
-    <Label class="p" text="Заряди в програмі задані в умовних одиницях, без кулонів. Це лише масштаб: усі співвідношення між силами, полями й енергіями ті самі, що й у СІ (див. тему «Одиниці»)."/>
-    <Button class="try" content="Спробуй: «Рій» — різнойменні заряди збираються в групи" command="{binding tryIt}"/>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.charge.p4}"/>
+    <Label class="p" text="{tr help.charge.p5}"/>
+    <Button class="try" content="{tr help.charge.try}" command="{binding tryIt}"/>
 </Stack>

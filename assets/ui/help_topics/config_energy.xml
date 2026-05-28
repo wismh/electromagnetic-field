@@ -1,78 +1,78 @@
 <!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
      HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
-    <Label class="kicker" text="ТЕМА 14"/>
-    <Label class="title" text="Енергія конфігурації"/>
-    <Label class="h" text="ІДЕЯ"/>
-    <Label class="p" text="Потенціальна енергія належить не окремому заряду, а системі — розташуванню всіх зарядів відносно один одного. Вираз U = qφ для одного заряду — зручне скорочення для випадку, коли джерела поля нерухомі (наприклад, закріплене ядро): тоді змінюється лише положення q, і всю зміну енергії можна «приписати» йому. Але насправді це енергія взаємодії q з джерелами."/>
-    <Label class="p" text="Для системи з багатьох зарядів енергія — сума по всіх парах. Її ж можна записати як суму qφ кожного заряду в потенціалі решти, поділену навпіл: у такій сумі кожна пара трапляється двічі."/>
-    <Label class="p" text="Де ж ця енергія «знаходиться»? Сучасна відповідь — у самому полі. Кожен шматочок простору, де є поле E, несе енергію з густиною, пропорційною квадрату поля (формула нижче), і сума по всьому простору дорівнює енергії взаємодії зарядів. Найкращий доказ, що поле реально несе енергію: світло Сонця — електромагнітне поле, що летить через порожнечу й доставляє енергію на Землю без жодних зарядів."/>
-    <Label class="h" text="ФОРМУЛИ"/>
+    <Label class="kicker" text="{tr help.config_energy.kicker}"/>
+    <Label class="title" text="{tr help.config_energy.title}"/>
+    <Label class="h" text="{tr help.h.idea}"/>
+    <Label class="p" text="{tr help.config_energy.p1}"/>
+    <Label class="p" text="{tr help.config_energy.p2}"/>
+    <Label class="p" text="{tr help.config_energy.p3}"/>
+    <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="U = \sum_{i &lt; j} k \, \frac{q_i \, q_j}{r_{ij}} = \frac{1}{2} \sum_i q_i \, \varphi_i"/>
         <Math class="display-math" display="true" formula="u = \frac{\varepsilon_0 E^2}{2} \qquad U = \int u \, dV"/>
     </Stack>
-    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Label class="h" text="{tr help.h.legend}"/>
     <Stack class="legend" direction="vertical">
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\varphi_i"/>
             </Stack>
-            <Label class="legend-text" text="потенціал у точці заряду i від усіх інших зарядів (без власного)."/>
+            <Label class="legend-text" text="{tr help.config_energy.legend1}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\frac{1}{2}"/>
             </Stack>
-            <Label class="legend-text" text="кожна пара в сумі по i трапляється двічі — звідси половина."/>
+            <Label class="legend-text" text="{tr help.config_energy.legend2}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="u"/>
             </Stack>
-            <Label class="legend-text" text="густина енергії поля — енергія в одиниці об'єму простору."/>
+            <Label class="legend-text" text="{tr help.config_energy.legend3}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\int u \, dV"/>
             </Stack>
-            <Label class="legend-text" text="сума густини по всьому простору."/>
+            <Label class="legend-text" text="{tr help.config_energy.legend4}"/>
         </Stack>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Тонкий момент: якщо підсумувати u по всьому простору навколо точкового заряду, вийде нескінченність — поле біля точки росте необмежено. Ця «власна енергія» — відома проблема класичної теорії; квантова електродинаміка її обходить. У програмі заряди — кульки скінченного розміру (згладжування), тож нескінченностей немає. Енергія взаємодії, яку показує панель, власних енергій не містить."/>
+        <Label class="note-text" text="{tr help.config_energy.note}"/>
     </Stack>
-    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Label class="h" text="{tr help.h.faq}"/>
     <Stack class="faq" direction="vertical">
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чим відрізняється енергія конкретного заряду від енергії конфігурації?"/>
-            <Label class="qa-a" text="«Енергія заряду» qφ — це енергія його взаємодії з іншими, коли ті вважаються нерухомими. Енергія конфігурації — енергія всієї системи, де рухатися можуть усі. Якщо обидва заряди вільні, вивільнена енергія ділиться між ними (так, щоб зберігся імпульс), а не дістається лише одному. Тому qφ — зручне наближення, а власником енергії є пара чи система."/>
+            <Label class="qa-q" text="{tr help.config_energy.q1}"/>
+            <Label class="qa-a" text="{tr help.config_energy.a1}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чому потенціальну енергію не варто уявляти як речовину всередині заряду?"/>
-            <Label class="qa-a" text="Бо той самий заряд у різних розташуваннях має різну енергію — вона залежить від відстаней до інших, а не від нього самого. Немає місця «всередині заряду», де вона лежала б. Якщо вже питати «де», то в полі між зарядами — а це не речовина, а стан простору."/>
+            <Label class="qa-q" text="{tr help.config_energy.q2}"/>
+            <Label class="qa-a" text="{tr help.config_energy.a2}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Як це пов'язано з питанням, чи витрачає поле енергію на своє існування?"/>
-            <Label class="qa-a" text="Енергія поля — це і є енергія конфігурації, запасена один раз при її створенні. Поки заряди нерухомі, вона нікуди не дівається і нічого не витрачається. Змінюється вона лише тоді, коли конфігурація змінюється (заряди рухаються) або коли поле відлітає хвилею — випромінювання (тема 3)."/>
+            <Label class="qa-q" text="{tr help.config_energy.q3}"/>
+            <Label class="qa-a" text="{tr help.config_energy.a3}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Label class="h" text="{tr help.h.predict}"/>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="Скільки енергії потрібно, щоб зібрати три заряди +1 у вершинах рівностороннього трикутника зі стороною 1 (k = 1)?"/>
+        <Label class="predict-q" text="{tr help.config_energy.predict1}"/>
         <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
-            <Label class="predict-a-text" text="Три пари, кожна з енергією k·1·1/1 = 1, тож U = 3. Саме стільки роботи треба виконати, звозячи заряди з нескінченності, і саме стільки кінетичної енергії вони набудуть, розлетівшись."/>
+            <Label class="predict-a-text" text="{tr help.config_energy.answer1}"/>
         </Stack>
     </Stack>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="Пара +1 і +1 на відстані 2 має U = 0.5. Яка енергія в пари +1 і −1 на тій самій відстані? А на відстані 4?"/>
+        <Label class="predict-q" text="{tr help.config_energy.predict2}"/>
         <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
-            <Label class="predict-a-text" text="−0.5 на відстані 2 і −0.25 на відстані 4: модуль удвічі менший, а знак від'ємний, бо заряди різнойменні."/>
+            <Label class="predict-a-text" text="{tr help.config_energy.answer2}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
-    <Label class="p" text="«Потенціальна U» на панелі — енергія всієї конфігурації, сума по парах. Вона змінюється, коли будь-який заряд зсувається, — і коли його рухає поле, і коли його перетягуєш мишею."/>
-    <Button class="try" content="Спробуй: «Рій» — енергія конфігурації переходить у рух" command="{binding tryIt}"/>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.config_energy.p4}"/>
+    <Button class="try" content="{tr help.config_energy.try}" command="{binding tryIt}"/>
 </Stack>

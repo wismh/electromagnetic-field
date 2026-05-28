@@ -1,6 +1,6 @@
 /* Full-screen reference (assets/ui/help.xml + assets/ui/help_topics/*.xml). No `Canvas { background }`:
    the closed help canvas must be fully transparent. Fonts are not inherited, so every text kind
-   gets Inter from an element-level rule; <Math> always uses the engine's STIX Two Math. */
+   gets Inter from an element-level rule. <Math>, and formulas embedded in a label as \(…\), use STIX Two Math. */
 
 Label { font-family: cee217b3729e4247be377a0830041a0a; color: #d7dbe6; font-size: 15; }
 Button {
@@ -41,15 +41,14 @@ Stack.window {
     border-color: #ffffff1f;
 }
 
-/* Nav column: 280 wide + 1px divider. */
-Stack.nav { width: 280; height: 100%; padding: 24 14 18 18; gap: 2; }
+/* Nav column: 336 wide + 1px divider. Inner width = 336 - 18 - 14 = 304. */
+Stack.nav { width: 336; height: 100%; padding: 24 14 18 18; gap: 2; }
 Label.nav-title { font-size: 22; color: #ffffff; }
-Label.nav-sub { font-size: 13; color: #8b93a7; margin: 2 0 16 0; }
-/* Title block 24 top pad + ~22 title + ~15 sub + 16 gap below; hint ~30 with its margin. The list scrolls
-   in what is left: 664 window - 42 padding - 70 header - 40 hint, kept as one calc on the window height. */
+Label.nav-sub { font-size: 13; color: #8b93a7; margin: 2 0 8 0; }
+/* Title, subtitle, the language row (28 + 12 margin) and the hint. The list scrolls in what is left. */
 ScrollView.nav-scroll {
     width: 100%;
-    height: calc(100% - 112px);
+    height: calc(100% - 144px);
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #ffffff30 #00000000;
@@ -76,7 +75,7 @@ Label.nav-hint { font-size: 12; color: #6b7286; margin: 16 0 0 0; }
 Stack.divider { width: 1; height: 100%; background: #ffffff14; }
 
 /* Main column: everything right of nav + divider. */
-Stack.main { width: calc(100% - 281px); height: 100%; padding: 14 18 0 44; }
+Stack.main { width: calc(100% - 337px); height: 100%; padding: 14 18 0 44; }
 /* Fixed 40px bar; the content takes the rest (see ScrollView.content height). */
 Stack.main-bar { width: 100%; height: 40; justify-content: end; align-items: center; }
 Button.close { width: 110; height: 32; }
@@ -97,7 +96,10 @@ Stack.topic-body { width: 100%; gap: 10; }
 Label.kicker { font-size: 12; color: #818cf8; }
 Label.title { font-size: 30; color: #ffffff; margin: 0 0 4 0; }
 Label.h { font-size: 12; color: #7c8499; margin: 18 0 0 0; }
-Label.p { font-size: 16; color: #d7dbe6; width: 100%; }
+/* 1.45 is a bit above Inter's own line height (~1.21). A bare number here is a factor of font-size.
+   user-select is not inherited, so each prose class sets it. Drag selects, Ctrl+C copies.
+   An inline \(…\) is one span: the copy includes the TeX. */
+Label.p { font-size: 16; color: #d7dbe6; width: 100%; line-height: 1.45; user-select: text; }
 
 Stack.formula {
     width: 100%;
@@ -116,7 +118,7 @@ Stack.legend { width: 100%; gap: 8; }
 Stack.legend-row { width: 100%; gap: 16; align-items: center; }
 Stack.sym { width: 120; align-items: center; }
 Math.sym-math { font-size: 20; color: #ffffff; }
-Label.legend-text { width: calc(100% - 136px); font-size: 15; color: #c9cedb; }
+Label.legend-text { width: calc(100% - 136px); font-size: 15; color: #c9cedb; line-height: 1.45; user-select: text; }
 
 Stack.note {
     width: 100%;
@@ -127,7 +129,7 @@ Stack.note {
     border-width: 1;
     border-color: #6366f140;
 }
-Label.note-text { width: 100%; font-size: 15; color: #d7dbe6; }
+Label.note-text { width: 100%; font-size: 15; color: #d7dbe6; line-height: 1.45; user-select: text; }
 Math.note-math { font-size: 20; color: #ffffff; }
 
 /* FAQ: question in the accent colour, answer as body text. */
@@ -138,8 +140,8 @@ Stack.qa {
     padding: 0 0 0 14;
     border-width: 0;
 }
-Label.qa-q { width: 100%; font-size: 16; color: #a5b4fc; }
-Label.qa-a { width: 100%; font-size: 15; color: #c9cedb; }
+Label.qa-q { width: 100%; font-size: 16; color: #a5b4fc; line-height: 1.45; user-select: text; }
+Label.qa-a { width: 100%; font-size: 15; color: #c9cedb; line-height: 1.45; user-select: text; }
 Math.qa-math { font-size: 20; color: #ffffff; margin: 2 0 0 0; }
 
 /* "Predict, then check": the answer stack is display: none until revealed (HelpTopicViewModel). */
@@ -152,7 +154,7 @@ Stack.predict {
     border-width: 1;
     border-color: #10b98140;
 }
-Label.predict-q { width: 100%; font-size: 15; color: #d7dbe6; }
+Label.predict-q { width: 100%; font-size: 15; color: #d7dbe6; line-height: 1.45; user-select: text; }
 Button.reveal {
     height: 30;
     padding: 0 14;
@@ -161,7 +163,7 @@ Button.reveal {
 }
 Button.reveal:hover { background: #10b98140; }
 Stack.predict-a { display: var(--display, none); width: 100%; }
-Label.predict-a-text { width: 100%; font-size: 15; color: #a7f3d0; }
+Label.predict-a-text { width: 100%; font-size: 15; color: #a7f3d0; line-height: 1.45; user-select: text; }
 
 Button.try {
     height: 40;
@@ -171,3 +173,35 @@ Button.try {
     color: #ffffff;
 }
 Button.try:hover { background: #7c7ff5; }
+
+/* Same segments as the control panel. Active colors come from --bg / --fg. */
+Stack.lang { width: 304; height: 28; gap: 6; margin: 0 0 12 0; }
+Button.lang {
+    width: 149;
+    height: 28;
+    background: var(--bg, #ffffff14);
+    color: var(--fg, #aab1c3);
+    border-width: 1;
+    border-color: #ffffff1a;
+}
+
+/* "How to use": the same keycap rows as the welcome screen. */
+Label.section { font-size: 11; color: #7c8499; margin: 16 0 2 0; white-space: nowrap; }
+Stack.bind { width: 100%; gap: 14; align-items: center; margin: 2 0; }
+Stack.keys { width: 210; gap: 4; align-items: center; justify-content: end; }
+Label.bind-text { width: calc(100% - 224px); font-size: 15; color: #d7dbe6; line-height: 1.4; user-select: text; }
+Stack.key { padding: 0 0 3 0; background: #07090f; border-radius: 6; }
+Label.keycap {
+    min-width: 16;
+    height: 22;
+    padding: 0 8;
+    background: linear-gradient(180deg, #4c5670, #343c52);
+    border-width: 1;
+    border-color: #ffffff3d;
+    border-radius: 5;
+    text-align: center;
+    align-items: center;
+    font-size: 12;
+    color: #f7f8fc;
+    white-space: nowrap;
+}

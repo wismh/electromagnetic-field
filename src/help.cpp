@@ -1,5 +1,6 @@
 #include <game/help.h>
 
+#include <engine/loc/catalog.h>
 #include <engine/ui/canvas.h>
 
 #include <asset_ids.h>
@@ -22,8 +23,8 @@ constexpr float kNavHeaderRowHeight = 32.f;
 // Rows kept visible beyond the selected one when the nav scrolls to it.
 constexpr float kNavRevealContext = kNavTopicRowHeight;
 // Vertical chrome around the nav list, mirroring assets/css/help.css: window top/bottom insets (28 + 28),
-// nav padding (24 + 18) and the list's `calc(100% - 112px)`.
-constexpr float kNavChromeHeight = 56.f + 42.f + 112.f;
+// nav padding (24 + 18) and the list's `calc(100% - 144px)` (title, subtitle, language row, hint).
+constexpr float kNavChromeHeight = 56.f + 42.f + 144.f;
 
 constexpr const char* kNavSelectedBackground = "#6366f133";
 constexpr const char* kNavBackground = "#00000000";
@@ -41,31 +42,38 @@ FieldLayers layers(bool potential, bool lines, bool grid, bool flow, bool probe,
     };
 }
 
-constexpr const char* kBasics = "I. ОСНОВИ";
-constexpr const char* kPotentialEnergy = "II. ПОТЕНЦІАЛ І ЕНЕРГІЯ";
-constexpr const char* kSummary = "III. ПІДСУМОК";
-constexpr const char* kAppendix = "ДОДАТОК";
+constexpr const char* kUsing = "help.section.using";
+constexpr const char* kBasics = "help.section.basics";
+constexpr const char* kPotentialEnergy = "help.section.potential";
+constexpr const char* kSummary = "help.section.summary";
+constexpr const char* kAppendix = "help.section.appendix";
+
+constexpr const char* kLocaleOnBg = "#6366f133";
+constexpr const char* kLocaleOnFg = "#ffffff";
+constexpr const char* kLocaleOffBg = "#ffffff14";
+constexpr const char* kLocaleOffFg = "#aab1c3";
 
 // Order must match HelpViewModel::topics and the ItemsControls in assets/ui/help.xml.
 // layers(potential, lines, grid, flow, probe, trails)
 const std::array<HelpTopic, kHelpTopicCount> kTopics{
-        HelpTopic{kBasics, "1. Електричний заряд", HelpDemo{Preset::Swarm, layers(true, true, false, true, true, true)}},
-        HelpTopic{kBasics, "2. Закон Кулона", HelpDemo{Preset::Orbit, layers(true, true, false, false, true, true)}},
-        HelpTopic{kBasics, "3. Електричне поле", HelpDemo{Preset::Dipole, layers(false, false, true, false, true, false)}},
-        HelpTopic{kBasics, "4. Суперпозиція", HelpDemo{Preset::Quadrupole, layers(false, false, true, false, true, false)}},
-        HelpTopic{kBasics, "5. Силові лінії", HelpDemo{Preset::Dipole, layers(false, true, false, true, true, false)}},
-        HelpTopic{kBasics, "6. Потік і закон Гаусса", HelpDemo{Preset::Capacitor, layers(false, true, false, true, true, false)}},
-        HelpTopic{kPotentialEnergy, "7. Потенціал", HelpDemo{Preset::Dipole, layers(true, false, false, false, true, false)}},
-        HelpTopic{kPotentialEnergy, "8. Потенціал і енергія заряду", HelpDemo{Preset::LikePair, layers(true, false, false, false, true, false)}},
-        HelpTopic{kPotentialEnergy, "9. Напруга й однорідне поле", HelpDemo{Preset::Capacitor, layers(true, true, false, false, true, false)}},
-        HelpTopic{kPotentialEnergy, "10. Поле як нахил потенціалу", HelpDemo{Preset::Dipole, layers(true, false, true, false, true, false)}},
-        HelpTopic{kPotentialEnergy, "11. Енергія пари зарядів", HelpDemo{Preset::Rutherford, layers(false, false, false, false, false, true)}},
-        HelpTopic{kPotentialEnergy, "12. Нуль енергії і від'ємна U", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
-        HelpTopic{kPotentialEnergy, "13. Робота поля і рух", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
-        HelpTopic{kPotentialEnergy, "14. Енергія конфігурації", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
-        HelpTopic{kSummary, "15. Електрика і гравітація", HelpDemo{Preset::Orbit, layers(false, true, false, false, false, true)}},
-        HelpTopic{kSummary, "16. Загальна картина", HelpDemo{Preset::Dipole, layers(true, true, false, true, true, false)}},
-        HelpTopic{kAppendix, "Як працює симуляція", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
+        HelpTopic{kUsing, "help.using.title", std::nullopt},
+        HelpTopic{kBasics, "help.charge.title", HelpDemo{Preset::Swarm, layers(true, true, false, true, true, true)}},
+        HelpTopic{kBasics, "help.coulomb.title", HelpDemo{Preset::Orbit, layers(true, true, false, false, true, true)}},
+        HelpTopic{kBasics, "help.field.title", HelpDemo{Preset::Dipole, layers(false, false, true, false, true, false)}},
+        HelpTopic{kBasics, "help.superposition.title", HelpDemo{Preset::Quadrupole, layers(false, false, true, false, true, false)}},
+        HelpTopic{kBasics, "help.field_lines.title", HelpDemo{Preset::Dipole, layers(false, true, false, true, true, false)}},
+        HelpTopic{kBasics, "help.gauss.title", HelpDemo{Preset::Capacitor, layers(false, true, false, true, true, false)}},
+        HelpTopic{kPotentialEnergy, "help.potential.title", HelpDemo{Preset::Dipole, layers(true, false, false, false, true, false)}},
+        HelpTopic{kPotentialEnergy, "help.potential_energy.title", HelpDemo{Preset::LikePair, layers(true, false, false, false, true, false)}},
+        HelpTopic{kPotentialEnergy, "help.voltage.title", HelpDemo{Preset::Capacitor, layers(true, true, false, false, true, false)}},
+        HelpTopic{kPotentialEnergy, "help.gradient.title", HelpDemo{Preset::Dipole, layers(true, false, true, false, true, false)}},
+        HelpTopic{kPotentialEnergy, "help.pair_energy.title", HelpDemo{Preset::Rutherford, layers(false, false, false, false, false, true)}},
+        HelpTopic{kPotentialEnergy, "help.energy_zero.title", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
+        HelpTopic{kPotentialEnergy, "help.work_motion.title", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
+        HelpTopic{kPotentialEnergy, "help.config_energy.title", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
+        HelpTopic{kSummary, "help.gravity.title", HelpDemo{Preset::Orbit, layers(false, true, false, false, false, true)}},
+        HelpTopic{kSummary, "help.overview.title", HelpDemo{Preset::Dipole, layers(true, true, false, true, true, false)}},
+        HelpTopic{kAppendix, "help.simulation.title", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
 };
 
 }
@@ -74,11 +82,14 @@ std::span<const HelpTopic, kHelpTopicCount> help_topics() {
     return kTopics;
 }
 
-Help::Help(engine::ecs::World& world, DemoHandler on_demo) :
+Help::Help(engine::ecs::World& world, DemoHandler on_demo, LocaleHandler on_locale) :
     world_(world),
     vm_(std::make_shared<HelpViewModel>()),
-    on_demo_(std::move(on_demo)) {
+    on_demo_(std::move(on_demo)),
+    on_locale_(std::move(on_locale)) {
     vm_->closeHelp = [this] { close(); };
+    vm_->localeEn = [this] { on_locale_("en"); };
+    vm_->localeUk = [this] { on_locale_("uk"); };
 
     std::vector<std::shared_ptr<HelpNavItem>> nav;
     const char* section = nullptr;
@@ -112,6 +123,7 @@ Help::Help(engine::ecs::World& world, DemoHandler on_demo) :
     }
     vm_->navItems.set(std::move(nav));
     nav_list_height_ = row_y;
+    apply_locale();
 
     canvas_ = world.create();
     world.emplace<engine::ui::UiCanvas>(canvas_, engine::ui::UiCanvas{
@@ -122,6 +134,31 @@ Help::Help(engine::ecs::World& world, DemoHandler on_demo) :
             .order = kHelpCanvasOrder,
     });
     sync();
+}
+
+void Help::apply_locale() {
+    const engine::loc::Catalog& catalog = world_.ctx<engine::loc::Catalog>();
+    const auto text_of = [&](const char* key) { return catalog.text(key).text; };
+    const std::string show = text_of("help.reveal.show");
+    const std::string hide = text_of("help.reveal.hide");
+    const auto& nav = vm_->navItems.get();
+    std::size_t row = 0;
+    const char* section = nullptr;
+    for (std::size_t i = 0; i < kTopics.size(); ++i) {
+        if (section != kTopics[i].section) {
+            section = kTopics[i].section;
+            nav[row]->title = text_of(section);
+            ++row;
+        }
+        nav[row]->title = text_of(kTopics[i].title);
+        ++row;
+        vm_->topics[i]->get().front()->set_reveal_labels(show, hide);
+    }
+    const bool english = catalog.active() == "en";
+    vm_->localeEnBg = english ? kLocaleOnBg : kLocaleOffBg;
+    vm_->localeEnFg = english ? kLocaleOnFg : kLocaleOffFg;
+    vm_->localeUkBg = english ? kLocaleOffBg : kLocaleOnBg;
+    vm_->localeUkFg = english ? kLocaleOffFg : kLocaleOnFg;
 }
 
 void Help::open() {

@@ -1,77 +1,77 @@
 <!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
      HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
-    <Label class="kicker" text="ТЕМА 8"/>
-    <Label class="title" text="Потенціал і енергія заряду"/>
-    <Label class="h" text="ІДЕЯ"/>
-    <Label class="p" text="Потенціал φ і потенціальна енергія U легко сплутати, але це різні величини. Потенціал — властивість точки простору: його задають джерела поля, і він той самий, хоч який заряд туди помістити. Потенціальна енергія — властивість конкретного заряду в цій точці: U = qφ. Удвічі більший заряд має вдвічі більшу енергію, а заряд протилежного знака — енергію протилежного знака."/>
-    <Label class="p" text="Це та сама пара, що й поле та сила: E = F/q описує точку, F = qE — конкретний заряд. Так само φ = U/q описує точку, а U = qφ — конкретний заряд."/>
-    <Label class="p" text="Звідси важливий наслідок. Заряд під дією поля рухається туди, де його енергія U менша. Для позитивного заряду це область меншого потенціалу, а для негативного — навпаки, більшого: при q &lt; 0 менша U відповідає більшому φ. Плюси «скочуються» з гірки потенціалу, мінуси «підіймаються» на неї."/>
-    <Label class="h" text="ФОРМУЛИ"/>
+    <Label class="kicker" text="{tr help.potential_energy.kicker}"/>
+    <Label class="title" text="{tr help.potential_energy.title}"/>
+    <Label class="h" text="{tr help.h.idea}"/>
+    <Label class="p" text="{tr help.potential_energy.p1}"/>
+    <Label class="p" text="{tr help.potential_energy.p2}"/>
+    <Label class="p" text="{tr help.potential_energy.p3}"/>
+    <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="U = q \, \varphi"/>
         <Math class="display-math" display="true" formula="\varphi = \frac{U}{q} \quad \leftrightarrow \quad \vec{E} = \frac{\vec{F}}{q}"/>
     </Stack>
-    <Label class="h" text="ЩО ТУТ ЩО"/>
+    <Label class="h" text="{tr help.h.legend}"/>
     <Stack class="legend" direction="vertical">
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="\varphi"/>
             </Stack>
-            <Label class="legend-text" text="потенціал точки — задають джерела, не залежить від q."/>
+            <Label class="legend-text" text="{tr help.potential_energy.legend1}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="q"/>
             </Stack>
-            <Label class="legend-text" text="заряд, енергію якого шукаємо, зі знаком."/>
+            <Label class="legend-text" text="{tr help.potential_energy.legend2}"/>
         </Stack>
         <Stack class="legend-row" direction="horizontal">
             <Stack class="sym" direction="vertical">
                 <Math class="sym-math" formula="U"/>
             </Stack>
-            <Label class="legend-text" text="потенціальна енергія цього заряду в цій точці: залежить і від φ, і від q."/>
+            <Label class="legend-text" text="{tr help.potential_energy.legend3}"/>
         </Stack>
     </Stack>
     <Stack class="note" direction="vertical">
-        <Label class="note-text" text="Приклад: у точці з потенціалом 1000 В заряд +1 Кл має енергію 1000 Дж, заряд +2 Кл — 2000 Дж, а заряд −1 Кл — мінус 1000 Дж. Потенціал увесь час той самий, змінюється лише енергія."/>
+        <Label class="note-text" text="{tr help.potential_energy.note}"/>
         <Math class="note-math" formula="\varphi = 1000\;\mathrm{V}: \quad q = 2\;\mathrm{C} \;\Rightarrow\; U = 2000\;\mathrm{J}"/>
     </Stack>
-    <Label class="h" text="ЧАСТІ ПИТАННЯ"/>
+    <Label class="h" text="{tr help.h.faq}"/>
     <Stack class="faq" direction="vertical">
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чим потенціал відрізняється від потенціальної енергії?"/>
-            <Label class="qa-a" text="Потенціал — характеристика точки поля, однакова для будь-якого заряду в ній. Потенціальна енергія — енергія конкретного заряду в конкретній точці. Точніше, U — це енергія взаємодії заряду q з джерелами поля, тобто енергія всієї конфігурації, а не «запас» усередині заряду (тема 14)."/>
+            <Label class="qa-q" text="{tr help.potential_energy.q1}"/>
+            <Label class="qa-a" text="{tr help.potential_energy.a1}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Чому U = qφ залежить від заряду, а φ — ні?"/>
-            <Label class="qa-a" text="Бо φ отримали саме так, щоб прибрати залежність від заряду: енергія пропорційна q, і ділення на q залишає лише вклад джерел і положення точки. Повертаючись від φ до U, множимо назад на q — і залежність від заряду з'являється знову."/>
+            <Label class="qa-q" text="{tr help.potential_energy.q2}"/>
+            <Label class="qa-a" text="{tr help.potential_energy.a2}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Куди рухається негативний заряд — до більшого чи до меншого потенціалу?"/>
-            <Label class="qa-a" text="До більшого. Будь-який заряд прагне меншої енергії U = qφ. Для q &lt; 0 енергія тим менша, чим більший φ, тому електрони в провіднику течуть до точок вищого потенціалу — проти напрямку поля E."/>
+            <Label class="qa-q" text="{tr help.potential_energy.q3}"/>
+            <Label class="qa-a" text="{tr help.potential_energy.a3}"/>
         </Stack>
         <Stack class="qa" direction="vertical">
-            <Label class="qa-q" text="Що таке електронвольт?"/>
-            <Label class="qa-a" text="Енергія, яку отримує заряд одного електрона, проходячи різницю потенціалів 1 В: 1 еВ ≈ 1.6·10^-19 Дж (див. формулу в темі 9). Це зручна одиниця для атомів і частинок: енергії зв'язку в атомах — кілька електронвольт."/>
+            <Label class="qa-q" text="{tr help.potential_energy.q4}"/>
+            <Label class="qa-a" text="{tr help.potential_energy.a4}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ПЕРЕДБАЧ І ПЕРЕВІР"/>
+    <Label class="h" text="{tr help.h.predict}"/>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="У точці потенціал φ = 3. Яку енергію мають там заряди +2 і −2?"/>
+        <Label class="predict-q" text="{tr help.potential_energy.predict1}"/>
         <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
-            <Label class="predict-a-text" text="U = qφ: для +2 це 6, для −2 це −6. Поле в точці одне, а енергії — різні, навіть з різним знаком."/>
+            <Label class="predict-a-text" text="{tr help.potential_energy.answer1}"/>
         </Stack>
     </Stack>
     <Stack class="predict" direction="vertical">
-        <Label class="predict-q" text="Постав у полі двох однакових позитивних зарядів (сцена «Однакові») вільний заряд +1 і вільний заряд −1 збоку. Куди рушить кожен з погляду потенціалу?"/>
+        <Label class="predict-q" text="{tr help.potential_energy.predict2}"/>
         <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
         <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
-            <Label class="predict-a-text" text="+1 рушить у бік меншого φ — геть від позитивних зарядів, туди, де фон тьмяніший. −1 рушить у бік більшого φ — до зарядів, у яскравіше червону область."/>
+            <Label class="predict-a-text" text="{tr help.potential_energy.answer2}"/>
         </Stack>
     </Stack>
-    <Label class="h" text="ДЕ ЦЕ В ПРОГРАМІ"/>
-    <Label class="p" text="Пробник (F5) — це заряд +1, тому показане ним значення φ дорівнює і потенціалу точки, і енергії цього пробного заряду там. Рядок «Потенціальна U» на панелі — енергія всіх пар зарядів сцени разом (тема 11)."/>
-    <Button class="try" content="Спробуй: «Однакові» з фоном потенціалу і пробним зарядом" command="{binding tryIt}"/>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.potential_energy.p4}"/>
+    <Button class="try" content="{tr help.potential_energy.try}" command="{binding tryIt}"/>
 </Stack>
