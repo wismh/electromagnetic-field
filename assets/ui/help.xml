@@ -87,6 +87,21 @@
                 <ItemsControl class="topic" items_source="{binding topicOverview}" var-display="{binding topicOverviewDisplay}">
                     <ItemTemplate src="help_topics/overview.xml"/>
                 </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicBfield}" var-display="{binding topicBfieldDisplay}">
+                    <ItemTemplate src="help_topics/bfield.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicLorentz}" var-display="{binding topicLorentzDisplay}">
+                    <ItemTemplate src="help_topics/lorentz.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicCyclotron}" var-display="{binding topicCyclotronDisplay}">
+                    <ItemTemplate src="help_topics/cyclotron.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicExb}" var-display="{binding topicExbDisplay}">
+                    <ItemTemplate src="help_topics/exb.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicCoil}" var-display="{binding topicCoilDisplay}">
+                    <ItemTemplate src="help_topics/coil.xml"/>
+                </ItemsControl>
                 <ItemsControl class="topic" items_source="{binding topicSimulation}" var-display="{binding topicSimulationDisplay}">
                     <ItemTemplate src="help_topics/simulation.xml"/>
                 </ItemsControl>

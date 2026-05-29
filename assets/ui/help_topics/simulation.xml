@@ -12,6 +12,10 @@
         <Math class="display-math" display="true" formula="x_{n+1} = x_n + \Delta t \, v_{n+1/2}"/>
         <Math class="display-math" display="true" formula="v_{n+1} = v_{n+1/2} + \frac{\Delta t}{2} \, a_{n+1}"/>
     </Stack>
+    <Label class="p" text="{tr help.simulation.p2b}"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\theta = \frac{q}{m} B_z \, \Delta t"/>
+    </Stack>
     <Label class="h" text="{tr help.simulation.s3}"/>
     <Label class="p" text="{tr help.simulation.p3}"/>
     <Stack class="formula" direction="vertical">

@@ -11,7 +11,7 @@
 
 namespace game {
 
-inline constexpr std::size_t kHelpTopicCount = 18;
+inline constexpr std::size_t kHelpTopicCount = 23;
 // "Predict, then check" questions per topic; answers stay collapsed until revealed.
 inline constexpr std::size_t kHelpPredictionsPerTopic = 3;
 
@@ -94,6 +94,12 @@ public:
     // III. Summary
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicGravity;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicOverview;
+    // IV. Magnetism
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicBfield;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicLorentz;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicCyclotron;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicExb;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicCoil;
     // Appendix
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicSimulation;
 
@@ -114,6 +120,11 @@ public:
     engine::ui::Bindable<std::string> topicConfigEnergyDisplay;
     engine::ui::Bindable<std::string> topicGravityDisplay;
     engine::ui::Bindable<std::string> topicOverviewDisplay;
+    engine::ui::Bindable<std::string> topicBfieldDisplay;
+    engine::ui::Bindable<std::string> topicLorentzDisplay;
+    engine::ui::Bindable<std::string> topicCyclotronDisplay;
+    engine::ui::Bindable<std::string> topicExbDisplay;
+    engine::ui::Bindable<std::string> topicCoilDisplay;
     engine::ui::Bindable<std::string> topicSimulationDisplay;
 
     // The fields above in navigation order, so code can index them.

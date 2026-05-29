@@ -1,0 +1,80 @@
+<!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
+     HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
+<Stack class="topic-body" direction="vertical">
+    <Label class="kicker" text="{tr help.cyclotron.kicker}"/>
+    <Label class="title" text="{tr help.cyclotron.title}"/>
+    <Label class="h" text="{tr help.h.idea}"/>
+    <Label class="p" text="{tr help.cyclotron.p1}"/>
+    <Label class="p" text="{tr help.cyclotron.p2}"/>
+    <Label class="h" text="{tr help.h.formulas}"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="R = \frac{m v}{|q| \, B}"/>
+        <Math class="display-math" display="true" formula="T = \frac{2\pi m}{|q| \, B}"/>
+        <Math class="display-math" display="true" formula="\omega = \frac{|q| \, B}{m}"/>
+    </Stack>
+    <Label class="h" text="{tr help.h.legend}"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="R"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.cyclotron.legend1}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="T"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.cyclotron.legend2}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\omega"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.cyclotron.legend3}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="m, \, q, \, v"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.cyclotron.legend4}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="B"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.cyclotron.legend5}"/>
+        </Stack>
+    </Stack>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="{tr help.cyclotron.note}"/>
+    </Stack>
+    <Label class="h" text="{tr help.h.faq}"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.cyclotron.q1}"/>
+            <Label class="qa-a" text="{tr help.cyclotron.a1}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.cyclotron.q2}"/>
+            <Label class="qa-a" text="{tr help.cyclotron.a2}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.predict}"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="{tr help.cyclotron.predict1}"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+            <Label class="predict-a-text" text="{tr help.cyclotron.answer1}"/>
+        </Stack>
+    </Stack>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="{tr help.cyclotron.predict2}"/>
+        <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
+            <Label class="predict-a-text" text="{tr help.cyclotron.answer2}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.cyclotron.p3}"/>
+    <Button class="try" content="{tr help.cyclotron.try}" command="{binding tryIt}"/>
+</Stack>

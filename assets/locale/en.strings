@@ -862,7 +862,7 @@ text = "Force and field are what you need for a trajectory: the direction of the
 
 [[string]]
 id = "help.overview.a2"
-text = "A magnetic field appears, and the force becomes \\(\\ F = q(E + v \\times B)\\). The electric field is no longer only the slope of a potential: a changing magnetic field creates a circulating \\(\\ E\\), for which the work depends on the path. That is the next stage of the program."
+text = "A magnetic field appears, and the force becomes \\(\\ F = q(E + v \\times B)\\). The magnetic part is perpendicular to the velocity, so it does no work: the speed still changes only because of the electric field. Topics 17–21 are that part of the program. What is still left out is the circulating electric field a changing magnetic field would create. For that field the work would depend on the path, and it would no longer be only the slope of a potential."
 
 [[string]]
 id = "help.overview.answer"
@@ -902,7 +902,7 @@ text = "So \\(\\ E\\), \\(\\ \\varphi\\), and \\(\\ U\\) are not three separate 
 
 [[string]]
 id = "help.overview.p3"
-text = "Each link in the chain has its own layer. The vector grid and the probe are the field \\(\\ E\\) (F3, F5). The background with equipotentials is \\(\\ \\varphi\\) (F1). Field lines and flow are the structure of the field (F2, F4). The energy panel is \\(\\ U\\), \\(\\ K\\), and the total \\(\\ K + U\\). Trails are the motion that the energy turns into (F6)."
+text = "Each link in the chain has its own layer. The vector grid and the probe are the field \\(\\ E\\) (F3, F5). The background with equipotentials is \\(\\ \\varphi\\) (F1). Field lines and flow are the structure of the field (F2, F4). The energy panel is \\(\\ U\\), \\(\\ K\\), and the total \\(\\ K + U\\). Trails are the motion that the energy turns into (F6). Magnetic marks (F7) show \\(\\ B_z\\), and the Lorentz force (M) lets that field turn the motion (topics 17–21)."
 
 [[string]]
 id = "help.overview.predict"
@@ -1046,7 +1046,7 @@ text = "If the zero is at infinity, \\(\\ \\varphi\\) at a point is the work the
 
 [[string]]
 id = "help.potential.a2"
-text = "The force of a point charge points along the radius and depends only on the distance. On each small step the work depends only on how much the distance to the charge changed, not on a sideways part of the step. The total is only the difference of the distances at the start and at the end. By superposition the same rule extends to any system of charges at rest. It is no longer true for friction, or for the circulating electric field that a changing magnetic field produces — and there is no potential there."
+text = "The force of a point charge points along the radius and depends only on the distance. On each small step the work depends only on how much the distance to the charge changed, not on a sideways part of the step. The total is only the difference of the distances at the start and at the end. By superposition the same rule extends to any system of charges at rest. It is no longer true for friction, or for the circulating electric field that a changing magnetic field produces — and there is no potential there. This program does not include that induced field (topics 17–21), so the electric field on the screen still has a potential."
 
 [[string]]
 id = "help.potential.a3"
@@ -1274,23 +1274,23 @@ text = "APPENDIX"
 
 [[string]]
 id = "help.simulation.p1"
-text = "The charges are point particles in the plane of the screen, but they follow the \\(\\ \\sim \\frac{{1}}{{r^2}}\\) law of the real three-dimensional world: this is a slice of a 3D scene, not “two-dimensional physics”. Every vector in the code is three-dimensional with \\(\\ z = 0\\), so the forces and the motion stay in the plane. The field is instantaneous: changes spread with no delay. There is no magnetism yet."
+text = "The charges are point particles in the plane of the screen, but they follow the \\(\\ \\sim \\frac{{1}}{{r^2}}\\) law of the real three-dimensional world: this is a slice of a 3D scene, not “two-dimensional physics”. Every vector in the code is three-dimensional with \\(\\ z = 0\\), so the forces and the motion stay in the plane. The field is instantaneous: changes spread with no delay. Moving charges also make a magnetic field perpendicular to the screen; the Lorentz force (M) is what lets it act on them (topics 17–21)."
 
 [[string]]
 id = "help.simulation.p2"
-text = "The program advances the motion in fixed steps of \\(\\ \\frac{{1}}{{60}}\\) of a second (at a higher time scale, in several smaller steps). The method is leapfrog, or velocity Verlet: half a step of velocity, a full step of position, then another half step of velocity with the new force. Unlike the simplest \\(\\ x \\leftarrow x + v\\,\\Delta t\\), it is symplectic: the energy does not drift away, it only jitters a little, so orbits do not spiral out or fall in over time."
+text = "The program advances the motion in fixed steps of \\(\\ \\frac{{1}}{{60}}\\) of a second (at a higher time scale, in several smaller steps). The method is leapfrog, or velocity Verlet: half a step of velocity, a full step of position, then another half step of velocity with the new force. Unlike the simplest \\(\\ x \\leftarrow x + v\\,\\Delta t\\), it is symplectic: the energy does not drift away, it only jitters a little, so orbits do not spiral out or fall in over time. That is the electric part of the step."
 
 [[string]]
 id = "help.simulation.p3"
-text = "For point charges the force is unbounded as \\(\\ r \\to 0\\), and a close flyby would fling charges off at huge speeds. So the distance in every formula is “softened” by \\(\\ \\varepsilon\\) (the slider on the panel): a charge behaves like a blurred ball of size about \\(\\ \\varepsilon\\). The softening is the same for the field, the potential, and the energy, so \\(\\ E = -\\nabla\\varphi\\) and energy conservation hold exactly. Far from a charge (a distance much larger than \\(\\ \\varepsilon\\)) there is no difference."
+text = "For point charges the force is unbounded as \\(\\ r \\to 0\\), and a close flyby would fling charges off at huge speeds. So the distance in every formula is “softened” by \\(\\ \\varepsilon\\) (the slider on the panel): a charge behaves like a blurred ball of size about \\(\\ \\varepsilon\\). The softening is the same for the electric field, the magnetic field, the potential, and the energy, so \\(\\ E = -\\nabla\\varphi\\) and energy conservation hold exactly. Far from a charge (a distance much larger than \\(\\ \\varepsilon\\)) there is no difference."
 
 [[string]]
 id = "help.simulation.p4"
-text = "Charges are balls of radius \\(\\ 0.2 + 0.15\\sqrt{{|q|}}\\). When the balls overlap, they are pushed apart, and the relative velocity reverses and is multiplied by a coefficient of restitution of 0.8: momentum is conserved, and some kinetic energy disappears (in reality, as heat). The K key turns collisions off. Speed is capped at 30, so no flyby can throw a charge to infinity."
+text = "Charges are balls of radius \\(\\ 0.2 + 0.15\\sqrt{{|q|}}\\). When the balls overlap, they are pushed apart, and the relative velocity reverses and is multiplied by a coefficient of restitution of 0.8: momentum is conserved, and some kinetic energy disappears (in reality, as heat). The K key turns collisions off. Speed is capped at 30, and also at \\(\\ 0.9c\\) (the speed-of-light slider, default 20), so no flyby can throw a charge to infinity and the charges stay slower than light. The panel shows the fastest \\(\\ v/c\\)."
 
 [[string]]
 id = "help.simulation.p5"
-text = "Everything is in arbitrary units: \\(\\ k = 1\\) (the slider), charge mass 1, distances in grid units, time in simulation seconds. That is only a choice of scale. The formulas are the same as in SI; only the numbers change. To move to SI, replace \\(\\ k\\) with \\(\\ \\frac{{1}}{{4\\pi\\varepsilon_0}} \\approx 8.99\\cdot 10^{{9}}\\) in SI units (topic 2), charges with coulombs, and distances with meters."
+text = "Everything is in arbitrary units: \\(\\ k = 1\\) (the slider), charge mass 1, distances in grid units, time in simulation seconds. That is only a choice of scale. The formulas are the same as in SI; only the numbers change. To move to SI, replace \\(\\ k\\) with \\(\\ \\frac{{1}}{{4\\pi\\varepsilon_0}} \\approx 8.99\\cdot 10^{{9}}\\) in SI units (topic 2), charges with coulombs, and distances with meters. The magnetic constant is not a separate slider: \\(\\ \\frac{{\\mu_0}}{{4\\pi}} = \\frac{{k}}{{c^2}}\\), with \\(\\ c\\) the speed of light (topic 17)."
 
 [[string]]
 id = "help.simulation.p6"
@@ -1302,7 +1302,7 @@ text = "An atom does not look like the “Orbit” scene. An electron is describ
 
 [[string]]
 id = "help.simulation.p8"
-text = "The program also leaves out: the magnetic field of moving charges, the finite speed at which the field spreads, radiation from accelerating charges, conductors and dielectrics, and the fact that real field lines spread in three dimensions (topic 6)."
+text = "The program also leaves out: the circulating electric field of a changing magnetic field (Faraday’s law), the finite speed at which the field spreads, radiation from accelerating charges, conductors and dielectrics, and the fact that real field lines spread in three dimensions (topic 6). The magnetic field of moving charges is included (topics 17–21)."
 
 [[string]]
 id = "help.simulation.predict"
@@ -2103,3 +2103,419 @@ text = "Coil"
 [[string]]
 id = "welcome.preset.coil"
 text = "A current loop with a non-uniform field: charges circle and slowly drift around the coil, + and − in opposite directions."
+
+[[string]]
+id = "help.section.magnetic"
+text = "IV. MAGNETISM"
+
+[[string]]
+id = "help.simulation.p2b"
+text = "When the Lorentz force is on, the step also turns the velocity in the magnetic field. The turn sits around the move: half a turn, the position step, then half a turn again, with \\(\\ B_z\\) computed again at the new positions. The angle of a turn is \\(\\ (q/m) B_z \\Delta t\\), and each half turn uses half the step as \\(\\ \\Delta t\\). The angle is exact, so the turn itself does not change the speed. With the force off, the turns are skipped and the step is only the electric one above."
+
+[[string]]
+id = "help.bfield.kicker"
+text = "TOPIC 17"
+
+[[string]]
+id = "help.bfield.title"
+text = "The magnetic field"
+
+[[string]]
+id = "help.bfield.p1"
+text = "A charge at rest makes only an electric field. A moving charge also makes a magnetic field. In this program every charge stays in the plane of the screen, so that field is perpendicular to the screen: one number \\(\\ B_z\\) at each point. Positive \\(\\ B_z\\) points out of the screen, negative \\(\\ B_z\\) points into it."
+
+[[string]]
+id = "help.bfield.p2"
+text = "The field of one moving charge falls off as \\(\\ 1/r^2\\), like the electric field, and the cross product makes it perpendicular both to the velocity and to the line from the charge to the point. Fields of several charges add, the same way electric fields add. A scene can also add a uniform external field, the same \\(\\ B_z\\) everywhere, and a current loop lying in the plane (topic 21)."
+
+[[string]]
+id = "help.bfield.legend1"
+text = "the magnetic field. Here only its component perpendicular to the screen, \\(\\ B_z\\)."
+
+[[string]]
+id = "help.bfield.legend2"
+text = "the magnetic constant. The formulas use \\(\\ \\mu_0/4\\pi\\), and in the program that equals \\(\\ k/c^2\\). It is not its own slider."
+
+[[string]]
+id = "help.bfield.legend3"
+text = "the source charge, with its sign. A negative charge flips the direction of \\(\\ B\\)."
+
+[[string]]
+id = "help.bfield.legend4"
+text = "the velocity of the source. A charge at rest makes no magnetic field."
+
+[[string]]
+id = "help.bfield.legend5"
+text = "the vector from the source charge to the point where the field is measured. \\(\\ r\\) in the denominator is its length."
+
+[[string]]
+id = "help.bfield.legend6"
+text = "the speed of light in the simulation. It sets how weak the magnetic field of a moving charge is next to the Coulomb field."
+
+[[string]]
+id = "help.bfield.note1"
+text = "The same softening \\(\\ \\varepsilon\\) as in the electric field keeps \\(\\ B\\) finite on top of a charge. A charge does not feel its own magnetic field. The uniform external field and every coil are added to the sum over the moving charges."
+
+[[string]]
+id = "help.bfield.note2"
+text = "Magnetic forces between moving charges are \\(\\ (v/c)^2\\) of the Coulomb force, as in nature. At the default \\(\\ c = 20\\) a charge has to be fast before its own magnetic field matters beside the electric one. The slider runs from about 3 to 100; lowering it exaggerates that magnetism. The uniform external field and the coil do not depend on \\(\\ c\\): the coil is fixed by the field at its centre, not by a current that would scale with \\(\\ c\\). Speeds stay below \\(\\ 0.9c\\), and the panel shows the fastest \\(\\ v/c\\)."
+
+[[string]]
+id = "help.bfield.s1"
+text = "THE RIGHT-HAND RULE"
+
+[[string]]
+id = "help.bfield.hand1"
+text = "The cross product fixes the direction, and the right hand is how you see it. For a positive charge, point the thumb of your right hand along the velocity. Your fingers curl the way \\(\\ B\\) goes around the charge. A positive charge moving to the right has \\(\\ B\\) out of the screen above it and into the screen below it. A negative charge is the other way around, because the sign of \\(\\ q\\) flips \\(\\ B\\)."
+
+[[string]]
+id = "help.bfield.hand2"
+text = "The same hand reads a current loop. Curl the fingers of your right hand along the current; the thumb points along \\(\\ B\\) through the centre. On the screen a counter-clockwise current gives \\(\\ B\\) out of the screen, a positive \\(\\ B_z\\). The arrows on the coil in scene 0 draw that current. Topic 21 is the loop itself."
+
+[[string]]
+id = "help.bfield.hand3"
+text = "The force on a moving charge is the other cross product, \\(\\ v \\times B\\). For a positive charge, point the fingers along \\(\\ v\\) and bend them toward \\(\\ B\\); the thumb is the force. With \\(\\ B\\) out of the screen, a positive charge moving to the right is pushed down, so it turns clockwise. A negative charge turns counter-clockwise. Topic 18 is this force."
+
+[[string]]
+id = "help.bfield.q1"
+text = "Why is there no magnetic arrow drawn in the plane, the way there is for \\(\\ E\\)?"
+
+[[string]]
+id = "help.bfield.a1"
+text = "For charges that move in the plane, \\(\\ v \\times r\\) is perpendicular to the plane. The whole magnetic field points in or out of the screen, so a grid of arrows lying in the plane would have nothing to draw. The force \\(\\ v \\times B\\) lands back in the plane, and the charges never leave it. Wires sticking out of the screen, with circular field lines drawn on it, are a different picture, and this program does not show them."
+
+[[string]]
+id = "help.bfield.q2"
+text = "Does a changing magnetic field create an electric field here?"
+
+[[string]]
+id = "help.bfield.a2"
+text = "No. Faraday’s law — a changing \\(\\ B\\) creates a circulating \\(\\ E\\), for which the work depends on the path — is left out. The electric field on the screen is still only the Coulomb field of the charges, and it still comes from a potential. The magnetic field is instantaneous, the same quasi-static approximation as the electric one. While speeds stay well below \\(\\ c\\), the missing pieces are of order \\(\\ (v/c)^2\\)."
+
+[[string]]
+id = "help.bfield.predict1"
+text = "In the “Coil” scene, turn on the magnetic marks (F7) and the probe (F5). What is \\(\\ B_z\\) at the centre of the ring, and what sign does it have just outside?"
+
+[[string]]
+id = "help.bfield.answer1"
+text = "At the centre \\(\\ B_z\\) is \\(\\ +2\\): circles with a dot, the field out of the screen. Just outside the ring the sign flips: circles with a cross, the field into the screen, and it fades as you move away. The probe reads the number. The arrows on the ring run counter-clockwise, which is the right-hand rule for a positive field at the centre."
+
+[[string]]
+id = "help.bfield.predict2"
+text = "In the “Cyclotron” scene the external field is \\(\\ +2\\). Drag the speed-of-light slider from one end to the other. Do the marks change?"
+
+[[string]]
+id = "help.bfield.answer2"
+text = "Hardly. Almost all of \\(\\ B_z\\) there is the uniform external field, and that field does not depend on \\(\\ c\\). The magnetic field of the moving charges themselves does, as \\(\\ 1/c^2\\), but at these speeds it is a small addition. To see that piece, set the external field to zero with its slider and lower \\(\\ c\\)."
+
+[[string]]
+id = "help.bfield.p3"
+text = "F7 draws the marks. A circle with a dot is \\(\\ B_z\\) out of the screen, in a warm color; a circle with a cross is \\(\\ B_z\\) into the screen, in blue. The mark is larger where \\(\\ |B_z|\\) is larger. While the Lorentz force is off (M), the marks are faded: the field is there, but it does not move the charges. The probe shows the number \\(\\ B_z\\) when this layer is on."
+
+[[string]]
+id = "help.bfield.p4"
+text = "The external \\(\\ B_z\\) slider adds the same value everywhere, from \\(\\ -2\\) to \\(\\ +2\\). Scenes 1–7 start with the Lorentz force off and no external field, so loading one never keeps magnetism from the scene before it. Scenes 8, 9 and 0 turn the force on and bring their own field: a uniform \\(\\ B_z\\), or the coil."
+
+[[string]]
+id = "help.bfield.try"
+text = "Try it: “Coil” with magnetic marks and the probe"
+
+[[string]]
+id = "help.lorentz.kicker"
+text = "TOPIC 18"
+
+[[string]]
+id = "help.lorentz.title"
+text = "The Lorentz force"
+
+[[string]]
+id = "help.lorentz.p1"
+text = "The electric field pushes a charge whether or not it is moving: \\(\\ F = qE\\). A magnetic field pushes only a moving charge, and only sideways. Together they are the Lorentz force. The magnetic part is perpendicular to the velocity, so it changes the direction and not the speed. It does no work. Kinetic energy still comes from the electric field, or from dragging a charge with the mouse."
+
+[[string]]
+id = "help.lorentz.p2"
+text = "In the plane, \\(\\ B\\) is along \\(\\ z\\), so \\(\\ v \\times B\\) lies in the plane and the charges stay on the screen. The sense of the turn is the right-hand rule from topic 17: clockwise when \\(\\ q B_z\\) is positive, counter-clockwise when it is negative. A charge does not feel its own field, and a fixed charge is not moved."
+
+[[string]]
+id = "help.lorentz.legend1"
+text = "the total force on the charge, electric plus magnetic."
+
+[[string]]
+id = "help.lorentz.legend2"
+text = "the electric field at the charge, from every charge except itself."
+
+[[string]]
+id = "help.lorentz.legend3"
+text = "the magnetic field there: the other moving charges, the uniform external field and the coils."
+
+[[string]]
+id = "help.lorentz.legend4"
+text = "the velocity of the charge that feels the force. At rest, the magnetic part is zero."
+
+[[string]]
+id = "help.lorentz.legend5"
+text = "the charge that feels the force, with its sign. The sign decides which way it turns."
+
+[[string]]
+id = "help.lorentz.note"
+text = "The energy row on the panel is still kinetic energy plus the electric potential energy. There is no magnetic energy in that sum. The magnetic force does not change it, because it does no work. An automatic test keeps \\(\\ K + U\\) to about a tenth of a percent over a long run with both fields on. Collisions, the speed cap and dragging with the mouse are what still change the total."
+
+[[string]]
+id = "help.lorentz.q1"
+text = "Why doesn’t the magnetic force change the speed?"
+
+[[string]]
+id = "help.lorentz.a1"
+text = "Work is force along the motion. \\(\\ F_B\\) is perpendicular to \\(\\ v\\), so on each small step the magnetic work is zero. The speed stays the same; only the direction turns. The integrator turns the velocity through the exact angle \\(\\ (q/m) B_z \\Delta t\\), which keeps the speed exact rather than approximate. The appendix describes where that turn sits in the step."
+
+[[string]]
+id = "help.lorentz.q2"
+text = "Two like charges moving side by side repel. What does the magnetic force add?"
+
+[[string]]
+id = "help.lorentz.a2"
+text = "It pulls them together. Charges moving the same way are a pair of parallel currents, and parallel currents attract. In general the magnetic forces on two charges are not an equal-and-opposite pair the way Coulomb forces are: the field carries part of the momentum, so the total momentum of the charges alone is not conserved. At the default \\(\\ c = 20\\) the magnetic pull is about \\(\\ (v/c)^2\\) of the Coulomb repulsion, a percent or less. Lower the speed-of-light slider and the pull becomes obvious."
+
+[[string]]
+id = "help.lorentz.predict1"
+text = "In the “Cyclotron” scene, press M to turn the Lorentz force off. What do the trails do?"
+
+[[string]]
+id = "help.lorentz.answer1"
+text = "The circles stop. Each charge flies on almost straight, because the charges are small and their Coulomb forces are weak. Press M again and the circles return. While the force was off the marks stayed, but faded: the field was still drawn, and it was not pushing."
+
+[[string]]
+id = "help.lorentz.predict2"
+text = "A positive charge moves to the right, and \\(\\ B\\) points out of the screen. Which way does it turn?"
+
+[[string]]
+id = "help.lorentz.answer2"
+text = "Clockwise: the force pushes it down. A negative charge in the same field turns counter-clockwise. In the cyclotron the three positive charges circle clockwise and the negative one the other way. The probe reads \\(\\ B_z \\approx +2\\), so \\(\\ q B_z\\) is positive for the red charges."
+
+[[string]]
+id = "help.lorentz.p3"
+text = "M and the Lorentz-force checkbox turn this sideways push on and off. Turning it off does not remove \\(\\ B\\). Scenes 8, 9 and 0 start with it on. Scenes 1–7 start with it off. The turn itself is described in the appendix: half a turn, the move, half a turn again."
+
+[[string]]
+id = "help.lorentz.try"
+text = "Try it: “Cyclotron” with trails, marks and the probe"
+
+[[string]]
+id = "help.cyclotron.kicker"
+text = "TOPIC 19"
+
+[[string]]
+id = "help.cyclotron.title"
+text = "The cyclotron"
+
+[[string]]
+id = "help.cyclotron.p1"
+text = "In a uniform magnetic field a free charge moves in a circle. The faster it goes, the larger the circle, in proportion to the speed. The time of one lap does not depend on the speed: a fast charge has farther to travel, and it travels faster by the same factor. Every charge with the same \\(\\ |q|/m\\) and the same \\(\\ |B|\\) shares one period. The sign of \\(\\ q\\) decides the direction."
+
+[[string]]
+id = "help.cyclotron.p2"
+text = "The name in the scene is the motion, not a machine. A laboratory cyclotron uses this period on purpose: an alternating voltage, timed to the laps, speeds the particle up while the radius grows and the period stays put. Nothing in the scene accelerates the charges. They simply coast at the speed they started with, because the magnetic force does no work."
+
+[[string]]
+id = "help.cyclotron.legend1"
+text = "the radius of the circle. It grows in proportion to the speed."
+
+[[string]]
+id = "help.cyclotron.legend2"
+text = "the period, the time of one lap. It does not depend on the speed."
+
+[[string]]
+id = "help.cyclotron.legend3"
+text = "the angular speed. One lap is an angle \\(\\ 2\\pi\\), so \\(\\ T = 2\\pi/\\omega\\)."
+
+[[string]]
+id = "help.cyclotron.legend4"
+text = "the mass, the charge with its sign, and the speed. The period depends on \\(\\ |q|/m\\), not on \\(\\ v\\)."
+
+[[string]]
+id = "help.cyclotron.legend5"
+text = "the magnitude of the magnetic field. Here it is \\(\\ |B_z|\\). The sign of \\(\\ B_z\\) decides the direction, together with the sign of \\(\\ q\\)."
+
+[[string]]
+id = "help.cyclotron.note"
+text = "In scene 8 every free charge has \\(\\ |q| = 0.25\\) and \\(\\ m = 0.5\\), and \\(\\ B_z = +2\\), so \\(\\ |q| B / m = 1\\). The radius equals the speed: the three positive charges, at speeds 1, 2 and 3, have radii 1, 2 and 3. The period is \\(\\ 2\\pi\\), about 6.28 simulation seconds, for all four charges, including the negative one. Their charges are small on purpose, so the Coulomb forces barely bend the circles."
+
+[[string]]
+id = "help.cyclotron.q1"
+text = "Why is the period the same at every speed?"
+
+[[string]]
+id = "help.cyclotron.a1"
+text = "The angular speed is \\(\\ |q| B / m\\). The speed is not in that formula, and neither is the radius. The radius grows with \\(\\ v\\), the circumference grows with \\(\\ v\\), and the two cancel in the time of one lap. Halve \\(\\ B\\) and the period doubles, whatever the speeds are."
+
+[[string]]
+id = "help.cyclotron.q2"
+text = "Does the charge radiate and slow down?"
+
+[[string]]
+id = "help.cyclotron.a2"
+text = "Not here. Radiation from an accelerating charge is left out, as in the rest of the program. The magnetic force does no work, so the speed on the circle stays constant. A real charge on a tight circle does radiate; that is one reason the “Orbit” scene is not an atom (the appendix)."
+
+[[string]]
+id = "help.cyclotron.predict1"
+text = "Which positive charge draws the largest circle, and do the three of them finish a lap together?"
+
+[[string]]
+id = "help.cyclotron.answer1"
+text = "The one at speed 3, with radius 3. Yes: they share the period \\(\\ 2\\pi\\). The Up key speeds the whole scene up, and the laps stay in step. The negative charge, at speed 2, has radius 2 and the opposite sense, and it finishes the lap at the same moment."
+
+[[string]]
+id = "help.cyclotron.predict2"
+text = "The external field starts at \\(\\ +2\\), the top of the slider. Drag it down to \\(\\ +1\\). What happens to the circles? And if you drag it through zero to a negative value?"
+
+[[string]]
+id = "help.cyclotron.answer2"
+text = "At \\(\\ +1\\) every radius doubles and the period doubles: the circles no longer sit where the scene drew them, and a lap takes about 12.6 simulation seconds. The direction stays clockwise for the positive charges as long as \\(\\ B_z\\) stays positive. Through zero the motion stops being a circle, and below zero the positive charges turn counter-clockwise."
+
+[[string]]
+id = "help.cyclotron.p3"
+text = "Scene 8, the “Cyclotron” button. Trails (F6) are the circles; marks (F7) are the uniform field, the same dot everywhere; the probe reads \\(\\ B_z\\). The slider is already at its maximum, \\(\\ +2\\), so the useful move is downward. M turns the force off and the circles open into straight lines."
+
+[[string]]
+id = "help.cyclotron.try"
+text = "Try it: “Cyclotron” with trails, marks and the probe"
+
+[[string]]
+id = "help.exb.kicker"
+text = "TOPIC 20"
+
+[[string]]
+id = "help.exb.title"
+text = "E×B drift"
+
+[[string]]
+id = "help.exb.p1"
+text = "A charge in a uniform electric field alone accelerates without limit. Add a uniform magnetic field perpendicular to the screen and the path closes into loops that walk sideways. The walk, the drift, has the same velocity for both signs of charge. The loops themselves turn opposite ways."
+
+[[string]]
+id = "help.exb.p2"
+text = "Both signs go the same way because two things flip together. A negative charge feels the opposite electric force, so it starts off the other way, and it also gyrates the other way. The drift \\(\\ E \\times B\\) does not contain \\(\\ q\\). Started from rest, the path is a cycloid: loops whose centre moves at \\(\\ E/B\\). A positive charge is first pushed along \\(\\ E\\); the magnetic field then bends that motion sideways, and the loop never closes in place."
+
+[[string]]
+id = "help.exb.legend1"
+text = "the drift velocity, the velocity of the centre of the loop. It is the same for both signs."
+
+[[string]]
+id = "help.exb.legend2"
+text = "the electric field. Between the rows of scene 9 it points from the positive row down toward the negative row."
+
+[[string]]
+id = "help.exb.legend3"
+text = "the magnitude of the magnetic field. The drift is slower in a stronger field: the speed is \\(\\ E/B\\). The direction of \\(\\ B\\) decides which way is sideways."
+
+[[string]]
+id = "help.exb.note"
+text = "The second formula is the first one for the case in this program, where \\(\\ E\\) lies in the screen and \\(\\ B\\) is perpendicular to it. \\(\\ E\\) in \\(\\ E/B\\) is the magnitude of the electric field. The charge and the mass are absent: they change the size of the loops, not the velocity of the drift."
+
+[[string]]
+id = "help.exb.q1"
+text = "Is the drift a separate force?"
+
+[[string]]
+id = "help.exb.a1"
+text = "No. It is the Lorentz force, electric plus magnetic, added up over a loop. The electric field speeds the charge up on one side of the loop and slows it on the other, so the magnetic radius keeps changing and the loop does not stay put. Averaged over a loop, the centre walks at \\(\\ E \\times B / B^2\\)."
+
+[[string]]
+id = "help.exb.q2"
+text = "What if the charge already moves at exactly the drift velocity?"
+
+[[string]]
+id = "help.exb.a2"
+text = "Then \\(\\ E + v \\times B = 0\\), the forces cancel, and the charge coasts in a straight line at \\(\\ E/B\\). The charges in the scene start at rest, which is not that speed, so you see loops rather than a straight drift. A shove with the mouse can put a charge close to the straight path."
+
+[[string]]
+id = "help.exb.predict1"
+text = "In scene 9, which way do the free charges drift, and does the negative one go the other way?"
+
+[[string]]
+id = "help.exb.answer1"
+text = "To the left, both of them. \\(\\ E\\) points down, \\(\\ B\\) points out of the screen, and \\(\\ E \\times B\\) points left. The positive loops turn clockwise and the negative loops turn counter-clockwise, but the walk is the same. They stay between the rows."
+
+[[string]]
+id = "help.exb.predict2"
+text = "Turn the Lorentz force off with M. What replaces the drift?"
+
+[[string]]
+id = "help.exb.answer2"
+text = "The magnetic part disappears. The positive free charges accelerate down toward the negative row, the negative one accelerates up toward the positive row, and there is no sideways walk. That is the plain capacitor of topic 9."
+
+[[string]]
+id = "help.exb.p3"
+text = "Scene 9. Field lines (F2) show \\(\\ E\\) pointing down between the rows; marks (F7) show \\(\\ B\\) out of the screen, \\(\\ B_z = +1.5\\); trails are the cycloids. The probe reads both \\(\\ |E|\\) and \\(\\ B_z\\): their ratio is the drift speed. Raise \\(\\ B_z\\) and the drift slows, while the loops tighten. Lower it and the drift runs faster, until the loops grow large enough to reach the rows."
+
+[[string]]
+id = "help.exb.try"
+text = "Try it: “E×B drift” with field lines, trails and magnetic marks"
+
+[[string]]
+id = "help.coil.kicker"
+text = "TOPIC 21"
+
+[[string]]
+id = "help.coil.title"
+text = "The coil"
+
+[[string]]
+id = "help.coil.p1"
+text = "A circular current in the plane of the screen makes a magnetic field that is not uniform. In the plane of the loop the field is still only in or out of the screen, but its strength changes from point to point. Inside the ring it points one way and grows as you approach the wire. Outside it points the other way and falls off the way a dipole field falls off. A charge circling in that uneven field does not close its loop: the circle is tighter where the field is stronger, so the centre of the circle walks sideways. That walk is grad-B drift. Plus and minus walk in opposite directions. It is the flat picture of a radiation belt, where charged particles drift around the Earth."
+
+[[string]]
+id = "help.coil.p2"
+text = "The program does not take a current and multiply by \\(\\ \\mu_0\\) for this loop. It takes the field at the centre and builds the shape from the Biot–Savart law, a sum around the loop, scaled so the centre is exactly that value. Because of the scaling, the coil does not change when you move the speed-of-light slider. A positive centre field means a counter-clockwise current, by the right-hand rule (topic 17)."
+
+[[string]]
+id = "help.coil.legend1"
+text = "the field at the centre of the loop. In scene 0 it is \\(\\ +2\\). Positive means out of the screen."
+
+[[string]]
+id = "help.coil.legend2"
+text = "the field at a point of the plane. Inside the ring it has the sign of \\(\\ B_0\\) and grows toward the wire. Outside it has the opposite sign."
+
+[[string]]
+id = "help.coil.note"
+text = "The ring is drawn with arrows along the current. The field stays finite on the wire itself: the sum is softened across the thickness of the wire, so a charge that reaches the line does not see an infinite field. The scene is set up so the free charges do not reach it."
+
+[[string]]
+id = "help.coil.q1"
+text = "Why doesn’t the orbit close?"
+
+[[string]]
+id = "help.coil.a1"
+text = "The magnetic radius is \\(\\ m v / (|q| B)\\). Where \\(\\ |B|\\) is larger, the radius is smaller. Over one gyro-period the charge takes its turn in a slightly different field, and the mismatch shifts the centre sideways, perpendicular to the direction in which \\(\\ |B|\\) changes. The magnetic force still does no work, so the speed of the circling stays constant. The charges still push on each other electrically; \\(\\ K + U\\) on the panel holds."
+
+[[string]]
+id = "help.coil.q2"
+text = "Which way is the drift?"
+
+[[string]]
+id = "help.coil.a2"
+text = "Perpendicular to \\(\\ B\\) and to the direction in which \\(\\ |B|\\) grows. For this coil, with \\(\\ B\\) out of the screen inside the ring, \\(\\ |B|\\) grows toward the wire. Positive charges drift counter-clockwise, negative charges clockwise. If the centre field pointed the other way, both drifts would reverse. The trails make the two directions obvious."
+
+[[string]]
+id = "help.coil.predict1"
+text = "Put the probe at the centre of the ring, then just outside it. What happens to the sign of \\(\\ B_z\\)? Does the speed-of-light slider change the numbers?"
+
+[[string]]
+id = "help.coil.answer1"
+text = "The sign flips. The centre reads \\(\\ +2\\), circles with a dot. Just outside, \\(\\ B_z\\) is negative, circles with a cross. Far from the ring it fades toward zero. Moving \\(\\ c\\) does not change these numbers: the coil is scaled to its centre field. The external slider is a uniform field added on top, and the scene starts with that slider at zero."
+
+[[string]]
+id = "help.coil.predict2"
+text = "Watch the positive charge that starts inside the ring, on the right, and the negative charge on the opposite side. Do they walk the same way around the coil?"
+
+[[string]]
+id = "help.coil.answer2"
+text = "No. The positive one drifts counter-clockwise, the negative one clockwise. The pair outside the ring does the same: opposite signs, opposite walks. They travel a good part of the way around, they do not hit the wire, and \\(\\ K + U\\) on the panel stays put."
+
+[[string]]
+id = "help.coil.p3"
+text = "Scene 0, the “Coil” button. C clears the charges and the coil; R brings the scene back. F7 is the dots inside and the crosses outside. F6 is the drift. Four free charges, with \\(\\ |q|/m = 0.5\\), two inside the ring and two outside, do the walking."
+
+[[string]]
+id = "help.coil.try"
+text = "Try it: “Coil” with trails, marks and the probe"

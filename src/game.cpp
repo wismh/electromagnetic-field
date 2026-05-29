@@ -187,8 +187,8 @@ std::string percent(float fraction) {
 
 }
 
-Game::Game(engine::AssetsDb& assets) :
-    assets_(assets) {}
+Game::Game(const engine::EngineServices& services) :
+    assets_(services.assets) {}
 
 engine::WindowDesc Game::primary_window() const {
     return {

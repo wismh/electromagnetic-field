@@ -1,5 +1,6 @@
 #pragma once
 
+#include <engine/core/engine_services.h>
 #include <engine/core/input_system.h>
 #include <engine/ecs/entity.h>
 #include <engine/ecs/events.h>
@@ -29,7 +30,7 @@ namespace game {
 
 class Game final : public engine::GameBase {
 public:
-    explicit Game(engine::AssetsDb& assets);
+    explicit Game(const engine::EngineServices& services);
 
     engine::WindowDesc primary_window() const override;
     std::optional<engine::AssetId> window_icon() const override;

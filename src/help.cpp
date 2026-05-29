@@ -31,7 +31,7 @@ constexpr const char* kNavBackground = "#00000000";
 constexpr const char* kNavSelectedText = "#ffffff";
 constexpr const char* kNavText = "#aab1c3";
 
-FieldLayers layers(bool potential, bool lines, bool grid, bool flow, bool probe, bool trails) {
+FieldLayers layers(bool potential, bool lines, bool grid, bool flow, bool probe, bool trails, bool magnetic = false) {
     return FieldLayers{
             .potential = potential,
             .lines = lines,
@@ -39,6 +39,7 @@ FieldLayers layers(bool potential, bool lines, bool grid, bool flow, bool probe,
             .flow = flow,
             .probe = probe,
             .trails = trails,
+            .magnetic = magnetic,
     };
 }
 
@@ -46,6 +47,7 @@ constexpr const char* kUsing = "help.section.using";
 constexpr const char* kBasics = "help.section.basics";
 constexpr const char* kPotentialEnergy = "help.section.potential";
 constexpr const char* kSummary = "help.section.summary";
+constexpr const char* kMagnetic = "help.section.magnetic";
 constexpr const char* kAppendix = "help.section.appendix";
 
 constexpr const char* kLocaleOnBg = "#6366f133";
@@ -54,7 +56,7 @@ constexpr const char* kLocaleOffBg = "#ffffff14";
 constexpr const char* kLocaleOffFg = "#aab1c3";
 
 // Order must match HelpViewModel::topics and the ItemsControls in assets/ui/help.xml.
-// layers(potential, lines, grid, flow, probe, trails)
+// layers(potential, lines, grid, flow, probe, trails, magnetic)
 const std::array<HelpTopic, kHelpTopicCount> kTopics{
         HelpTopic{kUsing, "help.using.title", std::nullopt},
         HelpTopic{kBasics, "help.charge.title", HelpDemo{Preset::Swarm, layers(true, true, false, true, true, true)}},
@@ -73,6 +75,11 @@ const std::array<HelpTopic, kHelpTopicCount> kTopics{
         HelpTopic{kPotentialEnergy, "help.config_energy.title", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
         HelpTopic{kSummary, "help.gravity.title", HelpDemo{Preset::Orbit, layers(false, true, false, false, false, true)}},
         HelpTopic{kSummary, "help.overview.title", HelpDemo{Preset::Dipole, layers(true, true, false, true, true, false)}},
+        HelpTopic{kMagnetic, "help.bfield.title", HelpDemo{Preset::Coil, layers(false, false, false, false, true, false, true)}},
+        HelpTopic{kMagnetic, "help.lorentz.title", HelpDemo{Preset::Cyclotron, layers(false, false, false, false, true, true, true)}},
+        HelpTopic{kMagnetic, "help.cyclotron.title", HelpDemo{Preset::Cyclotron, layers(false, false, false, false, true, true, true)}},
+        HelpTopic{kMagnetic, "help.exb.title", HelpDemo{Preset::ExBDrift, layers(false, true, false, false, true, true, true)}},
+        HelpTopic{kMagnetic, "help.coil.title", HelpDemo{Preset::Coil, layers(false, false, false, false, true, true, true)}},
         HelpTopic{kAppendix, "help.simulation.title", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
 };
 

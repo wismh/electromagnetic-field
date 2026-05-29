@@ -64,6 +64,11 @@ HelpViewModel::HelpViewModel() :
             &topicConfigEnergy,
             &topicGravity,
             &topicOverview,
+            &topicBfield,
+            &topicLorentz,
+            &topicCyclotron,
+            &topicExb,
+            &topicCoil,
             &topicSimulation,
     },
     topic_displays{
@@ -84,6 +89,11 @@ HelpViewModel::HelpViewModel() :
             &topicConfigEnergyDisplay,
             &topicGravityDisplay,
             &topicOverviewDisplay,
+            &topicBfieldDisplay,
+            &topicLorentzDisplay,
+            &topicCyclotronDisplay,
+            &topicExbDisplay,
+            &topicCoilDisplay,
             &topicSimulationDisplay,
     } {
     assets::ui::Help::bind(*this);

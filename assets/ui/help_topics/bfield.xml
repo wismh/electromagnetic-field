@@ -1,0 +1,93 @@
+<!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
+     HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
+<Stack class="topic-body" direction="vertical">
+    <Label class="kicker" text="{tr help.bfield.kicker}"/>
+    <Label class="title" text="{tr help.bfield.title}"/>
+    <Label class="h" text="{tr help.h.idea}"/>
+    <Label class="p" text="{tr help.bfield.p1}"/>
+    <Label class="p" text="{tr help.bfield.p2}"/>
+    <Label class="h" text="{tr help.h.formulas}"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\vec{B} = \frac{\mu_0}{4\pi} \, \frac{q \, \vec{v} \times \vec{r}}{r^3}"/>
+        <Math class="display-math" display="true" formula="\frac{\mu_0}{4\pi} = \frac{k}{c^2}"/>
+    </Stack>
+    <Label class="h" text="{tr help.h.legend}"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\vec{B}"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.bfield.legend1}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\mu_0"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.bfield.legend2}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="q"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.bfield.legend3}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\vec{v}"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.bfield.legend4}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\vec{r}"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.bfield.legend5}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="c"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.bfield.legend6}"/>
+        </Stack>
+    </Stack>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="{tr help.bfield.note1}"/>
+    </Stack>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="{tr help.bfield.note2}"/>
+    </Stack>
+    <Label class="h" text="{tr help.bfield.s1}"/>
+    <Label class="p" text="{tr help.bfield.hand1}"/>
+    <Label class="p" text="{tr help.bfield.hand2}"/>
+    <Label class="p" text="{tr help.bfield.hand3}"/>
+    <Label class="h" text="{tr help.h.faq}"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.bfield.q1}"/>
+            <Label class="qa-a" text="{tr help.bfield.a1}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.bfield.q2}"/>
+            <Label class="qa-a" text="{tr help.bfield.a2}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.predict}"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="{tr help.bfield.predict1}"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+            <Label class="predict-a-text" text="{tr help.bfield.answer1}"/>
+        </Stack>
+    </Stack>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="{tr help.bfield.predict2}"/>
+        <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
+        <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
+            <Label class="predict-a-text" text="{tr help.bfield.answer2}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.bfield.p3}"/>
+    <Label class="p" text="{tr help.bfield.p4}"/>
+    <Button class="try" content="{tr help.bfield.try}" command="{binding tryIt}"/>
+</Stack>
