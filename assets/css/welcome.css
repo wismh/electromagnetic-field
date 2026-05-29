@@ -1,0 +1,106 @@
+/* Welcome screen (assets/ui/welcome.xml). No `Canvas { background }`: the closed canvas must stay
+   transparent. Fonts are not inherited, so every text kind gets Inter from an element-level rule. */
+
+Label { font-family: cee217b3729e4247be377a0830041a0a; color: #d7dbe6; font-size: 15; }
+Button {
+    font-family: cee217b3729e4247be377a0830041a0a;
+    font-size: 14;
+    color: #e6e9f2;
+    text-align: center;
+    align-items: center;
+    background: #ffffff14;
+    border-radius: 8;
+}
+Button:hover { background: #ffffff2a; }
+Button:pressed { background: #6366f1; }
+
+Stack.backdrop {
+    display: var(--display, none);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #05060ad9;
+}
+/* Left and width come from Welcome::update_layout. An explicit width keeps wrapped text measured
+   the same way it is laid out (docs/engine-limits.md). */
+Stack.window {
+    position: absolute;
+    left: var(--wl, 48);
+    width: var(--ww, 860);
+    top: 28;
+    bottom: 28;
+    background: #0e1018f7;
+    border-radius: 14;
+    border-width: 1;
+    border-color: #ffffff1f;
+}
+
+/* Fixed title and a fixed footer; the list scrolls between them. Head 56 + footer 52 + two gaps. */
+Stack.column { width: 100%; height: 100%; padding: 16 26 12 26; gap: 10; }
+Stack.head { width: 100%; height: 56; align-items: center; justify-content: space-between; }
+Stack.titles { width: calc(100% - 180px); }
+Label.kicker { font-size: 12; color: #818cf8; white-space: nowrap; }
+Label.title { font-size: 26; color: #ffffff; white-space: nowrap; }
+Stack.lang { width: 168; height: 28; gap: 6; }
+Button.lang {
+    width: 81;
+    height: 28;
+    background: var(--bg, #ffffff14);
+    color: var(--fg, #aab1c3);
+    border-width: 1;
+    border-color: #ffffff1a;
+}
+Button.lang:hover { background: var(--bg, #ffffff2a); }
+
+/* Head 56 + footer 52 + two 10px gaps. */
+ScrollView.body {
+    width: 100%;
+    height: calc(100% - 128px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff40 #00000000;
+    padding: 0 10 12 0;
+}
+Stack.copy { width: 100%; gap: 10; }
+Label.p { width: 100%; font-size: 15; color: #d7dbe6; line-height: 1.45; }
+Label.section { font-size: 11; color: #7c8499; margin: 16 0 2 0; white-space: nowrap; }
+
+Stack.note {
+    width: 100%;
+    padding: 12 16;
+    background: #6366f11a;
+    border-radius: 10;
+    border-width: 1;
+    border-color: #6366f140;
+}
+Label.note-text { width: 100%; font-size: 15; color: #d7dbe6; line-height: 1.45; }
+
+/* 210px key column + 14px gap; the sentence takes the rest and wraps. */
+Stack.bind { width: 100%; gap: 14; align-items: center; margin: 2 0; }
+Stack.keys { width: 210; gap: 4; align-items: center; justify-content: end; }
+Label.bind-text { width: calc(100% - 224px); font-size: 15; color: #d7dbe6; line-height: 1.4; }
+
+/* Keycap: a light face on a 3px dark lip, so the legend reads as a button. nowrap keeps the face
+   hugged to its legend instead of stretching to the keys column. */
+Stack.key { padding: 0 0 3 0; background: #07090f; border-radius: 6; }
+Label.keycap {
+    min-width: 16;
+    height: 22;
+    padding: 0 8;
+    background: linear-gradient(180deg, #4c5670, #343c52);
+    border-width: 1;
+    border-color: #ffffff3d;
+    border-radius: 5;
+    text-align: center;
+    align-items: center;
+    font-size: 12;
+    color: #f7f8fc;
+    white-space: nowrap;
+}
+
+Stack.foot { width: 100%; height: 52; align-items: center; justify-content: space-between; }
+Label.again { width: calc(100% - 168px); font-size: 13; color: #8b93a7; line-height: 1.35; }
+Button.start { width: 148; height: 40; background: #6366f1; color: #ffffff; }
+Button.start:hover { background: #7c7ff5; }

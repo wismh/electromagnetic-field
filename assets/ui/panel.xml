@@ -11,23 +11,31 @@
         <Math class="probe-math" formula="{binding probeField}"/>
         <Math class="probe-math" formula="{binding probeComponents}"/>
         <Math class="probe-math" formula="{binding probePotential}"/>
+        <Math class="probe-math probe-b" formula="{binding probeMagnetic}"
+                var-display="{binding probeMagneticDisplay}"/>
     </Stack>
 
-    <Label class="hint" text="ЛКМ +q · ПКМ −q / видалити · колесо |q| або масштаб · СКМ камера · Tab панель"/>
+    <Label class="hint" text="{tr panel.hint}"/>
 
     <!-- Right control panel. A ScrollView is hit-testable, so clicks on its background never reach
          the scene underneath. -->
     <ScrollView class="panel" direction="vertical" var-panel-right="{binding panelRight}">
-        <Label class="title" text="Електростатика"/>
-        <Button class="btn help" content="Довідник: ідеї та формули (H)" command="{binding openHelp}"/>
+        <Label class="title" text="{tr panel.title}"/>
+        <Stack class="lang" direction="horizontal">
+            <Button class="lang" content="УК" command="{binding localeUk}" var-bg="{binding localeUkBg}"
+                    var-fg="{binding localeUkFg}"/>
+            <Button class="lang" content="EN" command="{binding localeEn}" var-bg="{binding localeEnBg}"
+                    var-fg="{binding localeEnFg}"/>
+        </Stack>
+        <Button class="btn help" content="{tr panel.help}" command="{binding openHelp}"/>
 
-        <Label class="section" text="ЧАС"/>
+        <Label class="section" text="{tr panel.section.time}"/>
         <Stack class="row" direction="horizontal">
             <Button class="btn wide" content="{binding pauseLabel}" command="{binding togglePause}"/>
-            <Button class="btn" content="Крок" command="{binding step}"/>
+            <Button class="btn" content="{tr panel.step}" command="{binding step}"/>
         </Stack>
         <Stack class="param-head" direction="horizontal">
-            <Label class="param-name" text="Швидкість часу (↑ ↓)"/>
+            <Label class="param-name" text="{tr panel.time_scale}"/>
             <Label class="param-value" text="{binding timeScaleText}"/>
         </Stack>
         <Stack class="slider" drag="{binding timeFrac}">
@@ -36,31 +44,37 @@
             </Stack>
         </Stack>
 
-        <Label class="section" text="СЦЕНИ"/>
+        <Label class="section" text="{tr panel.section.scenes}"/>
         <Stack class="row" direction="horizontal">
-            <Button class="btn half" content="1 Диполь" command="{binding presetDipole}"/>
-            <Button class="btn half" content="2 Однакові" command="{binding presetLikePair}"/>
+            <Button class="btn half" content="{tr panel.preset.dipole}" command="{binding presetDipole}"/>
+            <Button class="btn half" content="{tr panel.preset.like_pair}" command="{binding presetLikePair}"/>
         </Stack>
         <Stack class="row" direction="horizontal">
-            <Button class="btn half" content="3 Квадруполь" command="{binding presetQuadrupole}"/>
-            <Button class="btn half" content="4 Конденсатор" command="{binding presetCapacitor}"/>
+            <Button class="btn half" content="{tr panel.preset.quadrupole}" command="{binding presetQuadrupole}"/>
+            <Button class="btn half" content="{tr panel.preset.capacitor}" command="{binding presetCapacitor}"/>
         </Stack>
         <Stack class="row" direction="horizontal">
-            <Button class="btn half" content="5 Орбіта" command="{binding presetOrbit}"/>
-            <Button class="btn half" content="6 Резерфорд" command="{binding presetRutherford}"/>
+            <Button class="btn half" content="{tr panel.preset.orbit}" command="{binding presetOrbit}"/>
+            <Button class="btn half" content="{tr panel.preset.rutherford}" command="{binding presetRutherford}"/>
         </Stack>
         <Stack class="row" direction="horizontal">
-            <Button class="btn half" content="7 Рій" command="{binding presetSwarm}"/>
-            <Button class="btn half" content="Очистити" command="{binding clearAll}"/>
+            <Button class="btn half" content="{tr panel.preset.swarm}" command="{binding presetSwarm}"/>
+            <Button class="btn half" content="{tr panel.clear}" command="{binding clearAll}"/>
+        </Stack>
+        <Stack class="row" direction="horizontal">
+            <Button class="btn half" content="{tr panel.preset.cyclotron}" command="{binding presetCyclotron}"/>
+            <Button class="btn half" content="{tr panel.preset.exb_drift}" command="{binding presetExBDrift}"/>
+        </Stack>
+        <Stack class="row" direction="horizontal">
+            <Button class="btn half" content="{tr panel.preset.coil}" command="{binding presetCoil}"/>
         </Stack>
 
-        <Label class="section" text="ШАРИ"/>
+        <Label class="section" text="{tr panel.section.layers}"/>
         <Checkbox class="toggle" checked="{binding showPotential}">
             <Stack class="toggle-content" direction="horizontal">
                 <Stack class="toggle-left" direction="horizontal">
                     <Stack class="box" checked="{binding showPotential}"/>
-                    <Label class="toggle-label" text="Потенціал"/>
-                    <Math class="inline-math" formula="\varphi"/>
+                    <Label class="toggle-label" text="{tr panel.layer.potential}"/>
                 </Stack>
                 <Label class="key" text="F1"/>
             </Stack>
@@ -69,7 +83,7 @@
             <Stack class="toggle-content" direction="horizontal">
                 <Stack class="toggle-left" direction="horizontal">
                     <Stack class="box" checked="{binding showLines}"/>
-                    <Label class="toggle-label" text="Силові лінії"/>
+                    <Label class="toggle-label" text="{tr panel.layer.lines}"/>
                 </Stack>
                 <Label class="key" text="F2"/>
             </Stack>
@@ -78,8 +92,7 @@
             <Stack class="toggle-content" direction="horizontal">
                 <Stack class="toggle-left" direction="horizontal">
                     <Stack class="box" checked="{binding showGrid}"/>
-                    <Label class="toggle-label" text="Сітка векторів"/>
-                    <Math class="inline-math" formula="E"/>
+                    <Label class="toggle-label" text="{tr panel.layer.grid}"/>
                 </Stack>
                 <Label class="key" text="F3"/>
             </Stack>
@@ -88,7 +101,7 @@
             <Stack class="toggle-content" direction="horizontal">
                 <Stack class="toggle-left" direction="horizontal">
                     <Stack class="box" checked="{binding showFlow}"/>
-                    <Label class="toggle-label" text="Потік"/>
+                    <Label class="toggle-label" text="{tr panel.layer.flow}"/>
                 </Stack>
                 <Label class="key" text="F4"/>
             </Stack>
@@ -97,7 +110,7 @@
             <Stack class="toggle-content" direction="horizontal">
                 <Stack class="toggle-left" direction="horizontal">
                     <Stack class="box" checked="{binding showProbe}"/>
-                    <Label class="toggle-label" text="Пробний заряд"/>
+                    <Label class="toggle-label" text="{tr panel.layer.probe}"/>
                 </Stack>
                 <Label class="key" text="F5"/>
             </Stack>
@@ -106,7 +119,7 @@
             <Stack class="toggle-content" direction="horizontal">
                 <Stack class="toggle-left" direction="horizontal">
                     <Stack class="box" checked="{binding showTrails}"/>
-                    <Label class="toggle-label" text="Сліди"/>
+                    <Label class="toggle-label" text="{tr panel.layer.trails}"/>
                 </Stack>
                 <Label class="key" text="F6"/>
             </Stack>
@@ -115,18 +128,53 @@
             <Stack class="toggle-content" direction="horizontal">
                 <Stack class="toggle-left" direction="horizontal">
                     <Stack class="box" checked="{binding collisions}"/>
-                    <Label class="toggle-label" text="Зіткнення"/>
+                    <Label class="toggle-label" text="{tr panel.layer.collisions}"/>
                 </Stack>
                 <Label class="key" text="K"/>
             </Stack>
         </Checkbox>
 
-        <Label class="section" text="ПАРАМЕТРИ"/>
-        <Stack class="param-head" direction="horizontal">
-            <Stack class="name-group" direction="horizontal">
-                <Math class="inline-math" formula="k"/>
-                <Label class="param-name" text="— стала Кулона"/>
+        <Label class="section" text="{tr panel.section.magnetic}"/>
+        <Checkbox class="toggle" checked="{binding magnetic}">
+            <Stack class="toggle-content" direction="horizontal">
+                <Stack class="toggle-left" direction="horizontal">
+                    <Stack class="box" checked="{binding magnetic}"/>
+                    <Label class="toggle-label" text="{tr panel.magnetic.force}"/>
+                </Stack>
+                <Label class="key" text="M"/>
             </Stack>
+        </Checkbox>
+        <Checkbox class="toggle" checked="{binding showMagnetic}">
+            <Stack class="toggle-content" direction="horizontal">
+                <Stack class="toggle-left" direction="horizontal">
+                    <Stack class="box" checked="{binding showMagnetic}"/>
+                    <Label class="toggle-label" text="{tr panel.magnetic.field}"/>
+                </Stack>
+                <Label class="key" text="F7"/>
+            </Stack>
+        </Checkbox>
+        <Stack class="param-head" direction="horizontal">
+            <Label class="param-name" text="{tr panel.magnetic.b_ext}"/>
+            <Label class="param-value" text="{binding bText}"/>
+        </Stack>
+        <Stack class="slider" drag="{binding bFrac}">
+            <Stack class="track">
+                <Stack class="fill" var-fill="{binding bFill}"/>
+            </Stack>
+        </Stack>
+        <Stack class="param-head" direction="horizontal">
+            <Label class="param-name" text="{tr panel.magnetic.light_speed}"/>
+            <Label class="param-value" text="{binding cText}"/>
+        </Stack>
+        <Stack class="slider" drag="{binding cFrac}">
+            <Stack class="track">
+                <Stack class="fill" var-fill="{binding cFill}"/>
+            </Stack>
+        </Stack>
+
+        <Label class="section" text="{tr panel.section.params}"/>
+        <Stack class="param-head" direction="horizontal">
+            <Label class="param-name" text="{tr panel.k_name}"/>
             <Label class="param-value" text="{binding kText}"/>
         </Stack>
         <Stack class="slider" drag="{binding kFrac}">
@@ -135,10 +183,7 @@
             </Stack>
         </Stack>
         <Stack class="param-head" direction="horizontal">
-            <Stack class="name-group" direction="horizontal">
-                <Math class="inline-math" formula="\varepsilon"/>
-                <Label class="param-name" text="— згладжування"/>
-            </Stack>
+            <Label class="param-name" text="{tr panel.eps_name}"/>
             <Label class="param-value" text="{binding epsText}"/>
         </Stack>
         <Stack class="slider" drag="{binding epsFrac}">
@@ -147,10 +192,7 @@
             </Stack>
         </Stack>
         <Stack class="param-head" direction="horizontal">
-            <Stack class="name-group" direction="horizontal">
-                <Math class="inline-math" formula="|q|"/>
-                <Label class="param-name" text="нових зарядів"/>
-            </Stack>
+            <Label class="param-name" text="{tr panel.q_name}"/>
             <Label class="param-value" text="{binding newChargeText}"/>
         </Stack>
         <Stack class="slider" drag="{binding newChargeFrac}">
@@ -159,31 +201,26 @@
             </Stack>
         </Stack>
 
-        <Label class="section" text="ЕНЕРГІЯ"/>
+        <Label class="section" text="{tr panel.section.energy}"/>
         <Stack class="stat" direction="horizontal">
-            <Stack class="name-group" direction="horizontal">
-                <Label class="stat-name" text="Кінетична"/>
-                <Math class="inline-math" formula="K"/>
-            </Stack>
+            <Label class="stat-name" text="{tr panel.energy.kinetic}"/>
             <Label class="stat-value" text="{binding energyKinetic}"/>
         </Stack>
         <Stack class="stat" direction="horizontal">
-            <Stack class="name-group" direction="horizontal">
-                <Label class="stat-name" text="Потенціальна"/>
-                <Math class="inline-math" formula="U"/>
-            </Stack>
+            <Label class="stat-name" text="{tr panel.energy.potential}"/>
             <Label class="stat-value" text="{binding energyPotential}"/>
         </Stack>
         <Stack class="stat" direction="horizontal">
-            <Stack class="name-group" direction="horizontal">
-                <Label class="stat-name" text="Повна"/>
-                <Math class="inline-math" formula="E = K + U"/>
-            </Stack>
+            <Label class="stat-name" text="{tr panel.energy.total}"/>
             <Label class="stat-value" text="{binding energyTotal}"/>
         </Stack>
         <Stack class="stat" direction="horizontal">
-            <Label class="stat-name" text="Заряди: вільні / закріплені"/>
+            <Label class="stat-name" text="{tr panel.charges}"/>
             <Label class="stat-value" text="{binding chargeCount}"/>
+        </Stack>
+        <Stack class="stat" direction="horizontal">
+            <Label class="stat-name" text="{tr panel.speed_ratio}"/>
+            <Label class="stat-value" text="{binding speedRatio}"/>
         </Stack>
     </ScrollView>
 </Canvas>

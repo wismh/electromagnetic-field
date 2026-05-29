@@ -1,0 +1,297 @@
+<!-- First screen. Key legends that are letters stay literal; mouse labels are {tr} so they follow
+     the language. Row order is the order a new user meets the controls. -->
+<Canvas id="welcome">
+    <Stack class="backdrop" var-display="{binding welcomeDisplay}">
+        <Stack class="window" direction="vertical" var-wl="{binding windowLeft}" var-ww="{binding windowWidth}">
+            <Stack class="column" direction="vertical">
+            <Stack class="head" direction="horizontal">
+                <Stack class="titles" direction="vertical">
+                    <Label class="kicker" text="{tr welcome.kicker}"/>
+                    <Label class="title" text="{tr welcome.title}"/>
+                </Stack>
+                <Stack class="lang" direction="horizontal">
+                    <Button class="lang" content="УК" command="{binding localeUk}" var-bg="{binding localeUkBg}"
+                            var-fg="{binding localeUkFg}"/>
+                    <Button class="lang" content="EN" command="{binding localeEn}" var-bg="{binding localeEnBg}"
+                            var-fg="{binding localeEnFg}"/>
+                </Stack>
+            </Stack>
+            <ScrollView class="body" direction="vertical">
+                <Stack class="copy" direction="vertical">
+                    <Label class="p" text="{tr welcome.p1}"/>
+                    <Stack class="note" direction="vertical">
+                        <Label class="note-text" text="{tr welcome.note}"/>
+                    </Stack>
+                    <Label class="p" text="{tr welcome.p2}"/>
+
+                    <Label class="section" text="{tr welcome.h.mouse}"/>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="{tr welcome.key.lmb}"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.lmb_place}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="{tr welcome.key.lmb}"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.lmb_drag}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="{tr welcome.key.rmb}"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.rmb_place}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="{tr welcome.key.rmb}"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.rmb_delete}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="{tr welcome.key.wheel}"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.wheel_q}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="{tr welcome.key.wheel}"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.wheel_zoom}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="{tr welcome.key.mmb}"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.mmb}"/>
+                    </Stack>
+
+                    <Label class="section" text="{tr welcome.h.time}"/>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="Space"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.space}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="→"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.right}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="↑"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.up}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="↓"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.down}"/>
+                    </Stack>
+
+                    <Label class="section" text="{tr welcome.h.scenes}"/>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="1"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.preset.dipole}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="2"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.preset.like_pair}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="3"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.preset.quadrupole}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="4"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.preset.capacitor}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="5"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.preset.orbit}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="6"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.preset.rutherford}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="7"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.preset.swarm}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="8"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.preset.cyclotron}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="9"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.preset.exb_drift}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="0"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.preset.coil}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="R"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.reload}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="C"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.clear}"/>
+                    </Stack>
+
+                    <Label class="section" text="{tr welcome.h.layers}"/>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="F1"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.f1}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="F2"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.f2}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="F3"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.f3}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="F4"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.f4}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="F5"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.f5}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="F6"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.f6}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="F7"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.f7}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="M"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.magnetic_force}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="K"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.collisions}"/>
+                    </Stack>
+
+                    <Label class="section" text="{tr welcome.h.charge}"/>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="F"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.flip}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="L"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.pin}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="Delete"/></Stack>
+                            <Stack class="key"><Label class="keycap" text="Backspace"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.remove}"/>
+                    </Stack>
+
+                    <Label class="section" text="{tr welcome.h.camera}"/>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="Home"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.home}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="Tab"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.tab}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="H"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.help}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="↑"/></Stack>
+                            <Stack class="key"><Label class="keycap" text="↓"/></Stack>
+                            <Stack class="key"><Label class="keycap" text="Enter"/></Stack>
+                            <Stack class="key"><Label class="keycap" text="Esc"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.help_keys}"/>
+                    </Stack>
+                    <Stack class="bind" direction="horizontal">
+                        <Stack class="keys" direction="horizontal">
+                            <Stack class="key"><Label class="keycap" text="Esc"/></Stack>
+                        </Stack>
+                        <Label class="bind-text" text="{tr welcome.esc}"/>
+                    </Stack>
+
+                    <Label class="section" text="{tr welcome.h.panel}"/>
+                    <Label class="p" text="{tr welcome.panel_lead}"/>
+                    <Label class="p" text="{tr welcome.lang}"/>
+                    <Label class="p" text="{tr welcome.sliders}"/>
+                    <Label class="p" text="{tr welcome.energy}"/>
+                </Stack>
+            </ScrollView>
+            <Stack class="foot" direction="horizontal">
+                <Label class="again" text="{tr welcome.again}"/>
+                <Button class="start" content="{tr welcome.start}" command="{binding start}"/>
+            </Stack>
+            </Stack>
+        </Stack>
+    </Stack>
+</Canvas>

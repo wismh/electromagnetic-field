@@ -19,7 +19,7 @@ Tests:
 
 ```bash
 cmake --build build --target electromagnetic_field_tests --config Debug
-ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest|CameraControlTest|FieldVizTest|DynamicsTest|TrailsTest|SliderTest" --output-on-failure
+ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest|CameraControlTest|FieldVizTest|DynamicsTest|TrailsTest|SliderTest|MagnetismTest" --output-on-failure
 ```
 
 Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine's README:
@@ -28,8 +28,9 @@ Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine'
 ## Controls
 
 The right-hand panel mirrors most shortcuts (time, scenes, layers) and adds sliders for the Coulomb constant `k`,
-the softening `ε` and the `|q|` of newly placed charges, plus live energy totals. The readout next to the cursor
-shows `|E|`, the components of `E` and the potential `φ` at that point.
+the softening `ε`, the `|q|` of newly placed charges and a signed uniform external `B_z`, plus live energy totals.
+Each scene sets the magnetic part itself: scenes 1–7 are electrostatic (Lorentz force off, no external field), 8 and 9 switch the Lorentz force on with their uniform `B_z`, and 0 places a current loop (coil) in the plane whose strongly non-uniform `B_z` makes charges drift around it (grad-B drift). `M` and the panel then toggle it freely. The speed of light `c` (panel slider, default 20) fixes the magnetic constant as `μ₀/4π = k/c²`, so magnetic forces between moving charges are `(v/c)²` of the Coulomb force, as in nature; speeds are capped at `0.9c`, and the panel shows the fastest `v/c`. The readout next to the cursor shows
+`|E|`, the components of `E` and the potential `φ`; with the magnetic layer on it also shows `B_z`.
 
 | Input | Action |
 |---|---|
@@ -46,9 +47,11 @@ shows `|E|`, the components of `E` and the potential `φ` at that point.
 | `Space` | pause / resume |
 | `Right` (while paused) | single step |
 | `Up` / `Down` | time scale ×2 / ÷2 (1/8 … 8) |
-| `1`–`7` | presets: dipole, like pair, quadrupole, capacitor, orbit, Rutherford scattering, swarm |
+| `1`–`9`, `0` | presets: dipole, like pair, quadrupole, capacitor, orbit, Rutherford scattering, swarm, cyclotron, E×B drift, coil |
 | `R` / `C` | reload current preset / clear all |
 | `F1`–`F6` | toggle layers: potential, field lines, vector grid, flow tracers, cursor probe, trails |
+| `F7` | toggle the magnetic-field marks |
+| `M` | toggle the Lorentz force |
 | `K` | toggle collisions |
 | `Tab` | show / hide the control panel |
 
