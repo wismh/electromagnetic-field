@@ -8,6 +8,7 @@
 
 #include <game/charge.h>
 #include <game/electrostatics.h>
+#include <game/field_layers.h>
 #include <game/field_viz.h>
 #include <game/magnetism.h>
 #include <game/trails.h>
@@ -20,19 +21,7 @@
 
 namespace game {
 
-struct FieldLayers {
-    bool potential = true;
-    bool lines = true;
-    bool grid = false;
-    bool flow = true;
-    bool probe = true;
-    bool trails = true;
-    bool magnetic = false;
-};
-
-// Draws field lines, the vector grid, flow tracers, charge trails and the cursor probe. Every element is an
-// instance in a ParticleEmitter that never emits: the emitter is only used as an instanced,
-// layer-sorted draw list whose particles are rebuilt here every frame.
+// Emitter is never stepped; particles are rebuilt every frame as an instanced draw list.
 class FieldView {
 public:
     FieldView(engine::ecs::World& world, engine::AssetsDb& assets);
@@ -41,15 +30,14 @@ public:
         std::span<const Charge> charges;
         std::span<const Coil> coils;
         FieldParams params;
-        Bounds view;              // visible world rectangle
+        Bounds view;
         float world_per_pixel = 0.f;
-        float dt = 0.f;           // real frame time; flow tracers keep moving while paused
+        float dt = 0.f;  // real time; flow tracers keep moving while paused
         std::optional<glm::vec3> probe;
         const Trails* trails = nullptr;
         float sim_time = 0.f;
         FieldLayers layers;
-        // Whether the Lorentz force acts. Without it the Bz marks are drawn faded: the field exists but
-        // does not move anything.
+        // Off: Bz marks are drawn faded.
         bool magnetic_force = false;
     };
 
@@ -83,7 +71,6 @@ private:
 
     FlowField flow_;
 
-    // Field lines are re-traced only when the charges or the view change.
     std::vector<Charge> traced_charges_;
     Bounds traced_view_{};
     float traced_world_per_pixel_ = 0.f;

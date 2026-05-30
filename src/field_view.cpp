@@ -16,19 +16,15 @@
 namespace game {
 namespace {
 
-// Draw order: potential background is -100, charges are 0.
-constexpr int kMagneticLayer = -70;
-// Opacity factor of the Bz marks while the Lorentz force is off.
+constexpr int kMagneticLayer = -70;  // potential is -100, charges are 0
 constexpr float kInactiveMagneticAlpha = 0.35f;
 constexpr int kGridLayer = -60;
 constexpr int kLinesLayer = -50;
 constexpr int kFlowLayer = -40;
 constexpr int kTrailLayer = -30;
-// Coils are physical objects of the scene: above the field layers, below the charges.
-constexpr int kCoilLayer = -20;
+constexpr int kCoilLayer = -20;  // above the field layers, below the charges
 constexpr float kCoilWidthPx = 5.f;
 constexpr int kCoilDrawSegments = 96;
-// Current-direction arrows on the ring.
 constexpr int kCoilArrows = 8;
 constexpr glm::vec4 kCoilColor{0.93f, 0.62f, 0.32f, 0.95f};
 constexpr int kProbeLayer = 10;
@@ -39,15 +35,13 @@ constexpr float kHeadLengthPx = 11.f;
 constexpr float kHeadWidthPx = 9.f;
 constexpr float kGridSpacingPx = 46.f;
 constexpr float kFlowWidthPx = 4.f;
-// Streak length = distance travelled in this much time (a motion-blur trail).
 constexpr float kFlowTrailSeconds = 0.3f;
 constexpr float kTrailWidthPx = 3.f;
 constexpr float kProbeLengthPx = 90.f;
 constexpr float kProbeWidthPx = 16.f;
-// Field lines are traced a bit past the screen edge so they do not visibly stop at it.
 constexpr float kLineBoundsMargin = 0.5f;
 
-// Lives long enough that update_emitter never ages it out; start == end keeps size/colour constant.
+// Lifetime long enough that update_emitter never ages it out. start == end keeps size and colour fixed.
 engine::render::Particle make_static(glm::vec3 position, float rotation, glm::vec2 size, glm::vec4 color) {
     engine::render::Particle p;
     p.position = position;
@@ -68,7 +62,6 @@ Bounds expand(const Bounds& b, float fraction) {
     return Bounds{b.min - margin, b.max + margin};
 }
 
-// Perceptual "magma"-like ramp for |E| on the vector grid.
 glm::vec3 magma(float t) {
     constexpr std::array<glm::vec3, 5> kStops{
             glm::vec3{0.23f, 0.06f, 0.43f},
@@ -163,7 +156,6 @@ void FieldView::build_lines(const Frame& frame) {
         const glm::vec2 head_size{kHeadLengthPx * frame.world_per_pixel, kHeadWidthPx * frame.world_per_pixel};
 
         for (const FieldLine& line : trace_field_lines(frame.charges, frame.params, options)) {
-            // Stagger the first head per line so heads on neighbouring lines do not form rings.
             float until_head = 0.5f * head_spacing;
             for (std::size_t i = 0; i + 1 < line.size(); ++i) {
                 const glm::vec3 a = line[i];
@@ -177,7 +169,6 @@ void FieldView::build_lines(const Frame& frame) {
                 const float angle = std::atan2(d.y, d.x);
                 const glm::vec4 color = line_color(field_strength01(glm::length(field_at(frame.charges, mid,
                         frame.params))));
-                // Extend each segment by the line width so joints between segments have no gaps.
                 line_segment_cache_.push_back(make_static(mid, angle, {length + width, width}, color));
 
                 until_head -= length;
@@ -222,17 +213,13 @@ void FieldView::build_magnetic(const Frame& frame) {
     if (spacing <= 0.f) {
         return;
     }
-    // Half a cell off the vector grid, so the marks do not sit on the arrows.
-    const float half = 0.5f * spacing;
+    const float half = 0.5f * spacing;  // off the vector grid, so marks do not sit on the arrows
     const float x0 = std::ceil((frame.view.min.x - half) / spacing) * spacing + half;
     const float y0 = std::ceil((frame.view.min.y - half) / spacing) * spacing + half;
     for (float y = y0; y <= frame.view.max.y; y += spacing) {
         for (float x = x0; x <= frame.view.max.x; x += spacing) {
             const glm::vec3 p{x, y, 0.f};
-            const bool inside_charge = std::any_of(frame.charges.begin(), frame.charges.end(), [&](const Charge& c) {
-                return glm::length(c.position - p) < 1.5f * charge_radius(c.q);
-            });
-            if (inside_charge) {
+            if (inside_charge_glyph(frame.charges, p)) {
                 continue;
             }
             const float field_z = magnetic_z(frame.charges, p, frame.params, kNoCharge, frame.coils);
@@ -271,7 +258,6 @@ void FieldView::build_flow(const Frame& frame) {
         }
         const float length = std::max(width, kFlowTrailSeconds * speed);
         const glm::vec3 dir = speed > 0.f ? p.velocity / speed : glm::vec3{1.f, 0.f, 0.f};
-        // Centre the streak behind the particle so its bright head leads.
         dots.push_back(make_static(p.position - 0.5f * length * dir, std::atan2(dir.y, dir.x), {length, width},
                 {0.6f, 0.88f, 1.f, alpha}));
     }
@@ -283,7 +269,6 @@ void FieldView::build_probe(const Frame& frame) {
     if (!frame.layers.probe || !frame.probe) {
         return;
     }
-    // A unit positive test charge: the arrow shows E, which equals F = qE for q = +1.
     const glm::vec3 e = field_at(frame.charges, *frame.probe, frame.params);
     const float magnitude = glm::length(e);
     if (magnitude <= 0.f) {
@@ -292,7 +277,6 @@ void FieldView::build_probe(const Frame& frame) {
     const float strength = field_strength01(magnitude);
     const float length = kProbeLengthPx * frame.world_per_pixel * (0.35f + 0.65f * strength);
     const glm::vec3 dir = e / magnitude;
-    // The arrow quad is centred on its position, so shift it to start at the cursor.
     arrow.push_back(make_static(*frame.probe + 0.5f * length * dir, std::atan2(dir.y, dir.x),
             {length, kProbeWidthPx * frame.world_per_pixel}, {1.f, 1.f, 1.f, 0.95f}));
 }
@@ -315,7 +299,6 @@ void FieldView::build_trails(const Frame& frame) {
             if (length <= 0.f) {
                 continue;
             }
-            // Fade with age so the newest part of the path is the brightest.
             const float age01 = std::clamp((frame.sim_time - b.time) / duration, 0.f, 1.f);
             const float alpha = 0.95f * std::pow(1.f - age01, 1.5f);
             segments.push_back(make_static(0.5f * (a.position + b.position), std::atan2(d.y, d.x),
@@ -324,9 +307,6 @@ void FieldView::build_trails(const Frame& frame) {
     }
 }
 
-// The wire of every coil as a ring of segments, with arrows along it in the direction of the current
-// (counter-clockwise for a positive centre field). Drawn whether or not the Lorentz force is on: the coil
-// is there either way.
 void FieldView::build_coils(const Frame& frame) {
     auto& segments = emitter(coil_segments_).particles;
     auto& heads = emitter(coil_heads_).particles;
@@ -350,7 +330,7 @@ void FieldView::build_coils(const Frame& frame) {
         const float direction = coil.centre_field >= 0.f ? 1.f : -1.f;
         for (int i = 0; i < kCoilArrows; ++i) {
             const float angle = 2.f * std::numbers::pi_v<float> * (static_cast<float>(i) + 0.5f) / kCoilArrows;
-            // Tangent of a counter-clockwise loop is (−sin, cos); flipped for a clockwise current.
+            // Counter-clockwise tangent is (−sin, cos); flipped when centre_field < 0.
             const glm::vec3 tangent = direction * glm::vec3{-std::sin(angle), std::cos(angle), 0.f};
             heads.push_back(make_static(point(angle), std::atan2(tangent.y, tangent.x), head_size,
                     glm::vec4{1.f, 0.85f, 0.6f, 1.f}));
