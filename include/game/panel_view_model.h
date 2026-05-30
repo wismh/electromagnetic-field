@@ -1,21 +1,20 @@
 #pragma once
 
 #include <engine/ui/bindable.h>
-#include <engine/ui/command.h>
 #include <engine/ui/view_model.h>
+
+#include <game/locale_style.h>
+#include <game/panel_command.h>
 
 #include <string>
 
 namespace game {
 
-// Data context of assets/ui/panel.xml. Member names must match the XML binding paths exactly:
-// the generated assets::ui::Panel::bind() registers them by name. Game owns the simulation state
-// and syncs it into (and, for toggles and sliders, back out of) these fields every frame.
+// Member names must match the binding paths in assets/ui/panel.xml.
 class PanelViewModel final : public engine::ui::ViewModel {
 public:
     PanelViewModel();
 
-    // Status and cursor probe.
     engine::ui::Bindable<std::string> statusText;
     engine::ui::Bindable<std::string> statusColor;
     engine::ui::Bindable<std::string> sceneText;
@@ -29,36 +28,24 @@ public:
     engine::ui::Bindable<std::string> probeMagneticDisplay{std::string("none")};
     engine::ui::Bindable<std::string> panelRight{std::string("12")};
 
-    // Time.
     engine::ui::Bindable<std::string> pauseLabel;
     engine::ui::Bindable<std::string> timeScaleText;
-    // Log-scale slider: the fraction maps to log2(scale) in [-3, 3], so x1 sits in the middle.
+    // log2(scale) in [-3, 3]; x1 is the middle.
     engine::ui::Bindable<float> timeFrac;
     engine::ui::Bindable<std::string> timeFill;
-    engine::ui::RelayCommand togglePause;
-    engine::ui::RelayCommand step;
+    PanelCommand togglePause;
+    PanelCommand step;
 
-    // Scenes.
-    engine::ui::RelayCommand presetDipole;
-    engine::ui::RelayCommand presetLikePair;
-    engine::ui::RelayCommand presetQuadrupole;
-    engine::ui::RelayCommand presetCapacitor;
-    engine::ui::RelayCommand presetOrbit;
-    engine::ui::RelayCommand presetRutherford;
-    engine::ui::RelayCommand presetSwarm;
-    engine::ui::RelayCommand presetCyclotron;
-    engine::ui::RelayCommand presetExBDrift;
-    engine::ui::RelayCommand presetCoil;
-    engine::ui::RelayCommand clearAll;
-    engine::ui::RelayCommand openHelp;
-    engine::ui::RelayCommand localeEn;
-    engine::ui::RelayCommand localeUk;
-    engine::ui::Bindable<std::string> localeEnBg{std::string("#6366f133")};
-    engine::ui::Bindable<std::string> localeEnFg{std::string("#ffffff")};
-    engine::ui::Bindable<std::string> localeUkBg{std::string("#ffffff14")};
-    engine::ui::Bindable<std::string> localeUkFg{std::string("#aab1c3")};
+    PanelCommand clearAll;
+    PanelCommand openScenes;
+    PanelCommand openHelp;
+    PanelCommand localeEn;
+    PanelCommand localeUk;
+    engine::ui::Bindable<std::string> localeEnBg{std::string(kLocaleOnBg)};
+    engine::ui::Bindable<std::string> localeEnFg{std::string(kLocaleOnFg)};
+    engine::ui::Bindable<std::string> localeUkBg{std::string(kLocaleOffBg)};
+    engine::ui::Bindable<std::string> localeUkFg{std::string(kLocaleOffFg)};
 
-    // Layer toggles (two-way: checkbox clicks write back).
     engine::ui::Bindable<bool> showPotential;
     engine::ui::Bindable<bool> showLines;
     engine::ui::Bindable<bool> showGrid;
@@ -67,10 +54,10 @@ public:
     engine::ui::Bindable<bool> showTrails;
     engine::ui::Bindable<bool> showMagnetic;
     engine::ui::Bindable<bool> collisions;
-    // Lorentz force. Off leaves the motion purely electric, whatever the Bz slider says.
+    // Off: motion stays electric, whatever the Bz slider says.
     engine::ui::Bindable<bool> magnetic;
 
-    // Sliders: *Frac is written by the drag binding in [0, 1]; *Fill is the CSS width of the bar.
+    // *Frac is the drag value in [0, 1]; *Fill is the bar width.
     engine::ui::Bindable<float> kFrac;
     engine::ui::Bindable<std::string> kText;
     engine::ui::Bindable<std::string> kFill;
@@ -80,21 +67,20 @@ public:
     engine::ui::Bindable<float> newChargeFrac;
     engine::ui::Bindable<std::string> newChargeText;
     engine::ui::Bindable<std::string> newChargeFill;
-    // Signed slider: fraction 0.5 is Bz = 0. Motion uses it only while `magnetic` is on.
+    // Fraction 0.5 is Bz = 0. Used only while magnetic is on.
     engine::ui::Bindable<float> bFrac;
     engine::ui::Bindable<std::string> bText;
     engine::ui::Bindable<std::string> bFill;
-    // Log-scale slider for the speed of light c; it sets μ₀/4π = k / c².
+    // log10(c); sets μ₀/4π = k / c².
     engine::ui::Bindable<float> cFrac;
     engine::ui::Bindable<std::string> cText;
     engine::ui::Bindable<std::string> cFill;
 
-    // Energy.
     engine::ui::Bindable<std::string> energyKinetic;
     engine::ui::Bindable<std::string> energyPotential;
     engine::ui::Bindable<std::string> energyTotal;
     engine::ui::Bindable<std::string> chargeCount;
-    // Fastest free charge as a fraction of c: the quasi-static model holds only while this is small.
+    // Fastest free charge as v/c.
     engine::ui::Bindable<std::string> speedRatio;
 };
 
