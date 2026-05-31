@@ -3,6 +3,31 @@
 Physics sandbox built on the **Wind** engine (git submodule `external/engine`, from
 [wismh/wind-engine](https://github.com/wismh/wind-engine)).
 
+## Showcase
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/showcase_1.gif" alt="1 - E×B drift" /><br />
+      <b>1 - E×B drift</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/showcase_2.gif" alt="2 - Swarm" /><br />
+      <b>2 - Swarm</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/showcase_3.gif" alt="3 - Coil" /><br />
+      <b>3 - Coil</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/showcase_4.gif" alt="4 - Handbook" /><br />
+      <b>4 - Handbook</b>
+    </td>
+  </tr>
+</table>
+
 ## Build (Windows / Visual Studio)
 
 ```bash
