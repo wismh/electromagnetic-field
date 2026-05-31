@@ -1,11 +1,9 @@
 <Canvas id="hud">
-    <!-- Top-left status: run state, time scale, scene. -->
     <Stack class="status" direction="vertical">
         <Label class="status-main" text="{binding statusText}" var-accent="{binding statusColor}"/>
         <Label class="status-sub" text="{binding sceneText}"/>
     </Stack>
 
-    <!-- Field readout that follows the cursor (positioned in window pixels by the ViewModel). -->
     <Stack class="probe" direction="vertical" var-px="{binding probeLeft}" var-py="{binding probeTop}"
             var-pvis="{binding probeVisibility}">
         <Math class="probe-math" formula="{binding probeField}"/>
@@ -17,8 +15,7 @@
 
     <Label class="hint" text="{tr panel.hint}"/>
 
-    <!-- Right control panel. A ScrollView is hit-testable, so clicks on its background never reach
-         the scene underneath. -->
+    <!-- ScrollView eats clicks on its background. -->
     <ScrollView class="panel" direction="vertical" var-panel-right="{binding panelRight}">
         <Label class="title" text="{tr panel.title}"/>
         <Stack class="lang" direction="horizontal">
@@ -45,29 +42,8 @@
         </Stack>
 
         <Label class="section" text="{tr panel.section.scenes}"/>
-        <Stack class="row" direction="horizontal">
-            <Button class="btn half" content="{tr panel.preset.dipole}" command="{binding presetDipole}"/>
-            <Button class="btn half" content="{tr panel.preset.like_pair}" command="{binding presetLikePair}"/>
-        </Stack>
-        <Stack class="row" direction="horizontal">
-            <Button class="btn half" content="{tr panel.preset.quadrupole}" command="{binding presetQuadrupole}"/>
-            <Button class="btn half" content="{tr panel.preset.capacitor}" command="{binding presetCapacitor}"/>
-        </Stack>
-        <Stack class="row" direction="horizontal">
-            <Button class="btn half" content="{tr panel.preset.orbit}" command="{binding presetOrbit}"/>
-            <Button class="btn half" content="{tr panel.preset.rutherford}" command="{binding presetRutherford}"/>
-        </Stack>
-        <Stack class="row" direction="horizontal">
-            <Button class="btn half" content="{tr panel.preset.swarm}" command="{binding presetSwarm}"/>
-            <Button class="btn half" content="{tr panel.clear}" command="{binding clearAll}"/>
-        </Stack>
-        <Stack class="row" direction="horizontal">
-            <Button class="btn half" content="{tr panel.preset.cyclotron}" command="{binding presetCyclotron}"/>
-            <Button class="btn half" content="{tr panel.preset.exb_drift}" command="{binding presetExBDrift}"/>
-        </Stack>
-        <Stack class="row" direction="horizontal">
-            <Button class="btn half" content="{tr panel.preset.coil}" command="{binding presetCoil}"/>
-        </Stack>
+        <Button class="btn browse" content="{tr panel.scenes.browse}" command="{binding openScenes}"/>
+        <Button class="btn clear" content="{tr panel.clear}" command="{binding clearAll}"/>
 
         <Label class="section" text="{tr panel.section.layers}"/>
         <Checkbox class="toggle" checked="{binding showPotential}">

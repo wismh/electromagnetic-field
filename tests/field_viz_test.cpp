@@ -66,8 +66,7 @@ TEST(FieldVizTest, DipoleLinesRunFromPlusToMinusWithoutDuplicates) {
             ++ending_on_minus;
         }
     }
-    // Equal and opposite charges: every line closes on -, and the backward lines from - all land
-    // on + and are dropped as duplicates.
+    // Equal and opposite charges: every line closes on −. Backward lines from − land on + and are dropped.
     EXPECT_EQ(lines.size(), 8u);
     EXPECT_EQ(ending_on_minus, 8);
 }
@@ -147,7 +146,7 @@ TEST(FieldVizTest, FlowParticlesAreBornAtPositiveSources) {
             ++near_source;
         }
     }
-    // Uniform spawning alone would put ~3 of 400 within 1 unit; about a third are seeded there.
+    // About a third are seeded near a + charge; uniform spawning would put ~3 of 400 there.
     EXPECT_GT(near_source, 80);
 }
 

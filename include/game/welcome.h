@@ -8,6 +8,10 @@
 
 #include <glm/vec2.hpp>
 
+#include <game/locale_style.h>
+#include <game/overlay_canvas.h>
+#include <game/overlay_pop.h>
+
 #include <functional>
 #include <memory>
 #include <string>
@@ -15,25 +19,25 @@
 
 namespace game {
 
-// Data context of assets/ui/welcome.xml. Member names match the XML binding paths.
+// Member names must match the binding paths in assets/ui/welcome.xml.
 class WelcomeViewModel final : public engine::ui::ViewModel {
 public:
     WelcomeViewModel();
 
     engine::ui::Bindable<std::string> welcomeDisplay{std::string("none")};
+    engine::ui::Bindable<std::string> windowPop{std::string("scale(0)")};
+    engine::ui::Bindable<std::string> backdropDim{std::string("0")};
     engine::ui::Bindable<std::string> windowLeft{std::string("48")};
     engine::ui::Bindable<std::string> windowWidth{std::string("860")};
     engine::ui::RelayCommand start;
     engine::ui::RelayCommand localeEn;
     engine::ui::RelayCommand localeUk;
-    engine::ui::Bindable<std::string> localeEnBg{std::string("#6366f133")};
-    engine::ui::Bindable<std::string> localeEnFg{std::string("#ffffff")};
-    engine::ui::Bindable<std::string> localeUkBg{std::string("#ffffff14")};
-    engine::ui::Bindable<std::string> localeUkFg{std::string("#aab1c3")};
+    engine::ui::Bindable<std::string> localeEnBg{std::string(kLocaleOnBg)};
+    engine::ui::Bindable<std::string> localeEnFg{std::string(kLocaleOnFg)};
+    engine::ui::Bindable<std::string> localeUkBg{std::string(kLocaleOffBg)};
+    engine::ui::Bindable<std::string> localeUkFg{std::string(kLocaleOffFg)};
 };
 
-// First screen (assets/ui/welcome.xml): what the program is, and every control drawn as a keycap.
-// Shown until dismissed once; the panel button opens it again.
 class Welcome {
 public:
     using LocaleHandler = std::function<void(std::string_view locale)>;
@@ -45,11 +49,11 @@ public:
 
     void open();
     void close();
+    void tick(float dt);
     [[nodiscard]] bool is_open() const {
-        return open_;
+        return pop_.is_open();
     }
 
-    // Centres the window and caps its width. Call every frame.
     void update_layout(glm::ivec2 window_size);
 
 private:
@@ -60,7 +64,7 @@ private:
     std::shared_ptr<WelcomeViewModel> vm_;
     LocaleHandler on_locale_;
     DismissHandler on_dismiss_;
-    bool open_ = false;
+    OverlayPop pop_;
 };
 
 }

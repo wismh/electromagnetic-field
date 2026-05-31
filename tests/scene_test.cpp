@@ -1,3 +1,4 @@
+#include <game/charge_limit.h>
 #include <game/scene.h>
 
 #include <game/electrostatics.h>
@@ -121,7 +122,7 @@ Simulation magnetic_scene(Preset preset) {
     return sim;
 }
 
-// Same q/m everywhere, so after one cyclotron period every charge, fast or slow, is back where it started.
+// Same q/m, so after one cyclotron period every charge is back where it started.
 TEST(SceneTest, CyclotronChargesShareOnePeriod) {
     Simulation sim = magnetic_scene(Preset::Cyclotron);
     const std::vector<Charge> start = sim.charges();
@@ -138,7 +139,7 @@ TEST(SceneTest, CyclotronChargesShareOnePeriod) {
     }
 }
 
-// Free charges of both signs drift the same way (−x for E down, B out of the page) and stay between the rows.
+// Both signs drift the same way (−x for E down, B out of the page).
 TEST(SceneTest, ExBDriftMovesBothSignsSidewaysBetweenThePlates) {
     Simulation sim = magnetic_scene(Preset::ExBDrift);
     std::vector<std::size_t> free_charges;
@@ -165,8 +166,7 @@ TEST(SceneTest, ExBDriftMovesBothSignsSidewaysBetweenThePlates) {
     }
 }
 
-// Grad-B drift: every charge travels around the coil, + and − in opposite directions, without reaching the
-// wire. The coil field does no work, so K + U holds (the charges still pull on each other electrically).
+// Grad-B: + and − travel around the coil in opposite directions. The coil field does no work.
 TEST(SceneTest, CoilChargesDriftAroundTheCoilInOppositeDirections) {
     Simulation sim = magnetic_scene(Preset::Coil);
     ASSERT_EQ(sim.coils().size(), 1u);
@@ -197,7 +197,7 @@ TEST(SceneTest, CoilChargesDriftAroundTheCoilInOppositeDirections) {
         EXPECT_GT(travelled, 25.f) << "charge " << i << " drifted only " << travelled << " degrees";
     }
     EXPECT_NEAR(sim.total_energy(), energy0, 1e-3f * std::abs(energy0));
-    // Same distance from the coil, opposite charge: opposite drift.
+    // Opposite charge, opposite drift.
     EXPECT_LT(azimuth[0] * azimuth[1], 0.f);
     EXPECT_LT(azimuth[2] * azimuth[3], 0.f);
 }

@@ -1,5 +1,3 @@
-<!-- The first-run welcome, as a reference topic. Same prose as assets/ui/welcome.xml.
-     Included by assets/ui/help.xml through <ItemTemplate src>. Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
     <Label class="kicker" text="{tr help.using.kicker}"/>
     <Label class="title" text="{tr help.using.title}"/>

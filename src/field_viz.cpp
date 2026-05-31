@@ -1,7 +1,5 @@
 #include <game/field_viz.h>
 
-#include <game/scene.h>
-
 #include <glm/geometric.hpp>
 
 #include <algorithm>
@@ -13,10 +11,8 @@ namespace game {
 namespace {
 
 constexpr float kMinFieldForDirection = 1e-8f;
-// |E| at which field_strength01 saturates and the log scale's knee.
 constexpr float kStrengthKnee = 0.02f;
 constexpr float kStrengthMax = 20.f;
-// Share of respawning flow tracers that start next to a + charge rather than anywhere in view.
 constexpr float kSourceSpawnFraction = 0.35f;
 
 struct NearestCharge {
@@ -47,7 +43,7 @@ std::optional<glm::vec3> direction_at(std::span<const Charge> charges, const Fie
 
 enum class LineEnd {
     Charge,
-    Escaped,  // left the bounds, hit a null point or ran out of steps
+    Escaped,
 };
 
 struct TraceResult {
@@ -56,7 +52,7 @@ struct TraceResult {
     std::size_t end_charge = kNoCharge;
 };
 
-// Integrates dp/ds = sign * E/|E| with RK4 from `start`, which lies near charge `origin`.
+// RK4 along sign * E/|E|. `start` lies near charge `origin`.
 TraceResult trace_from(std::span<const Charge> charges, const FieldParams& params, const FieldLineOptions& options,
         glm::vec3 start, std::size_t origin, float sign) {
     TraceResult result;
@@ -96,6 +92,12 @@ int line_count(float q, const FieldLineOptions& options) {
 
 }
 
+bool inside_charge_glyph(std::span<const Charge> charges, glm::vec3 point) {
+    return std::any_of(charges.begin(), charges.end(), [&](const Charge& c) {
+        return glm::length(c.position - point) < 1.5f * charge_radius(c.q);
+    });
+}
+
 std::vector<FieldLine> trace_field_lines(
         std::span<const Charge> charges, const FieldParams& params, const FieldLineOptions& options) {
     std::vector<FieldLine> lines;
@@ -104,7 +106,6 @@ std::vector<FieldLine> trace_field_lines(
         if (c.q == 0.f) {
             continue;
         }
-        // Forward from + charges; backward (against E) from - charges.
         const float sign = c.q > 0.f ? 1.f : -1.f;
         const int count = line_count(c.q, options);
         for (int k = 0; k < count; ++k) {
@@ -112,7 +113,6 @@ std::vector<FieldLine> trace_field_lines(
                     static_cast<float>(count);
             const glm::vec3 start = c.position + options.seed_radius * glm::vec3{std::cos(angle), std::sin(angle), 0.f};
             TraceResult traced = trace_from(charges, params, options, start, i, sign);
-            // A backward line that lands on a + charge duplicates one already traced forward from it.
             if (sign < 0.f && traced.end == LineEnd::Charge && charges[traced.end_charge].q > 0.f) {
                 continue;
             }
@@ -135,10 +135,7 @@ std::vector<FieldSample> sample_field_grid(
     for (float y = y0; y <= bounds.max.y; y += spacing) {
         for (float x = x0; x <= bounds.max.x; x += spacing) {
             const glm::vec3 p{x, y, 0.f};
-            const bool inside_charge = std::any_of(charges.begin(), charges.end(), [&](const Charge& c) {
-                return glm::length(c.position - p) < 1.5f * charge_radius(c.q);
-            });
-            if (!inside_charge) {
+            if (!inside_charge_glyph(charges, p)) {
                 samples.push_back(FieldSample{.position = p, .field = field_at(charges, p, params)});
             }
         }
@@ -174,7 +171,6 @@ void FlowField::update(std::span<const Charge> charges, const FieldParams& param
 
     for (FlowParticle& p : particles_) {
         p.age += dt;
-        // Midpoint step: cheap, and keeps particles on curved field lines far better than Euler.
         const glm::vec3 v1 = velocity_at(p.position);
         const glm::vec3 v2 = velocity_at(p.position + 0.5f * dt * v1);
         p.velocity = v2;
@@ -194,12 +190,9 @@ void FlowField::respawn(FlowParticle& p, std::span<const Charge> charges, const 
     std::uniform_real_distribution<float> life(1.5f, 4.f);
     p.velocity = glm::vec3{0.f};
     p.lifetime = life(rng_);
-    // Staggered ages on the first fill so the whole population does not fade in and out in sync.
     p.age = random_age ? unit(rng_) * p.lifetime : 0.f;
 
-    // Field lines start on + charges, so uniform spawning alone leaves sources empty (everything
-    // streams away from them). Part of the population is born just outside a + charge instead,
-    // picked with probability proportional to q.
+    // Uniform spawning leaves + charges empty: lines stream away from them. Seed some tracers there.
     float positive_total = 0.f;
     for (const Charge& c : charges) {
         positive_total += std::max(c.q, 0.f);
@@ -225,7 +218,6 @@ void FlowField::respawn(FlowParticle& p, std::span<const Charge> charges, const 
 
     std::uniform_real_distribution<float> ux(bounds.min.x, bounds.max.x);
     std::uniform_real_distribution<float> uy(bounds.min.y, bounds.max.y);
-    // A few tries to avoid spawning inside a charge; falling back to the last try is harmless.
     for (int attempt = 0; attempt < 4; ++attempt) {
         p.position = {ux(rng_), uy(rng_), 0.f};
         const NearestCharge nearest = nearest_charge(charges, p.position);

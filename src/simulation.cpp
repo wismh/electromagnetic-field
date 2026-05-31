@@ -12,10 +12,8 @@ Simulation::Simulation(FieldParams params, DynamicsOptions dynamics) :
     params_(params),
     dynamics_(dynamics) {}
 
-// Symmetric (Strang) splitting: electric half kick, magnetic half rotation, drift, magnetic half rotation
-// (with Bz re-evaluated at the new positions), electric half kick. The symmetry is what keeps K + U from
-// drifting when E and B act together; a single full rotation before the drift made it creep by percents
-// per minute. With the flag off the rotations are skipped and the step is the electric velocity Verlet.
+// Strang split: half kick, half rotation, drift, half rotation, half kick.
+// One full rotation before the drift lets K + U creep.
 void Simulation::step(float dt) {
     kick(0.5f * dt);
     if (dynamics_.magnetic) {
@@ -36,7 +34,6 @@ float Simulation::total_energy() const {
     return kinetic_energy(charges_) + potential_energy(charges_, params_);
 }
 
-// Forces depend only on positions, so updating velocities in place does not affect later forces.
 void Simulation::kick(float dt) {
     for (std::size_t j = 0; j < charges_.size(); ++j) {
         Charge& c = charges_[j];
@@ -55,9 +52,7 @@ void Simulation::drift(float dt) {
     }
 }
 
-// Pairwise ball collisions: overlapping pairs are pushed apart along the contact normal (split by
-// inverse mass, so fixed charges never move) and approaching pairs get an impulse that reverses
-// their normal relative velocity scaled by the restitution. Momentum of free pairs is conserved.
+// Overlap is split by inverse mass (fixed charges stay put). Approaching pairs bounce.
 void Simulation::resolve_collisions() {
     for (std::size_t i = 0; i < charges_.size(); ++i) {
         for (std::size_t j = i + 1; j < charges_.size(); ++j) {

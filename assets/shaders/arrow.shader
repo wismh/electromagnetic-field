@@ -2,8 +2,7 @@
     <vertex><![CDATA[
         #version 330 core
 
-        // Instanced: the engine feeds per-instance attributes and, because there is no uModel
-        // uniform, picks this shader instead of its built-in particle shader.
+        // No uModel: the engine uses this shader for instanced particles.
         layout(location = 0) in vec3 aPosition;
         layout(location = 1) in vec2 aUV;
         layout(location = 2) in vec3 aInstancePos;
@@ -36,17 +35,15 @@
         in vec4 vColor;
         out vec4 FragColor;
 
-        // Arrow along local +x: shaft over the first 62% of the length, triangular head after it.
         float coverage(vec2 uv) {
-            float y = abs(uv.y - 0.5) * 2.0;        // 0 on the axis, 1 at the quad edge
+            float y = abs(uv.y - 0.5) * 2.0;
             float shaft = (uv.x < 0.62) ? step(y, 0.28) : 0.0;
-            float head_half = (1.0 - uv.x) / 0.38;   // 1 at the head base, 0 at the tip
+            float head_half = (1.0 - uv.x) / 0.38;
             float head = (uv.x >= 0.55) ? step(y, head_half) : 0.0;
             return max(shaft, head);
         }
 
         void main() {
-            // 4x supersampling over the pixel footprint for cheap, stable anti-aliasing.
             vec2 dx = dFdx(vUV) * 0.25;
             vec2 dy = dFdy(vUV) * 0.25;
             float a = coverage(vUV + dx + dy) + coverage(vUV + dx - dy) +

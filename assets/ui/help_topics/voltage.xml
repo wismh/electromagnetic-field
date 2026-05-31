@@ -1,5 +1,3 @@
-<!-- Help topic: included by assets/ui/help.xml through <ItemTemplate src>. Data context is a
-     HelpTopicViewModel (only binding: tryIt). Styles: assets/css/help.css. -->
 <Stack class="topic-body" direction="vertical">
     <Label class="kicker" text="{tr help.voltage.kicker}"/>
     <Label class="title" text="{tr help.voltage.title}"/>
@@ -67,14 +65,14 @@
     <Stack class="predict" direction="vertical">
         <Label class="predict-q" text="{tr help.voltage.predict1}"/>
         <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
-        <Stack class="predict-a" direction="vertical" var-display="{binding answer1Display}">
+        <Stack class="predict-a" direction="vertical" var-h="{binding answer1Height}" var-gap="{binding answer1Gap}">
             <Label class="predict-a-text" text="{tr help.voltage.answer1}"/>
         </Stack>
     </Stack>
     <Stack class="predict" direction="vertical">
         <Label class="predict-q" text="{tr help.voltage.predict2}"/>
         <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
-        <Stack class="predict-a" direction="vertical" var-display="{binding answer2Display}">
+        <Stack class="predict-a" direction="vertical" var-h="{binding answer2Height}" var-gap="{binding answer2Gap}">
             <Label class="predict-a-text" text="{tr help.voltage.answer2}"/>
         </Stack>
     </Stack>

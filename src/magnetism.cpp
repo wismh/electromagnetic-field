@@ -10,8 +10,7 @@ namespace game {
 
 namespace {
 
-// Sum over the loop of (dl × r)_z / (r² + w²)^{3/2} for a unit counter-clockwise current. Each piece is a
-// chord of the circle with the field taken at its midpoint.
+// (dl × r)_z / (r² + w²)^{3/2} on each chord, unit counter-clockwise current.
 float loop_sum(const Coil& coil, glm::vec3 point) {
     const float w2 = coil.wire_radius * coil.wire_radius;
     float sum = 0.f;
@@ -56,7 +55,6 @@ float magnetic_z(std::span<const Charge> charges, glm::vec3 point, const FieldPa
         if (r2 <= 0.f) {
             continue;
         }
-        // (v × d)_z. d points from the source to the sample, matching v × r-hat / r^2.
         const float perpendicular = c.velocity.x * d.y - c.velocity.y * d.x;
         field_z += coupling * c.q * perpendicular / (r2 * std::sqrt(r2));
     }
@@ -77,7 +75,7 @@ void rotate_magnetic(std::span<Charge> charges, const FieldParams& params, float
         if (c.fixed || c.mass <= 0.f) {
             continue;
         }
-        // Clockwise when q Bz > 0: dv/dt = (q/m) v × B with B along +z.
+        // Clockwise when q Bz > 0: dv/dt = (q/m) v × B, B along +z.
         const float phi = (c.q / c.mass) * field_z[j] * dt;
         const float cosine = std::cos(phi);
         const float sine = std::sin(phi);

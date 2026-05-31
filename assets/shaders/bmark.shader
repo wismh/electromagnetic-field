@@ -2,8 +2,7 @@
     <vertex><![CDATA[
         #version 330 core
 
-        // Instanced: the engine feeds per-instance attributes and, because there is no uModel
-        // uniform, picks this shader instead of its built-in particle shader.
+        // No uModel: the engine uses this shader for instanced particles.
         layout(location = 0) in vec3 aPosition;
         layout(location = 1) in vec2 aUV;
         layout(location = 2) in vec3 aInstancePos;
@@ -36,8 +35,7 @@
         in vec4 vColor;
         out vec4 FragColor;
 
-        // Bz mark on a quad. r > b draws a ring with a centre dot (out of the page); otherwise a
-        // ring with a cross (into the page). The two tints are chosen so that comparison holds.
+        // outward > 0.5: dot (out of the page). Otherwise a cross. Tints are chosen so r > b means out.
         float coverage(vec2 uv, float outward) {
             vec2 p = (uv - 0.5) * 2.0;
             float r = length(p);

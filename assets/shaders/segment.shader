@@ -2,8 +2,7 @@
     <vertex><![CDATA[
         #version 330 core
 
-        // Instanced: the engine feeds per-instance attributes and, because there is no uModel
-        // uniform, picks this shader instead of its built-in particle shader.
+        // No uModel: the engine uses this shader for instanced particles.
         layout(location = 0) in vec3 aPosition;
         layout(location = 1) in vec2 aUV;
         layout(location = 2) in vec3 aInstancePos;
@@ -36,7 +35,6 @@
         in vec4 vColor;
         out vec4 FragColor;
 
-        // Soft-edged line segment: the quad's local y spans the line width.
         void main() {
             float across = abs(vUV.y - 0.5) * 2.0;
             float alpha = 1.0 - smoothstep(0.35, 1.0, across);

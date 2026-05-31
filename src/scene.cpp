@@ -42,7 +42,7 @@ std::vector<Charge> make_preset(Preset preset) {
             return charges;
         }
         case Preset::Orbit: {
-            // Circular orbit around a fixed centre: m * v^2 / r = k * |Q * q| / r^2 with k = m = 1.
+            // v^2 = k |Q q| / r with k = m = 1.
             constexpr float kCentreQ = 2.f;
             constexpr float kSatelliteQ = -0.5f;
             constexpr float kRadius = 3.f;
@@ -53,8 +53,6 @@ std::vector<Charge> make_preset(Preset preset) {
             };
         }
         case Preset::Rutherford: {
-            // Light + projectiles fired at a heavy fixed + nucleus with a spread of impact parameters:
-            // the trails trace Rutherford's hyperbolic scattering orbits.
             std::vector<Charge> charges{Charge{.position = {0.f, 0.f, 0.f}, .q = 4.f, .fixed = true}};
             for (int i = -6; i <= 6; ++i) {
                 const float impact = 0.75f * static_cast<float>(i);
@@ -64,8 +62,6 @@ std::vector<Charge> make_preset(Preset preset) {
             return charges;
         }
         case Preset::Swarm: {
-            // Free charges of alternating sign on two rings, released from rest: they pull together,
-            // collide and settle into bound clusters.
             std::vector<Charge> charges;
             for (int ring = 0; ring < 2; ++ring) {
                 const int count = ring == 0 ? 6 : 10;
@@ -82,10 +78,7 @@ std::vector<Charge> make_preset(Preset preset) {
             return charges;
         }
         case Preset::Cyclotron: {
-            // Free charges in a uniform Bz, each started at the top (bottom for −q) of its circle moving
-            // right, so the circles sit side by side. q/m = 0.5 for all, hence one period 2π m / (|q| B)
-            // for every speed: the radius m v / (|q| B) grows with v, the period does not. Small charges
-            // keep their mutual Coulomb pull negligible.
+            // q/m = 0.5, so T = 2π m / (|q| B) is the same at every speed.
             constexpr float kQ = kMinAbsCharge;
             constexpr float kMass = 0.5f;
             const auto at = [&](float centre_x, float centre_y, float speed, float q) {
@@ -102,9 +95,6 @@ std::vector<Charge> make_preset(Preset preset) {
             };
         }
         case Preset::ExBDrift: {
-            // Two fixed rows (a capacitor, E pointing down) in a uniform Bz. Charges released from rest
-            // between them roll along cycloids and drift sideways at E / B; the drift direction E × B is the
-            // same for both signs, only the loops turn the other way.
             std::vector<Charge> charges;
             for (int i = -4; i <= 4; ++i) {
                 const float x = 2.f * static_cast<float>(i);
@@ -118,11 +108,7 @@ std::vector<Charge> make_preset(Preset preset) {
             return charges;
         }
         case Preset::Coil: {
-            // One coil (scene_settings) and four free charges with q/m = ±0.5. Each circles with a gyroradius
-            // smaller than the distance over which the coil field changes, so the circle is slightly tighter
-            // on its strong-field side and does not close: it slides sideways (grad-B drift) around the coil.
-            // + and − drift in opposite directions. Inside the field grows towards the wire; outside it has
-            // the opposite sign and falls off like a dipole field, the in-plane picture of a radiation belt.
+            // q/m = ±0.5. Gyroradius is smaller than the coil's scale, so the orbit drifts (grad-B).
             constexpr float kMass = 0.5f;
             constexpr float kQ = kMinAbsCharge;
             return {

@@ -1,7 +1,4 @@
-/* HUD over the simulation. No `Canvas { background }`: the canvas must stay transparent so the
-   scene shows through everywhere except the panel itself.
-   Font: assets/fonts/Inter-Regular.ttf (Cyrillic + Greek), referenced by its AssetId. Fonts and
-   colours are not inherited, so every text element kind gets them from an element-level rule. */
+/* No Canvas background. Fonts are not inherited. */
 
 Label { font-family: cee217b3729e4247be377a0830041a0a; font-size: 13; color: #d7dbe6; }
 Button {
@@ -18,8 +15,6 @@ Button {
 Button:hover { background: #ffffff2a; }
 Button:pressed { background: #6366f1; }
 
-/* ---- Status (top left) ---- */
-
 Stack.status {
     position: absolute;
     top: 12;
@@ -31,8 +26,6 @@ Stack.status {
 }
 Label.status-main { font-size: 15; color: var(--accent, #a5f3c4); }
 Label.status-sub { font-size: 12; color: #8b93a7; }
-
-/* ---- Cursor probe ---- */
 
 Stack.probe {
     position: absolute;
@@ -46,12 +39,9 @@ Stack.probe {
     border-width: 1;
     border-color: #ffffff1f;
 }
-/* Probe readouts are <Math>. Symbols inside labels are inline \(\) and share that label's size and color. */
 Math { color: #ffffff; font-size: 15; }
 Math.probe-math { font-size: 14; color: #e6e9f2; }
 Math.probe-b { display: var(--display, none); }
-
-/* ---- Bottom hint ---- */
 
 Label.hint {
     position: absolute;
@@ -60,8 +50,6 @@ Label.hint {
     font-size: 12;
     color: #8b93a7;
 }
-
-/* ---- Right panel ---- */
 
 ScrollView.panel {
     position: absolute;
@@ -83,14 +71,15 @@ ScrollView.panel {
 Label.title { font-size: 18; color: #ffffff; margin: 0 0 2 0; }
 Label.section { font-size: 11; color: #7c8499; margin: 10 0 0 0; }
 
-/* Panel content width = 290 - 2 * 14 padding = 262. */
 Stack.row { width: 262; height: 28; gap: 6; align-items: center; }
-Button.half { width: 128; }
 Button.wide { width: 192; }
+Button.browse { width: 262; }
+Button.clear { width: 262; margin: 4 0 0 0; background: #ffffff0c; }
+Button.clear:hover { background: #ffffff1f; }
 Button.help { width: 262; height: 30; margin: 4 0 0 0; background: #6366f133; }
 Button.help:hover { background: #6366f155; }
 
-/* Checkbox rows: a Checkbox does not pack its children, so one full-size Stack lays out the row. */
+/* Checkbox does not lay out children; the Stack does. */
 Checkbox.toggle { width: 262; height: 24; border-radius: 5; }
 Checkbox.toggle:hover { background: #ffffff0f; }
 Stack.toggle-content { width: 100%; height: 100%; align-items: center; justify-content: space-between; padding: 0 4; }
@@ -101,7 +90,6 @@ Stack.box:checked { background: #6366f1; border-color: #818cf8; }
 Label.toggle-label { color: #d7dbe6; }
 Label.key { font-size: 11; color: #6b7286; }
 
-/* Sliders: the outer Stack is the drag target (taller than the visible track for an easy grab). */
 Stack.param-head { width: 262; height: 18; align-items: center; justify-content: space-between; margin: 4 0 0 0; }
 Label.param-name { color: #d7dbe6; }
 Label.param-value { color: #ffffff; }
@@ -113,7 +101,6 @@ Stack.stat { width: 262; height: 20; align-items: center; justify-content: space
 Label.stat-name { color: #9aa2b6; }
 Label.stat-value { color: #ffffff; }
 
-/* Language segments. Same 262 content width as Button.help and Stack.row (128 + 6 + 128). */
 Stack.lang { width: 262; height: 28; gap: 6; margin: 8 0 2 0; }
 Button.lang {
     width: 128;

@@ -9,8 +9,7 @@
 namespace game {
 namespace {
 
-// Two opposite unit charges with unit masses, 2 apart: each circles the centre of mass at radius 1.
-// Circular orbit: m * v^2 / r = k * q^2 / d^2  ->  v^2 = 1 * 1 / 4  ->  v = 0.5.
+// m v²/r = k q²/d² → v = 0.5.
 Simulation make_orbit() {
     Simulation sim(FieldParams{.k = 1.f, .softening = 0.f});
     sim.charges().push_back(Charge{.position = {-1.f, 0.f, 0.f}, .velocity = {0.f, -0.5f, 0.f}, .q = 1.f});

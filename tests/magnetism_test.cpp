@@ -13,7 +13,7 @@
 namespace game {
 namespace {
 
-// c = 1 makes μ₀/4π = k / c² = 1, so the expected Bz values below are the bare Biot–Savart numbers.
+// c = 1 makes μ₀/4π = k/c² = 1, so the expected Bz values are the bare Biot–Savart numbers.
 constexpr FieldParams kExact{.k = 1.f, .softening = 0.f, .light_speed = 1.f};
 
 Charge moving_right() {
@@ -125,9 +125,7 @@ TEST(MagnetismTest, EnabledFlagDeflectsTrajectory) {
     EXPECT_LT(on.charges()[0].position.y, off.charges()[0].position.y);
 }
 
-// Two like charges moving side by side: electrically they repel, magnetically (parallel currents) they
-// attract. With c = 1 the magnetic pull is as strong as it ever gets, so it must visibly reduce the
-// repulsion compared with the same run without the Lorentz force.
+// Parallel currents attract. At c = 1 that pull must reduce the electric repulsion.
 TEST(MagnetismTest, ParallelMovingChargesAttractMagnetically) {
     const FieldParams params{.k = 1.f, .softening = 0.f, .light_speed = 1.f};
     Simulation off(params, DynamicsOptions{.collisions = false});
@@ -178,8 +176,7 @@ TEST(MagnetismTest, CyclotronRadiusAndPeriod) {
     EXPECT_NEAR(glm::length(sim.charges()[0].position), 0.f, 1e-2f) << "back at the start after one period";
 }
 
-// The regression this file was missing: a single full rotation before the drift let K + U creep by
-// percents per minute once E and B acted together. Magnetic forces do no work, so K + U must hold.
+// Magnetic forces do no work, so K + U holds when E and B act together.
 TEST(MagnetismTest, ElectricAndMagneticTogetherConserveEnergy) {
     Simulation sim(FieldParams{.k = 1.f, .softening = 0.25f, .light_speed = 20.f, .b_external = 0.5f},
             DynamicsOptions{.collisions = false, .magnetic = true});

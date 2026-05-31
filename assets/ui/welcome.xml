@@ -1,8 +1,8 @@
-<!-- First screen. Key legends that are letters stay literal; mouse labels are {tr} so they follow
-     the language. Row order is the order a new user meets the controls. -->
+<!-- Letter keycaps stay literal; mouse labels are {tr}. -->
 <Canvas id="welcome">
-    <Stack class="backdrop" var-display="{binding welcomeDisplay}">
-        <Stack class="window" direction="vertical" var-wl="{binding windowLeft}" var-ww="{binding windowWidth}">
+    <Stack class="backdrop" var-display="{binding welcomeDisplay}" var-dim="{binding backdropDim}">
+        <Stack class="window" direction="vertical" var-wl="{binding windowLeft}" var-ww="{binding windowWidth}"
+               var-pop="{binding windowPop}">
             <Stack class="column" direction="vertical">
             <Stack class="head" direction="horizontal">
                 <Stack class="titles" direction="vertical">
@@ -95,6 +95,7 @@
                     </Stack>
 
                     <Label class="section" text="{tr welcome.h.scenes}"/>
+                    <Label class="section" text="{tr welcome.h.electric}"/>
                     <Stack class="bind" direction="horizontal">
                         <Stack class="keys" direction="horizontal">
                             <Stack class="key"><Label class="keycap" text="1"/></Stack>
@@ -137,6 +138,7 @@
                         </Stack>
                         <Label class="bind-text" text="{tr welcome.preset.swarm}"/>
                     </Stack>
+                    <Label class="section" text="{tr welcome.h.magnetic}"/>
                     <Stack class="bind" direction="horizontal">
                         <Stack class="keys" direction="horizontal">
                             <Stack class="key"><Label class="keycap" text="8"/></Stack>

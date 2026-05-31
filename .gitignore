@@ -13,3 +13,5 @@ compile_commands.json
 .DS_Store
 Thumbs.db
 *.apk
+/docs/.internal/
+/CLAUDE.md

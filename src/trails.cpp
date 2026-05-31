@@ -14,14 +14,13 @@ void Trails::record(std::span<const Charge> charges, float time) {
         auto it = std::find_if(trails_.begin(), trails_.end(), [&](const Trail& t) { return t.id == c.id; });
         if (it == trails_.end()) {
             if (c.fixed) {
-                continue;  // a charge that never moved has nothing to show
+                continue;
             }
             trails_.push_back(Trail{.id = c.id});
             it = std::prev(trails_.end());
         }
         Trail& trail = *it;
         trail.q = c.q;
-        // Fixed charges (pinned or held by the cursor) keep their old trail fading but add nothing.
         if (c.fixed) {
             continue;
         }
@@ -42,7 +41,6 @@ void Trails::record(std::span<const Charge> charges, float time) {
             trail.points.pop_front();
         }
     }
-    // Drop trails of removed charges and trails that have fully faded.
     std::erase_if(trails_, [&](const Trail& t) {
         const bool alive = std::any_of(charges.begin(), charges.end(), [&](const Charge& c) { return c.id == t.id; });
         return !alive || t.points.empty();

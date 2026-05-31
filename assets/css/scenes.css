@@ -1,0 +1,81 @@
+/* No Canvas background. Two cards must fit 992px after padding; the scrollbar overlaps the scroll view. */
+
+Label { font-family: cee217b3729e4247be377a0830041a0a; color: #d7dbe6; font-size: 14; }
+Button {
+    font-family: cee217b3729e4247be377a0830041a0a;
+    font-size: 14;
+    color: #e6e9f2;
+    text-align: center;
+    align-items: center;
+    background: #ffffff14;
+    border-radius: 8;
+}
+Button:hover { background: #ffffff2a; }
+Button:pressed { background: #6366f1; }
+
+Stack.backdrop {
+    display: var(--display, none);
+    opacity: var(--dim, 0);
+    transition: opacity 0.2s ease-out;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #05060ad9;
+}
+Stack.window {
+    position: absolute;
+    left: var(--wl, 28);
+    width: var(--ww, 992);
+    top: 28;
+    bottom: 28;
+    background: #0e1018f7;
+    border-radius: 14;
+    border-width: 1;
+    border-color: #ffffff1f;
+    transform: var(--pop, scale(0));
+    transition: transform 0.2s ease-out;
+}
+Stack.column { width: 100%; height: 100%; padding: 16 20 12 20; gap: 10; }
+Stack.head { width: 100%; height: 40; align-items: center; justify-content: space-between; }
+Label.title { font-size: 22; color: #ffffff; }
+Button.close { width: 110; height: 32; }
+
+ScrollView.body {
+    width: 100%;
+    height: calc(100% - 50px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff40 #00000000;
+    padding: 0 16 12 0;
+}
+Stack.list { width: 100%; gap: 12; }
+Label.section { font-size: 11; color: #7c8499; margin: 8 0 0 0; }
+Stack.row { width: 100%; gap: 12; align-items: start; }
+
+Stack.card {
+    width: 448;
+    background: #ffffff0d;
+    border-radius: 12;
+    border-width: 1;
+    border-color: #ffffff1a;
+    overflow: hidden;
+}
+Stack.card:hover { background: #ffffff14; border-color: #ffffff40; }
+Stack.card:pressed { background: #6366f133; }
+Stack.card:checked { background: #6366f122; border-color: #818cf8; }
+Image.shot { width: 448; height: 252; }
+Stack.card-copy { width: 448; padding: 10 12 12 12; gap: 6; }
+Stack.card-meta { width: 100%; height: 22; gap: 8; align-items: center; }
+Stack.key {
+    width: 22;
+    height: 22;
+    border-radius: 5;
+    background: #ffffff18;
+    align-items: center;
+    justify-content: center;
+}
+Label.keycap { font-size: 12; color: #ffffff; }
+Label.card-title { font-size: 15; color: #ffffff; }
+Label.card-text { width: 424; font-size: 13; color: #b7becc; line-height: 1.4; }

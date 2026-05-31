@@ -1,29 +1,32 @@
 #include <game/help.h>
 
+#include <game/locale_style.h>
+#include <game/overlay_canvas.h>
+
 #include <engine/loc/catalog.h>
 #include <engine/ui/canvas.h>
+#include <engine/ui/document.h>
 
 #include <asset_ids.h>
 
 #include <algorithm>
 #include <array>
 #include <string>
+#include <string_view>
 #include <utility>
 #include <vector>
 
 namespace game {
 namespace {
 
-constexpr int kHelpCanvasOrder = 20;  // above the control panel (10)
+constexpr int kHelpCanvasOrder = 20;  // above the panel (10)
 constexpr int kWindowMargin = 36;
 constexpr int kMaxWindowWidth = 1280;
-// Nav row heights from assets/css/help.css (Button.nav-item 34 + list gap 2; header ~14 text + 16 margin + gap).
+// help.css: nav-item 34 + gap 2; header text 14 + margin 16 + gap.
 constexpr float kNavTopicRowHeight = 36.f;
 constexpr float kNavHeaderRowHeight = 32.f;
-// Rows kept visible beyond the selected one when the nav scrolls to it.
 constexpr float kNavRevealContext = kNavTopicRowHeight;
-// Vertical chrome around the nav list, mirroring assets/css/help.css: window top/bottom insets (28 + 28),
-// nav padding (24 + 18) and the list's `calc(100% - 144px)` (title, subtitle, language row, hint).
+// help.css chrome: window insets 56, nav padding 42, list offset 144.
 constexpr float kNavChromeHeight = 56.f + 42.f + 144.f;
 
 constexpr const char* kNavSelectedBackground = "#6366f133";
@@ -46,17 +49,12 @@ FieldLayers layers(bool potential, bool lines, bool grid, bool flow, bool probe,
 constexpr const char* kUsing = "help.section.using";
 constexpr const char* kBasics = "help.section.basics";
 constexpr const char* kPotentialEnergy = "help.section.potential";
+constexpr const char* kEnergy = "help.section.energy";
 constexpr const char* kSummary = "help.section.summary";
 constexpr const char* kMagnetic = "help.section.magnetic";
 constexpr const char* kAppendix = "help.section.appendix";
 
-constexpr const char* kLocaleOnBg = "#6366f133";
-constexpr const char* kLocaleOnFg = "#ffffff";
-constexpr const char* kLocaleOffBg = "#ffffff14";
-constexpr const char* kLocaleOffFg = "#aab1c3";
-
-// Order must match HelpViewModel::topics and the ItemsControls in assets/ui/help.xml.
-// layers(potential, lines, grid, flow, probe, trails, magnetic)
+// Same order as HelpViewModel::topics. layers(potential, lines, grid, flow, probe, trails, magnetic)
 const std::array<HelpTopic, kHelpTopicCount> kTopics{
         HelpTopic{kUsing, "help.using.title", std::nullopt},
         HelpTopic{kBasics, "help.charge.title", HelpDemo{Preset::Swarm, layers(true, true, false, true, true, true)}},
@@ -69,19 +67,71 @@ const std::array<HelpTopic, kHelpTopicCount> kTopics{
         HelpTopic{kPotentialEnergy, "help.potential_energy.title", HelpDemo{Preset::LikePair, layers(true, false, false, false, true, false)}},
         HelpTopic{kPotentialEnergy, "help.voltage.title", HelpDemo{Preset::Capacitor, layers(true, true, false, false, true, false)}},
         HelpTopic{kPotentialEnergy, "help.gradient.title", HelpDemo{Preset::Dipole, layers(true, false, true, false, true, false)}},
-        HelpTopic{kPotentialEnergy, "help.pair_energy.title", HelpDemo{Preset::Rutherford, layers(false, false, false, false, false, true)}},
-        HelpTopic{kPotentialEnergy, "help.energy_zero.title", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
-        HelpTopic{kPotentialEnergy, "help.work_motion.title", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
-        HelpTopic{kPotentialEnergy, "help.config_energy.title", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
-        HelpTopic{kSummary, "help.gravity.title", HelpDemo{Preset::Orbit, layers(false, true, false, false, false, true)}},
-        HelpTopic{kSummary, "help.overview.title", HelpDemo{Preset::Dipole, layers(true, true, false, true, true, false)}},
+        HelpTopic{kEnergy, "help.pair_energy.title", HelpDemo{Preset::Rutherford, layers(false, false, false, false, false, true)}},
+        HelpTopic{kEnergy, "help.energy_zero.title", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
+        HelpTopic{kEnergy, "help.work_motion.title", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
+        HelpTopic{kEnergy, "help.config_energy.title", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
         HelpTopic{kMagnetic, "help.bfield.title", HelpDemo{Preset::Coil, layers(false, false, false, false, true, false, true)}},
         HelpTopic{kMagnetic, "help.lorentz.title", HelpDemo{Preset::Cyclotron, layers(false, false, false, false, true, true, true)}},
         HelpTopic{kMagnetic, "help.cyclotron.title", HelpDemo{Preset::Cyclotron, layers(false, false, false, false, true, true, true)}},
         HelpTopic{kMagnetic, "help.exb.title", HelpDemo{Preset::ExBDrift, layers(false, true, false, false, true, true, true)}},
         HelpTopic{kMagnetic, "help.coil.title", HelpDemo{Preset::Coil, layers(false, false, false, false, true, true, true)}},
+        HelpTopic{kSummary, "help.gravity.title", HelpDemo{Preset::Orbit, layers(false, true, false, false, false, true)}},
+        HelpTopic{kSummary, "help.overview.title", HelpDemo{Preset::Dipole, layers(true, true, false, true, true, false)}},
         HelpTopic{kAppendix, "help.simulation.title", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
 };
+
+bool has_class(const engine::ui::Element& element, std::string_view name) {
+    return std::find(element.classes.begin(), element.classes.end(), name) != element.classes.end();
+}
+
+float answer_content_height(const engine::ui::Element& clip) {
+    float height = 0.f;
+    for (const engine::ui::Element& child : clip.children) {
+        if (child.kind == engine::ui::ElementKind::ItemTemplate || child.display_none) {
+            continue;
+        }
+        height += child.layout_rect.h;
+    }
+    return height;
+}
+
+HelpTopicViewModel* topic_from(HelpViewModel& vm, const void* owner) {
+    if (owner == nullptr) {
+        return nullptr;
+    }
+    for (auto* list : vm.topics) {
+        for (const auto& item : list->get()) {
+            if (item.get() == owner) {
+                return item.get();
+            }
+        }
+    }
+    return nullptr;
+}
+
+// generated_owner is copied onto descendants; a new owner starts the next topic.
+void sample_tree(engine::ui::Element& element, HelpViewModel& vm, const void*& owner, HelpTopicViewModel*& topic,
+        int& index) {
+    if (element.kind == engine::ui::ElementKind::ItemTemplate || element.display_none) {
+        return;
+    }
+    if (element.generated_owner != owner) {
+        owner = element.generated_owner;
+        topic = topic_from(vm, owner);
+        index = 0;
+    }
+    if (topic != nullptr && has_class(element, "predict-a")) {
+        topic->note_answer_height(static_cast<std::size_t>(index), answer_content_height(element));
+        ++index;
+    }
+    for (engine::ui::Element& child : element.children) {
+        sample_tree(child, vm, owner, topic, index);
+    }
+    for (engine::ui::Element& child : element.generated_items) {
+        sample_tree(child, vm, owner, topic, index);
+    }
+}
 
 }
 
@@ -162,24 +212,50 @@ void Help::apply_locale() {
         vm_->topics[i]->get().front()->set_reveal_labels(show, hide);
     }
     const bool english = catalog.active() == "en";
-    vm_->localeEnBg = english ? kLocaleOnBg : kLocaleOffBg;
-    vm_->localeEnFg = english ? kLocaleOnFg : kLocaleOffFg;
-    vm_->localeUkBg = english ? kLocaleOffBg : kLocaleOnBg;
-    vm_->localeUkFg = english ? kLocaleOffFg : kLocaleOnFg;
+    paint_locale_segment(LocaleSegment{vm_->localeEnBg, vm_->localeEnFg, vm_->localeUkBg, vm_->localeUkFg}, english);
 }
 
 void Help::open() {
-    open_ = true;
-    sync();
+    if (pop_.open()) {
+        sync();
+    }
 }
 
 void Help::close() {
-    open_ = false;
-    sync();
+    if (pop_.close()) {
+        sync();
+    }
 }
 
 void Help::toggle() {
-    open_ ? close() : open();
+    if (pop_.is_open() && !pop_.closing()) {
+        close();
+    } else {
+        open();
+    }
+}
+
+void Help::tick(float dt) {
+    if (pop_.tick(dt)) {
+        sync();
+    }
+    sample_answers();
+}
+
+void Help::sample_answers() {
+    engine::ui::UiInstance* instance = world_.try_get<engine::ui::UiInstance>(canvas_);
+    if (instance == nullptr) {
+        return;
+    }
+    const void* owner = nullptr;
+    HelpTopicViewModel* topic = nullptr;
+    int index = 0;
+    sample_tree(instance->document.root, *vm_, owner, topic, index);
+    for (auto* list : vm_->topics) {
+        for (const auto& item : list->get()) {
+            item->apply_answer_motion();
+        }
+    }
 }
 
 void Help::select(std::size_t topic, bool reveal_in_nav) {
@@ -188,12 +264,10 @@ void Help::select(std::size_t topic, bool reveal_in_nav) {
     }
     if (topic != selected_) {
         selected_ = topic;
-        vm_->contentScroll = 0.f;  // a new topic starts at its top
+        vm_->contentScroll = 0.f;
     }
     if (reveal_in_nav && nav_view_height_ > 0.f) {
-        // Scroll only as far as needed to bring the row (plus a row of context) into view. The range is
-        // clamped here: the engine clamps scroll offsets only when it re-lays-out, which a pure scroll
-        // change does not trigger.
+        // Clamp here: the engine clamps scroll only on relayout.
         const float top = nav_row_y_[topic];
         const float bottom = top + kNavTopicRowHeight;
         float scroll = vm_->navScroll.get();
@@ -223,28 +297,19 @@ void Help::try_selected() {
     }
 }
 
-// The cap is an explicit px width rather than CSS max-width: while measuring content height the engine
-// resolves children's percentage widths against the parent's *unclamped* width (content_basis ignores
-// max-width), so wrapped text under a max-width box is measured wider than it is laid out and the
-// scroll range comes out short. See docs/engine-limits.md.
 void Help::update_layout(glm::ivec2 window_size) {
-    const int width = std::max(0, std::min(window_size.x - 2 * kWindowMargin, kMaxWindowWidth));
-    const int left = (window_size.x - width) / 2;
-    vm_->windowLeft = std::to_string(left);
-    vm_->windowWidth = std::to_string(width);
+    const PlacedWindow placed = place_window(window_size, kWindowMargin, kMaxWindowWidth);
+    vm_->windowLeft = std::to_string(placed.left);
+    vm_->windowWidth = std::to_string(placed.width);
     nav_view_height_ = std::max(0.f, static_cast<float>(window_size.y) - kNavChromeHeight);
 }
 
 void Help::sync() {
-    // The engine routes the pointer to the highest-order canvas whose rect contains it, whether or
-    // not anything there is clickable. A closed full-window help canvas would therefore swallow every
-    // click meant for the panel below, so while closed it gets an empty Fixed rect instead.
     auto& canvas = world_.get<engine::ui::UiCanvas>(canvas_);
-    canvas.fit = open_ ? engine::ui::UiFit::FillWindow : engine::ui::UiFit::Fixed;
-    if (!open_) {
-        canvas.rect = {};
-    }
-    vm_->helpDisplay = open_ ? "block" : "none";
+    apply_overlay_canvas(canvas, pop_);
+    vm_->helpDisplay = pop_.is_open() ? "block" : "none";
+    vm_->windowPop = pop_.scale();
+    vm_->backdropDim = pop_.dim();
     const auto& nav = vm_->navItems.get();
     for (std::size_t i = 0; i < kTopics.size(); ++i) {
         const bool selected = i == selected_;

@@ -442,7 +442,7 @@ text = "F3 turns on the vector grid: arrows of \\(\\ E\\) at the grid points. Le
 
 [[string]]
 id = "help.field.p5"
-text = "F5 is a test charge of \\(\\ +1\\) under the cursor. A white arrow shows the direction of \\(\\ E\\), and the readout beside it shows \\(\\ |E|\\), the components of \\(\\ E\\), and the potential \\(\\ \\varphi\\). For \\(\\ q = +1\\) the numbers for \\(\\ E\\) and \\(\\ F\\) match, so the readout writes \\(\\ |E| = F/q\\)."
+text = "F5 is a test charge of \\(\\ +1\\) under the cursor. A white arrow shows the direction of \\(\\ E\\), and the readout beside it shows \\(\\ |E|\\), the components of \\(\\ E\\), and the potential \\(\\ \\varphi\\). With magnetic marks on it also shows \\(\\ B_z\\) (topic 15). For \\(\\ q = +1\\) the numbers for \\(\\ E\\) and \\(\\ F\\) match, so the readout writes \\(\\ |E| = F/q\\)."
 
 [[string]]
 id = "help.field.predict1"
@@ -758,7 +758,7 @@ text = "At the point closest to the center (as a planet does at perihelion): \\(
 
 [[string]]
 id = "help.gravity.kicker"
-text = "TOPIC 15"
+text = "TOPIC 20"
 
 [[string]]
 id = "help.gravity.legend1"
@@ -862,7 +862,7 @@ text = "Force and field are what you need for a trajectory: the direction of the
 
 [[string]]
 id = "help.overview.a2"
-text = "A magnetic field appears, and the force becomes \\(\\ F = q(E + v \\times B)\\). The magnetic part is perpendicular to the velocity, so it does no work: the speed still changes only because of the electric field. Topics 17–21 are that part of the program. What is still left out is the circulating electric field a changing magnetic field would create. For that field the work would depend on the path, and it would no longer be only the slope of a potential."
+text = "A magnetic field appears, and the force becomes \\(\\ F = q(E + v \\times B)\\). The magnetic part is perpendicular to the velocity, so it does no work: the speed still changes only because of the electric field. Topics 15–19 are that part of the program. What is still left out is the circulating electric field a changing magnetic field would create. For that field the work would depend on the path, and it would no longer be only the slope of a potential."
 
 [[string]]
 id = "help.overview.answer"
@@ -870,7 +870,7 @@ text = "The speed, yes, from conservation of energy: the charge times the potent
 
 [[string]]
 id = "help.overview.kicker"
-text = "TOPIC 16"
+text = "TOPIC 21"
 
 [[string]]
 id = "help.overview.legend1"
@@ -902,7 +902,7 @@ text = "So \\(\\ E\\), \\(\\ \\varphi\\), and \\(\\ U\\) are not three separate 
 
 [[string]]
 id = "help.overview.p3"
-text = "Each link in the chain has its own layer. The vector grid and the probe are the field \\(\\ E\\) (F3, F5). The background with equipotentials is \\(\\ \\varphi\\) (F1). Field lines and flow are the structure of the field (F2, F4). The energy panel is \\(\\ U\\), \\(\\ K\\), and the total \\(\\ K + U\\). Trails are the motion that the energy turns into (F6). Magnetic marks (F7) show \\(\\ B_z\\), and the Lorentz force (M) lets that field turn the motion (topics 17–21)."
+text = "Each link in the chain has its own layer. The vector grid and the probe are the field \\(\\ E\\) (F3, F5). The background with equipotentials is \\(\\ \\varphi\\) (F1). Field lines and flow are the structure of the field (F2, F4). The energy panel is \\(\\ U\\), \\(\\ K\\), and the total \\(\\ K + U\\). Trails are the motion that the energy turns into (F6). Magnetic marks (F7) show \\(\\ B_z\\), and the Lorentz force (M) lets that field turn the motion (topics 15–19)."
 
 [[string]]
 id = "help.overview.predict"
@@ -1046,7 +1046,7 @@ text = "If the zero is at infinity, \\(\\ \\varphi\\) at a point is the work the
 
 [[string]]
 id = "help.potential.a2"
-text = "The force of a point charge points along the radius and depends only on the distance. On each small step the work depends only on how much the distance to the charge changed, not on a sideways part of the step. The total is only the difference of the distances at the start and at the end. By superposition the same rule extends to any system of charges at rest. It is no longer true for friction, or for the circulating electric field that a changing magnetic field produces — and there is no potential there. This program does not include that induced field (topics 17–21), so the electric field on the screen still has a potential."
+text = "The force of a point charge points along the radius and depends only on the distance. On each small step the work depends only on how much the distance to the charge changed, not on a sideways part of the step. The total is only the difference of the distances at the start and at the end. By superposition the same rule extends to any system of charges at rest. It is no longer true for friction, or for the circulating electric field that a changing magnetic field produces — and there is no potential there. This program does not include that induced field (topics 15–19), so the electric field on the screen still has a potential."
 
 [[string]]
 id = "help.potential.a3"
@@ -1242,15 +1242,15 @@ text = "APPENDIX"
 
 [[string]]
 id = "help.section.basics"
-text = "I. BASICS"
+text = "I. ELECTRIC FIELD"
 
 [[string]]
 id = "help.section.potential"
-text = "II. POTENTIAL AND ENERGY"
+text = "II. POTENTIAL"
 
 [[string]]
 id = "help.section.summary"
-text = "III. SUMMARY"
+text = "V. SUMMARY"
 
 [[string]]
 id = "help.section.using"
@@ -1274,7 +1274,7 @@ text = "APPENDIX"
 
 [[string]]
 id = "help.simulation.p1"
-text = "The charges are point particles in the plane of the screen, but they follow the \\(\\ \\sim \\frac{{1}}{{r^2}}\\) law of the real three-dimensional world: this is a slice of a 3D scene, not “two-dimensional physics”. Every vector in the code is three-dimensional with \\(\\ z = 0\\), so the forces and the motion stay in the plane. The field is instantaneous: changes spread with no delay. Moving charges also make a magnetic field perpendicular to the screen; the Lorentz force (M) is what lets it act on them (topics 17–21)."
+text = "The charges are point particles in the plane of the screen, but they follow the \\(\\ \\sim \\frac{{1}}{{r^2}}\\) law of the real three-dimensional world: this is a slice of a 3D scene, not “two-dimensional physics”. Every vector in the code is three-dimensional with \\(\\ z = 0\\), so the forces and the motion stay in the plane. The field is instantaneous: changes spread with no delay. Moving charges also make a magnetic field perpendicular to the screen; the Lorentz force (M) is what lets it act on them (topics 15–19)."
 
 [[string]]
 id = "help.simulation.p2"
@@ -1290,7 +1290,7 @@ text = "Charges are balls of radius \\(\\ 0.2 + 0.15\\sqrt{{|q|}}\\). When the b
 
 [[string]]
 id = "help.simulation.p5"
-text = "Everything is in arbitrary units: \\(\\ k = 1\\) (the slider), charge mass 1, distances in grid units, time in simulation seconds. That is only a choice of scale. The formulas are the same as in SI; only the numbers change. To move to SI, replace \\(\\ k\\) with \\(\\ \\frac{{1}}{{4\\pi\\varepsilon_0}} \\approx 8.99\\cdot 10^{{9}}\\) in SI units (topic 2), charges with coulombs, and distances with meters. The magnetic constant is not a separate slider: \\(\\ \\frac{{\\mu_0}}{{4\\pi}} = \\frac{{k}}{{c^2}}\\), with \\(\\ c\\) the speed of light (topic 17)."
+text = "Everything is in arbitrary units: \\(\\ k = 1\\) (the slider), charge mass 1, distances in grid units, time in simulation seconds. That is only a choice of scale. The formulas are the same as in SI; only the numbers change. To move to SI, replace \\(\\ k\\) with \\(\\ \\frac{{1}}{{4\\pi\\varepsilon_0}} \\approx 8.99\\cdot 10^{{9}}\\) in SI units (topic 2), charges with coulombs, and distances with meters. The magnetic constant is not a separate slider: \\(\\ \\frac{{\\mu_0}}{{4\\pi}} = \\frac{{k}}{{c^2}}\\), with \\(\\ c\\) the speed of light (topic 15)."
 
 [[string]]
 id = "help.simulation.p6"
@@ -1302,7 +1302,7 @@ text = "An atom does not look like the “Orbit” scene. An electron is describ
 
 [[string]]
 id = "help.simulation.p8"
-text = "The program also leaves out: the circulating electric field of a changing magnetic field (Faraday’s law), the finite speed at which the field spreads, radiation from accelerating charges, conductors and dielectrics, and the fact that real field lines spread in three dimensions (topic 6). The magnetic field of moving charges is included (topics 17–21)."
+text = "The program also leaves out: the circulating electric field of a changing magnetic field (Faraday’s law), the finite speed at which the field spreads, radiation from accelerating charges, conductors and dielectrics, and the fact that real field lines spread in three dimensions (topic 6). The magnetic field of moving charges is included (topics 15–19)."
 
 [[string]]
 id = "help.simulation.predict"
@@ -1634,7 +1634,7 @@ text = "Charges: free / pinned"
 
 [[string]]
 id = "panel.clear"
-text = "Clear"
+text = "Clear (C)"
 
 [[string]]
 id = "panel.energy.kinetic"
@@ -1778,7 +1778,7 @@ text = "Time scale (↑ ↓)"
 
 [[string]]
 id = "panel.title"
-text = "Electrostatics"
+text = "Electromagnetic Field"
 
 [[string]]
 id = "preset.capacitor"
@@ -1866,7 +1866,7 @@ text = "Tracers that drift along the field. They keep moving while the simulatio
 
 [[string]]
 id = "welcome.f5"
-text = "The numbers beside the cursor: the magnitude of \\(\\ E\\), its components, and the potential. Hidden while the cursor is on a charge."
+text = "The numbers beside the cursor: the magnitude of \\(\\ E\\), its components, and the potential. With magnetic marks on (F7) it also shows \\(\\ B_z\\). Hidden while the cursor is on a charge."
 
 [[string]]
 id = "welcome.f6"
@@ -1954,7 +1954,7 @@ text = "Drag to move the camera."
 
 [[string]]
 id = "welcome.note"
-text = "Picture each charge as a charged balloon in a vacuum, not as an electron. A balloon has a size and bounces off its neighbors. A vacuum means no air drag: only the electric force changes the motion, and a soft bounce spends a little energy. An electron has no path to draw, and the Orbit scene is not an atom. The reference (H) says where the model parts from real particles."
+text = "Picture each charge as a charged balloon in a vacuum, not as an electron. A balloon has a size and bounces off its neighbors. A vacuum means no air drag: the electric force changes the speed, and when the Lorentz force is on the magnetic field turns the path. A soft bounce spends a little energy. An electron has no path to draw, and the Orbit scene is not an atom. The reference (H) says where the model parts from real particles."
 
 [[string]]
 id = "welcome.p1"
@@ -1962,7 +1962,7 @@ text = "A sandbox for electric and magnetic fields. Charges sit on the screen an
 
 [[string]]
 id = "welcome.p2"
-text = "Orange is positive, blue is negative. A white ring means pinned: that charge does not move. Dipole, like charges, quadrupole and the capacitor start pinned. Orbit, Rutherford and Swarm already have charges in motion. The L key over a charge pins or unpins it."
+text = "Orange is positive, blue is negative. A white ring means pinned: that charge does not move. Dipole, like charges, quadrupole and the capacitor start pinned. Orbit, Rutherford, Swarm, the cyclotron, E×B drift and the coil already have charges in motion. The L key over a charge pins or unpins it."
 
 [[string]]
 id = "welcome.panel_lead"
@@ -2022,7 +2022,7 @@ text = "On empty space, place a negative charge of the same size."
 
 [[string]]
 id = "welcome.sliders"
-text = "\\(k\\) is how strong the force is. \\(\\ \\varepsilon\\) is softening: it keeps the force finite when charges meet. \\(\\ |q|\\) is the size of the next charge you place."
+text = "\\(k\\) is how strong the force is. \\(\\ \\varepsilon\\) is softening: it keeps the force finite when charges meet. \\(\\ |q|\\) is the size of the next charge you place. \\(B_z\\) adds the same magnetic field everywhere, and \\(c\\) sets how strong the magnetic field of a moving charge is next to the electric one."
 
 [[string]]
 id = "welcome.space"
@@ -2114,7 +2114,7 @@ text = "When the Lorentz force is on, the step also turns the velocity in the ma
 
 [[string]]
 id = "help.bfield.kicker"
-text = "TOPIC 17"
+text = "TOPIC 15"
 
 [[string]]
 id = "help.bfield.title"
@@ -2126,7 +2126,7 @@ text = "A charge at rest makes only an electric field. A moving charge also make
 
 [[string]]
 id = "help.bfield.p2"
-text = "The field of one moving charge falls off as \\(\\ 1/r^2\\), like the electric field, and the cross product makes it perpendicular both to the velocity and to the line from the charge to the point. Fields of several charges add, the same way electric fields add. A scene can also add a uniform external field, the same \\(\\ B_z\\) everywhere, and a current loop lying in the plane (topic 21)."
+text = "The field of one moving charge falls off as \\(\\ 1/r^2\\), like the electric field, and the cross product makes it perpendicular both to the velocity and to the line from the charge to the point. Fields of several charges add, the same way electric fields add. A scene can also add a uniform external field, the same \\(\\ B_z\\) everywhere, and a current loop lying in the plane (topic 19)."
 
 [[string]]
 id = "help.bfield.legend1"
@@ -2170,11 +2170,11 @@ text = "The cross product fixes the direction, and the right hand is how you see
 
 [[string]]
 id = "help.bfield.hand2"
-text = "The same hand reads a current loop. Curl the fingers of your right hand along the current; the thumb points along \\(\\ B\\) through the centre. On the screen a counter-clockwise current gives \\(\\ B\\) out of the screen, a positive \\(\\ B_z\\). The arrows on the coil in scene 0 draw that current. Topic 21 is the loop itself."
+text = "The same hand reads a current loop. Curl the fingers of your right hand along the current; the thumb points along \\(\\ B\\) through the centre. On the screen a counter-clockwise current gives \\(\\ B\\) out of the screen, a positive \\(\\ B_z\\). The arrows on the coil in scene 0 draw that current. Topic 19 is the loop itself."
 
 [[string]]
 id = "help.bfield.hand3"
-text = "The force on a moving charge is the other cross product, \\(\\ v \\times B\\). For a positive charge, point the fingers along \\(\\ v\\) and bend them toward \\(\\ B\\); the thumb is the force. With \\(\\ B\\) out of the screen, a positive charge moving to the right is pushed down, so it turns clockwise. A negative charge turns counter-clockwise. Topic 18 is this force."
+text = "The force on a moving charge is the other cross product, \\(\\ v \\times B\\). For a positive charge, point the fingers along \\(\\ v\\) and bend them toward \\(\\ B\\); the thumb is the force. With \\(\\ B\\) out of the screen, a positive charge moving to the right is pushed down, so it turns clockwise. A negative charge turns counter-clockwise. Topic 16 is this force."
 
 [[string]]
 id = "help.bfield.q1"
@@ -2222,7 +2222,7 @@ text = "Try it: “Coil” with magnetic marks and the probe"
 
 [[string]]
 id = "help.lorentz.kicker"
-text = "TOPIC 18"
+text = "TOPIC 16"
 
 [[string]]
 id = "help.lorentz.title"
@@ -2234,7 +2234,7 @@ text = "The electric field pushes a charge whether or not it is moving: \\(\\ F 
 
 [[string]]
 id = "help.lorentz.p2"
-text = "In the plane, \\(\\ B\\) is along \\(\\ z\\), so \\(\\ v \\times B\\) lies in the plane and the charges stay on the screen. The sense of the turn is the right-hand rule from topic 17: clockwise when \\(\\ q B_z\\) is positive, counter-clockwise when it is negative. A charge does not feel its own field, and a fixed charge is not moved."
+text = "In the plane, \\(\\ B\\) is along \\(\\ z\\), so \\(\\ v \\times B\\) lies in the plane and the charges stay on the screen. The sense of the turn is the right-hand rule from topic 15: clockwise when \\(\\ q B_z\\) is positive, counter-clockwise when it is negative. A charge does not feel its own field, and a fixed charge is not moved."
 
 [[string]]
 id = "help.lorentz.legend1"
@@ -2302,7 +2302,7 @@ text = "Try it: “Cyclotron” with trails, marks and the probe"
 
 [[string]]
 id = "help.cyclotron.kicker"
-text = "TOPIC 19"
+text = "TOPIC 17"
 
 [[string]]
 id = "help.cyclotron.title"
@@ -2382,7 +2382,7 @@ text = "Try it: “Cyclotron” with trails, marks and the probe"
 
 [[string]]
 id = "help.exb.kicker"
-text = "TOPIC 20"
+text = "TOPIC 18"
 
 [[string]]
 id = "help.exb.title"
@@ -2454,7 +2454,7 @@ text = "Try it: “E×B drift” with field lines, trails and magnetic marks"
 
 [[string]]
 id = "help.coil.kicker"
-text = "TOPIC 21"
+text = "TOPIC 19"
 
 [[string]]
 id = "help.coil.title"
@@ -2466,7 +2466,7 @@ text = "A circular current in the plane of the screen makes a magnetic field tha
 
 [[string]]
 id = "help.coil.p2"
-text = "The program does not take a current and multiply by \\(\\ \\mu_0\\) for this loop. It takes the field at the centre and builds the shape from the Biot–Savart law, a sum around the loop, scaled so the centre is exactly that value. Because of the scaling, the coil does not change when you move the speed-of-light slider. A positive centre field means a counter-clockwise current, by the right-hand rule (topic 17)."
+text = "The program does not take a current and multiply by \\(\\ \\mu_0\\) for this loop. It takes the field at the centre and builds the shape from the Biot–Savart law, a sum around the loop, scaled so the centre is exactly that value. Because of the scaling, the coil does not change when you move the speed-of-light slider. A positive centre field means a counter-clockwise current, by the right-hand rule (topic 15)."
 
 [[string]]
 id = "help.coil.legend1"
@@ -2519,3 +2519,31 @@ text = "Scene 0, the “Coil” button. C clears the charges and the coil; R bri
 [[string]]
 id = "help.coil.try"
 text = "Try it: “Coil” with trails, marks and the probe"
+
+[[string]]
+id = "help.section.energy"
+text = "III. ENERGY"
+
+[[string]]
+id = "panel.section.electric"
+text = "ELECTRIC"
+
+[[string]]
+id = "panel.section.magnetic_scenes"
+text = "MAGNETIC"
+
+[[string]]
+id = "panel.scenes.browse"
+text = "Scene cards"
+
+[[string]]
+id = "welcome.h.electric"
+text = "ELECTRIC"
+
+[[string]]
+id = "welcome.h.magnetic"
+text = "MAGNETIC"
+
+[[string]]
+id = "scenes.title"
+text = "Scenes"

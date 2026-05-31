@@ -1,11 +1,13 @@
 #include <game/welcome.h>
 
+#include <game/locale_style.h>
+#include <game/overlay_canvas.h>
+
 #include <engine/loc/catalog.h>
 #include <engine/ui/canvas.h>
 
 #include <asset_ids.h>
 
-#include <algorithm>
 #include <string>
 #include <utility>
 
@@ -15,11 +17,6 @@ namespace {
 constexpr int kWelcomeCanvasOrder = 30;  // above the reference (20) and the panel (10)
 constexpr int kWindowMargin = 48;
 constexpr int kMaxWindowWidth = 860;
-
-constexpr const char* kLocaleOnBg = "#6366f133";
-constexpr const char* kLocaleOnFg = "#ffffff";
-constexpr const char* kLocaleOffBg = "#ffffff14";
-constexpr const char* kLocaleOffFg = "#aab1c3";
 
 }
 
@@ -50,45 +47,44 @@ Welcome::Welcome(engine::ecs::World& world, LocaleHandler on_locale, DismissHand
 
 void Welcome::apply_locale() {
     const bool english = world_.ctx<engine::loc::Catalog>().active() == "en";
-    vm_->localeEnBg = english ? kLocaleOnBg : kLocaleOffBg;
-    vm_->localeEnFg = english ? kLocaleOnFg : kLocaleOffFg;
-    vm_->localeUkBg = english ? kLocaleOffBg : kLocaleOnBg;
-    vm_->localeUkFg = english ? kLocaleOffFg : kLocaleOnFg;
+    paint_locale_segment(
+            LocaleSegment{vm_->localeEnBg, vm_->localeEnFg, vm_->localeUkBg, vm_->localeUkFg}, english);
 }
 
 void Welcome::open() {
-    open_ = true;
-    sync();
+    if (pop_.open()) {
+        sync();
+    }
 }
 
 void Welcome::close() {
-    if (!open_) {
+    if (!pop_.close()) {
         return;
     }
-    open_ = false;
     sync();
     if (on_dismiss_) {
         on_dismiss_();
     }
 }
 
+void Welcome::tick(float dt) {
+    if (pop_.tick(dt)) {
+        sync();
+    }
+}
+
 void Welcome::update_layout(glm::ivec2 window_size) {
-    // Explicit px width, not CSS max-width: see Help::update_layout and docs/engine-limits.md.
-    const int width = std::max(0, std::min(window_size.x - 2 * kWindowMargin, kMaxWindowWidth));
-    const int left = (window_size.x - width) / 2;
-    vm_->windowLeft = std::to_string(left);
-    vm_->windowWidth = std::to_string(width);
+    const PlacedWindow placed = place_window(window_size, kWindowMargin, kMaxWindowWidth);
+    vm_->windowLeft = std::to_string(placed.left);
+    vm_->windowWidth = std::to_string(placed.width);
 }
 
 void Welcome::sync() {
-    // A closed full-window canvas would swallow every click meant for the panel below it. While
-    // closed it gets an empty Fixed rect instead. See docs/engine-limits.md.
     auto& canvas = world_.get<engine::ui::UiCanvas>(canvas_);
-    canvas.fit = open_ ? engine::ui::UiFit::FillWindow : engine::ui::UiFit::Fixed;
-    if (!open_) {
-        canvas.rect = {};
-    }
-    vm_->welcomeDisplay = open_ ? "block" : "none";
+    apply_overlay_canvas(canvas, pop_);
+    vm_->welcomeDisplay = pop_.is_open() ? "block" : "none";
+    vm_->windowPop = pop_.scale();
+    vm_->backdropDim = pop_.dim();
 }
 
 }

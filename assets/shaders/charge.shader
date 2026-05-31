@@ -20,16 +20,14 @@
     <fragment><![CDATA[
         #version 330 core
 
-        // The quad spans kQuadRadii core radii from centre to edge (must match Game's kChargeQuadRadii).
-        const float kQuadRadii = 3.0;
+        const float kQuadRadii = 3.0;  // must match kChargeQuadRadii in charge_view.cpp
 
         out vec4 FragColor;
 
         in vec2 vUV;
 
         uniform vec4 uColor;
-        // x = sign of q (+1 / -1), y = fixed, z = hovered
-        uniform vec4 uStyle;
+        uniform vec4 uStyle;  // x = sign, y = fixed, z = hovered
 
         float band(float d, float half_width) {
             float aa = fwidth(d);
@@ -37,8 +35,7 @@
         }
 
         void main() {
-            // p is measured in core radii: the core disc is |p| < 1.
-            vec2 p = (vUV - 0.5) * 2.0 * kQuadRadii;
+            vec2 p = (vUV - 0.5) * 2.0 * kQuadRadii;  // core radii; the disc is |p| < 1
             float r = length(p);
             bool positive = uStyle.x > 0.0;
             bool fixed_charge = uStyle.y > 0.5;
@@ -51,14 +48,12 @@
             vec3 color = mix(uColor.rgb, vec3(1.0), 0.3 * core);
             float alpha = max(core, glow);
 
-            // Sign glyph inside the core: a bar, plus a vertical bar for positive charges.
             vec2 a = abs(p);
             float horizontal = band(max(a.x - 0.5, 0.0) + max(a.y - 0.12, 0.0), 0.0001);
             float vertical = positive ? band(max(a.y - 0.5, 0.0) + max(a.x - 0.12, 0.0), 0.0001) : 0.0;
             float glyph = max(horizontal, vertical) * core;
             color = mix(color, vec3(0.04, 0.04, 0.08), glyph);
 
-            // Fixed charges get a pin ring just outside the core.
             if (fixed_charge) {
                 float ring = band(abs(r - 1.3), 0.06);
                 color = mix(color, vec3(0.95), ring);

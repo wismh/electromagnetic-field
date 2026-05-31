@@ -1,11 +1,7 @@
-<!-- Full-screen reference. Topic bodies are separate files under help_topics/, pulled in through
-     <ItemTemplate src> (the engine's only include). Only the selected topic is shown; the rest have
-     display: none, so they take no space and get no clicks. Topic order matches kTopics in src/help.cpp. -->
 <Canvas id="help">
-    <!-- While this is open the game ignores scene mouse input itself (Game::handle_mouse), so the
-         backdrop needs no hit-testable trick to keep clicks off the simulation. -->
-    <Stack class="backdrop" var-display="{binding helpDisplay}">
-        <Stack class="window" direction="horizontal" var-wl="{binding windowLeft}" var-ww="{binding windowWidth}">
+    <Stack class="backdrop" var-display="{binding helpDisplay}" var-dim="{binding backdropDim}">
+        <Stack class="window" direction="horizontal" var-wl="{binding windowLeft}" var-ww="{binding windowWidth}"
+               var-pop="{binding windowPop}">
             <Stack class="nav" direction="vertical">
                 <Label class="nav-title" text="{tr help.nav_title}"/>
                 <Label class="nav-sub" text="{tr help.nav_sub}"/>
@@ -16,7 +12,6 @@
                             var-fg="{binding localeEnFg}"/>
                 </Stack>
                 <ScrollView class="nav-scroll" direction="vertical" scroll-y="{binding navScroll}">
-                    <!-- One row per section header or topic; the unused half is display: none. -->
                     <ItemsControl class="nav-list" items_source="{binding navItems}">
                         <ItemTemplate>
                             <Stack class="nav-row" direction="vertical">
@@ -81,12 +76,6 @@
                 <ItemsControl class="topic" items_source="{binding topicConfigEnergy}" var-display="{binding topicConfigEnergyDisplay}">
                     <ItemTemplate src="help_topics/config_energy.xml"/>
                 </ItemsControl>
-                <ItemsControl class="topic" items_source="{binding topicGravity}" var-display="{binding topicGravityDisplay}">
-                    <ItemTemplate src="help_topics/gravity.xml"/>
-                </ItemsControl>
-                <ItemsControl class="topic" items_source="{binding topicOverview}" var-display="{binding topicOverviewDisplay}">
-                    <ItemTemplate src="help_topics/overview.xml"/>
-                </ItemsControl>
                 <ItemsControl class="topic" items_source="{binding topicBfield}" var-display="{binding topicBfieldDisplay}">
                     <ItemTemplate src="help_topics/bfield.xml"/>
                 </ItemsControl>
@@ -101,6 +90,12 @@
                 </ItemsControl>
                 <ItemsControl class="topic" items_source="{binding topicCoil}" var-display="{binding topicCoilDisplay}">
                     <ItemTemplate src="help_topics/coil.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicGravity}" var-display="{binding topicGravityDisplay}">
+                    <ItemTemplate src="help_topics/gravity.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicOverview}" var-display="{binding topicOverviewDisplay}">
+                    <ItemTemplate src="help_topics/overview.xml"/>
                 </ItemsControl>
                 <ItemsControl class="topic" items_source="{binding topicSimulation}" var-display="{binding topicSimulationDisplay}">
                     <ItemTemplate src="help_topics/simulation.xml"/>

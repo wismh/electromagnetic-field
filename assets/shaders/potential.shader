@@ -21,16 +21,14 @@
     <fragment><![CDATA[
         #version 330 core
 
-        const int kMaxCharges = 32;
+        const int kMaxCharges = 32;  // must match charge_limit.h
 
         out vec4 FragColor;
 
         in vec2 vWorld;
 
-        // xy = position, z = q. Only the first uParams.x entries are read.
-        uniform vec4 uCharges[kMaxCharges];
-        // x = charge count, y = k, z = softening
-        uniform vec4 uParams;
+        uniform vec4 uCharges[kMaxCharges];  // xy = position, z = q; count is uParams.x
+        uniform vec4 uParams;  // x = count, y = k, z = softening
 
         void main() {
             int count = int(uParams.x);
@@ -50,9 +48,7 @@
             vec3 negative = vec3(0.15, 0.45, 1.0);
             vec3 color = mix(background, t > 0.0 ? positive : negative, abs(t));
 
-            // Equipotential lines every 0.25 of phi, anti-aliased by the screen-space derivative.
-            // Where phi is flat (no charges, or numerically constant) there is no line to draw:
-            // without this guard dist would be 0 everywhere and the whole screen would turn grey.
+            // Flat phi makes fwidth ~ 0 and would paint the whole quad.
             float level = phi * 4.0;
             float width = fwidth(level);
             float line = 0.0;

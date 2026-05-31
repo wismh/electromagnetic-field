@@ -1,0 +1,143 @@
+<!-- Button children overlay, so the card is a Stack with a command. -->
+<Canvas id="scenes">
+    <Stack class="backdrop" var-display="{binding galleryDisplay}" var-dim="{binding backdropDim}">
+        <Stack class="window" direction="vertical" var-wl="{binding windowLeft}" var-ww="{binding windowWidth}"
+               var-pop="{binding windowPop}">
+            <Stack class="column" direction="vertical">
+                <Stack class="head" direction="horizontal">
+                    <Label class="title" text="{tr scenes.title}"/>
+                    <Button class="close" content="{tr help.close}" command="{binding closeGallery}"/>
+                </Stack>
+                <ScrollView class="body" direction="vertical">
+                    <Stack class="list" direction="vertical">
+                        <Label class="section" text="{tr panel.section.electric}"/>
+                        <Stack class="row" direction="horizontal">
+                            <Stack class="card" direction="vertical" command="{binding presetDipole}"
+                                    checked="{binding sceneDipole}">
+                                <Image class="shot" source="6f3a1c80b2d54e79a1c4e8b3076d5a11"/>
+                                <Stack class="card-copy" direction="vertical">
+                                    <Stack class="card-meta" direction="horizontal">
+                                        <Stack class="key"><Label class="keycap" text="1"/></Stack>
+                                        <Label class="card-title" text="{tr preset.dipole}"/>
+                                    </Stack>
+                                    <Label class="card-text" text="{tr welcome.preset.dipole}"/>
+                                </Stack>
+                            </Stack>
+                            <Stack class="card" direction="vertical" command="{binding presetLikePair}"
+                                    checked="{binding sceneLikePair}">
+                                <Image class="shot" source="6f3a1c80b2d54e79a1c4e8b3076d5a12"/>
+                                <Stack class="card-copy" direction="vertical">
+                                    <Stack class="card-meta" direction="horizontal">
+                                        <Stack class="key"><Label class="keycap" text="2"/></Stack>
+                                        <Label class="card-title" text="{tr preset.like_pair}"/>
+                                    </Stack>
+                                    <Label class="card-text" text="{tr welcome.preset.like_pair}"/>
+                                </Stack>
+                            </Stack>
+                        </Stack>
+                        <Stack class="row" direction="horizontal">
+                            <Stack class="card" direction="vertical" command="{binding presetQuadrupole}"
+                                    checked="{binding sceneQuadrupole}">
+                                <Image class="shot" source="6f3a1c80b2d54e79a1c4e8b3076d5a13"/>
+                                <Stack class="card-copy" direction="vertical">
+                                    <Stack class="card-meta" direction="horizontal">
+                                        <Stack class="key"><Label class="keycap" text="3"/></Stack>
+                                        <Label class="card-title" text="{tr preset.quadrupole}"/>
+                                    </Stack>
+                                    <Label class="card-text" text="{tr welcome.preset.quadrupole}"/>
+                                </Stack>
+                            </Stack>
+                            <Stack class="card" direction="vertical" command="{binding presetCapacitor}"
+                                    checked="{binding sceneCapacitor}">
+                                <Image class="shot" source="6f3a1c80b2d54e79a1c4e8b3076d5a14"/>
+                                <Stack class="card-copy" direction="vertical">
+                                    <Stack class="card-meta" direction="horizontal">
+                                        <Stack class="key"><Label class="keycap" text="4"/></Stack>
+                                        <Label class="card-title" text="{tr preset.capacitor}"/>
+                                    </Stack>
+                                    <Label class="card-text" text="{tr welcome.preset.capacitor}"/>
+                                </Stack>
+                            </Stack>
+                        </Stack>
+                        <Stack class="row" direction="horizontal">
+                            <Stack class="card" direction="vertical" command="{binding presetOrbit}"
+                                    checked="{binding sceneOrbit}">
+                                <Image class="shot" source="6f3a1c80b2d54e79a1c4e8b3076d5a15"/>
+                                <Stack class="card-copy" direction="vertical">
+                                    <Stack class="card-meta" direction="horizontal">
+                                        <Stack class="key"><Label class="keycap" text="5"/></Stack>
+                                        <Label class="card-title" text="{tr preset.orbit}"/>
+                                    </Stack>
+                                    <Label class="card-text" text="{tr welcome.preset.orbit}"/>
+                                </Stack>
+                            </Stack>
+                            <Stack class="card" direction="vertical" command="{binding presetRutherford}"
+                                    checked="{binding sceneRutherford}">
+                                <Image class="shot" source="6f3a1c80b2d54e79a1c4e8b3076d5a16"/>
+                                <Stack class="card-copy" direction="vertical">
+                                    <Stack class="card-meta" direction="horizontal">
+                                        <Stack class="key"><Label class="keycap" text="6"/></Stack>
+                                        <Label class="card-title" text="{tr preset.rutherford}"/>
+                                    </Stack>
+                                    <Label class="card-text" text="{tr welcome.preset.rutherford}"/>
+                                </Stack>
+                            </Stack>
+                        </Stack>
+                        <Stack class="row" direction="horizontal">
+                            <Stack class="card" direction="vertical" command="{binding presetSwarm}"
+                                    checked="{binding sceneSwarm}">
+                                <Image class="shot" source="6f3a1c80b2d54e79a1c4e8b3076d5a17"/>
+                                <Stack class="card-copy" direction="vertical">
+                                    <Stack class="card-meta" direction="horizontal">
+                                        <Stack class="key"><Label class="keycap" text="7"/></Stack>
+                                        <Label class="card-title" text="{tr preset.swarm}"/>
+                                    </Stack>
+                                    <Label class="card-text" text="{tr welcome.preset.swarm}"/>
+                                </Stack>
+                            </Stack>
+                        </Stack>
+
+                        <Label class="section" text="{tr panel.section.magnetic_scenes}"/>
+                        <Stack class="row" direction="horizontal">
+                            <Stack class="card" direction="vertical" command="{binding presetCyclotron}"
+                                    checked="{binding sceneCyclotron}">
+                                <Image class="shot" source="6f3a1c80b2d54e79a1c4e8b3076d5a18"/>
+                                <Stack class="card-copy" direction="vertical">
+                                    <Stack class="card-meta" direction="horizontal">
+                                        <Stack class="key"><Label class="keycap" text="8"/></Stack>
+                                        <Label class="card-title" text="{tr preset.cyclotron}"/>
+                                    </Stack>
+                                    <Label class="card-text" text="{tr welcome.preset.cyclotron}"/>
+                                </Stack>
+                            </Stack>
+                            <Stack class="card" direction="vertical" command="{binding presetExBDrift}"
+                                    checked="{binding sceneExBDrift}">
+                                <Image class="shot" source="6f3a1c80b2d54e79a1c4e8b3076d5a19"/>
+                                <Stack class="card-copy" direction="vertical">
+                                    <Stack class="card-meta" direction="horizontal">
+                                        <Stack class="key"><Label class="keycap" text="9"/></Stack>
+                                        <Label class="card-title" text="{tr preset.exb_drift}"/>
+                                    </Stack>
+                                    <Label class="card-text" text="{tr welcome.preset.exb_drift}"/>
+                                </Stack>
+                            </Stack>
+                        </Stack>
+                        <Stack class="row" direction="horizontal">
+                            <Stack class="card" direction="vertical" command="{binding presetCoil}"
+                                    checked="{binding sceneCoil}">
+                                <Image class="shot" source="6f3a1c80b2d54e79a1c4e8b3076d5a1a"/>
+                                <Stack class="card-copy" direction="vertical">
+                                    <Stack class="card-meta" direction="horizontal">
+                                        <Stack class="key"><Label class="keycap" text="0"/></Stack>
+                                        <Label class="card-title" text="{tr preset.coil}"/>
+                                    </Stack>
+                                    <Label class="card-text" text="{tr welcome.preset.coil}"/>
+                                </Stack>
+                            </Stack>
+                        </Stack>
+                    </Stack>
+                </ScrollView>
+            </Stack>
+        </Stack>
+    </Stack>
+</Canvas>

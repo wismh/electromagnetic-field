@@ -4,6 +4,8 @@
 #include <engine/ui/command.h>
 #include <engine/ui/view_model.h>
 
+#include <game/locale_style.h>
+
 #include <array>
 #include <cstddef>
 #include <memory>
@@ -12,11 +14,9 @@
 namespace game {
 
 inline constexpr std::size_t kHelpTopicCount = 23;
-// "Predict, then check" questions per topic; answers stay collapsed until revealed.
 inline constexpr std::size_t kHelpPredictionsPerTopic = 3;
 
-// One row of the help navigation list: either a section header or a topic button. Both live in one
-// ItemsControl; the unused half of the row is removed with display: none.
+// Header or topic button; the unused half is display: none.
 class HelpNavItem final : public engine::ui::ViewModel {
 public:
     HelpNavItem();
@@ -29,60 +29,60 @@ public:
     engine::ui::RelayCommand select;
 };
 
-// Data context of one topic file (assets/ui/help_topics/*.xml). Every topic is included through
-// `<ItemTemplate src>`, so each one is an ItemsControl holding exactly one of these.
 class HelpTopicViewModel final : public engine::ui::ViewModel {
 public:
     HelpTopicViewModel();
 
     engine::ui::RelayCommand tryIt;
 
-    // Rewrites the show/hide labels from the active locale without changing which answers are open.
     void set_reveal_labels(std::string show, std::string hide);
 
-    // Bindings reveal1..3 / answer1Display..3 / revealLabel1..3 for the "predict, then check" blocks.
+    // Answer stays at height 0 until revealed.
     std::array<engine::ui::RelayCommand, kHelpPredictionsPerTopic> reveal;
-    std::array<engine::ui::Bindable<std::string>, kHelpPredictionsPerTopic> answer_display;
+    std::array<engine::ui::Bindable<std::string>, kHelpPredictionsPerTopic> answer_height;
+    std::array<engine::ui::Bindable<std::string>, kHelpPredictionsPerTopic> answer_gap;
     std::array<engine::ui::Bindable<std::string>, kHelpPredictionsPerTopic> reveal_label;
+
+    void note_answer_height(std::size_t index, float height);
+    void apply_answer_motion();
 
 private:
     void toggle(std::size_t i);
 
     std::array<bool, kHelpPredictionsPerTopic> revealed_{};
+    std::array<float, kHelpPredictionsPerTopic> natural_{};
     std::string show_;
     std::string hide_;
 };
 
-// Data context of assets/ui/help.xml. Member names must match the XML binding paths exactly.
+// Member names must match the binding paths in assets/ui/help.xml.
 class HelpViewModel final : public engine::ui::ViewModel {
 public:
     HelpViewModel();
 
     engine::ui::Bindable<std::string> helpDisplay{std::string("none")};
+    engine::ui::Bindable<std::string> windowPop{std::string("scale(0)")};
+    engine::ui::Bindable<std::string> backdropDim{std::string("0")};
     engine::ui::BindableList<std::shared_ptr<HelpNavItem>> navItems;
     engine::ui::RelayCommand closeHelp;
     engine::ui::RelayCommand localeEn;
     engine::ui::RelayCommand localeUk;
-    engine::ui::Bindable<std::string> localeEnBg{std::string("#6366f133")};
-    engine::ui::Bindable<std::string> localeEnFg{std::string("#ffffff")};
-    engine::ui::Bindable<std::string> localeUkBg{std::string("#ffffff14")};
-    engine::ui::Bindable<std::string> localeUkFg{std::string("#aab1c3")};
-    // Exact px geometry of the help window (see Help::update_layout for why it is not CSS max-width).
+    engine::ui::Bindable<std::string> localeEnBg{std::string(kLocaleOnBg)};
+    engine::ui::Bindable<std::string> localeEnFg{std::string(kLocaleOnFg)};
+    engine::ui::Bindable<std::string> localeUkBg{std::string(kLocaleOffBg)};
+    engine::ui::Bindable<std::string> localeUkFg{std::string(kLocaleOffFg)};
     engine::ui::Bindable<std::string> windowLeft{std::string("36")};
     engine::ui::Bindable<std::string> windowWidth{std::string("1208")};
     engine::ui::Bindable<float> contentScroll;
     engine::ui::Bindable<float> navScroll;
 
-    // One ItemsControl per topic file; shown with display:block-like values, hidden with "none".
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicUsing;
-    // I. Basics
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicCharge;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicCoulomb;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicField;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicSuperposition;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicFieldLines;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicGauss;
-    // II. Potential and energy
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicPotential;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicPotentialEnergy;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicVoltage;
@@ -91,16 +91,13 @@ public:
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicEnergyZero;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicWorkMotion;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicConfigEnergy;
-    // III. Summary
-    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicGravity;
-    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicOverview;
-    // IV. Magnetism
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicBfield;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicLorentz;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicCyclotron;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicExb;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicCoil;
-    // Appendix
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicGravity;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicOverview;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicSimulation;
 
     engine::ui::Bindable<std::string> topicUsingDisplay;
@@ -127,7 +124,7 @@ public:
     engine::ui::Bindable<std::string> topicCoilDisplay;
     engine::ui::Bindable<std::string> topicSimulationDisplay;
 
-    // The fields above in navigation order, so code can index them.
+    // topics / topic_displays, in navigation order.
     std::array<engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>>*, kHelpTopicCount> topics;
     std::array<engine::ui::Bindable<std::string>*, kHelpTopicCount> topic_displays;
 };
