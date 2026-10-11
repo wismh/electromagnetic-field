@@ -1,7 +1,7 @@
 # Electromagnetic Field
 
-Physics sandbox built on the **Wind** engine (git submodule `external/engine`, from
-[wismh/wind-engine](https://github.com/wismh/wind-engine)).
+Physics sandbox built on the **Wind** engine (built against an installed SDK of
+[wismh/wind-engine](https://github.com/wismh/wind-engine), see `wind_project.toml` for the engine version).
 
 ## Showcase
 
@@ -28,27 +28,30 @@ Physics sandbox built on the **Wind** engine (git submodule `external/engine`, f
   </tr>
 </table>
 
-## Build (Windows / Visual Studio)
+## Build (Windows)
+
+Needs an installed Wind SDK (see "Updating the engine" below). Use the SDK's editor, which configures and builds the
+game itself (CMake must be on `PATH`):
 
 ```bash
-git submodule update --init --recursive
-cmake --preset vs
-cmake --build --preset game --config RelWithDebInfo
-./build/bin/RelWithDebInfo/electromagnetic-field.exe
+<sdk>/bin/wind_editor.exe --project . --play                 # build and play in the editor
+<sdk>/bin/wind_editor.exe --batch --project . --export out/export   # standalone Release build
 ```
 
-Run an optimized config (`RelWithDebInfo` or `Release`) for normal use. `Debug` is roughly 80× slower in the
-field-line tracer (glm is not inlined), so scenes with moving charges drop to ~15 FPS there.
+The export holds `electromagnetic-field.exe` with its `assets/`; add `--development` for a build with the profiler.
+`out/` is git-ignored. Play builds `DebugGame` (unoptimized game code), which is roughly 80x slower in the field-line
+tracer (glm is not inlined), so scenes with moving charges drop to ~15 FPS; use the export for normal use.
 
-Tests:
+Tests (and IDE builds) configure by hand with `CMakeUserPresets.json`:
 
 ```bash
-cmake --build build --target electromagnetic_field_tests --config Debug
-ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest|CameraControlTest|FieldVizTest|DynamicsTest|TrailsTest|SliderTest|MagnetismTest" --output-on-failure
+cmake --preset editor-local
+cmake --build build-editor --target electromagnetic_field_tests --config DebugGame
+ctest --test-dir build-editor -C DebugGame --output-on-failure
 ```
 
-Web (Emscripten) and Android presets (`web`, `android-arm64`) follow the engine's README:
-`external/engine/README.md`.
+Web (Emscripten) and Android presets (`web`, `android-arm64`) build the engine from the SDK's `source/` directory
+(set `WIND_SDK_DIR`); see the engine manual, `docs/manual/platforms`.
 
 ## Controls
 
@@ -82,8 +85,21 @@ Each scene sets the magnetic part itself: scenes 1–7 are electrostatic (Lorent
 
 ## Updating the engine
 
-```bash
-git submodule update --remote external/engine
-git add external/engine
-git commit -m "chore: bump engine"
+The game has no engine submodule: it finds an installed Wind SDK. Build and install the SDK from the engine repo
+(`cmake --preset vs-editor`, `cmake --build build-editor --config Release`,
+`cmake --install build-editor --config Release --prefix out/sdk`), then point the game at it in the git-ignored
+`CMakeUserPresets.json`:
+
+```json
+{
+  "version": 6,
+  "configurePresets": [
+    { "name": "editor-local", "inherits": "editor",
+      "cacheVariables": { "CMAKE_PREFIX_PATH": "C:/path/to/sdk" } }
+  ]
+}
 ```
+
+To update the engine, install the new SDK (Wind Launcher's SDKs page), set `engine` in `wind_project.toml` to its exact
+version (currently `0.1.5a`) and the tag of `setup-wind` in `.github/workflows/ci.yml` to `v<version>`, and point
+`CMakeUserPresets.json` at it. CI (Windows, Linux and macOS) downloads the SDK of that version, runs the tests, and exports the game.

@@ -1,8 +1,17 @@
 cmake_minimum_required(VERSION 3.16)
 project(electromagnetic-field LANGUAGES CXX)
 
-set(ENGINE_WITH_GTEST ON CACHE BOOL "" FORCE)
-add_subdirectory(external/engine)
+# Desktop and the editor build against an installed Wind SDK (CMAKE_PREFIX_PATH). Web and Android cannot use its shared
+# engine, so they add the engine source the SDK ships (WIND_SDK_DIR, or the environment variable of the same name).
+if(EMSCRIPTEN OR ANDROID)
+    if(NOT WIND_SDK_DIR)
+        set(WIND_SDK_DIR "$ENV{WIND_SDK_DIR}")
+    endif()
+    set(ENGINE_WITH_GTEST ON CACHE BOOL "" FORCE)
+    add_subdirectory("${WIND_SDK_DIR}/source" wind)
+else()
+    find_package(Wind REQUIRED)
+endif()
 enable_testing()
 
 engine_add_game(electromagnetic-field
@@ -49,8 +58,8 @@ add_executable(electromagnetic_field_tests
     src/trails.cpp
     src/user_prefs.cpp)
 target_compile_features(electromagnetic_field_tests PRIVATE cxx_std_23)
-target_include_directories(electromagnetic_field_tests PRIVATE include "${CMAKE_SOURCE_DIR}/external/engine/include")
+target_include_directories(electromagnetic_field_tests PRIVATE include)
 file(TO_CMAKE_PATH "${CMAKE_SOURCE_DIR}" GAME_SOURCE_DIR_POSIX)
 target_compile_definitions(electromagnetic_field_tests PRIVATE GAME_SOURCE_DIR="${GAME_SOURCE_DIR_POSIX}")
-target_link_libraries(electromagnetic_field_tests PRIVATE GTest::gtest_main glm::glm)
+target_link_libraries(electromagnetic_field_tests PRIVATE GTest::gtest_main engine glm::glm)
 gtest_discover_tests(electromagnetic_field_tests DISCOVERY_MODE PRE_TEST)

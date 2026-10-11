@@ -1,6 +1,6 @@
 # Baseline clang-tidy configuration for this game's own code (include/game, src, tests).
 # This is an intentionally incremental starting point for local/IDE use, not enforced in CI yet.
-# Wind (external/engine) ships no .clang-tidy of its own to align with, so this picks a small,
+# Wind ships no .clang-tidy of its own to align with, so this picks a small,
 # conservative check set suited to a small C++23 game rather than maximal strictness, and drops
 # checks that are either noisy for this codebase's style or redundant with compiler warnings.
 ---

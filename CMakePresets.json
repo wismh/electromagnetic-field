@@ -2,17 +2,20 @@
   "version": 6,
   "configurePresets": [
     {
-      "name": "vs",
-      "displayName": "Visual Studio",
+      "name": "editor",
+      "displayName": "Visual Studio, game module for the Wind editor (set CMAKE_PREFIX_PATH to the SDK in CMakeUserPresets.json)",
       "generator": "Visual Studio 18 2026",
-      "binaryDir": "${sourceDir}/build"
+      "binaryDir": "${sourceDir}/build-editor",
+      "cacheVariables": {
+        "CMAKE_CONFIGURATION_TYPES": "DebugGame;Release"
+      }
     },
     {
       "name": "web",
-      "displayName": "Emscripten WebGL2 + SDL3_mixer WAV backend (configure with emcmake, or set EMSDK and use the toolchain file directly)",
+      "displayName": "Emscripten WebGL2 + SDL3_mixer WAV backend (set WIND_SDK_DIR and EMSDK; configure with emcmake, or use this preset)",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build-web",
-      "toolchainFile": "${sourceDir}/external/engine/cmake/toolchains/Emscripten.cmake",
+      "toolchainFile": "$env{WIND_SDK_DIR}/source/cmake/toolchains/Emscripten.cmake",
       "cacheVariables": {
         "ENGINE_WITH_WINDOW": "ON",
         "ENGINE_WITH_WEB": "ON"
@@ -23,7 +26,7 @@
       "displayName": "Android NDK arm64-v8a (set ANDROID_NDK / ANDROID_NDK_HOME)",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build-android",
-      "toolchainFile": "${sourceDir}/external/engine/cmake/toolchains/android-ndk.cmake",
+      "toolchainFile": "$env{WIND_SDK_DIR}/source/cmake/toolchains/android-ndk.cmake",
       "cacheVariables": {
         "ENGINE_WITH_WINDOW": "ON",
         "ENGINE_WITH_ANDROID": "ON",
@@ -35,7 +38,7 @@
   "buildPresets": [
     {
       "name": "game",
-      "configurePreset": "vs",
+      "configurePreset": "editor",
       "targets": ["electromagnetic-field"]
     },
     {

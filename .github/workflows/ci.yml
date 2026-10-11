@@ -6,36 +6,78 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows
+            runner: windows-2025-vs2026
+          - os: linux
+            runner: ubuntu-24.04
+          - os: macos
+            runner: macos-14
+    runs-on: ${{ matrix.runner }}
+    env:
+      # A CI machine has no sound card.
+      SDL_AUDIODRIVER: dummy
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
+      - uses: actions/checkout@v4
 
-      # CMakePresets.json's "vs" preset hardcodes generator "Visual Studio 18 2026", which is not
-      # installed on GitHub's windows-latest image (currently VS2022 / "Visual Studio 17 2022").
-      # Configuring without -G lets CMake pick whatever Visual Studio generator the runner
-      # actually has installed instead of hardcoding a version that will drift out of sync with
-      # GitHub's image again the next time either side upgrades. No -D flags needed: Wind defaults
-      # ENGINE_WITH_AUDIO/ENGINE_WITH_WINDOW ON for a game's add_subdirectory, so this plain
-      # configure already matches what the "vs" preset would give us.
-      - name: Configure
-        run: cmake -S . -B build
+      # The game links the engine's static player libraries with SDL3 on Linux, which needs these headers.
+      - name: Packages
+        if: matrix.os == 'linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends ninja-build \
+            libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev libxss-dev libxtst-dev \
+            libxkbcommon-dev libwayland-dev libdecor-0-dev libdrm-dev libgbm-dev libgl1-mesa-dev libgles2-mesa-dev \
+            libegl1-mesa-dev libasound2-dev libpulse-dev libudev-dev libdbus-1-dev libibus-1.0-dev
 
-      # Build this game's own test binary and the real game executable so a compile regression in
-      # either the domain code or the engine-adapter code fails CI. CMakeLists.txt only sets
-      # ENGINE_WITH_GTEST (vendors GoogleTest for electromagnetic_field_tests below), not ENGINE_BUILD_TESTS,
-      # so engine_tests (audio/window/host engine-internal suites that need real audio/display
-      # hardware this runner doesn't have) is never even configured as a target, let alone built.
+      - name: Packages
+        if: matrix.os == 'macos'
+        run: brew install ninja
+
+      # Downloads the SDK of the engine version named in wind_project.toml and sets WIND_SDK_DIR. Pinned to that
+      # engine release, so bump the tag together with `engine` in wind_project.toml.
+      - uses: wismh/wind-engine/.github/actions/setup-wind@v0.1.5a
+
+      # The game's own unit tests, built against the SDK (the same configure the editor runs).
+      - name: Configure tests
+        shell: bash
+        run: |
+          generator=()
+          if [ "${{ matrix.os }}" != windows ]; then generator=(-G "Ninja Multi-Config"); fi
+          cmake -S . -B build-editor "${generator[@]}" -DCMAKE_PREFIX_PATH="$WIND_SDK_DIR" \
+            "-DCMAKE_CONFIGURATION_TYPES=DebugGame;Release"
+
       - name: Build tests
-        run: cmake --build build --target electromagnetic_field_tests --config Debug
+        run: cmake --build build-editor --config DebugGame --target electromagnetic_field_tests --parallel
 
-      - name: Build game
-        run: cmake --build build --target electromagnetic-field --config Debug
-
-      # Scope CTest to this repo's own domain-logic suites (ElectrostaticsTest, SimulationTest, SceneTest, CameraControlTest, FieldVizTest, DynamicsTest, TrailsTest, SliderTest). engine_tests is
-      # never built above, so it can't appear here regardless.
       - name: Run tests
-        run: ctest --test-dir build -C Debug -R "ElectrostaticsTest|SimulationTest|SceneTest|CameraControlTest|FieldVizTest|DynamicsTest|TrailsTest|SliderTest" --output-on-failure
+        run: ctest --test-dir build-editor -C DebugGame --output-on-failure
+
+      # Builds and exports the game with the SDK's editor, without a window. Release is the build players get.
+      - name: Export the game (Windows)
+        if: matrix.os == 'windows'
+        shell: pwsh
+        run: |
+          $out = Join-Path $PWD 'export'
+          $log = Join-Path $PWD 'export.log'
+          $p = Start-Process -Wait -PassThru -FilePath "$env:WIND_SDK_DIR\bin\wind_editor.exe" `
+            -ArgumentList '--batch','--project',$PWD.Path,'--export',$out,'--log-file',$log
+          Get-Content $log
+          if ($p.ExitCode -ne 0) { exit $p.ExitCode }
+
+      - name: Export the game (Linux, macOS)
+        if: matrix.os != 'windows'
+        run: wind_editor --batch --project "$PWD" --export "$PWD/export" --log-file export.log
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: electromagnetic-field-${{ matrix.os }}
+          path: |
+            export
+            !export/**/*.pdb
+            export.log
