@@ -39,9 +39,10 @@ public:
     std::optional<engine::AssetId> window_icon() const override;
 
     void on_start() override;
-    void on_fixed_update() override;
 
 private:
+    // Schedule::Fixed, Phase::Game.
+    void fixed_update();
     // After Input, so MouseConsumed already reflects the panel.
     void frame_update();
     void spawn_camera();
@@ -55,7 +56,7 @@ private:
 
     [[nodiscard]] bool overlay_open() const;
     [[nodiscard]] bool pointer_over_ui() const;
-    [[nodiscard]] CameraView camera_view() const;
+    [[nodiscard]] CameraView camera_view();
     // window_size_for takes a non-const World.
     [[nodiscard]] Bounds view_bounds();
     void update_views();

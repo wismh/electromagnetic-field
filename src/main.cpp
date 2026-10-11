@@ -1,11 +1,5 @@
-#include <engine/engine.h>
+#include <engine/game_entry.h>
 
 #include <game/game.h>
 
-int main() {
-    engine::Engine<game::Game> app;
-    if (!app.init()) {
-        return 1;
-    }
-    return app.run();
-}
+ENGINE_GAME(game::Game)

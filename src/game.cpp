@@ -29,6 +29,7 @@ constexpr int kWindowH = 720;
 }
 
 Game::Game(const engine::EngineServices& services) :
+    GameBase(services.worlds),
     assets_(services.assets),
     input_system_(services.input) {}
 
@@ -48,29 +49,32 @@ void Game::on_start() {
     actions_ = bind_actions(input_system_);
     load_locale();
     spawn_camera();
-    charge_view_.emplace(world_, assets_);
-    field_view_.emplace(world_, assets_);
-    help_.emplace(world_, [this](const HelpDemo& demo) { apply_demo(demo); },
+    charge_view_.emplace(world(), assets_);
+    field_view_.emplace(world(), assets_);
+    help_.emplace(world(), [this](const HelpDemo& demo) { apply_demo(demo); },
             [this](std::string_view tag) { set_locale(tag); });
-    scenes_.emplace(world_, [this](Preset preset) { load_preset(preset); });
-    welcome_.emplace(world_, [this](std::string_view tag) { set_locale(tag); },
+    scenes_.emplace(world(), [this](Preset preset) { load_preset(preset); });
+    welcome_.emplace(world(), [this](std::string_view tag) { set_locale(tag); },
             [this] { prefs_->set_welcome_seen(); });
-    input_.emplace(world_, camera_, sim_, layers_, clock_, new_charge_, panel_visible_, actions_, SandboxHooks{
+    input_.emplace(world(), camera_, sim_, layers_, clock_, new_charge_, panel_visible_, actions_, SandboxHooks{
             .load_preset = [this](Preset preset) { load_preset(preset); },
             .clear = [this] { clear_charges(); },
             .reload = [this] { load_preset(preset_); },
     });
-    hud_.emplace(world_, *this, clock_, *help_, *scenes_);
+    hud_.emplace(world(), *this, clock_, *help_, *scenes_);
     if (!prefs_->welcome_seen()) {
         welcome_->open();
     }
     load_preset(preset_);
-    world_.add_system(engine::ecs::Schedule::Frame, engine::ecs::Phase::Game, [this](engine::ecs::World&) {
+    world().add_system(engine::ecs::Schedule::Fixed, engine::ecs::Phase::Game, [this](engine::ecs::World&) {
+        fixed_update();
+    });
+    world().add_system(engine::ecs::Schedule::Frame, engine::ecs::Phase::Game, [this](engine::ecs::World&) {
         frame_update();
     });
 }
 
-void Game::on_fixed_update() {
+void Game::fixed_update() {
     if (!clock_.paused || clock_.step_requested) {
         // Sub-step so a high time scale does not take one large dt.
         const float scale = clock_.step_requested ? 1.f : clock_.scale;
@@ -84,11 +88,10 @@ void Game::on_fixed_update() {
         assign_ids();
         trails_.record(sim_.charges(), sim_time_);
     }
-    GameBase::on_fixed_update();
 }
 
 void Game::frame_update() {
-    const float dt = world_.ctx<engine::Time>().delta_time;
+    const float dt = world().ctx<engine::Time>().delta_time;
     help_->tick(dt);
     scenes_->tick(dt);
     welcome_->tick(dt);
@@ -98,7 +101,7 @@ void Game::frame_update() {
     }
     overlay_was_open_ = overlays;
     {
-        const engine::ui::WindowSize window = engine::ui::window_size_for(world_, engine::kPrimaryWindow);
+        const engine::ui::WindowSize window = engine::ui::window_size_for(world(), engine::kPrimaryWindow);
         const glm::ivec2 size{window.width, window.height};
         help_->update_layout(size);
         scenes_->update_layout(size);
@@ -112,10 +115,10 @@ void Game::frame_update() {
 }
 
 void Game::spawn_camera() {
-    camera_ = world_.create();
-    world_.emplace<engine::Transform>(camera_);
-    world_.emplace<engine::Camera>(camera_, engine::Camera{.ortho_size = kDefaultOrthoHalf});
-    world_.ctx<engine::ActiveCamera>().entity = camera_;
+    camera_ = world().create();
+    world().emplace<engine::Transform>(camera_);
+    world().emplace<engine::Camera>(camera_, engine::Camera{.ortho_size = kDefaultOrthoHalf});
+    world().ctx<engine::ActiveCamera>().entity = camera_;
 }
 
 void Game::load_locale() {
@@ -128,7 +131,7 @@ void Game::load_locale() {
     prefs_.emplace(std::move(dir));
     prefs_->migrate_legacy();
 
-    auto& catalog = world_.ctx<engine::loc::Catalog>();
+    auto& catalog = world().ctx<engine::loc::Catalog>();
     const auto english = assets_.get<engine::loc::StringTable>(assets::locale::en);
     const auto ukrainian = assets_.get<engine::loc::StringTable>(assets::locale::uk);
     catalog.add(*english, engine::loc::Role::Source);
@@ -141,7 +144,7 @@ void Game::set_locale(std::string_view tag) {
     if (tag != "en" && tag != "uk") {
         return;
     }
-    auto& catalog = world_.ctx<engine::loc::Catalog>();
+    auto& catalog = world().ctx<engine::loc::Catalog>();
     if (catalog.active() == tag) {
         return;
     }
@@ -154,7 +157,7 @@ void Game::set_locale(std::string_view tag) {
 
 void Game::handle_keys() {
     // Key repeat never becomes an InputEvent.
-    for (const engine::KeyEvent& event : engine::ecs::EventReader<engine::KeyEvent>{world_, key_cursor_}) {
+    for (const engine::KeyEvent& event : engine::ecs::EventReader<engine::KeyEvent>{world(), key_cursor_}) {
         if (!event.down || event.key != engine::KeyCode::Right) {
             continue;
         }
@@ -163,7 +166,7 @@ void Game::handle_keys() {
         }
         input_->step();
     }
-    for (const engine::InputEvent& event : engine::ecs::EventReader<engine::InputEvent>{world_, input_cursor_}) {
+    for (const engine::InputEvent& event : engine::ecs::EventReader<engine::InputEvent>{world(), input_cursor_}) {
         if (event.kind != engine::InputEvent::Kind::Down) {
             continue;
         }
@@ -255,15 +258,15 @@ bool Game::pointer_over_ui() const {
     return input_->pointer_on_ui() || overlay_open();
 }
 
-CameraView Game::camera_view() const {
+CameraView Game::camera_view() {
     return CameraView{
-            .position = world_.get<engine::Transform>(camera_).position,
-            .ortho_half = world_.get<engine::Camera>(camera_).ortho_size,
+            .position = world().get<engine::Transform>(camera_).position,
+            .ortho_half = world().get<engine::Camera>(camera_).ortho_size,
     };
 }
 
 Bounds Game::view_bounds() {
-    const engine::ui::WindowSize window = engine::ui::window_size_for(world_, engine::kPrimaryWindow);
+    const engine::ui::WindowSize window = engine::ui::window_size_for(world(), engine::kPrimaryWindow);
     const CameraView view = camera_view();
     const float aspect = window.height > 0 ? static_cast<float>(window.width) / static_cast<float>(window.height) : 1.f;
     const glm::vec2 half{view.ortho_half * aspect, view.ortho_half};
@@ -272,7 +275,7 @@ Bounds Game::view_bounds() {
 }
 
 void Game::update_views() {
-    const engine::ui::WindowSize window = engine::ui::window_size_for(world_, engine::kPrimaryWindow);
+    const engine::ui::WindowSize window = engine::ui::window_size_for(world(), engine::kPrimaryWindow);
     const bool show_probe = layers_.probe && !input_->hovering_charge() && !input_->dragging() && !input_->panning() &&
             !pointer_over_ui();
     if (window.height > 0) {
@@ -283,7 +286,7 @@ void Game::update_views() {
                 .view = view_bounds(),
                 .world_per_pixel = 2.f * camera_view().ortho_half / static_cast<float>(window.height),
                 // Real time, including while the simulation is paused.
-                .dt = world_.ctx<engine::Time>().delta_time,
+                .dt = world().ctx<engine::Time>().delta_time,
                 .probe = show_probe ? std::optional<glm::vec3>{input_->pointer_world()} : std::nullopt,
                 .trails = &trails_,
                 .sim_time = sim_time_,
@@ -299,7 +302,7 @@ void Game::update_views() {
             .hovered = input_->hovered(),
     });
     panel_sync_.sync(hud_->view_model(), sim_, layers_, clock_, new_charge_, PanelFrame{
-            .catalog = &world_.ctx<engine::loc::Catalog>(),
+            .catalog = &world().ctx<engine::loc::Catalog>(),
             .charges = sim_.charges(),
             .coils = sim_.coils(),
             .preset = preset_,
