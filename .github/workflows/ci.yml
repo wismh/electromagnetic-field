@@ -40,7 +40,7 @@ jobs:
 
       # Downloads the SDK of the engine version named in wind_project.toml and sets WIND_SDK_DIR. Pinned to that
       # engine release, so bump the tag together with `engine` in wind_project.toml.
-      - uses: wismh/wind-engine/.github/actions/setup-wind@v0.1.5a
+      - uses: wismh/wind-engine/.github/actions/setup-wind@v0.2.4a
 
       # The game's own unit tests, built against the SDK (the same configure the editor runs).
       - name: Configure tests

@@ -3,6 +3,7 @@
 #include <game/charge_limit.h>
 
 #include <engine/ecs/camera.h>
+#include <engine/ecs/hierarchy.h>
 #include <engine/ecs/transform.h>
 #include <engine/log.h>
 #include <engine/ui/canvas.h>
@@ -304,7 +305,7 @@ glm::vec3 SandboxInput::pointer_to_world(glm::vec2 screen) const {
         return pointer_world_;
     }
     glm::vec3 p = engine::screen_to_world(
-            screen, world_.get<engine::Camera>(camera_), world_.get<engine::Transform>(camera_), window);
+            screen, world_.get<engine::Camera>(camera_), engine::ecs::world_matrix(world_, camera_), window);
     p.z = 0.f;
     return p;
 }

@@ -101,5 +101,5 @@ The game has no engine submodule: it finds an installed Wind SDK. Build and inst
 ```
 
 To update the engine, install the new SDK (Wind Launcher's SDKs page), set `engine` in `wind_project.toml` to its exact
-version (currently `0.1.5a`) and the tag of `setup-wind` in `.github/workflows/ci.yml` to `v<version>`, and point
+version (currently `0.2.4a`) and the tag of `setup-wind` in `.github/workflows/ci.yml` to `v<version>`, and point
 `CMakeUserPresets.json` at it. CI (Windows, Linux and macOS) downloads the SDK of that version, runs the tests, and exports the game.
