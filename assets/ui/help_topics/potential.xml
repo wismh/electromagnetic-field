@@ -6,6 +6,10 @@
     <Label class="p" text="{tr help.potential.p2}"/>
     <Label class="p" text="{tr help.potential.p3}"/>
     <Label class="p" text="{tr help.potential.p4}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-260" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.potential.fig1}"/>
+    </Stack>
     <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="W_{A \to B} = q \, (\varphi_A - \varphi_B)"/>

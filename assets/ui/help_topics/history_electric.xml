@@ -1,0 +1,83 @@
+<Stack class="topic-body" direction="vertical">
+    <Label class="kicker" text="{tr help.history_electric.kicker}"/>
+    <Label class="title" text="{tr help.history_electric.title}"/>
+    <Label class="p" text="{tr help.history_electric.p1}"/>
+    <Label class="h" text="{tr help.h.timeline}"/>
+    <Stack class="timeline" direction="vertical">
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="{tr help.history_electric.yr3}"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl2}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1600"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl4}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1733"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl5}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1747"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl6}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1755–67"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl7}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1769"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl8}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1771–73"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl9}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1785–89"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl10}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1881"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl11}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1911"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl12}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1936"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl13}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1971"/>
+            <Label class="tl-text" text="{tr help.history_electric.tl14}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.history_electric.h15}"/>
+    <Label class="p" text="{tr help.history_electric.p16}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-280" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.history_electric.fig17}"/>
+    </Stack>
+    <Label class="p" text="{tr help.history_electric.p18}"/>
+    <Label class="h" text="{tr help.history_electric.h19}"/>
+    <Label class="p" text="{tr help.history_electric.p20}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-280" paint="{binding diagram2}"/>
+        <Label class="caption" text="{tr help.history_electric.fig21}"/>
+    </Stack>
+    <Label class="h" text="{tr help.h.faq}"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.history_electric.q22}"/>
+            <Label class="qa-a" text="{tr help.history_electric.a23}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.history_electric.q24}"/>
+            <Label class="qa-a" text="{tr help.history_electric.a25}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.history_electric.p26}"/>
+    <Button class="try" content="{tr help.history_electric.try}" command="{binding tryIt}"/>
+</Stack>

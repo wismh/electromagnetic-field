@@ -5,6 +5,10 @@
     <Label class="p" text="{tr help.energy_zero.p1}"/>
     <Label class="p" text="{tr help.energy_zero.p2}"/>
     <Label class="p" text="{tr help.energy_zero.p3}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-260" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.energy_zero.fig1}"/>
+    </Stack>
     <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="U' = U + C"/>

@@ -5,6 +5,10 @@
     <Label class="p" text="{tr help.gradient.p1}"/>
     <Label class="p" text="{tr help.gradient.p2}"/>
     <Label class="p" text="{tr help.gradient.p3}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-270" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.gradient.fig1}"/>
+    </Stack>
     <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="\vec{E} = -\nabla \varphi"/>

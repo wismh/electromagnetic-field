@@ -1250,7 +1250,7 @@ text = "II. POTENTIAL"
 
 [[string]]
 id = "help.section.summary"
-text = "V. SUMMARY"
+text = "VI. SUMMARY"
 
 [[string]]
 id = "help.section.using"
@@ -2547,3 +2547,859 @@ text = "MAGNETIC"
 [[string]]
 id = "scenes.title"
 text = "Scenes"
+
+# --- generated: reference extras (begin) ---
+
+[[string]]
+id = "help.derivation.kicker"
+text = "DEEP DIVE"
+
+[[string]]
+id = "help.derivation.title"
+text = "Gauss’s law: where it comes from"
+
+[[string]]
+id = "help.derivation.p1"
+text = "Topic 6 stated Gauss’s law. Here it is built step by step from Coulomb’s law: first for a sphere around one charge, then for any surface, then for many charges. Every step answers one of the questions that usually stay unclear."
+
+[[string]]
+id = "help.derivation.h2"
+text = "STEP 1 — THE FLUX THROUGH ONE PATCH"
+
+[[string]]
+id = "help.derivation.p3"
+text = "Take a tiny patch of a surface, so small that the field on it is the same everywhere. Its area is \\(\\ dA\\). The vector \\(\\ d\\vec{{A}}\\) has that length and points along the outward unit normal \\(\\ n\\), perpendicular to the patch. The flux through the patch is the dot product of the field with this vector."
+
+[[string]]
+id = "help.derivation.fig4"
+text = "The patch contributes E·dA·cos θ: the whole of E·dA when the field is along the normal, nothing when it slides along the patch, and a negative amount when it points inward."
+
+[[string]]
+id = "help.derivation.p5"
+text = "Only the part of the field along the normal “goes through” the patch. A field that skims along the surface does not pass through it, and that is what the cosine says."
+
+[[string]]
+id = "help.derivation.h6"
+text = "STEP 2 — A SPHERE AROUND A POINT CHARGE"
+
+[[string]]
+id = "help.derivation.p7"
+text = "Put a point charge \\(\\ Q\\) at the centre of a sphere of radius \\(\\ r\\). Symmetry gives three facts. Every point of the sphere is at the same distance from the charge, so \\(\\ E\\) is the same everywhere on it. The field is radial. And the area vector of the sphere is radial too. For a positive charge the angle is \\(\\ \\theta = 0^\\circ\\) on every patch."
+
+[[string]]
+id = "help.derivation.fig8"
+text = "A point charge at the centre of a sphere: the field E and the area vector dA point the same way everywhere on the sphere, and E has the same value."
+
+[[string]]
+id = "help.derivation.p9"
+text = "Two things allow us to take \\(\\ E\\) out of the integral: its value is the same on the whole surface, and the cosine is 1. If the value were constant but the angle changed, \\(\\ \\vec E \\cdot d\\vec A\\) could not simply be replaced by \\(\\ E\\,dA\\). The remaining integral \\(\\ \\oint dA\\) just adds the areas of all patches: it is the area of the sphere, \\(\\ 4\\pi r^2\\)."
+
+[[string]]
+id = "help.derivation.h10"
+text = "STEP 3 — THE RADIUS CANCELS"
+
+[[string]]
+id = "help.derivation.p11"
+text = "Now insert the field of a point charge from Coulomb’s law. The radius disappears from the answer: the flux through a sphere around the charge is the same for every radius."
+
+[[string]]
+id = "help.derivation.fig12"
+text = "At 2r the field is four times weaker, but the sphere is four times larger, so E·S is the same. The same eight lines cross both spheres: flux counts lines."
+
+[[string]]
+id = "help.derivation.p13"
+text = "This is the deep reason for the exact \\(\\ 1/r^2\\) in Coulomb’s law. With any other exponent the radius would not cancel, and the flux would depend on the size of the sphere."
+
+[[string]]
+id = "help.derivation.h14"
+text = "STEP 4 — ANY SHAPE, NOT ONLY A SPHERE"
+
+[[string]]
+id = "help.derivation.p15"
+text = "For a lumpy surface the field and the angle change from patch to patch, and nothing can be pulled out of the integral. The way out is the solid angle \\(\\ d\\Omega\\): the opening of the narrow cone that goes from the charge through the patch. A patch at distance \\(\\ r\\) whose normal is tilted by \\(\\ \\theta\\) from the line to the charge cuts out the solid angle"
+
+[[string]]
+id = "help.derivation.fig16"
+text = "Three patches in one cone: a nearer one, a farther one that is four times larger, and a tilted one still farther. Their areas differ, but the product E·dA·cos θ is the same: it depends only on the cone."
+
+[[string]]
+id = "help.derivation.p17"
+text = "A farther patch is larger (its area grows as \\(\\ r^2\\)) but the field there is weaker (as \\(\\ 1/r^2\\)): the two compensate. A tilted patch is larger by a factor \\(\\ 1/\\cos\\theta\\), and the cosine in the dot product compensates that. So the flux through a patch depends on nothing but the cone it cuts out."
+
+[[string]]
+id = "help.derivation.p18"
+text = "All directions around a point add up to the solid angle \\(\\ 4\\pi\\), the area of a unit sphere. A closed surface around the charge cuts out every direction exactly once (counted with its sign, when a ray crosses a bumpy surface several times). So the total is \\(\\ \\frac{{Q}}{{4\\pi\\varepsilon_0}}\\cdot 4\\pi = \\frac{{Q}}{{\\varepsilon_0}}\\), whatever the shape."
+
+[[string]]
+id = "help.derivation.h19"
+text = "STEP 5 — A CHARGE OUTSIDE THE SURFACE"
+
+[[string]]
+id = "help.derivation.p20"
+text = "Now place the charge outside. A thin cone from it enters the surface through one patch and leaves through another. The solid angle is the same, but the entering patch counts negatively (the field points inward there) and the leaving one positively. They cancel, cone by cone. An outside charge adds nothing to the total flux, although it can change the field at every point of the surface."
+
+[[string]]
+id = "help.derivation.fig21"
+text = "The near patch is small, the far one is larger, but both cut the same cone: one contributes −dΦ and the other +dΦ."
+
+[[string]]
+id = "help.derivation.h22"
+text = "STEP 6 — MANY CHARGES"
+
+[[string]]
+id = "help.derivation.p23"
+text = "The field of many charges is the vector sum of their fields (superposition), and the integral of a sum is the sum of integrals. So the total flux is the sum of the fluxes of each charge taken alone: \\(\\ Q_i/\\varepsilon_0\\) for every charge inside and zero for every charge outside."
+
+[[string]]
+id = "help.derivation.fig24"
+text = "Only the charges inside count, and with their signs: here q1 and q2. The charge q3 changes the field on the surface but not the total flux."
+
+[[string]]
+id = "help.derivation.p25"
+text = "For a continuous charge the sum becomes an integral of the volume density \\(\\ \\rho\\):"
+
+[[string]]
+id = "help.derivation.h26"
+text = "THE WAY BACK: COULOMB’S LAW FROM GAUSS’S LAW"
+
+[[string]]
+id = "help.derivation.p27"
+text = "Reverse the logic. Assume Gauss’s law and a point charge. Symmetry says the field is radial and has the same size on a sphere around the charge, so the left side is again \\(\\ E \\cdot 4\\pi r^2\\). Gauss’s law gives \\(\\ Q/\\varepsilon_0\\) on the right. Solve for \\(\\ E\\), then use \\(\\ F = qE\\) for a test charge \\(\\ q\\)."
+
+[[string]]
+id = "help.derivation.note28"
+text = "Gauss’s law alone does not give the field in every situation: it fixes only the total flux. The step from the flux to the field needs symmetry. Without it, use superposition or the other equations of electrodynamics."
+
+[[string]]
+id = "help.derivation.p29"
+text = "For charges at rest the two laws say the same thing. Gauss’s law is the more general one: it is one of Maxwell’s equations and stays true for moving charges, where Coulomb’s formula is no longer exact. Shrink the surface to a point and the flux per unit volume is the divergence of the field:"
+
+[[string]]
+id = "help.derivation.predict30"
+text = "A cube is drawn around the same charge instead of a sphere. What is the flux?"
+
+[[string]]
+id = "help.derivation.answer31"
+text = "The same, \\(\\ Q/\\varepsilon_0\\). The cone argument does not care about the shape: every direction from the charge is cut out exactly once."
+
+[[string]]
+id = "help.derivation.predict32"
+text = "The charge inside a sphere is moved off the centre but stays inside. Does the flux change?"
+
+[[string]]
+id = "help.derivation.answer33"
+text = "No. On the sphere the field is no longer uniform and the angles are no longer zero, but the total flux is still \\(\\ Q/\\varepsilon_0\\): only the charge inside matters."
+
+[[string]]
+id = "help.derivation.p34"
+text = "In the program, a ring of field lines around any single charge always has the same number of lines leaving it. Count the lines that leave a small loop around a charge, then around a loop that also contains its neighbour."
+
+[[string]]
+id = "help.derivation.try"
+text = "Try it: “Dipole” with field lines and flow"
+
+[[string]]
+id = "help.gauss_practice.kicker"
+text = "DEEP DIVE"
+
+[[string]]
+id = "help.gauss_practice.title"
+text = "Gauss’s law in practice"
+
+[[string]]
+id = "help.gauss_practice.p1"
+text = "Gauss’s law is true for every closed surface, but it hands us the field directly only when the symmetry lets us choose a surface on which \\(\\ E\\) has a fixed size and a fixed angle to the surface. Match the surface to the symmetry: a sphere for a point or a ball, a coaxial cylinder for a long line, a flat “pillbox” for a plane."
+
+[[string]]
+id = "help.gauss_practice.note2"
+text = "The recipe. 1) From the symmetry, say what the direction of the field is and what it can depend on. 2) Choose a closed surface where \\(\\ E\\) is constant and perpendicular, or parallel, to the surface. 3) Compute the flux: the parts where the field is parallel to the surface give zero. 4) Find \\(\\ Q_{{\\mathrm{{in}}}}\\). 5) Solve for \\(\\ E\\)."
+
+[[string]]
+id = "help.gauss_practice.h3"
+text = "A LONG CHARGED LINE"
+
+[[string]]
+id = "help.gauss_practice.p4"
+text = "A very long line carries a charge \\(\\ \\lambda\\) per unit length. By symmetry the field points straight away from the line and depends only on the distance \\(\\ r\\). Take a cylinder of radius \\(\\ r\\) and length \\(\\ L\\) around the line. The flux through the side is \\(\\ E\\) times its area \\(\\ 2\\pi r L\\). Through the two caps the flux is zero, because the field runs along them."
+
+[[string]]
+id = "help.gauss_practice.fig5"
+text = "A Gaussian cylinder around a long line. The field is perpendicular to the side and parallel to the caps."
+
+[[string]]
+id = "help.gauss_practice.p6"
+text = "The length \\(\\ L\\) cancels. The field falls as \\(\\ 1/r\\), not \\(\\ 1/r^2\\): the field lines of a line spread over a circle, not over a sphere."
+
+[[string]]
+id = "help.gauss_practice.h7"
+text = "A LARGE FLAT PLATE"
+
+[[string]]
+id = "help.gauss_practice.p8"
+text = "A plane carries a charge \\(\\ \\sigma\\) per unit area. The field is perpendicular to the plane and has the same size on both sides at the same distance. Take a “pillbox” that crosses the plane, with two caps of area \\(\\ A\\). The flux goes only through the caps."
+
+[[string]]
+id = "help.gauss_practice.fig9"
+text = "A pillbox through a charged plane: the flux goes through the two caps, the sides have none."
+
+[[string]]
+id = "help.gauss_practice.p10"
+text = "The result does not depend on the distance: for an ideal infinite plane the lines do not spread, so the field does not weaken. A real plate behaves like this at distances much smaller than its size. Two plates with opposite charges: between them the fields of the two add up to \\(\\ E = \\sigma/\\varepsilon_0\\), outside they cancel. That is the capacitor of topic 9 and the “Capacitor” scene."
+
+[[string]]
+id = "help.gauss_practice.h11"
+text = "A CONDUCTOR AT REST"
+
+[[string]]
+id = "help.gauss_practice.p12"
+text = "In a conductor at rest the free charges have stopped moving, so the field inside the metal is zero (otherwise they would still be moving). Any Gaussian surface drawn inside the metal then has zero flux, so it encloses zero charge: the excess charge of the conductor can sit only on its surface. Just outside the surface the field is perpendicular to it (a sideways part would push the surface charges along), and it equals \\(\\ \\sigma/\\varepsilon_0\\)."
+
+[[string]]
+id = "help.gauss_practice.fig13"
+text = "A conductor at rest: the excess charge on the surface, no field inside, a field perpendicular to the surface outside."
+
+[[string]]
+id = "help.gauss_practice.note14"
+text = "These conclusions are for electrostatic equilibrium. The same reasoning explains the Faraday cage: inside a closed metal shell there is no field from charges outside. Rapidly changing fields behave differently."
+
+[[string]]
+id = "help.gauss_practice.q15"
+text = "Why does the field of a plane not depend on the distance?"
+
+[[string]]
+id = "help.gauss_practice.a16"
+text = "The flux through a cap of area \\(\\ A\\) is the same at every height, and the charge inside the pillbox does not change as it grows taller. So \\(\\ E\\) must be the same. A real plate is finite: far away, at distances much larger than its size, it looks like a point charge and the field falls as \\(\\ 1/r^2\\)."
+
+[[string]]
+id = "help.gauss_practice.q17"
+text = "Why can’t I use a cylinder for a point charge, or a sphere for a line?"
+
+[[string]]
+id = "help.gauss_practice.a18"
+text = "The law holds for any surface, but then \\(\\ E\\) is not constant on it and not perpendicular to it, so \\(\\ E\\) cannot be taken out of the integral. The surface helps only when it follows the symmetry."
+
+[[string]]
+id = "help.gauss_practice.predict19"
+text = "You move twice as far from a long charged line. How many times weaker is the field?"
+
+[[string]]
+id = "help.gauss_practice.answer20"
+text = "Two times, because \\(\\ E \\propto 1/r\\). For a point charge it would be four times, because \\(\\ E \\propto 1/r^2\\)."
+
+[[string]]
+id = "help.gauss_practice.predict21"
+text = "A hollow metal sphere carries a charge \\(\\ Q\\). What is the field in the empty cavity inside?"
+
+[[string]]
+id = "help.gauss_practice.answer22"
+text = "Zero. A Gaussian sphere inside the cavity encloses no charge (the charge sits on the outer surface), and by symmetry \\(\\ E\\) is the same everywhere on it, so \\(\\ E = 0\\)."
+
+[[string]]
+id = "help.gauss_practice.p23"
+text = "The “Capacitor” scene is two rows of opposite charges, a model of two plates. Between them the field lines run parallel and the probe (F5) reads a nearly constant \\(\\ |E|\\), the \\(\\ \\sigma/\\varepsilon_0\\) of the plate result."
+
+[[string]]
+id = "help.gauss_practice.try"
+text = "Try it: “Capacitor” with potential and lines"
+
+[[string]]
+id = "help.gauss_pitfalls.kicker"
+text = "DEEP DIVE"
+
+[[string]]
+id = "help.gauss_pitfalls.title"
+text = "Gauss’s law: tricky points"
+
+[[string]]
+id = "help.gauss_pitfalls.p1"
+text = "This topic collects what is hardest to see the first time: the notation, the step where \\(\\ E\\) leaves the integral, and what flux does and does not tell you."
+
+[[string]]
+id = "help.gauss_pitfalls.fig2"
+text = "Left: on a sphere the length of E is the same everywhere, but its direction is not. Right: a patch has an area dA and a normal n; the area vector combines them."
+
+[[string]]
+id = "help.gauss_pitfalls.q3"
+text = "What are \\(\\ dA\\) and \\(\\ d\\vec{{A}}\\)?"
+
+[[string]]
+id = "help.gauss_pitfalls.a4"
+text = "\\(\\ dA\\) is the area of a tiny patch, a positive number. \\(\\ d\\vec{{A}} = n\\,dA\\) is a vector with that length, perpendicular to the patch. For a closed surface the normal is taken outward."
+
+[[string]]
+id = "help.gauss_pitfalls.q5"
+text = "Why is \\(\\ \\vec E \\cdot d\\vec A = E\\,dA\\)?"
+
+[[string]]
+id = "help.gauss_pitfalls.a6"
+text = "In general \\(\\ \\vec E \\cdot d\\vec A = E\\,dA\\cos\\theta\\). The simplification holds only where the field is along the outward normal, \\(\\ \\theta = 0^\\circ\\), so \\(\\ \\cos\\theta = 1\\)."
+
+[[string]]
+id = "help.gauss_pitfalls.q7"
+text = "Why can \\(\\ E\\) be taken out of the integral?"
+
+[[string]]
+id = "help.gauss_pitfalls.a8"
+text = "For a point charge at the centre of a sphere, the distance to every point of the sphere is the same, and by Coulomb’s law the size of the field depends only on distance. So the size \\(\\ E\\) is the same everywhere on the sphere and comes out. The vector \\(\\ \\vec E\\) itself is not the same: its direction changes from point to point."
+
+[[string]]
+id = "help.gauss_pitfalls.q9"
+text = "Why is \\(\\ \\oint dA = 4\\pi r^2\\)?"
+
+[[string]]
+id = "help.gauss_pitfalls.a10"
+text = "Integrating \\(\\ dA\\) over a surface means adding the areas of all its patches. For a sphere the total area is \\(\\ 4\\pi r^2\\)."
+
+[[string]]
+id = "help.gauss_pitfalls.q11"
+text = "Why is \\(\\ E = Q/(4\\pi\\varepsilon_0 r^2)\\) not always true?"
+
+[[string]]
+id = "help.gauss_pitfalls.a12"
+text = "It is the field of a point charge, and, outside it, of a spherically symmetric charge. For any other arrangement the field depends on where the charges are, and it must be found by superposition or another method."
+
+[[string]]
+id = "help.gauss_pitfalls.q13"
+text = "Why does Gauss’s law work when the field is not uniform?"
+
+[[string]]
+id = "help.gauss_pitfalls.a14"
+text = "It is about the total flux through the whole closed surface, not the field at one point. The flux can differ from patch to patch, but its sum is fixed by the charge inside."
+
+[[string]]
+id = "help.gauss_pitfalls.q15"
+text = "Where does the sum of charges in Gauss’s law come from?"
+
+[[string]]
+id = "help.gauss_pitfalls.a16"
+text = "From superposition: the field of several charges is the sum of their fields, and by the linearity of the integral the total flux is the sum of the individual fluxes. Charges inside give \\(\\ Q_i/\\varepsilon_0\\), charges outside give zero."
+
+[[string]]
+id = "help.gauss_pitfalls.q17"
+text = "How are Coulomb’s law and Gauss’s law related?"
+
+[[string]]
+id = "help.gauss_pitfalls.a18"
+text = "Coulomb’s law gives the field of a point charge. From it we get the flux through a sphere, and with superposition the whole integral law. Backwards, Gauss’s law with spherical symmetry gives the field of a point charge."
+
+[[string]]
+id = "help.gauss_pitfalls.q19"
+text = "What does flux mean physically?"
+
+[[string]]
+id = "help.gauss_pitfalls.a20"
+text = "It is not a flow of matter. It is a mathematical measure of how much field passes through a surface, built from the size of the field, the area and the angle between the field and the normal."
+
+[[string]]
+id = "help.gauss_pitfalls.leg21"
+text = "\\(\\ E\\) is the size, \\(\\ \\vec E\\) is the vector with a direction."
+
+[[string]]
+id = "help.gauss_pitfalls.leg22"
+text = "a small area is a number; the area vector also has a direction, along the normal."
+
+[[string]]
+id = "help.gauss_pitfalls.leg23"
+text = "the dot product: \\(\\ E\\,dA\\cos\\theta\\), a number, not a vector."
+
+[[string]]
+id = "help.gauss_pitfalls.leg24"
+text = "a zero total flux means zero total charge inside, not zero field."
+
+[[string]]
+id = "help.gauss_pitfalls.leg25"
+text = "the whole area of the closed surface; for a sphere \\(\\ 4\\pi r^2\\)."
+
+[[string]]
+id = "help.gauss_pitfalls.leg26"
+text = "only charges inside, with signs: positive and negative can cancel; outside charges do not count in the flux, but change the field."
+
+[[string]]
+id = "help.gauss_pitfalls.p27"
+text = "Pull the factor \\(\\ E\\) out of the integral only when two conditions hold on the surface: the size of \\(\\ E\\) is constant, and the field is along the normal (or perpendicular to it) everywhere. If either fails, keep the integral. Gauss’s law fixes the flux, not the field at every point; to get the field from it you need symmetry."
+
+[[string]]
+id = "help.fig.perpendicular"
+text = "E is perpendicular"
+
+[[string]]
+id = "help.fig.caps_no_flux"
+text = "caps: no flux"
+
+[[string]]
+id = "help.fig.outside_no_count"
+text = "q3 does not count"
+
+[[string]]
+id = "help.fig.sides_no_flux"
+text = "sides: no flux"
+
+[[string]]
+id = "help.fig.same_magnitude"
+text = "|E| is the same everywhere"
+
+[[string]]
+id = "help.fig.many_directions"
+text = "but the directions differ"
+
+[[string]]
+id = "help.fig.patch_area"
+text = "the area dA"
+
+[[string]]
+id = "help.fig.vector_area"
+text = "the area vector"
+
+[[string]]
+id = "help.fig.same_for_all"
+text = "the same for all three"
+
+[[string]]
+id = "help.fig.repel"
+text = "like charges: push apart"
+
+[[string]]
+id = "help.fig.attract"
+text = "unlike charges: pull together"
+
+[[string]]
+id = "help.fig.lines_start"
+text = "start on +"
+
+[[string]]
+id = "help.fig.lines_end"
+text = "end on −"
+
+[[string]]
+id = "help.fig.lines_cross"
+text = "never cross"
+
+[[string]]
+id = "help.fig.phi_outward"
+text = "going outward from the charge"
+
+[[string]]
+id = "help.fig.crowded"
+text = "equipotentials crowd together"
+
+[[string]]
+id = "help.fig.strong_field"
+text = "where E is stronger"
+
+[[string]]
+id = "help.fig.e_perpendicular"
+text = "E crosses them at right angles"
+
+[[string]]
+id = "help.fig.slope_is_field"
+text = "steeper slope, stronger field"
+
+[[string]]
+id = "help.fig.zero_infinity"
+text = "zero at infinity"
+
+[[string]]
+id = "help.fig.zero_shifted"
+text = "zero chosen elsewhere"
+
+[[string]]
+id = "help.fig.field_circles"
+text = "B circles the wire"
+
+[[string]]
+id = "help.fig.micrometer"
+text = "turning the top of the wire"
+
+[[string]]
+id = "help.fig.cavendish_joined"
+text = "charged, joined by a wire"
+
+[[string]]
+id = "help.fig.cavendish_apart"
+text = "wire removed: the inner sphere is empty"
+
+[[string]]
+id = "help.fig.b_earth"
+text = "Earth’s field"
+
+[[string]]
+id = "help.fig.b_wire"
+text = "field of the wire"
+
+[[string]]
+id = "help.history_electric.kicker"
+text = "HISTORY"
+
+[[string]]
+id = "help.history_electric.title"
+text = "Coulomb’s law: how it was found"
+
+[[string]]
+id = "help.history_electric.p1"
+text = "For about twenty-five centuries people knew that rubbed amber attracts light things, and for most of that time nobody asked by how much. A law of electricity needs numbers: how does the force depend on the charges and on the distance? The answer took almost two centuries and the work of several people, one of whom never published it."
+
+[[string]]
+id = "help.history_electric.tl2"
+text = "By a later tradition, Thales of Miletus notices that rubbed amber attracts light objects. The Greek word for amber, ēlektron, gives us “electricity”."
+
+[[string]]
+id = "help.history_electric.yr3"
+text = "~600 BC"
+
+[[string]]
+id = "help.history_electric.tl4"
+text = "William Gilbert, in De Magnete, separates electric attraction from magnetic and shows that many substances, not only amber, can be electrified by rubbing."
+
+[[string]]
+id = "help.history_electric.tl5"
+text = "Charles du Fay finds two kinds of electrification, from glass and from resin: bodies of the same kind repel, of different kinds attract."
+
+[[string]]
+id = "help.history_electric.tl6"
+text = "Benjamin Franklin describes electricity as one “fluid” that a body has in excess or in deficit. He introduces the signs plus and minus and the idea that charge is conserved. By chance his choice made the electron negative."
+
+[[string]]
+id = "help.history_electric.tl7"
+text = "Franklin sees that a charged metal cup does not pull a cork ball hanging inside it. Joseph Priestley repeats the experiment and notes that Newton had proved the same for gravity inside a hollow shell, which is true only for a force that falls as 1/r². He suggests that the electric force falls the same way."
+
+[[string]]
+id = "help.history_electric.tl8"
+text = "John Robison in Edinburgh measures the repulsion of two charged balls directly and finds that the force falls with an exponent close to 2.06."
+
+[[string]]
+id = "help.history_electric.tl9"
+text = "Henry Cavendish tests the 1/r² law with a sphere inside a sphere and finds that the exponent is 2 within two per cent. He publishes nothing; Maxwell finds his notes and prints them in 1879."
+
+[[string]]
+id = "help.history_electric.tl10"
+text = "Charles-Augustin de Coulomb builds a torsion balance, measures the force between small charged balls and publishes the law in the memoirs of the Paris Academy. The force varies as 1/r²; and, since he can halve a charge by touching the ball with an identical uncharged one, it is proportional to the product of the charges."
+
+[[string]]
+id = "help.history_electric.tl11"
+text = "An international congress of electricians names the unit of charge the coulomb."
+
+[[string]]
+id = "help.history_electric.tl12"
+text = "Alpha particles of Ernest Rutherford scatter off gold nuclei just as Coulomb’s law predicts, down to distances of about 10⁻¹⁴ m, a trillion times smaller than Coulomb could reach."
+
+[[string]]
+id = "help.history_electric.tl13"
+text = "Plimpton and Lawton repeat Cavendish’s idea with a modern electrometer: the exponent is 2 to about two parts in a billion."
+
+[[string]]
+id = "help.history_electric.tl14"
+text = "Williams, Faller and Hill push the same test further: any deviation is smaller than one part in 10¹⁵."
+
+[[string]]
+id = "help.history_electric.h15"
+text = "HOW COULOMB DID IT"
+
+[[string]]
+id = "help.history_electric.p16"
+text = "A thin silver wire holds a light horizontal rod with a small ball a at one end and a counterweight at the other. A second ball b is fixed nearby. When both are charged they repel, and the rod turns and twists the wire. The twist of a thin wire is proportional to the angle, so the angle measures the force. Turning the top of the wire brings the balls back closer, and from the extra twist needed Coulomb found how the force depends on the distance: when the distance was halved, the twist needed to hold the balls rose about fourfold."
+
+[[string]]
+id = "help.history_electric.fig17"
+text = "Coulomb’s torsion balance. Top view (left): the rod turns by the angle θ because b pushes a. Side view (right): the wire, the rod, the balls and the fixed ball b let in through the cover."
+
+[[string]]
+id = "help.history_electric.p18"
+text = "Two limits make the experiment hard. Charge leaks away through the air within minutes, so every reading had to be quick. And the force of attraction cannot be measured on a balance that is free to turn: the ball would snap onto its partner. For attraction Coulomb used a different method, timing how long a charged ball swings around a second, oppositely charged one, and he found the same law."
+
+[[string]]
+id = "help.history_electric.h19"
+text = "CAVENDISH’S NULL TEST"
+
+[[string]]
+id = "help.history_electric.p20"
+text = "Cavendish chose a cleverer test: instead of measuring a force, look for a charge that must be zero. If the force falls exactly as \\(\\ 1/r^2\\), charge on a conductor sits only on its outer surface and the field inside a closed shell is zero (topic 6). He put a sphere inside a hollow one, joined them with a wire, charged the whole thing, took the wire away and tested the inner sphere with a sensitive electrometer. It carried no charge. With any other exponent a trace of charge would have remained on the inner sphere. Modern versions of this test are many orders of magnitude more sensitive than Cavendish’s."
+
+[[string]]
+id = "help.history_electric.fig21"
+text = "Cavendish’s sphere in a sphere. Left: both are charged through a wire. Right: after the wire is removed, the inner sphere holds no charge, which is only possible if the exponent is exactly 2."
+
+[[string]]
+id = "help.history_electric.q22"
+text = "Is Coulomb’s law exact?"
+
+[[string]]
+id = "help.history_electric.a23"
+text = "Experiments find no deviation from \\(\\ 1/r^2\\) at the level of one part in \\(\\ 10^{{15}}\\) over laboratory distances. A deviation would mean that the photon has a mass. At extremely small distances quantum electrodynamics predicts small corrections to the law, because the vacuum around a charge is polarised."
+
+[[string]]
+id = "help.history_electric.q24"
+text = "Why did Franklin’s plus and minus stick?"
+
+[[string]]
+id = "help.history_electric.a25"
+text = "They are a convention, and only the pair matters: like repel, unlike attract. Franklin did not know which charge carries the moving particles. After the discovery of the electron it turned out to be the negative one, which is why the current in a wire is said to flow opposite to the motion of the electrons."
+
+[[string]]
+id = "help.history_electric.p26"
+text = "The “Rutherford” scene is the 1911 experiment in miniature: a fast positive charge flies at a heavy positive one, and its path bends exactly as the \\(\\ 1/r^2\\) repulsion says. Turn on the trails (F6) to see the curve."
+
+[[string]]
+id = "help.history_electric.try"
+text = "Try it: “Rutherford” with trails"
+
+[[string]]
+id = "help.history_field.kicker"
+text = "HISTORY"
+
+[[string]]
+id = "help.history_field.title"
+text = "From force to field: Faraday, Gauss, Maxwell"
+
+[[string]]
+id = "help.history_field.p1"
+text = "Coulomb described how one charge acts on another across empty space. The idea that space itself carries something, a field, took another century. This topic follows how Gauss’s law and its neighbours grew out of that idea, and why the field turned out to be more than a convenient picture."
+
+[[string]]
+id = "help.history_field.fig2"
+text = "Two ways to think about the same force. Left: action at a distance, each charge acts on the other directly. Right: the field, the charge changes the space around it, and the other charge responds to the field where it sits."
+
+[[string]]
+id = "help.history_field.tl3"
+text = "Siméon-Denis Poisson applies the potential, invented for gravity by Lagrange and Laplace, to electric charges on conductors. The potential becomes the main tool of electrostatics."
+
+[[string]]
+id = "help.history_field.tl4"
+text = "Carl Friedrich Gauss, in a paper on the attraction of ellipsoids, proves special cases of the theorem that relates the flux through a closed surface to what is inside it. In 1839 he states it for any force that falls as 1/r²: the flux depends only on the “mass”, or charge, inside."
+
+[[string]]
+id = "help.history_field.tl5"
+text = "Mikhail Ostrogradsky, born in the Poltava region, proves the theorem in its general form, for any closed surface. In mathematics it is now called the Gauss–Ostrogradsky theorem."
+
+[[string]]
+id = "help.history_field.tl6"
+text = "George Green, a self-taught miller from Nottingham, prints a small book that coins the word “potential” and proves a close relative of the same theorem. It sells to a few dozen subscribers and is nearly forgotten until Kelvin finds it in 1845."
+
+[[string]]
+id = "help.history_field.tl7"
+text = "Michael Faraday discovers electromagnetic induction. A changing magnetic field produces an electric field: charges are not the only source."
+
+[[string]]
+id = "help.history_field.tl8"
+text = "Faraday, with almost no mathematics, pictures space filled with lines of force running from charges, magnets and currents, and refuses to believe in action at a distance. Maxwell later wrote that where mathematicians saw centres of force acting from afar, Faraday saw lines of force filling all space."
+
+[[string]]
+id = "help.history_field.tl9"
+text = "James Clerk Maxwell, in “On Faraday’s Lines of Force”, turns the lines into mathematics, using the flow of an imagined fluid as a model. The number of lines through a surface becomes what we call flux."
+
+[[string]]
+id = "help.history_field.tl10"
+text = "Maxwell adds the displacement current: a changing electric field acts like a current. The equations now have wave solutions with a speed close to the speed of light, which Weber and Kohlrausch had measured from electrical units in 1856. He concludes that light is an electromagnetic wave."
+
+[[string]]
+id = "help.history_field.tl11"
+text = "Maxwell’s Treatise on Electricity and Magnetism collects the theory in about twenty equations written out in components. Gauss’s law is one of them."
+
+[[string]]
+id = "help.history_field.tl12"
+text = "Oliver Heaviside, and in the same years Josiah Willard Gibbs, rewrite the theory in vector notation as the four equations we use today. Gauss’s law gets its compact form ∇·E = ρ/ε₀."
+
+[[string]]
+id = "help.history_field.tl13"
+text = "Heinrich Hertz generates and detects radio waves in the laboratory and measures their speed. The field is a real thing: it carries energy through empty space."
+
+[[string]]
+id = "help.history_field.tl14"
+text = "Feynman, Schwinger and Tomonaga complete quantum electrodynamics. In it Coulomb’s law is the classical limit of the exchange of photons between charges."
+
+[[string]]
+id = "help.history_field.h15"
+text = "WHAT CHANGED"
+
+[[string]]
+id = "help.history_field.p16"
+text = "With Coulomb the question was: how strongly do two charges act on each other? With Faraday and Maxwell it became: what is the field at this point, and how does it spread? Gauss’s law belongs to the second way of thinking. It says nothing about forces between pairs of charges. It states what the field must do around any charge, whatever the shape of the surface. That is why it survives when charges move, while the simple form of Coulomb’s law does not."
+
+[[string]]
+id = "help.history_field.q17"
+text = "Who discovered Gauss’s law?"
+
+[[string]]
+id = "help.history_field.a18"
+text = "No one at a single moment. Gauss proved the mathematical theorem for inverse-square forces in 1813 and 1839, Ostrogradsky and Green proved the general theorem, and Maxwell put it into the electromagnetic theory as one of its equations. The name was fixed later, and Heaviside gave it its present form."
+
+[[string]]
+id = "help.history_field.q19"
+text = "Why does the field of a charge “spread” at a finite speed?"
+
+[[string]]
+id = "help.history_field.a20"
+text = "Because it is a real physical thing and not a bookkeeping device. If a charge is moved, the field far away learns about it only after the time the distance divided by the speed of light. This is what the program leaves out: it recomputes the field everywhere at once (see the last topic)."
+
+[[string]]
+id = "help.history_field.p21"
+text = "The field lines and the flow in the program are Faraday’s picture, and the number of lines from each charge (topic 5) is Gauss’s law at work. The program computes the field by Coulomb’s law and superposition, which is correct for charges at rest or moving slowly."
+
+[[string]]
+id = "help.history_field.try"
+text = "Try it: “Dipole” with lines, flow and potential"
+
+[[string]]
+id = "help.history_magnetic.kicker"
+text = "HISTORY"
+
+[[string]]
+id = "help.history_magnetic.title"
+text = "Magnetism and moving charges: from Ørsted to Lorentz"
+
+[[string]]
+id = "help.history_magnetic.p1"
+text = "For centuries magnetism and electricity were two separate subjects: lodestones and compasses on one side, amber and sparks on the other. In 1820 a lecture demonstration showed that they are connected, and within weeks the connection was being measured. A few more decades gave the force on a moving charge that the program uses."
+
+[[string]]
+id = "help.history_magnetic.fig2"
+text = "Ørsted’s experiment, top view. With no current the needle points along the wire (faint). With the current on, it turns toward the field of the wire, which is across the wire, and settles at the angle α between the two fields."
+
+[[string]]
+id = "help.history_magnetic.tl3"
+text = "William Gilbert shows that the Earth itself is a giant magnet, which explains the compass, and separates magnetism from electricity."
+
+[[string]]
+id = "help.history_magnetic.tl4"
+text = "Hans Christian Ørsted notices that a compass needle near a wire with a current turns and settles across the wire, not along it. It is the first sign that a current makes a magnetic field. He reports it in July and the news crosses Europe in weeks."
+
+[[string]]
+id = "help.history_magnetic.tl5"
+text = "André-Marie Ampère shows that two parallel wires attract when the currents run the same way and repel when they run opposite, and that a coil acts like a magnet. Jean-Baptiste Biot and Félix Savart measure the field of a long wire: it falls as 1/r and runs in circles around the wire. Laplace casts the result as a law for each small piece of current, the Biot–Savart law."
+
+[[string]]
+id = "help.history_magnetic.tl6"
+text = "Ampère publishes his mathematical theory of the forces between currents."
+
+[[string]]
+id = "help.history_magnetic.tl7"
+text = "Michael Faraday, and independently Joseph Henry in America, find the opposite effect: a changing magnetic field makes a current in a wire. The dynamo and the transformer follow."
+
+[[string]]
+id = "help.history_magnetic.tl8"
+text = "Edwin Hall finds that a magnetic field pushes the moving charges in a flat conductor to one side and produces a voltage across it. It is the first direct sign that the moving charges themselves feel the magnetic force."
+
+[[string]]
+id = "help.history_magnetic.tl9"
+text = "J. J. Thomson (1881), Oliver Heaviside (1889) and Hendrik Lorentz (1892) work out the force on a moving point charge. It is now called the Lorentz force, \\(\\ F = q(E + v \\times B)\\)."
+
+[[string]]
+id = "help.history_magnetic.tl10"
+text = "J. J. Thomson sends a beam of cathode rays through crossed electric and magnetic fields. When the two deflections cancel, the speed is E/B, the drift of topic 18. From the bending of the beam he finds the ratio of the charge to the mass. The electron is discovered."
+
+[[string]]
+id = "help.history_magnetic.tl11"
+text = "Albert Einstein’s special relativity shows that the magnetic force is the electric force seen from a moving frame. That is why in the program the magnetic constant is tied to the speed of light: \\(\\ \\mu_0/4\\pi = k/c^2\\)."
+
+[[string]]
+id = "help.history_magnetic.tl12"
+text = "Ernest Lawrence, with Stanley Livingston, builds the cyclotron: ions circle in a magnetic field, and the time of one turn does not depend on the speed (topic 17), so a fixed-frequency electric field can keep pushing them."
+
+[[string]]
+id = "help.history_magnetic.q13"
+text = "Why does the needle turn across the wire and not toward it?"
+
+[[string]]
+id = "help.history_magnetic.a14"
+text = "Because the field of a wire circles it, so at the needle it points across the wire. The magnetic force is not a force along the line between the bodies like Coulomb’s. That surprised physicists of the time, who expected an attraction or repulsion between the wire and the poles of the needle."
+
+[[string]]
+id = "help.history_magnetic.q15"
+text = "Is a magnet different from a current?"
+
+[[string]]
+id = "help.history_magnetic.a16"
+text = "Not in what matters here. Ampère proposed that a magnet is full of tiny current loops, and in the atoms these are the motions of the electrons and their spins. A coil with a current and a bar magnet make the same kind of field."
+
+[[string]]
+id = "help.history_magnetic.p17"
+text = "The “Coil” scene is a current loop: its field is built from the law of Biot and Savart, and charges drift around it. The “Cyclotron” scene is Lawrence’s idea in the simplest form: a charge circling in a uniform field."
+
+[[string]]
+id = "help.history_magnetic.try"
+text = "Try it: “Coil” with trails and the probe"
+
+[[string]]
+id = "help.h.timeline"
+text = "TIMELINE"
+
+[[string]]
+id = "help.fig.action_distance"
+text = "action at a distance"
+
+[[string]]
+id = "help.fig.through_field"
+text = "through the field"
+
+[[string]]
+id = "help.coulomb.fig1"
+text = "Like charges push apart, unlike charges pull together. F1 acts on charge 1 and F2 on charge 2: they are equal in size and opposite in direction (Newton’s third law)."
+
+[[string]]
+id = "help.coulomb.fig2"
+text = "Twice as far, and the same influence is spread over four times the area, so the force is four times weaker. Three times as far, nine times weaker."
+
+[[string]]
+id = "help.field.fig1"
+text = "A charge creates a field around it: an arrow at every point shows the force on a positive test charge. The arrows get shorter as 1/r². A test charge q at some point feels F = qE."
+
+[[string]]
+id = "help.superposition.fig1"
+text = "At the point P each charge makes its own field, E1 and E2. The total field E is their vector sum, found by the parallelogram rule."
+
+[[string]]
+id = "help.field_lines.fig1"
+text = "Lines leave positive charges and arrive at negative ones. Two lines cannot cross: at the crossing the field would have two directions at once."
+
+[[string]]
+id = "help.gauss.fig1"
+text = "Three closed surfaces. A charge inside: all the lines leave, the flux is positive. A charge outside: the lines enter and leave, the net flux is zero. A dipole inside: every line that leaves comes back, the net flux is zero."
+
+[[string]]
+id = "help.gauss.see"
+text = "The next three topics go deeper: where Gauss’s law comes from, how to use it for a line, a plane and a conductor, and the points that are hardest to see the first time."
+
+[[string]]
+id = "help.potential.fig1"
+text = "Equipotentials of a point charge for equal steps of φ. They crowd near the charge, where φ changes fastest, and the field E, perpendicular to them, is stronger there."
+
+[[string]]
+id = "help.voltage.fig1"
+text = "Between the plates the field is uniform and the potential falls steadily: the equipotentials are equally spaced lines, and the voltage between the plates is the field times the distance d."
+
+[[string]]
+id = "help.gradient.fig1"
+text = "The field is the slope of the potential with a minus sign. Near the charge the curve is steep and the field is strong; far away the slope is gentle and the field is weak."
+
+[[string]]
+id = "help.pair_energy.fig1"
+text = "The energy of a pair against the distance. Like charges: U is positive and grows as they approach, so two such charges flying at each other stop at r min, where all the kinetic energy has turned into U. Unlike charges: U is negative, a bound pair has less energy than a separated one."
+
+[[string]]
+id = "help.energy_zero.fig1"
+text = "The same curve, with the zero of energy chosen in two ways. The numbers on the scales differ, but the difference ΔU between two points is the same: only differences have physical meaning."
+
+[[string]]
+id = "help.bfield.fig1"
+text = "Left: a current coming toward you, B circles it counter-clockwise. Right: the right-hand rule, the thumb along the current and the fingers along B."
+
+[[string]]
+id = "help.lorentz.fig1"
+text = "The magnetic force is perpendicular to both v and B. Here B goes into the page: a positive charge is pushed to the left of its motion, a negative one to the right."
+
+[[string]]
+id = "help.cyclotron.fig1"
+text = "In a uniform B a charge moves in a circle: the magnetic force is always toward the centre and does no work, so the speed does not change."
+
+[[string]]
+id = "help.exb.fig1"
+text = "E points down and B goes into the page. The charge speeds up along E, the magnetic force bends it, and the loops add up to a steady drift E/B to the right, perpendicular to both fields."
+
+[[string]]
+id = "help.coil.fig1"
+text = "A current loop seen from the side: the field goes up through the loop, comes back around outside, and is strongest inside the loop."
+
+[[string]]
+id = "help.section.history"
+text = "V. HISTORY"
+
+# --- generated: reference extras (end) ---

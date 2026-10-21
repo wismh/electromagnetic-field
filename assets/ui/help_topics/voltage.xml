@@ -6,6 +6,10 @@
     <Label class="p" text="{tr help.voltage.p2}"/>
     <Label class="p" text="{tr help.voltage.p3}"/>
     <Label class="p" text="{tr help.voltage.p4}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-280" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.voltage.fig1}"/>
+    </Stack>
     <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="\Delta \varphi_{AB} = \varphi_A - \varphi_B"/>

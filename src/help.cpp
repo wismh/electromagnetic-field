@@ -1,5 +1,6 @@
 #include <game/help.h>
 
+#include <game/help_sketch.h>
 #include <game/locale_style.h>
 #include <game/overlay_canvas.h>
 
@@ -50,6 +51,7 @@ constexpr const char* kUsing = "help.section.using";
 constexpr const char* kBasics = "help.section.basics";
 constexpr const char* kPotentialEnergy = "help.section.potential";
 constexpr const char* kEnergy = "help.section.energy";
+constexpr const char* kHistory = "help.section.history";
 constexpr const char* kSummary = "help.section.summary";
 constexpr const char* kMagnetic = "help.section.magnetic";
 constexpr const char* kAppendix = "help.section.appendix";
@@ -58,24 +60,30 @@ constexpr const char* kAppendix = "help.section.appendix";
 const std::array<HelpTopic, kHelpTopicCount> kTopics{
         HelpTopic{kUsing, "help.using.title", std::nullopt},
         HelpTopic{kBasics, "help.charge.title", HelpDemo{Preset::Swarm, layers(true, true, false, true, true, true)}},
-        HelpTopic{kBasics, "help.coulomb.title", HelpDemo{Preset::Orbit, layers(true, true, false, false, true, true)}},
-        HelpTopic{kBasics, "help.field.title", HelpDemo{Preset::Dipole, layers(false, false, true, false, true, false)}},
-        HelpTopic{kBasics, "help.superposition.title", HelpDemo{Preset::Quadrupole, layers(false, false, true, false, true, false)}},
-        HelpTopic{kBasics, "help.field_lines.title", HelpDemo{Preset::Dipole, layers(false, true, false, true, true, false)}},
-        HelpTopic{kBasics, "help.gauss.title", HelpDemo{Preset::Capacitor, layers(false, true, false, true, true, false)}},
-        HelpTopic{kPotentialEnergy, "help.potential.title", HelpDemo{Preset::Dipole, layers(true, false, false, false, true, false)}},
+        HelpTopic{kBasics, "help.coulomb.title", HelpDemo{Preset::Orbit, layers(true, true, false, false, true, true)}, DiagramSet::Coulomb},
+        HelpTopic{kBasics, "help.field.title", HelpDemo{Preset::Dipole, layers(false, false, true, false, true, false)}, DiagramSet::Field},
+        HelpTopic{kBasics, "help.superposition.title", HelpDemo{Preset::Quadrupole, layers(false, false, true, false, true, false)}, DiagramSet::Superposition},
+        HelpTopic{kBasics, "help.field_lines.title", HelpDemo{Preset::Dipole, layers(false, true, false, true, true, false)}, DiagramSet::FieldLines},
+        HelpTopic{kBasics, "help.gauss.title", HelpDemo{Preset::Capacitor, layers(false, true, false, true, true, false)}, DiagramSet::Gauss},
+        HelpTopic{kBasics, "help.derivation.title", HelpDemo{Preset::Dipole, layers(false, true, false, true, true, false)}, DiagramSet::Derivation},
+        HelpTopic{kBasics, "help.gauss_practice.title", HelpDemo{Preset::Capacitor, layers(true, true, false, false, true, false)}, DiagramSet::GaussPractice},
+        HelpTopic{kBasics, "help.gauss_pitfalls.title", std::nullopt, DiagramSet::GaussPitfalls},
+        HelpTopic{kPotentialEnergy, "help.potential.title", HelpDemo{Preset::Dipole, layers(true, false, false, false, true, false)}, DiagramSet::Potential},
         HelpTopic{kPotentialEnergy, "help.potential_energy.title", HelpDemo{Preset::LikePair, layers(true, false, false, false, true, false)}},
-        HelpTopic{kPotentialEnergy, "help.voltage.title", HelpDemo{Preset::Capacitor, layers(true, true, false, false, true, false)}},
-        HelpTopic{kPotentialEnergy, "help.gradient.title", HelpDemo{Preset::Dipole, layers(true, false, true, false, true, false)}},
-        HelpTopic{kEnergy, "help.pair_energy.title", HelpDemo{Preset::Rutherford, layers(false, false, false, false, false, true)}},
-        HelpTopic{kEnergy, "help.energy_zero.title", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
+        HelpTopic{kPotentialEnergy, "help.voltage.title", HelpDemo{Preset::Capacitor, layers(true, true, false, false, true, false)}, DiagramSet::Voltage},
+        HelpTopic{kPotentialEnergy, "help.gradient.title", HelpDemo{Preset::Dipole, layers(true, false, true, false, true, false)}, DiagramSet::Gradient},
+        HelpTopic{kEnergy, "help.pair_energy.title", HelpDemo{Preset::Rutherford, layers(false, false, false, false, false, true)}, DiagramSet::PairEnergy},
+        HelpTopic{kEnergy, "help.energy_zero.title", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}, DiagramSet::EnergyZero},
         HelpTopic{kEnergy, "help.work_motion.title", HelpDemo{Preset::Orbit, layers(true, false, false, false, false, true)}},
         HelpTopic{kEnergy, "help.config_energy.title", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
-        HelpTopic{kMagnetic, "help.bfield.title", HelpDemo{Preset::Coil, layers(false, false, false, false, true, false, true)}},
-        HelpTopic{kMagnetic, "help.lorentz.title", HelpDemo{Preset::Cyclotron, layers(false, false, false, false, true, true, true)}},
-        HelpTopic{kMagnetic, "help.cyclotron.title", HelpDemo{Preset::Cyclotron, layers(false, false, false, false, true, true, true)}},
-        HelpTopic{kMagnetic, "help.exb.title", HelpDemo{Preset::ExBDrift, layers(false, true, false, false, true, true, true)}},
-        HelpTopic{kMagnetic, "help.coil.title", HelpDemo{Preset::Coil, layers(false, false, false, false, true, true, true)}},
+        HelpTopic{kMagnetic, "help.bfield.title", HelpDemo{Preset::Coil, layers(false, false, false, false, true, false, true)}, DiagramSet::Bfield},
+        HelpTopic{kMagnetic, "help.lorentz.title", HelpDemo{Preset::Cyclotron, layers(false, false, false, false, true, true, true)}, DiagramSet::Lorentz},
+        HelpTopic{kMagnetic, "help.cyclotron.title", HelpDemo{Preset::Cyclotron, layers(false, false, false, false, true, true, true)}, DiagramSet::Cyclotron},
+        HelpTopic{kMagnetic, "help.exb.title", HelpDemo{Preset::ExBDrift, layers(false, true, false, false, true, true, true)}, DiagramSet::Exb},
+        HelpTopic{kMagnetic, "help.coil.title", HelpDemo{Preset::Coil, layers(false, false, false, false, true, true, true)}, DiagramSet::Coil},
+        HelpTopic{kHistory, "help.history_electric.title", HelpDemo{Preset::Rutherford, layers(false, false, false, false, false, true)}, DiagramSet::HistoryElectric},
+        HelpTopic{kHistory, "help.history_field.title", HelpDemo{Preset::Dipole, layers(true, true, false, true, true, false)}, DiagramSet::HistoryField},
+        HelpTopic{kHistory, "help.history_magnetic.title", HelpDemo{Preset::Coil, layers(false, false, false, false, true, true, true)}, DiagramSet::HistoryMagnetic},
         HelpTopic{kSummary, "help.gravity.title", HelpDemo{Preset::Orbit, layers(false, true, false, false, false, true)}},
         HelpTopic{kSummary, "help.overview.title", HelpDemo{Preset::Dipole, layers(true, true, false, true, true, false)}},
         HelpTopic{kAppendix, "help.simulation.title", HelpDemo{Preset::Swarm, layers(true, false, false, false, false, true)}},
@@ -174,6 +182,14 @@ Help::Help(engine::ecs::World& world, DemoHandler on_demo, LocaleHandler on_loca
             topic->tryIt = [this, i] {
                 close();
                 on_demo_(*kTopics[i].demo);
+            };
+        }
+        const std::span<const DiagramFn> figures = diagram_set(kTopics[i].diagrams);
+        for (std::size_t figure = 0; figure < figures.size() && figure < kHelpDiagramsPerTopic; ++figure) {
+            const DiagramFn draw = figures[figure];
+            topic->diagram[figure] = [this, draw](engine::ui::IDrawList& list, const engine::render::Rect& content) {
+                HelpSketch sketch(list, content, world_.ctx<engine::loc::Catalog>());
+                draw(sketch);
             };
         }
         vm_->topics[i]->set({std::move(topic)});

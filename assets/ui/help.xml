@@ -52,6 +52,15 @@
                 <ItemsControl class="topic" items_source="{binding topicGauss}" var-display="{binding topicGaussDisplay}">
                     <ItemTemplate src="help_topics/gauss.xml"/>
                 </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicDerivation}" var-display="{binding topicDerivationDisplay}">
+                    <ItemTemplate src="help_topics/derivation.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicGaussPractice}" var-display="{binding topicGaussPracticeDisplay}">
+                    <ItemTemplate src="help_topics/gauss_practice.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicGaussPitfalls}" var-display="{binding topicGaussPitfallsDisplay}">
+                    <ItemTemplate src="help_topics/gauss_pitfalls.xml"/>
+                </ItemsControl>
                 <ItemsControl class="topic" items_source="{binding topicPotential}" var-display="{binding topicPotentialDisplay}">
                     <ItemTemplate src="help_topics/potential.xml"/>
                 </ItemsControl>
@@ -90,6 +99,15 @@
                 </ItemsControl>
                 <ItemsControl class="topic" items_source="{binding topicCoil}" var-display="{binding topicCoilDisplay}">
                     <ItemTemplate src="help_topics/coil.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicHistoryElectric}" var-display="{binding topicHistoryElectricDisplay}">
+                    <ItemTemplate src="help_topics/history_electric.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicHistoryField}" var-display="{binding topicHistoryFieldDisplay}">
+                    <ItemTemplate src="help_topics/history_field.xml"/>
+                </ItemsControl>
+                <ItemsControl class="topic" items_source="{binding topicHistoryMagnetic}" var-display="{binding topicHistoryMagneticDisplay}">
+                    <ItemTemplate src="help_topics/history_magnetic.xml"/>
                 </ItemsControl>
                 <ItemsControl class="topic" items_source="{binding topicGravity}" var-display="{binding topicGravityDisplay}">
                     <ItemTemplate src="help_topics/gravity.xml"/>

@@ -1,0 +1,96 @@
+<Stack class="topic-body" direction="vertical">
+    <Label class="kicker" text="{tr help.derivation.kicker}"/>
+    <Label class="title" text="{tr help.derivation.title}"/>
+    <Label class="p" text="{tr help.derivation.p1}"/>
+    <Label class="h" text="{tr help.derivation.h2}"/>
+    <Label class="p" text="{tr help.derivation.p3}"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="d\Phi = \vec{E} \cdot d\vec{A} = E \, dA \, \cos\theta"/>
+        <Math class="display-math" display="true" formula="d\vec{A} = n \, dA"/>
+    </Stack>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-250" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.derivation.fig4}"/>
+    </Stack>
+    <Label class="p" text="{tr help.derivation.p5}"/>
+    <Label class="h" text="{tr help.derivation.h6}"/>
+    <Label class="p" text="{tr help.derivation.p7}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-260" paint="{binding diagram2}"/>
+        <Label class="caption" text="{tr help.derivation.fig8}"/>
+    </Stack>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\Phi = \oint \vec{E} \cdot d\vec{A} = \oint E \, dA = E \oint dA = E \cdot 4 \pi r^2"/>
+    </Stack>
+    <Label class="p" text="{tr help.derivation.p9}"/>
+    <Label class="h" text="{tr help.derivation.h10}"/>
+    <Label class="p" text="{tr help.derivation.p11}"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\Phi = E \cdot 4 \pi r^2 = \frac{Q}{4 \pi \varepsilon_0 r^2} \cdot 4 \pi r^2 = \frac{Q}{\varepsilon_0}"/>
+    </Stack>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-250" paint="{binding diagram3}"/>
+        <Label class="caption" text="{tr help.derivation.fig12}"/>
+    </Stack>
+    <Label class="p" text="{tr help.derivation.p13}"/>
+    <Label class="h" text="{tr help.derivation.h14}"/>
+    <Label class="p" text="{tr help.derivation.p15}"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="d\Omega = \frac{dA \, \cos\theta}{r^2} \quad \Rightarrow \quad d\Phi = E \, dA \, \cos\theta = \frac{Q}{4 \pi \varepsilon_0} \, d\Omega"/>
+    </Stack>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-260" paint="{binding diagram4}"/>
+        <Label class="caption" text="{tr help.derivation.fig16}"/>
+    </Stack>
+    <Label class="p" text="{tr help.derivation.p17}"/>
+    <Label class="p" text="{tr help.derivation.p18}"/>
+    <Label class="h" text="{tr help.derivation.h19}"/>
+    <Label class="p" text="{tr help.derivation.p20}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-260" paint="{binding diagram5}"/>
+        <Label class="caption" text="{tr help.derivation.fig21}"/>
+    </Stack>
+    <Label class="h" text="{tr help.derivation.h22}"/>
+    <Label class="p" text="{tr help.derivation.p23}"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\Phi = \oint (\vec{E}_1 + \vec{E}_2 + \cdots) \cdot d\vec{A} = \sum_{\mathrm{in}} \frac{Q_i}{\varepsilon_0} = \frac{Q_{\mathrm{in}}}{\varepsilon_0}"/>
+    </Stack>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-260" paint="{binding diagram6}"/>
+        <Label class="caption" text="{tr help.derivation.fig24}"/>
+    </Stack>
+    <Label class="p" text="{tr help.derivation.p25}"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="Q_{\mathrm{in}} = \int_V \rho \, dV"/>
+    </Stack>
+    <Label class="h" text="{tr help.derivation.h26}"/>
+    <Label class="p" text="{tr help.derivation.p27}"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="E \cdot 4 \pi r^2 = \frac{Q}{\varepsilon_0} \quad \Rightarrow \quad E = \frac{Q}{4 \pi \varepsilon_0 r^2} \quad \Rightarrow \quad F = qE = \frac{Q q}{4 \pi \varepsilon_0 r^2}"/>
+    </Stack>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="{tr help.derivation.note28}"/>
+    </Stack>
+    <Label class="p" text="{tr help.derivation.p29}"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0}"/>
+    </Stack>
+    <Label class="h" text="{tr help.h.predict}"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="{tr help.derivation.predict30}"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-h="{binding answer1Height}" var-gap="{binding answer1Gap}">
+            <Label class="predict-a-text" text="{tr help.derivation.answer31}"/>
+        </Stack>
+    </Stack>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="{tr help.derivation.predict32}"/>
+        <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
+        <Stack class="predict-a" direction="vertical" var-h="{binding answer2Height}" var-gap="{binding answer2Gap}">
+            <Label class="predict-a-text" text="{tr help.derivation.answer33}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.derivation.p34}"/>
+    <Button class="try" content="{tr help.derivation.try}" command="{binding tryIt}"/>
+</Stack>

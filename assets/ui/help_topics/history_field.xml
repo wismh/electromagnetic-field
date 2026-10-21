@@ -1,0 +1,76 @@
+<Stack class="topic-body" direction="vertical">
+    <Label class="kicker" text="{tr help.history_field.kicker}"/>
+    <Label class="title" text="{tr help.history_field.title}"/>
+    <Label class="p" text="{tr help.history_field.p1}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-250" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.history_field.fig2}"/>
+    </Stack>
+    <Label class="h" text="{tr help.h.timeline}"/>
+    <Stack class="timeline" direction="vertical">
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1812"/>
+            <Label class="tl-text" text="{tr help.history_field.tl3}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1813, 1839"/>
+            <Label class="tl-text" text="{tr help.history_field.tl4}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1826–31"/>
+            <Label class="tl-text" text="{tr help.history_field.tl5}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1828"/>
+            <Label class="tl-text" text="{tr help.history_field.tl6}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1831"/>
+            <Label class="tl-text" text="{tr help.history_field.tl7}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1830s–40s"/>
+            <Label class="tl-text" text="{tr help.history_field.tl8}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1855–56"/>
+            <Label class="tl-text" text="{tr help.history_field.tl9}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1861–65"/>
+            <Label class="tl-text" text="{tr help.history_field.tl10}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1873"/>
+            <Label class="tl-text" text="{tr help.history_field.tl11}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1884–85"/>
+            <Label class="tl-text" text="{tr help.history_field.tl12}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1887–88"/>
+            <Label class="tl-text" text="{tr help.history_field.tl13}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1940s"/>
+            <Label class="tl-text" text="{tr help.history_field.tl14}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.history_field.h15}"/>
+    <Label class="p" text="{tr help.history_field.p16}"/>
+    <Label class="h" text="{tr help.h.faq}"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.history_field.q17}"/>
+            <Label class="qa-a" text="{tr help.history_field.a18}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.history_field.q19}"/>
+            <Label class="qa-a" text="{tr help.history_field.a20}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.history_field.p21}"/>
+    <Button class="try" content="{tr help.history_field.try}" command="{binding tryIt}"/>
+</Stack>

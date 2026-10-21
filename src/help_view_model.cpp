@@ -32,6 +32,9 @@ HelpTopicViewModel::HelpTopicViewModel() {
         property(engine::ui::intern("answer" + n + "Gap"), answer_gap[i]);
         property(engine::ui::intern("revealLabel" + n), reveal_label[i]);
     }
+    for (std::size_t i = 0; i < kHelpDiagramsPerTopic; ++i) {
+        paint(engine::ui::intern("diagram" + std::to_string(i + 1)), diagram[i]);
+    }
 }
 
 void HelpTopicViewModel::set_reveal_labels(std::string show, std::string hide) {
@@ -81,6 +84,9 @@ HelpViewModel::HelpViewModel() :
             &topicSuperposition,
             &topicFieldLines,
             &topicGauss,
+            &topicDerivation,
+            &topicGaussPractice,
+            &topicGaussPitfalls,
             &topicPotential,
             &topicPotentialEnergy,
             &topicVoltage,
@@ -94,6 +100,9 @@ HelpViewModel::HelpViewModel() :
             &topicCyclotron,
             &topicExb,
             &topicCoil,
+            &topicHistoryElectric,
+            &topicHistoryField,
+            &topicHistoryMagnetic,
             &topicGravity,
             &topicOverview,
             &topicSimulation,
@@ -106,6 +115,9 @@ HelpViewModel::HelpViewModel() :
             &topicSuperpositionDisplay,
             &topicFieldLinesDisplay,
             &topicGaussDisplay,
+            &topicDerivationDisplay,
+            &topicGaussPracticeDisplay,
+            &topicGaussPitfallsDisplay,
             &topicPotentialDisplay,
             &topicPotentialEnergyDisplay,
             &topicVoltageDisplay,
@@ -119,6 +131,9 @@ HelpViewModel::HelpViewModel() :
             &topicCyclotronDisplay,
             &topicExbDisplay,
             &topicCoilDisplay,
+            &topicHistoryElectricDisplay,
+            &topicHistoryFieldDisplay,
+            &topicHistoryMagneticDisplay,
             &topicGravityDisplay,
             &topicOverviewDisplay,
             &topicSimulationDisplay,

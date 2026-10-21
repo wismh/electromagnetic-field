@@ -5,6 +5,10 @@
     <Label class="p" text="{tr help.gauss.p1}"/>
     <Label class="p" text="{tr help.gauss.p2}"/>
     <Label class="p" text="{tr help.gauss.p3}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-260" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.gauss.fig1}"/>
+    </Stack>
     <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="\Phi = \oint \vec{E} \cdot d\vec{A} = \frac{Q_{\mathrm{in}}}{\varepsilon_0}"/>
@@ -82,6 +86,9 @@
         <Stack class="predict-a" direction="vertical" var-h="{binding answer2Height}" var-gap="{binding answer2Gap}">
             <Label class="predict-a-text" text="{tr help.gauss.answer2}"/>
         </Stack>
+    </Stack>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="{tr help.gauss.see}"/>
     </Stack>
     <Label class="h" text="{tr help.h.where}"/>
     <Label class="p" text="{tr help.gauss.p4}"/>

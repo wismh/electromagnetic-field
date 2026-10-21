@@ -5,6 +5,10 @@
     <Label class="p" text="{tr help.superposition.p1}"/>
     <Label class="p" text="{tr help.superposition.p2}"/>
     <Label class="p" text="{tr help.superposition.p3}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-260" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.superposition.fig1}"/>
+    </Stack>
     <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="\vec{E} = \sum_i \vec{E}_i = \sum_i k \, \frac{q_i}{r_i^2} \cdot \frac{\vec{r}_i}{r_i}"/>

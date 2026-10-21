@@ -2,6 +2,7 @@
 
 #include <engine/ui/bindable.h>
 #include <engine/ui/command.h>
+#include <engine/ui/paint.h>
 #include <engine/ui/view_model.h>
 
 #include <game/locale_style.h>
@@ -13,8 +14,9 @@
 
 namespace game {
 
-inline constexpr std::size_t kHelpTopicCount = 23;
+inline constexpr std::size_t kHelpTopicCount = 29;
 inline constexpr std::size_t kHelpPredictionsPerTopic = 3;
+inline constexpr std::size_t kHelpDiagramsPerTopic = 6;
 
 // Header or topic button; the unused half is display: none.
 class HelpNavItem final : public engine::ui::ViewModel {
@@ -42,6 +44,9 @@ public:
     std::array<engine::ui::Bindable<std::string>, kHelpPredictionsPerTopic> answer_height;
     std::array<engine::ui::Bindable<std::string>, kHelpPredictionsPerTopic> answer_gap;
     std::array<engine::ui::Bindable<std::string>, kHelpPredictionsPerTopic> reveal_label;
+
+    // Schematic figures: `diagramN` in the topic XML, N from 1.
+    std::array<engine::ui::RelayPaint, kHelpDiagramsPerTopic> diagram;
 
     void note_answer_height(std::size_t index, float height);
     void apply_answer_motion();
@@ -99,6 +104,12 @@ public:
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicGravity;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicOverview;
     engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicSimulation;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicDerivation;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicGaussPractice;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicGaussPitfalls;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicHistoryElectric;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicHistoryField;
+    engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>> topicHistoryMagnetic;
 
     engine::ui::Bindable<std::string> topicUsingDisplay;
     engine::ui::Bindable<std::string> topicChargeDisplay;
@@ -123,6 +134,12 @@ public:
     engine::ui::Bindable<std::string> topicExbDisplay;
     engine::ui::Bindable<std::string> topicCoilDisplay;
     engine::ui::Bindable<std::string> topicSimulationDisplay;
+    engine::ui::Bindable<std::string> topicDerivationDisplay;
+    engine::ui::Bindable<std::string> topicGaussPracticeDisplay;
+    engine::ui::Bindable<std::string> topicGaussPitfallsDisplay;
+    engine::ui::Bindable<std::string> topicHistoryElectricDisplay;
+    engine::ui::Bindable<std::string> topicHistoryFieldDisplay;
+    engine::ui::Bindable<std::string> topicHistoryMagneticDisplay;
 
     // topics / topic_displays, in navigation order.
     std::array<engine::ui::BindableList<std::shared_ptr<HelpTopicViewModel>>*, kHelpTopicCount> topics;

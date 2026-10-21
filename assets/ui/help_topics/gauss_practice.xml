@@ -1,0 +1,73 @@
+<Stack class="topic-body" direction="vertical">
+    <Label class="kicker" text="{tr help.gauss_practice.kicker}"/>
+    <Label class="title" text="{tr help.gauss_practice.title}"/>
+    <Label class="p" text="{tr help.gauss_practice.p1}"/>
+    <Label class="h" text="{tr help.h.formulas}"/>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="\oint \vec{E} \cdot d\vec{A} = \frac{Q_{\mathrm{in}}}{\varepsilon_0}"/>
+    </Stack>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="{tr help.gauss_practice.note2}"/>
+    </Stack>
+    <Label class="h" text="{tr help.gauss_practice.h3}"/>
+    <Label class="p" text="{tr help.gauss_practice.p4}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-280" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.gauss_practice.fig5}"/>
+    </Stack>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="E \cdot 2 \pi r L = \frac{\lambda L}{\varepsilon_0} \quad \Rightarrow \quad E = \frac{\lambda}{2 \pi \varepsilon_0 r}"/>
+    </Stack>
+    <Label class="p" text="{tr help.gauss_practice.p6}"/>
+    <Label class="h" text="{tr help.gauss_practice.h7}"/>
+    <Label class="p" text="{tr help.gauss_practice.p8}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-260" paint="{binding diagram2}"/>
+        <Label class="caption" text="{tr help.gauss_practice.fig9}"/>
+    </Stack>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="2 E A = \frac{\sigma A}{\varepsilon_0} \quad \Rightarrow \quad E = \frac{\sigma}{2 \varepsilon_0}"/>
+    </Stack>
+    <Label class="p" text="{tr help.gauss_practice.p10}"/>
+    <Label class="h" text="{tr help.gauss_practice.h11}"/>
+    <Label class="p" text="{tr help.gauss_practice.p12}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-280" paint="{binding diagram3}"/>
+        <Label class="caption" text="{tr help.gauss_practice.fig13}"/>
+    </Stack>
+    <Stack class="formula" direction="vertical">
+        <Math class="display-math" display="true" formula="E_{\mathrm{inside}} = 0 \qquad E_{\mathrm{surface}} = \frac{\sigma}{\varepsilon_0}"/>
+    </Stack>
+    <Stack class="note" direction="vertical">
+        <Label class="note-text" text="{tr help.gauss_practice.note14}"/>
+    </Stack>
+    <Label class="h" text="{tr help.h.faq}"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.gauss_practice.q15}"/>
+            <Label class="qa-a" text="{tr help.gauss_practice.a16}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.gauss_practice.q17}"/>
+            <Label class="qa-a" text="{tr help.gauss_practice.a18}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.predict}"/>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="{tr help.gauss_practice.predict19}"/>
+        <Button class="reveal" content="{binding revealLabel1}" command="{binding reveal1}"/>
+        <Stack class="predict-a" direction="vertical" var-h="{binding answer1Height}" var-gap="{binding answer1Gap}">
+            <Label class="predict-a-text" text="{tr help.gauss_practice.answer20}"/>
+        </Stack>
+    </Stack>
+    <Stack class="predict" direction="vertical">
+        <Label class="predict-q" text="{tr help.gauss_practice.predict21}"/>
+        <Button class="reveal" content="{binding revealLabel2}" command="{binding reveal2}"/>
+        <Stack class="predict-a" direction="vertical" var-h="{binding answer2Height}" var-gap="{binding answer2Gap}">
+            <Label class="predict-a-text" text="{tr help.gauss_practice.answer22}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.gauss_practice.p23}"/>
+    <Button class="try" content="{tr help.gauss_practice.try}" command="{binding tryIt}"/>
+</Stack>

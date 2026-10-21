@@ -4,6 +4,10 @@
     <Label class="h" text="{tr help.h.idea}"/>
     <Label class="p" text="{tr help.lorentz.p1}"/>
     <Label class="p" text="{tr help.lorentz.p2}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-260" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.lorentz.fig1}"/>
+    </Stack>
     <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="\vec{F} = q \, (\vec{E} + \vec{v} \times \vec{B})"/>

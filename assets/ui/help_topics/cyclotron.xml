@@ -4,6 +4,10 @@
     <Label class="h" text="{tr help.h.idea}"/>
     <Label class="p" text="{tr help.cyclotron.p1}"/>
     <Label class="p" text="{tr help.cyclotron.p2}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-270" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.cyclotron.fig1}"/>
+    </Stack>
     <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="R = \frac{m v}{|q| \, B}"/>

@@ -3,9 +3,17 @@
     <Label class="title" text="{tr help.coulomb.title}"/>
     <Label class="h" text="{tr help.h.idea}"/>
     <Label class="p" text="{tr help.coulomb.p1}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-240" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.coulomb.fig1}"/>
+    </Stack>
     <Label class="p" text="{tr help.coulomb.p2}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="S = 4 \pi r^2"/>
+    </Stack>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-290" paint="{binding diagram2}"/>
+        <Label class="caption" text="{tr help.coulomb.fig2}"/>
     </Stack>
     <Label class="p" text="{tr help.coulomb.p3}"/>
     <Label class="h" text="{tr help.h.formulas}"/>

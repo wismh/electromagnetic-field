@@ -1,0 +1,89 @@
+<Stack class="topic-body" direction="vertical">
+    <Label class="kicker" text="{tr help.gauss_pitfalls.kicker}"/>
+    <Label class="title" text="{tr help.gauss_pitfalls.title}"/>
+    <Label class="p" text="{tr help.gauss_pitfalls.p1}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-280" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.gauss_pitfalls.fig2}"/>
+    </Stack>
+    <Label class="h" text="{tr help.h.faq}"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.gauss_pitfalls.q3}"/>
+            <Label class="qa-a" text="{tr help.gauss_pitfalls.a4}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.gauss_pitfalls.q5}"/>
+            <Label class="qa-a" text="{tr help.gauss_pitfalls.a6}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.gauss_pitfalls.q7}"/>
+            <Label class="qa-a" text="{tr help.gauss_pitfalls.a8}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.gauss_pitfalls.q9}"/>
+            <Label class="qa-a" text="{tr help.gauss_pitfalls.a10}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.gauss_pitfalls.q11}"/>
+            <Label class="qa-a" text="{tr help.gauss_pitfalls.a12}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.gauss_pitfalls.q13}"/>
+            <Label class="qa-a" text="{tr help.gauss_pitfalls.a14}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.gauss_pitfalls.q15}"/>
+            <Label class="qa-a" text="{tr help.gauss_pitfalls.a16}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.gauss_pitfalls.q17}"/>
+            <Label class="qa-a" text="{tr help.gauss_pitfalls.a18}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.gauss_pitfalls.q19}"/>
+            <Label class="qa-a" text="{tr help.gauss_pitfalls.a20}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.legend}"/>
+    <Stack class="legend" direction="vertical">
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="E \neq \vec{E}"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.gauss_pitfalls.leg21}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="dA \neq d\vec{A}"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.gauss_pitfalls.leg22}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\vec{E} \cdot d\vec{A}"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.gauss_pitfalls.leg23}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\Phi = 0"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.gauss_pitfalls.leg24}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="\oint dA"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.gauss_pitfalls.leg25}"/>
+        </Stack>
+        <Stack class="legend-row" direction="horizontal">
+            <Stack class="sym" direction="vertical">
+                <Math class="sym-math" formula="Q_{\mathrm{in}}"/>
+            </Stack>
+            <Label class="legend-text" text="{tr help.gauss_pitfalls.leg26}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.gauss_pitfalls.p27}"/>
+</Stack>

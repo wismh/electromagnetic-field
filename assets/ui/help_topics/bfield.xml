@@ -4,6 +4,10 @@
     <Label class="h" text="{tr help.h.idea}"/>
     <Label class="p" text="{tr help.bfield.p1}"/>
     <Label class="p" text="{tr help.bfield.p2}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-270" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.bfield.fig1}"/>
+    </Stack>
     <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="\vec{B} = \frac{\mu_0}{4\pi} \, \frac{q \, \vec{v} \times \vec{r}}{r^3}"/>

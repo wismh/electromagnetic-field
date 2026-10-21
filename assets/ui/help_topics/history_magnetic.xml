@@ -1,0 +1,66 @@
+<Stack class="topic-body" direction="vertical">
+    <Label class="kicker" text="{tr help.history_magnetic.kicker}"/>
+    <Label class="title" text="{tr help.history_magnetic.title}"/>
+    <Label class="p" text="{tr help.history_magnetic.p1}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-250" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.history_magnetic.fig2}"/>
+    </Stack>
+    <Label class="h" text="{tr help.h.timeline}"/>
+    <Stack class="timeline" direction="vertical">
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1600"/>
+            <Label class="tl-text" text="{tr help.history_magnetic.tl3}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1820"/>
+            <Label class="tl-text" text="{tr help.history_magnetic.tl4}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1820"/>
+            <Label class="tl-text" text="{tr help.history_magnetic.tl5}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1826"/>
+            <Label class="tl-text" text="{tr help.history_magnetic.tl6}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1831"/>
+            <Label class="tl-text" text="{tr help.history_magnetic.tl7}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1879"/>
+            <Label class="tl-text" text="{tr help.history_magnetic.tl8}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1881–92"/>
+            <Label class="tl-text" text="{tr help.history_magnetic.tl9}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1897"/>
+            <Label class="tl-text" text="{tr help.history_magnetic.tl10}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1905"/>
+            <Label class="tl-text" text="{tr help.history_magnetic.tl11}"/>
+        </Stack>
+        <Stack class="tl-row" direction="horizontal">
+            <Label class="tl-year" text="1931–32"/>
+            <Label class="tl-text" text="{tr help.history_magnetic.tl12}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.faq}"/>
+    <Stack class="faq" direction="vertical">
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.history_magnetic.q13}"/>
+            <Label class="qa-a" text="{tr help.history_magnetic.a14}"/>
+        </Stack>
+        <Stack class="qa" direction="vertical">
+            <Label class="qa-q" text="{tr help.history_magnetic.q15}"/>
+            <Label class="qa-a" text="{tr help.history_magnetic.a16}"/>
+        </Stack>
+    </Stack>
+    <Label class="h" text="{tr help.h.where}"/>
+    <Label class="p" text="{tr help.history_magnetic.p17}"/>
+    <Button class="try" content="{tr help.history_magnetic.try}" command="{binding tryIt}"/>
+</Stack>

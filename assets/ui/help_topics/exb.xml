@@ -4,6 +4,10 @@
     <Label class="h" text="{tr help.h.idea}"/>
     <Label class="p" text="{tr help.exb.p1}"/>
     <Label class="p" text="{tr help.exb.p2}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-260" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.exb.fig1}"/>
+    </Stack>
     <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="\vec{v}_d = \frac{\vec{E} \times \vec{B}}{B^2}"/>

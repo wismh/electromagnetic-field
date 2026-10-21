@@ -4,6 +4,7 @@
 #include <engine/ecs/world.h>
 
 #include <game/field_layers.h>
+#include <game/help_diagrams.h>
 #include <game/help_view_model.h>
 #include <game/overlay_pop.h>
 #include <game/scene.h>
@@ -28,6 +29,7 @@ struct HelpTopic {
     const char* section;
     const char* title;
     std::optional<HelpDemo> demo;
+    DiagramSet diagrams = DiagramSet::None;
 };
 
 // Same order as HelpViewModel::topics and assets/ui/help_topics/.

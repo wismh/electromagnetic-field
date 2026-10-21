@@ -6,6 +6,10 @@
     <Label class="p" text="{tr help.pair_energy.p2}"/>
     <Label class="p" text="{tr help.pair_energy.p3}"/>
     <Label class="p" text="{tr help.pair_energy.p4}"/>
+    <Stack class="figure" direction="vertical">
+        <Component class="diagram dg-270" paint="{binding diagram1}"/>
+        <Label class="caption" text="{tr help.pair_energy.fig1}"/>
+    </Stack>
     <Label class="h" text="{tr help.h.formulas}"/>
     <Stack class="formula" direction="vertical">
         <Math class="display-math" display="true" formula="U(r) = k \, \frac{Q q}{r}"/>

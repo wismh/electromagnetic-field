@@ -414,3 +414,139 @@ Label.keycap {
     color: #f7f8fc;
     white-space: nowrap;
 }
+
+/* generated: figures and timelines (begin) */
+
+/* Schematic figure: a painted Component and its caption. */
+Stack.figure {
+    width: 100%;
+    padding: 14 12 12 12;
+    gap: 10;
+    background: #ffffff08;
+    border-radius: 10;
+    border-width: 1;
+    border-color: #ffffff12;
+}
+
+Component.diagram {
+    width: 100%;
+}
+
+Component.dg-160 {
+    height: 160;
+}
+
+Component.dg-170 {
+    height: 170;
+}
+
+Component.dg-180 {
+    height: 180;
+}
+
+Component.dg-190 {
+    height: 190;
+}
+
+Component.dg-200 {
+    height: 200;
+}
+
+Component.dg-210 {
+    height: 210;
+}
+
+Component.dg-220 {
+    height: 220;
+}
+
+Component.dg-230 {
+    height: 230;
+}
+
+Component.dg-240 {
+    height: 240;
+}
+
+Component.dg-250 {
+    height: 250;
+}
+
+Component.dg-260 {
+    height: 260;
+}
+
+Component.dg-270 {
+    height: 270;
+}
+
+Component.dg-280 {
+    height: 280;
+}
+
+Component.dg-290 {
+    height: 290;
+}
+
+Component.dg-300 {
+    height: 300;
+}
+
+Component.dg-310 {
+    height: 310;
+}
+
+Component.dg-320 {
+    height: 320;
+}
+
+Component.dg-330 {
+    height: 330;
+}
+
+Component.dg-340 {
+    height: 340;
+}
+
+Component.dg-350 {
+    height: 350;
+}
+
+Component.dg-360 {
+    height: 360;
+}
+
+Label.caption {
+    width: 100%;
+    font-size: 14;
+    color: #9aa2b8;
+    line-height: 1.4;
+    user-select: text;
+}
+
+Stack.timeline {
+    width: 100%;
+    gap: 12;
+}
+
+Stack.tl-row {
+    width: 100%;
+    gap: 16;
+}
+
+Label.tl-year {
+    width: 96;
+    font-size: 15;
+    color: #818cf8;
+    white-space: nowrap;
+}
+
+Label.tl-text {
+    width: calc(100% - 112px);
+    font-size: 15;
+    color: #c9cedb;
+    line-height: 1.45;
+    user-select: text;
+}
+
+/* generated: figures and timelines (end) */

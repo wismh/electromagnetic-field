@@ -34,6 +34,13 @@ engine_add_game(electromagnetic-field
     src/user_prefs.cpp
     src/help.cpp
     src/help_view_model.cpp
+    src/help_sketch.cpp
+    src/help_diagrams.cpp
+    src/help_diagrams_gauss.cpp
+    src/help_diagrams_electric.cpp
+    src/help_diagrams_energy.cpp
+    src/help_diagrams_magnetic.cpp
+    src/help_diagrams_history.cpp
     src/welcome.cpp
     src/scene_gallery.cpp)
 
